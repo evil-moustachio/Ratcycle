@@ -31,8 +31,10 @@ namespace Ratcycle
         private long _ticksPerFrame;
         private long _nextFrameTick;
 
-        // Returns the current hitbox of the object. Which is calculated
-        // using the sourceRectangle of the object.
+        /// <summary>
+        /// Returns the current hitbox of the object. Which is calculated
+        /// using the sourceRectangle of the object.
+        /// </summary>
         public Rectangle HitBox
         {
             get
@@ -45,7 +47,14 @@ namespace Ratcycle
             }
         }
 
-        // GameObject constructor.
+        /// <summary>
+        /// GameObject constructor.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="texture"></param>
+        /// <param name="animates"></param>
+        /// <param name="game"></param>
+        /// <param name="view"></param>
 		public GameObject(Vector2 position, Texture2D texture, bool animates, 
             Game1 game, View view)
 		{
@@ -74,7 +83,9 @@ namespace Ratcycle
             _nextFrameTick = _game.World.Model.CurrentGameTick + _ticksPerFrame;
 		}
 
-        // Updates the sourceRectangle when it's time for the next frame.
+        /// <summary>
+        /// Updates the sourceRectangle when it's time for the next frame.
+        /// </summary>
         private void AnimationHandler()
         {
             if (_game.World.Model.CurrentGameTick > _nextFrameTick)
@@ -89,8 +100,12 @@ namespace Ratcycle
             }
         }
 
-        // Changes the sourceRectangle's position to the desired frame.
-        // Top row is 0, first column is 0.
+        /// <summary>
+        /// Changes the sourceRectangle's position to the desired frame.
+        /// Top row is 0, first column is 0.
+        /// </summary>
+        /// <param name="frameColumn"></param>
+        /// <param name="frameRow"></param>
         public void ChangeToFrame(int frameColumn, int frameRow)
         {
             // Update _currentFrame
@@ -101,7 +116,9 @@ namespace Ratcycle
             _sourceRectangle.Y = _frameHeight * frameRow;
         }
 
-        // Updates the object.
+        /// <summary>
+        /// Updates the object.
+        /// </summary>
         public void Update()
         {
             if (_animates)
@@ -110,7 +127,10 @@ namespace Ratcycle
             }
         }
 
-        // Draws the object's texture on the spriteBatch.
+        /// <summary>
+        /// Draws the object's texture on the spriteBatch.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(

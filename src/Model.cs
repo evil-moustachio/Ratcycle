@@ -11,6 +11,9 @@ namespace Ratcycle
 	{
         private long _currentGameTick;
 
+        /// <summary>
+        /// Returns the tick the game is currently on.
+        /// </summary>
         public long CurrentGameTick
         {
             get
@@ -19,20 +22,27 @@ namespace Ratcycle
             }
         }
 
+        /// <summary>
+        /// Model constructor.
+        /// </summary>
 		public Model()
 		{
 		}
 
-        // Sets _currentGameTick to the current tick
+        /// <summary>
+        /// Sets _currentGameTick to the current tick.
+        /// </summary>
         public void UpdateCurrentGameTick()
         {
             _currentGameTick = DateTime.Now.Ticks;
         }
 
+        /// <summary>
+        /// Updates the Model.
+        /// </summary>
         public void Update()
         {
             UpdateCurrentGameTick();
         }
 	}
 }
-

@@ -11,8 +11,6 @@ namespace Ratcycle
 	{
         private Game1 _game;
         private ViewController _viewController;
-        private Vector2 _position;
-        private Texture2D _texture;
 
 		public View (ViewController viewController, Game1 game)
 		{

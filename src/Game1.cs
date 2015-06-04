@@ -32,6 +32,7 @@ namespace Ratcycle
 			graphics.IsFullScreen = false;
 			graphics.PreferredBackBufferHeight = 600;
 			graphics.PreferredBackBufferWidth = 800;
+			ContentHandler.SetTextures ();
 		}
 
 		protected override void Initialize ()
@@ -43,6 +44,7 @@ namespace Ratcycle
 		protected override void LoadContent ()
 		{
 			spriteBatch = new SpriteBatch(GraphicsDevice);
+			ContentHandler.LoadContent (Content);
 		}
 			
 		protected override void Update (GameTime gameTime)

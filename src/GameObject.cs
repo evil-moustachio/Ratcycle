@@ -12,6 +12,7 @@ namespace Ratcycle
         protected Vector2 _position;
         protected Game1 _game;
         protected View _parentView;
+		protected Model _model;
 
         // Texture
         protected Color _color;
@@ -26,7 +27,7 @@ namespace Ratcycle
         protected Vector2 _currentFrame;
         protected int _frameWidth;
         protected int _frameHeight;
-        protected int _frameCollumns;
+        protected int _frameColumns;
         protected int _frameRows;
         private long _ticksPerFrame;
         private long _nextFrameTick;
@@ -64,9 +65,10 @@ namespace Ratcycle
             _texture = texture;
             _game = game;
             _parentView = view;
+			_model = _game.World.Model;
 
             // Default settings.
-            _frameCollumns = 1;
+            _frameColumns = 1;
             _frameRows = 1;
             _color = Color.White;
             _origin = Vector2.Zero;
@@ -75,12 +77,12 @@ namespace Ratcycle
             fps = 25;
 
             // _sourceRectanlge setup.
-            _frameWidth = _texture.Width / _frameCollumns;
+            _frameWidth = _texture.Width / _frameColumns;
             _frameHeight = _texture.Height / _frameRows;
             _sourceRectangle = new Rectangle(0, 0, _frameWidth, _frameHeight);
             // Animation setup.
             _ticksPerFrame = 10000000 / fps;
-            _nextFrameTick = _game.World.Model.CurrentGameTick + _ticksPerFrame;
+			_nextFrameTick = _model.CurrentGameTick + _ticksPerFrame;
 		}
 
         /// <summary>
@@ -91,12 +93,12 @@ namespace Ratcycle
             if (_game.World.Model.CurrentGameTick > _nextFrameTick)
             {
                 var nextFrame = (int)_currentFrame.X + 1;
-                if (nextFrame > _frameCollumns)
+                if (nextFrame > _frameColumns)
                 {
                     nextFrame = 0;
                 }
                 ChangeToFrame( nextFrame, (int)_currentFrame.Y);
-                _nextFrameTick = _game.World.Model.CurrentGameTick + _ticksPerFrame;
+				_nextFrameTick = _model.CurrentGameTick + _ticksPerFrame;
             }
         }
 

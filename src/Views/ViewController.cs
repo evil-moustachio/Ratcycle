@@ -46,6 +46,7 @@ namespace Ratcycle
 
 		private void initializeView() 
 		{
+			// Initialize the view so it can run from start
 			_views [_currentView].Initialize ();
 		}
     }

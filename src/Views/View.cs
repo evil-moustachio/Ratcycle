@@ -12,20 +12,22 @@ namespace Ratcycle
         private Game1 _game;
         private ViewController _viewController;
 
-		public View (ViewController viewController, Game1 game)
+		public View (Game1 game, ViewController viewController)
 		{
             _game = game;
             _viewController = viewController;
 		}
 
-		public void Update ()
+		public virtual void Initialize()
 		{
-            // Update Entities in for loop
 		}
 
-		public void Draw (SpriteBatch spriteBatch)
+		public virtual void Update ()
 		{
-            // Draw entities in for loop
+		}
+
+		public virtual void Draw (SpriteBatch spriteBatch)
+		{
 		}
 	}
 }

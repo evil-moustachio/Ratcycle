@@ -13,7 +13,7 @@ namespace Ratcycle
 	public class Game1 : Game
 	{
 		GraphicsDeviceManager graphics;
-		private SpriteBatch spriteBatch;
+		SpriteBatch spriteBatch;
 
 		private World _world;
 

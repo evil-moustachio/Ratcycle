@@ -20,7 +20,7 @@ namespace Ratcycle
 		/// </summary>
 		/// <returns><c>true</c> if the specified key is down; otherwise, <c>false</c>.</returns>
 		/// <param name="key">Key.</param>
-		public Boolean IsKeyDown(Keys key)
+		public bool IsKeyDown(Keys key)
 		{
 			return keyboardState.IsKeyDown (key);
 		}

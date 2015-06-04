@@ -21,25 +21,25 @@ namespace Ratcycle
 		/// Left button pressed.
 		/// </summary>
 		/// <returns><c>true</c>, if left button was pressed, <c>false</c> otherwise.</returns>
-		public Boolean LeftButtonPressed()
+		public bool LeftButtonPressed()
 		{
-			return mouseState.LeftButton == ButtonState.Pressed;
+			return (mouseState.LeftButton == ButtonState.Pressed);
 		}
 
 		/// <summary>
 		/// Returns true if the left button was released and now pressed.
 		/// </summary>
 		/// <value><c>true</c> if the left button was released and now pressed, otherwise; <c>false</c>.</value>
-		public Boolean LeftButtonBeginPress()
+		public bool LeftButtonBeginPress()
 		{
-			return (prevMouseState.LeftButton == ButtonState.Released && LeftButtonPressed);
+			return (prevMouseState.LeftButton == ButtonState.Released && LeftButtonPressed());
 		}
 
 		/// <summary>
 		/// Returns true if the left button was pressed and now released.
 		/// </summary>
 		/// <returns><c>true</c> if the left button was pressed and now released, otherwise; <c>false</c>.</returns>
-		public Boolean LeftButtonEndPress()
+		public bool LeftButtonEndPress()
 		{
 			return (prevMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released);
 		}
@@ -48,7 +48,7 @@ namespace Ratcycle
 		/// Right button pressed.
 		/// </summary>
 		/// <returns><c>true</c>, if right button was pressed, <c>false</c> otherwise.</returns>
-		public Boolean RightButtonPressed()
+		public bool RightButtonPressed()
 		{
 			return mouseState.RightButton == ButtonState.Pressed;
 		}
@@ -57,16 +57,16 @@ namespace Ratcycle
 		/// Returns true if the right button was released and now pressed
 		/// </summary>
 		/// <value><c>true</c> if the right button was released and now pressed, otherwise; <c>false</c>.</value>
-		public Boolean RightButtonBeginPress()
+		public bool RightButtonBeginPress()
 		{
-			return (prevMouseState.RightButton == ButtonState.Released && RightButtonPressed);
+			return ((prevMouseState.RightButton == ButtonState.Released) && RightButtonPressed());
 		}
 
 		/// <summary>
 		/// Returns true if the right button was pressed and now released.
 		/// </summary>
 		/// <returns><c>true</c> if the right button was pressed and now released, otherwise; <c>false</c>.</returns>
-		public Boolean RightButtonEndPress()
+		public bool RightButtonEndPress()
 		{
 			return (prevMouseState.RightButton == ButtonState.Pressed && mouseState.RightButton == ButtonState.Released);
 		}
@@ -77,7 +77,7 @@ namespace Ratcycle
 		/// <returns>The location.</returns>
 		public Vector2 MouseLocation()
 		{
-			return Vector2 (mouseState.Position.X, mouseState.Position.Y);
+			return new Vector2 (mouseState.Position.X, mouseState.Position.Y);
 		}
 	}
 }

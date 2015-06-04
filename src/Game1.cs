@@ -15,17 +15,25 @@ namespace Ratcycle
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
 
-		private World _world;
+        private World _world;
+
+        public World World
+        {
+            get
+            {
+                return _world;
+            }
+        }
 
 		public Game1 ()
 		{
 			graphics = new GraphicsDeviceManager(this);
-			Content.RootDirectory = "GameFiles/Content";	            
+            Content.RootDirectory = "GameFiles/Content";
 			graphics.IsFullScreen = false;
 			graphics.PreferredBackBufferHeight = 600;
 			graphics.PreferredBackBufferWidth = 800;
 		}
-			
+
 		protected override void Initialize ()
 		{
 			base.Initialize ();

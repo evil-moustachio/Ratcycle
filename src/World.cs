@@ -12,16 +12,19 @@ namespace Ratcycle
         private Game _game;
         private ViewController _viewController;
 
+        public Model Model;
+
         // World constructor
         public World(Game1 game)
         {
             _game = game;
-
+            Model = new Model();
             _viewController = new ViewController(game);
         }
 
         public void Update()
         {
+            Model.Update();
             _viewController.Update();
             // Update the world
         }

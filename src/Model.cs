@@ -9,9 +9,30 @@ namespace Ratcycle
 {
 	public class Model
 	{
-		public Model ()
+        private long _currentGameTick;
+
+        public long CurrentGameTick
+        {
+            get
+            {
+                return _currentGameTick;
+            }
+        }
+
+		public Model()
 		{
 		}
+
+        // Sets _currentGameTick to the current tick
+        public void UpdateCurrentGameTick()
+        {
+            _currentGameTick = DateTime.Now.Ticks;
+        }
+
+        public void Update()
+        {
+            UpdateCurrentGameTick();
+        }
 	}
 }
 

@@ -7,24 +7,29 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Ratcycle
 {
-	public class World
-	{
-		private Game _game;
+    public class World
+    {
+        private Game _game;
+        private ViewController _viewController;
 
-		public World (Game game)
-		{
-			_game = game;
-		}
+        // World constructor
+        public World(Game1 game)
+        {
+            _game = game;
 
-		public void Update ()
-		{
-			// Update the world
-		}
+            _viewController = new ViewController(game);
+        }
 
-		public void Draw (SpriteBatch spriteBatch)
-		{
-			// Draw the world
-		}
-	}
+        public void Update()
+        {
+            _viewController.Update();
+            // Update the world
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            // Draw the world
+            _viewController.Draw(spriteBatch);
+        }
+    }
 }
-

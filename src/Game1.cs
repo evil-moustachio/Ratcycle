@@ -15,11 +15,11 @@ namespace Ratcycle
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
 
-		public World World;
+		private World _world;
 
 		public Game1 ()
 		{
-			graphics = new GraphicsDeviceManager (this);
+			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "GameFiles/Content";	            
 			graphics.IsFullScreen = false;
 			graphics.PreferredBackBufferHeight = 600;
@@ -29,31 +29,31 @@ namespace Ratcycle
 		protected override void Initialize ()
 		{
 			base.Initialize ();
-			World = new World (this);
+			_world = new World(this);
 		}
 
 		protected override void LoadContent ()
 		{
-			spriteBatch = new SpriteBatch (GraphicsDevice);
+			spriteBatch = new SpriteBatch(GraphicsDevice);
 		}
 			
 		protected override void Update (GameTime gameTime)
 		{
-			base.Update (gameTime);
-			World.Update ();
+			base.Update(gameTime);
+			_world.Update();
 		}
 			
 		protected override void Draw (GameTime gameTime)
 		{
 			// Resets the image 
-			graphics.GraphicsDevice.Clear (Color.White);
+			graphics.GraphicsDevice.Clear(Color.White);
 
 			// Starts the spritebatch
-			spriteBatch.Begin ();
+			spriteBatch.Begin();
 			// Tells the World to draw it's state
-			World.Draw (spriteBatch);
+			_world.Draw(spriteBatch);
 			// Ends the spritebatch
-			spriteBatch.End ();
+			spriteBatch.End();
 		}
 	}
 }

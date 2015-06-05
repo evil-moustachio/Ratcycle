@@ -11,6 +11,7 @@ namespace Ratcycle
 	{
         private Game1 _game;
         private ViewController _viewController;
+        protected GameObject[] _gameObjects;
 
 		public View (Game1 game, ViewController viewController)
 		{

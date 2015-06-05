@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Ratcycle
 {
@@ -23,8 +24,9 @@ namespace Ratcycle
 		/// <param name="content">Content.</param>
 		public static void LoadContent (ContentManager content)
 		{
-			foreach (var texture in textures) {
-				textures [texture.Key] = content.Load<Texture2D> (texture.Key);
+			for (int i = textures.Count - 1; i >= 0; --i) {
+				string key = textures.Keys.ElementAt (i);
+				textures [key] = content.Load<Texture2D> (key);
 			}
 		}
 

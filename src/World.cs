@@ -11,7 +11,7 @@ namespace Ratcycle
     {
         private Game _game;
         private ViewController _viewController;
-		Player _player;
+        public Player _player;
 
         public Model Model;
 
@@ -19,8 +19,8 @@ namespace Ratcycle
         {
             _game = game;
             Model = new Model();
+            _player = new Player();
             _viewController = new ViewController(game);
-			_player = new Player ();
         }
 
         public void Update()

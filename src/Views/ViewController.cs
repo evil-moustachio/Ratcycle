@@ -18,10 +18,9 @@ namespace Ratcycle
         {
             _game = game;
             _views = new View[] {
-
+                new Stage(game, this)
             };
 			initializeView ();
-
         }
 
 		public int CurrentView {
@@ -47,7 +46,7 @@ namespace Ratcycle
 		private void initializeView() 
 		{
 			// Initialize the view so it can run from start
-			_views [_currentView].Initialize ();
+			_views [_currentView].Initialize();
 		}
     }
 }

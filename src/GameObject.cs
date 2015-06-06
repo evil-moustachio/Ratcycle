@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Ratcycle
 {
-	public class GameObject
+	public abstract class GameObject
 	{
         protected Vector2 _position;
         protected Game1 _game;
@@ -65,7 +65,9 @@ namespace Ratcycle
             _texture = texture;
             _game = game;
             _parentView = view;
-			_model = _game.World.Model;
+
+			//_model = _game.World.Model;
+            _animates = animates;
 
             // Default settings.
             _frameColumns = 1;
@@ -82,7 +84,7 @@ namespace Ratcycle
             _sourceRectangle = new Rectangle(0, 0, _frameWidth, _frameHeight);
             // Animation setup.
             _ticksPerFrame = 10000000 / fps;
-			_nextFrameTick = _model.CurrentGameTick + _ticksPerFrame;
+            _nextFrameTick = DateTime.Now.Ticks + _ticksPerFrame;
 		}
 
         /// <summary>
@@ -90,6 +92,7 @@ namespace Ratcycle
         /// </summary>
         private void AnimationHandler()
         {
+            // TODO: Make Model accessible 
             if (_game.World.Model.CurrentGameTick > _nextFrameTick)
             {
                 var nextFrame = (int)_currentFrame.X + 1;
@@ -98,7 +101,7 @@ namespace Ratcycle
                     nextFrame = 0;
                 }
                 ChangeToFrame( nextFrame, (int)_currentFrame.Y);
-				_nextFrameTick = _model.CurrentGameTick + _ticksPerFrame;
+                _nextFrameTick = _game.World.Model.CurrentGameTick + _ticksPerFrame;
             }
         }
 
@@ -117,11 +120,11 @@ namespace Ratcycle
             _sourceRectangle.X = _frameWidth * frameColumn;
             _sourceRectangle.Y = _frameHeight * frameRow;
         }
-
+ 
         /// <summary>
         /// Updates the object.
         /// </summary>
-        public void Update()
+        public virtual void Update()
         {
             if (_animates)
             {

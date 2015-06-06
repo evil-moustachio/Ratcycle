@@ -7,8 +7,11 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Ratcycle
 {
-	public class Entity : GameObject
+	public abstract class Entity : GameObject
 	{
+        protected int _minX, _minY, _maxX, _maxY;
+        protected Vector2 _speed;
+
         /// <summary>
         /// Entity constructor, extends GameObject.
         /// </summary>
@@ -17,9 +20,35 @@ namespace Ratcycle
         /// <param name="animates"></param>
         /// <param name="game"></param>
         /// <param name="view"></param>
+        /// <param name="speed"></param>
         public Entity(Vector2 position, Texture2D texture, bool animates, 
-            Game1 game, View view) : base(position, texture, animates, game, view)
+            Game1 game, View view, Vector2 speed) : base(position, texture, animates, game, view)
         {
+            _speed = speed;
+
+            // Default values for border boundaries for every entity
+            // Change minimal values according to background.
+            _minX = 0;
+            _minY = 0; 
+            _maxX = game.GraphicsDevice.Viewport.Width - _texture.Width;
+            _maxY = game.GraphicsDevice.Viewport.Height - _texture.Height;
+        }
+
+        /// <summary>
+        /// Determines what happens on hit of a certain object. Just in entity, because HUD doesn't count as hit.
+        /// </summary>
+        /// <param name="other"></param>
+        public virtual void OnHit(Entity other)
+        {
+            // Maybe make this function abstract
+        }
+        
+        /// <summary>
+        /// Updates the entity (same as GameObject)
+        /// </summary>
+        public override void Update()
+        {
+            base.Update();
         }
 	}
 }

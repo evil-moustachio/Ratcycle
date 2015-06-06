@@ -9,7 +9,6 @@ namespace Ratcycle
     class Rat : Entity
     {
         private Keys _up, _down, _left, _right;
-        private KeyHandler _keyHandler;
         private int _health;
 
         /// <summary>
@@ -35,7 +34,6 @@ namespace Ratcycle
             _down = down;
             _left = left;
             _right = right;
-            _keyHandler = new KeyHandler();
         }
         
         /// <summary>
@@ -43,19 +41,19 @@ namespace Ratcycle
         /// </summary>
         private void Move()
         {
-            if (_keyHandler.IsKeyDown(_up) && _position.Y > _minY)
+			if (KeyHandler.IsKeyDown(_up) && _position.Y > _minCoords.Y)
             {
                 _position.Y -= _speed.Y;
             }
-            if (_keyHandler.IsKeyDown(_down) && _position.Y < _maxY)
+			if (KeyHandler.IsKeyDown(_down) && _position.Y < _maxCoords.Y)
             {
                 _position.Y += _speed.Y;
             }
-            if (_keyHandler.IsKeyDown(_left) && _position.X > _minX)
+			if (KeyHandler.IsKeyDown(_left) && _position.X > _minCoords.X)
             {
                 _position.X -= _speed.X;
             }
-            if (_keyHandler.IsKeyDown(_right) && _position.X < _maxX)
+			if (KeyHandler.IsKeyDown(_right) && _position.X < _maxCoords.X)
             {
                 _position.X += _speed.X;
             }
@@ -77,7 +75,6 @@ namespace Ratcycle
         public override void Update()
         {
             base.Update();
-            _keyHandler.Update();
             Move();
         }
     }

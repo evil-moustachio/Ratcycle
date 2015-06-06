@@ -12,7 +12,6 @@ namespace Ratcycle
         protected Vector2 _position;
         protected Game1 _game;
         protected View _parentView;
-		protected Model _model;
 
         // Texture
         protected Color _color;
@@ -66,7 +65,6 @@ namespace Ratcycle
             _game = game;
             _parentView = view;
 
-			//_model = _game.World.Model;
             _animates = animates;
 
             // Default settings.
@@ -92,8 +90,7 @@ namespace Ratcycle
         /// </summary>
         private void AnimationHandler()
         {
-            // TODO: Make Model accessible 
-            if (_game.World.Model.CurrentGameTick > _nextFrameTick)
+			if (Model.CurrentGameTick > _nextFrameTick)
             {
                 var nextFrame = (int)_currentFrame.X + 1;
                 if (nextFrame > _frameColumns)
@@ -101,7 +98,7 @@ namespace Ratcycle
                     nextFrame = 0;
                 }
                 ChangeToFrame( nextFrame, (int)_currentFrame.Y);
-                _nextFrameTick = _game.World.Model.CurrentGameTick + _ticksPerFrame;
+				_nextFrameTick = Model.CurrentGameTick + _ticksPerFrame;
             }
         }
 

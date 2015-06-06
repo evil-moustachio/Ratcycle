@@ -9,7 +9,8 @@ namespace Ratcycle
 {
 	public abstract class Entity : GameObject
 	{
-        protected int _minX, _minY, _maxX, _maxY;
+		protected Vector2 _minCoords;
+		protected Vector2 _maxCoords;
         protected Vector2 _speed;
 
         /// <summary>
@@ -28,10 +29,9 @@ namespace Ratcycle
 
             // Default values for border boundaries for every entity
             // Change minimal values according to background.
-            _minX = 0;
-            _minY = 0; 
-            _maxX = game.GraphicsDevice.Viewport.Width - _texture.Width;
-            _maxY = game.GraphicsDevice.Viewport.Height - _texture.Height;
+			_minCoords = new Vector2 (0,0);
+			_maxCoords = new Vector2 (game.GraphicsDevice.Viewport.Width - _texture.Width,
+										game.GraphicsDevice.Viewport.Height - _texture.Height);
         }
 
         /// <summary>

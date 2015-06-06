@@ -3,14 +3,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Ratcycle
 {
-	public class KeyHandler
+	public static class KeyHandler
 	{
-		KeyboardState keyboardState;
+		static KeyboardState keyboardState;
 
 		/// <summary>
 		/// Update this instance.
 		/// </summary>
-		public void Update()
+		public static void Update()
 		{
 			keyboardState = Keyboard.GetState ();
 		}
@@ -20,7 +20,7 @@ namespace Ratcycle
 		/// </summary>
 		/// <returns><c>true</c> if the specified key is down; otherwise, <c>false</c>.</returns>
 		/// <param name="key">Key.</param>
-		public bool IsKeyDown(Keys key)
+		public static bool IsKeyDown(Keys key)
 		{
 			return keyboardState.IsKeyDown (key);
 		}

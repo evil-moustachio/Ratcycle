@@ -7,14 +7,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Ratcycle
 {
-	public class Model
+	public static class Model
 	{
-        private long _currentGameTick;
+		private static long _currentGameTick;
 
         /// <summary>
         /// Returns the tick the game is currently on.
         /// </summary>
-        public long CurrentGameTick
+        public static long CurrentGameTick
         {
             get
             {
@@ -23,16 +23,9 @@ namespace Ratcycle
         }
 
         /// <summary>
-        /// Model constructor.
-        /// </summary>
-		public Model()
-		{
-		}
-
-        /// <summary>
         /// Sets _currentGameTick to the current tick.
         /// </summary>
-        public void UpdateCurrentGameTick()
+		private static void UpdateCurrentGameTick()
         {
             _currentGameTick = DateTime.Now.Ticks;
         }
@@ -40,7 +33,7 @@ namespace Ratcycle
         /// <summary>
         /// Updates the Model.
         /// </summary>
-        public void Update()
+		public static void Update()
         {
             UpdateCurrentGameTick();
         }

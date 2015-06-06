@@ -9,7 +9,8 @@ namespace Ratcycle
 {
 	public abstract class GameObject
 	{
-        protected Vector2 _position;
+		protected Vector2 _position;
+		protected Rectangle _object;
         protected Game1 _game;
         protected View _parentView;
 
@@ -50,17 +51,18 @@ namespace Ratcycle
         /// <summary>
         /// GameObject constructor.
         /// </summary>
-        /// <param name="position"></param>
-        /// <param name="texture"></param>
+		/// <param name="position"></param>
+		/// <param name="texture"></param>
+		/// <param name="frameColumns"></param>
+		/// <param name="frameRows"></param>
         /// <param name="animates"></param>
         /// <param name="game"></param>
         /// <param name="view"></param>
-		public GameObject(Vector2 position, Texture2D texture, bool animates, 
+		public GameObject(Vector2 position, Texture2D texture, int frameColumns, int frameRows, bool animates, 
             Game1 game, View view)
 		{
             int fps;
-
-            _position = position;
+			_position = position;
             _texture = texture;
             _game = game;
             _parentView = view;
@@ -68,8 +70,8 @@ namespace Ratcycle
             _animates = animates;
 
             // Default settings.
-            _frameColumns = 1;
-            _frameRows = 1;
+			_frameColumns = frameColumns;
+			_frameRows = frameRows;
             _color = Color.White;
             _origin = Vector2.Zero;
             _rotation = 0;
@@ -77,12 +79,15 @@ namespace Ratcycle
             fps = 25;
 
             // _sourceRectanlge setup.
+			_currentFrame = new Vector2(0);
             _frameWidth = _texture.Width / _frameColumns;
             _frameHeight = _texture.Height / _frameRows;
             _sourceRectangle = new Rectangle(0, 0, _frameWidth, _frameHeight);
             // Animation setup.
             _ticksPerFrame = 10000000 / fps;
             _nextFrameTick = DateTime.Now.Ticks + _ticksPerFrame;
+
+			_object = new Rectangle((int)position.X, (int)position.Y, _frameWidth, _frameHeight);
 		}
 
         /// <summary>
@@ -110,9 +115,18 @@ namespace Ratcycle
         /// <param name="frameRow"></param>
         public void ChangeToFrame(int frameColumn, int frameRow)
         {
+			//Catch null, used if you don't want to set the column/row
+			if(frameColumn < 0) {
+				frameColumn = (int)_currentFrame.X;
+			}
+			if(frameRow < 0){
+				frameRow = (int)_currentFrame.Y;
+			}
+			
             // Update _currentFrame
             _currentFrame.X = frameColumn;
             _currentFrame.Y = frameRow;
+
             // Update _sourceRectangle
             _sourceRectangle.X = _frameWidth * frameColumn;
             _sourceRectangle.Y = _frameHeight * frameRow;

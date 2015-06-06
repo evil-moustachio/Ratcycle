@@ -14,6 +14,11 @@ namespace Ratcycle
         protected ViewController _viewController;
         protected List<GameObject> _gameObjects;
 
+		public ViewController ViewController
+		{
+			get { return _viewController; }
+		}
+
         /// <summary>
         /// Constructs the view.
         /// </summary>

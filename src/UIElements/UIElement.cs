@@ -12,16 +12,23 @@ namespace Ratcycle
         /// <summary>
         /// UIElement constructor, extends GameObject.
         /// </summary>
-        /// <param name="position"></param>
-        /// <param name="texture"></param>
+		/// <param name="position"></param>
+		/// <param name="texture"></param>
+		/// <param name="frameColumns"></param>
+		/// <param name="frameRows"></param>
         /// <param name="animates"></param>
         /// <param name="game"></param>
         /// <param name="view"></param>
-        public UIElement(Vector2 position, Texture2D texture, bool animates,
-            Game1 game, View view)
-            : base(position, texture, animates, game, view)
+		public UIElement(Vector2 position, Texture2D texture, int frameColumns, int frameRows, 
+			bool animates, Game1 game, View view)
+			: base(position, texture, frameColumns, frameRows, animates, game, view)
         {
         }
+
+		public override void Update ()
+		{
+			base.Update ();
+		}
 	}
 }
 

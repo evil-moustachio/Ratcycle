@@ -16,14 +16,17 @@ namespace Ratcycle
         /// <summary>
         /// Entity constructor, extends GameObject.
         /// </summary>
-        /// <param name="position"></param>
-        /// <param name="texture"></param>
+		/// <param name="position"></param>
+		/// <param name="texture"></param>
+		/// <param name="frameColumns"></param>
+		/// <param name="frameRows"></param>
         /// <param name="animates"></param>
         /// <param name="game"></param>
         /// <param name="view"></param>
         /// <param name="speed"></param>
-        public Entity(Vector2 position, Texture2D texture, bool animates, 
-            Game1 game, View view, Vector2 speed) : base(position, texture, animates, game, view)
+		public Entity(Vector2 position, Texture2D texture, int frameColumns, int frameRows,
+			bool animates, Game1 game, View view, Vector2 speed) 
+			: base(position, texture, frameColumns, frameRows, animates, game, view)
         {
             _speed = speed;
 

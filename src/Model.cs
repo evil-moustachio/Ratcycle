@@ -10,6 +10,8 @@ namespace Ratcycle
 	public static class Model
 	{
 		private static long _currentGameTick;
+		public static int counter = 0;
+		public enum ButtonStates {Inactive, Hover, Focus};
 
         /// <summary>
         /// Returns the tick the game is currently on.
@@ -36,6 +38,7 @@ namespace Ratcycle
 		public static void Update()
         {
             UpdateCurrentGameTick();
+			counter++;
         }
 	}
 }

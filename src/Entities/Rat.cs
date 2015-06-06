@@ -15,7 +15,9 @@ namespace Ratcycle
         /// Constructs the rat.
         /// </summary>
         /// <param name="position"></param>
-        /// <param name="texture"></param>
+		/// <param name="texture"></param>
+		/// <param name="frameColumns"></param>
+		/// <param name="frameRows"></param>
         /// <param name="animates"></param>
         /// <param name="game"></param>
         /// <param name="view"></param>
@@ -24,9 +26,10 @@ namespace Ratcycle
         /// <param name="down"></param>
         /// <param name="left"></param>
         /// <param name="right"></param>
-        public Rat(Vector2 position, Texture2D texture, bool animates,
-            Game1 game, View view, Vector2 speed, Keys up, Keys down, Keys left, Keys right)
-            : base(position, texture, animates, game, view, speed)
+		public Rat(Vector2 position, Texture2D texture, int frameColumns, int frameRows,
+			bool animates, Game1 game, View view, Vector2 speed, Keys up, Keys down, 
+			Keys left, Keys right)
+			: base(position, texture, frameColumns, frameRows, animates, game, view, speed)
         {
 
             _health = 100;
@@ -64,9 +67,10 @@ namespace Ratcycle
         /// </summary>
         /// <param name="other"></param>
         public override void OnHit(Entity other)
-        {
-            Console.WriteLine("I'm being hit!!! My up key is: " + _up);
-            // Write code what happens OnHit
+		{
+			// Write code what happens OnHit
+			Console.WriteLine("I'm being hit!!! My up key is: " + _up + " " + Model.counter);
+			Model.counter++;
         }
 
         /// <summary>

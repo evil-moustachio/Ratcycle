@@ -13,6 +13,7 @@ namespace Ratcycle
         protected Game1 _game;
         protected ViewController _viewController;
         protected List<GameObject> _gameObjects;
+		protected Boolean _mouseVisible;
 
 		public ViewController ViewController
 		{
@@ -24,11 +25,12 @@ namespace Ratcycle
         /// </summary>
         /// <param name="game"></param>
         /// <param name="viewController"></param>
-		public View (Game1 game, ViewController viewController)
+		public View (Game1 game, ViewController viewController, Boolean MouseVisible)
 		{
             _game = game;
             _viewController = viewController;
             _gameObjects = new List<GameObject>();
+			_mouseVisible = MouseVisible;
 		}
         
         /// <summary>
@@ -36,6 +38,7 @@ namespace Ratcycle
         /// </summary>
 		public virtual void Initialize()
 		{
+			_game.IsMouseVisible = _mouseVisible;
             _gameObjects = new List<GameObject>();
 		}
 

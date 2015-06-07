@@ -14,7 +14,7 @@ namespace Ratcycle
         /// </summary>
         /// <param name="game"></param>
         /// <param name="viewController"></param>
-        public Stage (Game1 game, ViewController viewController) : base (game, viewController)
+		public Stage (Game1 game, ViewController viewController, Boolean mouseVisible) : base (game, viewController, mouseVisible)
         {
             Texture2D texture = CreateRectangle(game, 50, 50, Color.Red);
         }

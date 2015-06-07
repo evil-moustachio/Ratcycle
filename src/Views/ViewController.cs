@@ -18,8 +18,8 @@ namespace Ratcycle
         {
             _game = game;
             _views = new View[] {
-				new MenuStart(_game, this),
-                new Stage(_game, this)
+				new MenuStart(_game, this, true),
+				new Stage(_game, this, false)
             };
 			initializeView ();
         }

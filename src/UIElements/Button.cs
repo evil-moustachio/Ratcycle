@@ -10,7 +10,18 @@ namespace Ratcycle
 		int _headingView;
 		Model.ButtonStates buttonState = Model.ButtonStates.Inactive;
 		bool buttonStateSwitch;
-		
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Ratcycle.Button"/> class.
+		/// </summary>
+		/// <param name="position">Position.</param>
+		/// <param name="texture">Texture.</param>
+		/// <param name="frameColumns">Frame columns.</param>
+		/// <param name="frameRows">Frame rows.</param>
+		/// <param name="animates">If set to <c>true</c> animates.</param>
+		/// <param name="game">Game.</param>
+		/// <param name="view">View.</param>
+		/// <param name="headingView">Heading view.</param>
 		public Button (Vector2 position, Texture2D texture, int frameColumns, int frameRows, 
 			bool animates, Game1 game, View view, int headingView) 
 			: base(position, texture, frameColumns, frameRows, animates, game, view)

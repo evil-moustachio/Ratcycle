@@ -16,7 +16,7 @@ namespace Ratcycle
 		public static void SetTextures()
 		{
 			textures.Add ("StartButton", null);
-		}
+        }
 
 		/// <summary>
 		/// Loads the textures.

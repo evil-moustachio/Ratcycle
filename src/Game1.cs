@@ -16,6 +16,7 @@ namespace Ratcycle
 		SpriteBatch spriteBatch;
 
         private World _world;
+        public SpriteFont font;
 
         public World World
         {
@@ -45,6 +46,8 @@ namespace Ratcycle
 		{
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 			ContentHandler.LoadContent (Content);
+            font = Content.Load<SpriteFont>("Verdana");
+
 		}
 			
 		protected override void Update (GameTime gameTime)

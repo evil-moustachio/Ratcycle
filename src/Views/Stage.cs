@@ -33,7 +33,6 @@ namespace Ratcycle
 				_game, this, new Vector2(5, 5), Keys.Up, Keys.Down, Keys.Left, Keys.Right));
             _gameObjects.Add(new Rat(new Vector2(200, 200), CreateRectangle(_game, 50, 50, Color.Red), 1, 1, false, 
 				_game, this, new Vector2(5, 5), Keys.H, Keys.V, Keys.B, Keys.N));
-
         }
 
         /// <summary>

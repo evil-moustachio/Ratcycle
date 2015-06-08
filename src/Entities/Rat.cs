@@ -26,10 +26,10 @@ namespace Ratcycle
         /// <param name="down"></param>
         /// <param name="left"></param>
         /// <param name="right"></param>
-		public Rat(Vector2 position, Texture2D texture, int frameColumns, int frameRows,
-			bool animates, Game1 game, View view, Vector2 speed, Keys up, Keys down, 
+		public Rat(Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, int frameColumns, 
+			int fps, Vector2 speed, Keys up, Keys down, 
 			Keys left, Keys right)
-			: base(position, texture, frameColumns, frameRows, animates, game, view, speed)
+			: base(position, game, view, texture, frameRows, frameColumns, fps, speed)
         {
 
             _health = 100;

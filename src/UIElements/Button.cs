@@ -5,38 +5,23 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Ratcycle
 {
-	public class Button : UIElement
+	public class Button : TexturedGameObject
 	{
 		int _headingView;
 		Model.ButtonStates buttonState = Model.ButtonStates.Inactive;
 		bool buttonStateSwitch;
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Ratcycle.Button"/> class.
-		/// </summary>
-		/// <param name="position">Position.</param>
-		/// <param name="texture">Texture.</param>
-		/// <param name="frameColumns">Frame columns.</param>
-		/// <param name="frameRows">Frame rows.</param>
-		/// <param name="animates">If set to <c>true</c> animates.</param>
-		/// <param name="game">Game.</param>
-		/// <param name="view">View.</param>
-		/// <param name="headingView">Heading view.</param>
-		public Button (Vector2 position, Texture2D texture, int frameColumns, int frameRows, 
-			bool animates, Game1 game, View view, int headingView) 
-			: base(position, texture, frameColumns, frameRows, animates, game, view)
+		public Button (Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, int headingView) 
+			: base(position, game, view, texture, frameRows)
 		{
-			_frameColumns = 3;
 			_frameRows = 1;
 			_headingView = headingView;
 		}
 
 		public override void Update()
 		{
-			base.Update ();
-
 			//check if mouse is in button.
-			if (_object.Contains (MouseHandler.MouseLocation ())) {
+			if (HitBox.Contains (MouseHandler.MouseLocation ())) {
 
 				if (MouseHandler.LeftButtonBeginPress ()) {
 					//check if the mouse starts pressing (inside the button).
@@ -64,13 +49,13 @@ namespace Ratcycle
 				//and switch button to corresponding sprite.
 				switch (buttonState) {
 				case Model.ButtonStates.Inactive:
-					ChangeToFrame (-1, 0);
+					ChangeToFrame (0);
 					break;
 				case Model.ButtonStates.Hover:
-					ChangeToFrame (-1, 1);
+					ChangeToFrame (1);
 					break;
 				case Model.ButtonStates.Focus:
-					ChangeToFrame (-1, 2);
+					ChangeToFrame (2);
 					break;
 				}
 			}

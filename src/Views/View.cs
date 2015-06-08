@@ -12,7 +12,7 @@ namespace Ratcycle
 	{
         protected Game1 _game;
         protected ViewController _viewController;
-        protected List<GameObject> _gameObjects;
+		protected List<TexturedGameObject> _gameObjects;
 		protected Boolean _mouseVisible;
 
 		public ViewController ViewController
@@ -29,7 +29,6 @@ namespace Ratcycle
 		{
             _game = game;
             _viewController = viewController;
-            _gameObjects = new List<GameObject>();
 			_mouseVisible = MouseVisible;
 		}
         
@@ -39,7 +38,7 @@ namespace Ratcycle
 		public virtual void Initialize()
 		{
 			_game.IsMouseVisible = _mouseVisible;
-            _gameObjects = new List<GameObject>();
+			_gameObjects = new List<TexturedGameObject>();
 		}
 
 
@@ -70,7 +69,7 @@ namespace Ratcycle
         /// </summary>
 		public virtual void Update ()
 		{
-            foreach (GameObject gameObject in _gameObjects)
+			foreach (TexturedGameObject gameObject in _gameObjects)
             {
                 gameObject.Update();
             }
@@ -82,7 +81,7 @@ namespace Ratcycle
         /// <param name="spriteBatch"></param>
 		public void Draw (SpriteBatch spriteBatch)
 		{
-            foreach (GameObject gameObject in _gameObjects)
+			foreach (TexturedGameObject gameObject in _gameObjects)
             {
                 gameObject.Draw(spriteBatch);
             }

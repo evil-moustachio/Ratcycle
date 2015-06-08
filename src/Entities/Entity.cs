@@ -7,11 +7,11 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Ratcycle
 {
-	public abstract class Entity : GameObject
+	public abstract class Entity : AnimatedGameObject
 	{
 		protected Vector2 _minCoords;
 		protected Vector2 _maxCoords;
-        protected Vector2 _speed;
+		protected Vector2 _speed;
 
         /// <summary>
         /// Entity constructor, extends GameObject.
@@ -24,17 +24,17 @@ namespace Ratcycle
         /// <param name="game"></param>
         /// <param name="view"></param>
         /// <param name="speed"></param>
-		public Entity(Vector2 position, Texture2D texture, int frameColumns, int frameRows,
-			bool animates, Game1 game, View view, Vector2 speed) 
-			: base(position, texture, frameColumns, frameRows, animates, game, view)
+		public Entity(Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, int frameColumns, 
+						int fps, Vector2 speed) 
+			: base(position, game, view, texture, frameRows, frameColumns, fps)
         {
             _speed = speed;
 
             // Default values for border boundaries for every entity
             // Change minimal values according to background.
 			_minCoords = new Vector2 (0,0);
-			_maxCoords = new Vector2 (game.GraphicsDevice.Viewport.Width - _texture.Width,
-										game.GraphicsDevice.Viewport.Height - _texture.Height);
+			_maxCoords = new Vector2 (_game.GraphicsDevice.Viewport.Width - _texture.Width,
+										_game.GraphicsDevice.Viewport.Height - _texture.Height);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Ratcycle
         /// <summary>
         /// Updates the entity (same as GameObject)
         /// </summary>
-        public override void Update()
+		public override void Update()
         {
             base.Update();
         }

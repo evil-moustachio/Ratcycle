@@ -10,156 +10,38 @@ namespace Ratcycle
 	public abstract class GameObject
 	{
 		protected Vector2 _position;
-		protected Rectangle _object;
         protected Game1 _game;
-        protected View _parentView;
-
-        // Texture
-        protected Color _color;
-        protected float _scale;
-        protected float _rotation;
-        protected Vector2 _origin;
-        protected Texture2D _texture;
-        protected Rectangle _sourceRectangle;
-
-        // Animation
-        private bool _animates;
-        protected Vector2 _currentFrame;
-        protected int _frameWidth;
-        protected int _frameHeight;
-        protected int _frameColumns;
-        protected int _frameRows;
-        private long _ticksPerFrame;
-        private long _nextFrameTick;
-
-        /// <summary>
-        /// Returns the current hitbox of the object. Which is calculated
-        /// using the sourceRectangle of the object.
-        /// </summary>
-        public Rectangle HitBox
-        {
-            get
-            {
-                return new Rectangle(
-                    (int)_position.X,
-                    (int)_position.Y,
-                    _sourceRectangle.Width, 
-                    _sourceRectangle.Height);
-            }
-        }
+		protected View _parentView;
+		protected Color _color;
+		//TODO: delete > protected Rectangle _object; 
 
         /// <summary>
         /// GameObject constructor.
         /// </summary>
 		/// <param name="position"></param>
-		/// <param name="texture"></param>
-		/// <param name="frameColumns"></param>
-		/// <param name="frameRows"></param>
-        /// <param name="animates"></param>
         /// <param name="game"></param>
         /// <param name="view"></param>
-		public GameObject(Vector2 position, Texture2D texture, int frameColumns, int frameRows, bool animates, 
-            Game1 game, View view)
+		public GameObject(Vector2 position, Game1 game, View view)
 		{
-            int fps;
 			_position = position;
-            _texture = texture;
             _game = game;
             _parentView = view;
 
-            _animates = animates;
+			// Default settings.
+			_color = Color.White;
 
-            // Default settings.
-			_frameColumns = frameColumns;
-			_frameRows = frameRows;
-            _color = Color.White;
-            _origin = Vector2.Zero;
-            _rotation = 0;
-            _scale = 1;
-            fps = 25;
-
-            // _sourceRectanlge setup.
-			_currentFrame = new Vector2(0);
-            _frameWidth = _texture.Width / _frameColumns;
-            _frameHeight = _texture.Height / _frameRows;
-            _sourceRectangle = new Rectangle(0, 0, _frameWidth, _frameHeight);
-            // Animation setup.
-            _ticksPerFrame = 10000000 / fps;
-            _nextFrameTick = DateTime.Now.Ticks + _ticksPerFrame;
-
-			_object = new Rectangle((int)position.X, (int)position.Y, _frameWidth, _frameHeight);
+//			TODO: delete > _object = new Rectangle((int)position.X, (int)position.Y, _frameWidth, _frameHeight);
 		}
 
-        /// <summary>
-        /// Updates the sourceRectangle when it's time for the next frame.
-        /// </summary>
-        private void AnimationHandler()
-        {
-			if (Model.CurrentGameTick > _nextFrameTick)
-            {
-                var nextFrame = (int)_currentFrame.X + 1;
-                if (nextFrame > _frameColumns)
-                {
-                    nextFrame = 0;
-                }
-                ChangeToFrame( nextFrame, (int)_currentFrame.Y);
-				_nextFrameTick = Model.CurrentGameTick + _ticksPerFrame;
-            }
-        }
+		public virtual void Update()
+		{
 
-        /// <summary>
-        /// Changes the sourceRectangle's position to the desired frame.
-        /// Top row is 0, first column is 0.
-        /// </summary>
-        /// <param name="frameColumn"></param>
-        /// <param name="frameRow"></param>
-        public void ChangeToFrame(int frameColumn, int frameRow)
-        {
-			//Catch null, used if you don't want to set the column/row
-			if(frameColumn < 0) {
-				frameColumn = (int)_currentFrame.X;
-			}
-			if(frameRow < 0){
-				frameRow = (int)_currentFrame.Y;
-			}
-			
-            // Update _currentFrame
-            _currentFrame.X = frameColumn;
-            _currentFrame.Y = frameRow;
+		}
 
-            // Update _sourceRectangle
-            _sourceRectangle.X = _frameWidth * frameColumn;
-            _sourceRectangle.Y = _frameHeight * frameRow;
-        }
- 
-        /// <summary>
-        /// Updates the object.
-        /// </summary>
-        public virtual void Update()
-        {
-            if (_animates)
-            {
-                AnimationHandler();
-            }
-        }
+		public virtual void Draw(SpriteBatch spriteBatch)
+		{
 
-        /// <summary>
-        /// Draws the object's texture on the spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch"></param>
-        public virtual void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(
-                _texture,
-                _position,
-                _sourceRectangle,
-                _color,
-                _rotation,
-                _origin,
-                _scale,
-                SpriteEffects.None,
-                0f);
-        }
+		}
 	}
 }
 

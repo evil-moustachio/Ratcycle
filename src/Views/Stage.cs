@@ -27,12 +27,24 @@ namespace Ratcycle
             base.Initialize();
 			_game.IsMouseVisible = false;
 
-            _gameObjects.Add(new Rat(new Vector2(400, 200), CreateRectangle(_game, 50, 50, Color.Yellow), 1, 1, false,
-				_game, this, new Vector2(5,5), Keys.W, Keys.S, Keys.A, Keys.D));
-            _gameObjects.Add(new Rat(new Vector2(600, 200), CreateRectangle(_game, 50, 50, Color.Blue), 1, 1, false, 
-				_game, this, new Vector2(5, 5), Keys.Up, Keys.Down, Keys.Left, Keys.Right));
-            _gameObjects.Add(new Rat(new Vector2(200, 200), CreateRectangle(_game, 50, 50, Color.Red), 1, 1, false, 
-				_game, this, new Vector2(5, 5), Keys.H, Keys.B, Keys.V, Keys.N));
+//			_gameObjects.Add(new Rat(new Vector2(400, 200), _game, this, CreateRectangle(_game, 50, 50, Color.Yellow), 1, 1, false, new Vector2(5,5), Keys.W, Keys.S, Keys.A, Keys.D));
+//			_gameObjects.Add(new Rat(new Vector2(600, 200), _game, this, CreateRectangle(_game, 50, 50, Color.Blue), 1, 1, false, new Vector2(5, 5), Keys.Up, Keys.Down, Keys.Left, Keys.Right));
+			_gameObjects.Add(
+				new Rat(
+					new Vector2(400, 200),
+					_game,
+					this,
+					CreateRectangle(_game, 50, 50, Color.Yellow),
+					1,
+					1,
+					5,
+					new Vector2(5,5),
+					Keys.W,
+					Keys.S,
+					Keys.A,
+					Keys.D
+				)
+			);
         }
 
         /// <summary>
@@ -42,11 +54,11 @@ namespace Ratcycle
         /// </summary>
         private void CheckObjectCollision ()
         {
-            foreach (GameObject object1 in _gameObjects)
+			foreach (TexturedGameObject object1 in _gameObjects)
             {
                 if (object1 is Entity)
                 {
-                    foreach (GameObject object2 in _gameObjects)
+					foreach (TexturedGameObject object2 in _gameObjects)
                     {
                         if (object2 is Entity)
                         {

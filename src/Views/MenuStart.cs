@@ -12,8 +12,7 @@ namespace Ratcycle
 
 		public override void Initialize() {
 			base.Initialize();
-			_gameObjects.Add (new Button (new Vector2(0,0), ContentHandler.GetTexture("StartButton"), 1, 3, 
-				false, _game, this, 1));
+			_gameObjects.Add (new Button (new Vector2(0,0), _game, this, ContentHandler.GetTexture("StartButton"), 3, 1));
 		}
 	}
 }

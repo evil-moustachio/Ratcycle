@@ -32,7 +32,7 @@ namespace Ratcycle
 
             // Default values for border boundaries for every entity
             // Change minimal values according to background.
-			_minCoords = new Vector2 (0,0);
+			_minCoords = new Vector2 (0, (240 - texture.Height));
 			_maxCoords = new Vector2 (_game.GraphicsDevice.Viewport.Width - _texture.Width,
 										_game.GraphicsDevice.Viewport.Height - _texture.Height);
         }

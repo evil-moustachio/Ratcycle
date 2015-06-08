@@ -7,9 +7,9 @@ namespace Ratcycle
 	public class TexturedGameObject : GameObject
 	{
 		// Texture
-		protected float _scale = 1;
-		protected float _rotation = 0;
-		protected Vector2 _origin = Vector2.Zero;
+		protected float _scale;
+		protected float _rotation;
+		protected Vector2 _origin;
 		protected Texture2D _texture;
 
 		//Switching sprites
@@ -43,7 +43,7 @@ namespace Ratcycle
 		/// <param name="view">View.</param>
 		/// <param name="texture">Texture.</param>
 		/// <param name="frameRows">Frame rows.</param>
-		public TexturedGameObject (Vector2 position, Game1 game, View view, Texture2D texture, 
+		public TexturedGameObject (Vector2 position, Game1 game, View view, Texture2D texture,
 									int frameRows) : base(position, game, view)
 		{
 			_texture = texture;
@@ -51,7 +51,7 @@ namespace Ratcycle
 			_frameRows = frameRows;
 			_origin = Vector2.Zero;
 			_rotation = 0;
-			_scale = 1;
+            _scale = 1;
 
 			_currentYFrame = 0;
 			_frameWidth = _texture.Width;

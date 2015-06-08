@@ -44,6 +44,8 @@ namespace Ratcycle
         /// </summary>
         private void Move()
         {
+            bool flipped = false;
+
 			if (KeyHandler.IsKeyDown(_up) && _position.Y > _minCoords.Y)
             {
                 _position.Y -= _speed.Y;
@@ -55,6 +57,8 @@ namespace Ratcycle
 			if (KeyHandler.IsKeyDown(_left) && _position.X > _minCoords.X)
             {
                 _position.X -= _speed.X;
+
+
             }
 			if (KeyHandler.IsKeyDown(_right) && _position.X < _maxCoords.X)
             {

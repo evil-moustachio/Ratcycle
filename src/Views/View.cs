@@ -79,7 +79,7 @@ namespace Ratcycle
         /// Draws the View's GameObjects
         /// </summary>
         /// <param name="spriteBatch"></param>
-		public void Draw (SpriteBatch spriteBatch)
+		public virtual void Draw (SpriteBatch spriteBatch)
 		{
 			foreach (TexturedGameObject gameObject in _gameObjects)
             {

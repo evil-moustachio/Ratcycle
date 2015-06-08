@@ -17,6 +17,8 @@ namespace Ratcycle
 		public static void SetTextures()
 		{
 			textures.Add ("StartButton", null);
+            textures.Add("background_ratCycle", null);
+            textures.Add("rat_ratCycle", null);
 			fonts.Add ("Verdana", null);
         }
 

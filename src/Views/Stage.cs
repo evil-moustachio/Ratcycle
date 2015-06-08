@@ -34,7 +34,7 @@ namespace Ratcycle
 					new Vector2(400, 200),
 					_game,
 					this,
-					CreateRectangle(_game, 50, 50, Color.Yellow),
+					ContentHandler.GetTexture("rat_ratCycle"),
 					1,
 					1,
 					5,
@@ -79,6 +79,12 @@ namespace Ratcycle
         {
             CheckObjectCollision();
             base.Update();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(ContentHandler.GetTexture("background_ratCycle"), new Vector2());
+            base.Draw(spriteBatch);
         }
     }
 }

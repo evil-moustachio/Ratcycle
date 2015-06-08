@@ -9,7 +9,7 @@ namespace Ratcycle
 {
     public class World
     {
-        private Game _game;
+        private Game1 _game;
         private ViewController _viewController;
         public Player Player;
 
@@ -17,13 +17,12 @@ namespace Ratcycle
         {
             _game = game;
             Player = new Player();
-            _viewController = new ViewController(game);
+            _viewController = new ViewController(_game);
         }
 
         public void Update()
         {
 			Player.Update();
-			Model.Update();
             _viewController.Update();
         }
 

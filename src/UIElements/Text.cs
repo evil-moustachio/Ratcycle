@@ -9,19 +9,20 @@ namespace Ratcycle
     {
         private SpriteFont _font;
         private String _text;
-        private Color _textColor;
+        private Color _fontColor;
 
-        public Text(SpriteFont font, String text, Color textColor, Vector2 position, Texture2D texture, int frameColumns, int frameRows, bool animates, Game1 game, View view)
+        public Text(string fontName, String text, Color fontColor, Vector2 position, Texture2D texture, 
+					int frameColumns, int frameRows, bool animates, Game1 game, View view)
             : base(position, texture, frameColumns, frameRows, animates, game, view)
         {
-            _font = font;
+			_font = ContentHandler.GetFont(fontName);
             _text = text;
-            _textColor = textColor;
+			_fontColor = fontColor;
         }
 
         public override void Draw (SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(_font, _text, _position, _textColor);
+            spriteBatch.DrawString(_font, _text, _position, _fontColor);
         }
     }
 }

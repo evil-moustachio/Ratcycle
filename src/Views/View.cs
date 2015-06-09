@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,7 +13,8 @@ namespace Ratcycle
 	{
         protected Game1 _game;
         protected ViewController _viewController;
-		protected List<TexturedGameObject> _gameObjects;
+		protected List<GameObject> _gameObjects;
+        protected List<GameObject> _orderedList;
 		private Boolean _mouseVisible;
 
 		public ViewController ViewController
@@ -34,7 +36,8 @@ namespace Ratcycle
 		{
             _game = game;
             _viewController = viewController;
-			_gameObjects = new List<TexturedGameObject>();
+			_gameObjects = new List<GameObject>();
+            _orderedList = new List<GameObject>();
 			_mouseVisible = mouseVisible;
 		}
 
@@ -66,10 +69,11 @@ namespace Ratcycle
         /// </summary>
 		public virtual void Update ()
 		{
-			foreach (TexturedGameObject gameObject in _gameObjects)
+			foreach (GameObject gameObject in _gameObjects)
             {
                 gameObject.Update();
             }
+            _orderedList = _gameObjects.OrderBy(o => o.Position.Y).ToList();
 		}
 
         /// <summary>
@@ -78,9 +82,20 @@ namespace Ratcycle
         /// <param name="spriteBatch"></param>
 		public virtual void Draw (SpriteBatch spriteBatch)
 		{
-			foreach (TexturedGameObject gameObject in _gameObjects)
+			foreach (GameObject gameObject in _orderedList)
             {
-                gameObject.Draw(spriteBatch);
+                if (gameObject is Entity)
+                {
+                    gameObject.Draw(spriteBatch);
+                }
+            }
+
+            foreach (GameObject gameObject in _orderedList)
+            {
+                if (!(gameObject is Entity))
+                {
+                    gameObject.Draw(spriteBatch);
+                }
             }
 		}
 	}

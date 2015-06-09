@@ -14,6 +14,14 @@ namespace Ratcycle
 		protected View _parentView;
 		protected Color _color;
 
+        public Vector2 Position
+        {
+            get
+            {
+               return _position;
+            }
+        }
+
         /// <summary>
         /// GameObject constructor.
         /// </summary>

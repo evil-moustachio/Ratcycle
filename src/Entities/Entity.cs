@@ -37,6 +37,20 @@ namespace Ratcycle
 										_game.GraphicsDevice.Viewport.Height - _texture.Height);
         }
 
+        protected Texture2D CreateHitBox(Game1 game, int width, int height, Color wantedColor)
+        {
+            Texture2D rectangleTexture = new Texture2D(game.GraphicsDevice, width, height);
+            Color[] color = new Color[width * height];
+
+            for (int i = 0; i < color.Length; i++)
+            {
+                color[i] = wantedColor;
+            }
+
+            rectangleTexture.SetData(color);
+            return rectangleTexture;
+        }
+
         /// <summary>
         /// Determines what happens on hit of a certain object. Just in entity, because HUD doesn't count as hit.
         /// </summary>
@@ -52,6 +66,12 @@ namespace Ratcycle
 		public override void Update()
         {
             base.Update();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            spriteBatch.Draw(CreateHitBoxTexture(), HitBox, Color.Red);
         }
 	}
 }

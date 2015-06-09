@@ -23,7 +23,7 @@ namespace Ratcycle
 		/// Returns the current hitbox of the object. Which is calculated
 		/// using the sourceRectangle of the object.
 		/// </summary>
-		public Rectangle HitBox
+		public virtual Rectangle HitBox
 		{
 			get
 			{

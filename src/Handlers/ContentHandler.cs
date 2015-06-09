@@ -35,7 +35,7 @@ namespace Ratcycle
 			}
 			for (int i = fonts.Count - 1; i >= 0; --i) {
 				string key = fonts.Keys.ElementAt (i);
-//				fonts [key] = content.Load<SpriteFont> (key);
+				fonts [key] = content.Load<SpriteFont> (key);
 			}
 		}
 

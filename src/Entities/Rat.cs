@@ -38,6 +38,18 @@ namespace Ratcycle
             _left = left;
             _right = right;
         }
+
+        public override Rectangle HitBox
+        {
+            get
+            {
+                return new Rectangle(
+                    (int)_position.X,
+                    (int)_position.Y - 50,
+                    _sourceRectangle.Width,
+                    _sourceRectangle.Height - 50);
+            }
+        }
         
         /// <summary>
         /// Moves the rat according to certain keyboard input and sets border boundaries for movement.
@@ -86,5 +98,6 @@ namespace Ratcycle
             base.Update();
             Move();
         }
+
     }
 }

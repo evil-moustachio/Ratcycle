@@ -7,15 +7,32 @@ namespace Ratcycle
 {
 	public class Button : TexturedGameObject
 	{
-		View _headingView;
 		Model.ButtonStates buttonState = Model.ButtonStates.Inactive;
+		Model.ButtonTypes buttonType;
 		bool buttonStateSwitch;
+		Action<int> intEvent;
+		int eventInt;
+		Action<View> viewEvent;
+		View eventView;
 
-		public Button (Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, View headingView) 
-			: base(position, game, view, texture, frameRows)
+		public Button (Vector2 position, Game1 game, View view, Texture2D texture, int frameRows) 
+			: base(position, game, view, texture, frameRows, Color.White)
 		{
 			_frameRows = 1;
-			_headingView = headingView;
+		}
+
+		public void addIntEvent(Action<int> iEvent, int eventI)
+		{
+			buttonType = Model.ButtonTypes.Int;
+			intEvent = iEvent;
+			eventInt = eventI;
+		}
+
+		public void addViewEvent(Action<View> vEvent, View eventV)
+		{
+			buttonType = Model.ButtonTypes.View;
+			viewEvent = vEvent;
+			eventView = eventV;
 		}
 
 		public override void Update()
@@ -27,13 +44,19 @@ namespace Ratcycle
 					//check if the mouse starts pressing (inside the button).
 					buttonState = Model.ButtonStates.Focus;
 					buttonStateSwitch = true;
+
 				} else if (MouseHandler.LeftButtonEndPress ()) {
 					//check if the mouse stops pressing (inside the button).
-					_parentView.ViewController.setView(_headingView);
+
+					//Fire action
+					fireAction();
+
 				} else if(!MouseHandler.LeftButtonPressed()){
 					//check if the mouse is released (in the button).
+
 					buttonState = Model.ButtonStates.Hover;
 					buttonStateSwitch = true;
+
 				}
 			} else if (buttonState == Model.ButtonStates.Hover || buttonState == Model.ButtonStates.Focus) {
 				//check if button is outside the button (and checks for the other two possibilities so it
@@ -58,6 +81,15 @@ namespace Ratcycle
 					ChangeToFrame (2);
 					break;
 				}
+			}
+		}
+
+		private void fireAction()
+		{
+			if (buttonType == Model.ButtonTypes.Int) {
+				intEvent (eventInt);
+			} else if (buttonType == Model.ButtonTypes.View) {
+				viewEvent (eventView);
 			}
 		}
 	}

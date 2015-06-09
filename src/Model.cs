@@ -11,7 +11,8 @@ namespace Ratcycle
 	{
 		private static long _currentGameTick;
 		public static int counter = 0;
-		public enum ButtonStates {Inactive, Hover, Focus};
+		public enum ButtonStates { Inactive, Hover, Focus };
+		public enum ButtonTypes { Int, View };
 
         /// <summary>
         /// Returns the tick the game is currently on.

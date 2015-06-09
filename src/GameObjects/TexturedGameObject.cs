@@ -44,7 +44,7 @@ namespace Ratcycle
 		/// <param name="texture">Texture.</param>
 		/// <param name="frameRows">Frame rows.</param>
 		public TexturedGameObject (Vector2 position, Game1 game, View view, Texture2D texture,
-									int frameRows) : base(position, game, view)
+			int frameRows, Color color) : base(position, game, view, color)
 		{
 			_texture = texture;
 

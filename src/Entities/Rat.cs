@@ -27,9 +27,8 @@ namespace Ratcycle
         /// <param name="left"></param>
         /// <param name="right"></param>
 		public Rat(Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, int frameColumns, 
-			int fps, Vector2 speed, Keys up, Keys down, 
-			Keys left, Keys right)
-			: base(position, game, view, texture, frameRows, frameColumns, fps, speed)
+			int fps, Vector2 speed, Keys up, Keys down, Keys left, Keys right)
+			: base(position, game, view, texture, frameRows, frameColumns, fps, speed, Color.White)
         {
 
             _health = 100;

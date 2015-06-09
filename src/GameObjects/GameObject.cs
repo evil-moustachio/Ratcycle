@@ -28,14 +28,14 @@ namespace Ratcycle
 		/// <param name="position"></param>
         /// <param name="game"></param>
         /// <param name="view"></param>
-		public GameObject(Vector2 position, Game1 game, View view)
+		public GameObject(Vector2 position, Game1 game, View view, Color color)
 		{
 			_position = position;
             _game = game;
             _parentView = view;
 
 			// Default settings.
-			_color = Color.White;
+			_color = color;
 		}
 
 		public virtual void Update()

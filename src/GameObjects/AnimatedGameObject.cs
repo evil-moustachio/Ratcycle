@@ -22,7 +22,8 @@ namespace Ratcycle
 		/// <param name="frameColumns">Frame columns.</param>
 		/// <param name="fps">Fps.</param>
 		public AnimatedGameObject (Vector2 position, Game1 game, View view, Texture2D texture, 
-			int frameRows, int frameColumns, int fps) : base (position, game, view, texture, frameRows)
+			int frameRows, int frameColumns, int fps, Color color)
+			: base (position, game, view, texture, frameRows, color)
 		{
 			_frameColumns = frameColumns;
 

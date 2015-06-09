@@ -20,7 +20,7 @@ namespace Ratcycle
 		/// <param name="speed">Speed.</param>
 		public Monster (Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, int frameColumns, 
 			int fps, Vector2 speed) 
-			: base(position, game, view, texture, frameRows, frameColumns, fps, speed)
+			: base(position, game, view, texture, frameRows, frameColumns, fps, speed, Color.White)
 		{
 		}
 

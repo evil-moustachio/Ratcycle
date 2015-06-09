@@ -25,8 +25,8 @@ namespace Ratcycle
         /// <param name="view"></param>
         /// <param name="speed"></param>
 		public Entity(Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, int frameColumns, 
-						int fps, Vector2 speed) 
-			: base(position, game, view, texture, frameRows, frameColumns, fps)
+			int fps, Vector2 speed, Color color) 
+			: base(position, game, view, texture, frameRows, frameColumns, fps, color)
         {
             _speed = speed;
 

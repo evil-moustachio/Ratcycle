@@ -13,16 +13,18 @@ namespace Ratcycle
 		private Game1 _game;
 		private View view;
 
-
         public ViewController(Game1 game)
         {
             _game = game;
-			view = new MenuStart (game, this, false);
+			_game.IsMouseVisible = true;
+
+			view = new MenuStart (_game, this, true);
         }
 
 		public void setView(View newView)
 		{
 			view = newView;
+			_game.IsMouseVisible = newView.MouseVisible;
 		}
 
         public void Update()

@@ -13,10 +13,15 @@ namespace Ratcycle
         protected Game1 _game;
         protected ViewController _viewController;
 		protected List<TexturedGameObject> _gameObjects;
+		private Boolean _mouseVisible;
 
 		public ViewController ViewController
 		{
 			get { return _viewController; }
+		}
+
+		public Boolean MouseVisible {
+			get { return _mouseVisible; }
 		}
 
         /// <summary>
@@ -29,11 +34,11 @@ namespace Ratcycle
 		{
             _game = game;
             _viewController = viewController;
-			_game.IsMouseVisible = mouseVisible;
 			_gameObjects = new List<TexturedGameObject>();
+			_mouseVisible = mouseVisible;
 		}
 
-
+		//TODO: Delete CreateRectangle function
         /// <summary>
         /// Delete this function later on, using this just for testing. Makes textures blocks.
         /// </summary>

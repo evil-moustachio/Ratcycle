@@ -78,7 +78,7 @@ namespace Ratcycle
 		/// Draws the object's texture on the spriteBatch.
 		/// </summary>
 		/// <param name="spriteBatch"></param>
-		public virtual void Draw(SpriteBatch spriteBatch)
+		public override void Draw(SpriteBatch spriteBatch)
 		{
 			base.Draw (spriteBatch);
 			spriteBatch.Draw(

@@ -13,7 +13,6 @@ namespace Ratcycle
         protected Game1 _game;
 		protected View _parentView;
 		protected Color _color;
-		//TODO: delete > protected Rectangle _object; 
 
         /// <summary>
         /// GameObject constructor.
@@ -29,8 +28,6 @@ namespace Ratcycle
 
 			// Default settings.
 			_color = Color.White;
-
-//			TODO: delete > _object = new Rectangle((int)position.X, (int)position.Y, _frameWidth, _frameHeight);
 		}
 
 		public virtual void Update()

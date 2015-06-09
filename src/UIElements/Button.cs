@@ -7,11 +7,11 @@ namespace Ratcycle
 {
 	public class Button : TexturedGameObject
 	{
-		int _headingView;
+		View _headingView;
 		Model.ButtonStates buttonState = Model.ButtonStates.Inactive;
 		bool buttonStateSwitch;
 
-		public Button (Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, int headingView) 
+		public Button (Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, View headingView) 
 			: base(position, game, view, texture, frameRows)
 		{
 			_frameRows = 1;
@@ -29,7 +29,7 @@ namespace Ratcycle
 					buttonStateSwitch = true;
 				} else if (MouseHandler.LeftButtonEndPress ()) {
 					//check if the mouse stops pressing (inside the button).
-					_parentView.ViewController.CurrentView = _headingView;
+					_parentView.ViewController.setView(_headingView);
 				} else if(!MouseHandler.LeftButtonPressed()){
 					//check if the mouse is released (in the button).
 					buttonState = Model.ButtonStates.Hover;

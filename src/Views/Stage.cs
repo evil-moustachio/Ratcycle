@@ -14,21 +14,10 @@ namespace Ratcycle
         /// </summary>
         /// <param name="game"></param>
         /// <param name="viewController"></param>
+		/// <param name="mouseVisible"></param>
 		public Stage (Game1 game, ViewController viewController, Boolean mouseVisible) : base (game, viewController, mouseVisible)
         {
-            Texture2D texture = CreateRectangle(game, 50, 50, Color.Red);
-        }
-
-        /// <summary>
-        /// Initializes all variables in a view again, so variables aren't kept.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-			_game.IsMouseVisible = false;
-
-//			_gameObjects.Add(new Rat(new Vector2(400, 200), _game, this, CreateRectangle(_game, 50, 50, Color.Yellow), 1, 1, false, new Vector2(5,5), Keys.W, Keys.S, Keys.A, Keys.D));
-//			_gameObjects.Add(new Rat(new Vector2(600, 200), _game, this, CreateRectangle(_game, 50, 50, Color.Blue), 1, 1, false, new Vector2(5, 5), Keys.Up, Keys.Down, Keys.Left, Keys.Right));
+//  TODO:  delete        Texture2D texture = CreateRectangle(game, 50, 50, Color.Red);
 			_gameObjects.Add(
 				new Rat(
 					new Vector2(600, 200),
@@ -44,7 +33,7 @@ namespace Ratcycle
 					Keys.Left,
 					Keys.Right
 				));
-            _gameObjects.Add(
+			_gameObjects.Add(
 				new Rat(
 					new Vector2(400, 200),
 					_game,
@@ -61,10 +50,15 @@ namespace Ratcycle
 				)
 			);
         }
-        /*
-         * 
-         */
 
+		/// <summary>
+		/// Checks if Entity collides with any other entity
+		/// </summary>
+		/// <returns><c>true</c>, if colliding was noted, <c>false</c> otherwise.</returns>
+		/// <param name="entity">Entity.</param>
+		/// <param name="fhb">FutureHitBox.</param>
+		/// <param name="minc">MinCoord.</param>
+		/// <param name="maxc">MaxCoord.</param>
         public bool NotColliding (Entity entity, Rectangle fhb, Vector2 minc, Vector2 maxc)
         {
             Rectangle futureHitBox = fhb;

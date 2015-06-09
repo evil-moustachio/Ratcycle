@@ -8,11 +8,8 @@ namespace Ratcycle
 	{
 		public MenuStart (Game1 game, ViewController viewController, Boolean MouseVisible) : base(game, viewController, MouseVisible)
 		{
-		}
-
-		public override void Initialize() {
-			base.Initialize();
-			_gameObjects.Add (new Button (new Vector2(0,0), _game, this, ContentHandler.GetTexture("StartButton"), 3, 1));
+			//TODO: Add logo
+			_gameObjects.Add (new Button (new Vector2(300, 310), _game, this, ContentHandler.GetTexture("StartButton"), 3, new Stage(game, viewController, false)));
 		}
 	}
 }

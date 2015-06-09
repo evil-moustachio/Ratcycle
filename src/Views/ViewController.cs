@@ -11,43 +11,30 @@ namespace Ratcycle
     public class ViewController
     {
 		private Game1 _game;
-		private View[] _views;
-		private int _currentView = 0;
+		private View view;
+
 
         public ViewController(Game1 game)
         {
             _game = game;
-            _views = new View[] {
-				new MenuStart(_game, this, true),
-				new Stage(_game, this, false)
-            };
-			initializeView ();
+			view = new MenuStart (game, this, false);
         }
 
-		public int CurrentView {
-			get { return _currentView; }
-			set { 
-				_currentView = value;
-				initializeView ();
-			}
+		public void setView(View newView)
+		{
+			view = newView;
 		}
 
         public void Update()
 		{
 			// Update the current view
-			_views[_currentView].Update();
+			view.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
 		{
 			// Draw the current view
-            _views[_currentView].Draw(spriteBatch);
-		}
-
-		private void initializeView() 
-		{
-			// Initialize the view so it can run from start
-			_views [_currentView].Initialize();
+			view.Draw(spriteBatch);
 		}
     }
 }

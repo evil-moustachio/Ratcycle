@@ -44,26 +44,27 @@ namespace Ratcycle
         /// </summary>
         private void Move()
         {
-            bool flipped = false;
+            Stage view = (Stage)_parentView;
 
-			if (KeyHandler.IsKeyDown(_up) && _position.Y > _minCoords.Y)
+            if (KeyHandler.IsKeyDown(_up) && (view.NotColliding(this, new Rectangle((int)_position.X, (int)_position.Y - (int)_speed.Y, _sourceRectangle.Width, _sourceRectangle.Height), _minCoords, _maxCoords)))
             {
                 _position.Y -= _speed.Y;
             }
-			if (KeyHandler.IsKeyDown(_down) && _position.Y < _maxCoords.Y)
+
+            if (KeyHandler.IsKeyDown(_down) && view.NotColliding(this, new Rectangle((int)_position.X, (int)_position.Y + (int)_speed.Y, _sourceRectangle.Width, _sourceRectangle.Height), _minCoords, _maxCoords))
             {
                 _position.Y += _speed.Y;
             }
-			if (KeyHandler.IsKeyDown(_left) && _position.X > _minCoords.X)
+            if (KeyHandler.IsKeyDown(_left) && view.NotColliding(this, new Rectangle((int)_position.X - (int)_speed.X, (int)_position.Y, _sourceRectangle.Width, _sourceRectangle.Height), _minCoords, _maxCoords))
             {
                 _position.X -= _speed.X;
 
-
             }
-			if (KeyHandler.IsKeyDown(_right) && _position.X < _maxCoords.X)
+            if (KeyHandler.IsKeyDown(_right) && view.NotColliding(this, new Rectangle((int)_position.X + (int)_speed.X, (int)_position.Y, _sourceRectangle.Width, _sourceRectangle.Height), _minCoords, _maxCoords))
             {
                 _position.X += _speed.X;
             }
+             
         }
 
         /// <summary>

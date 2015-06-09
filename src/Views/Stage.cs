@@ -31,6 +31,21 @@ namespace Ratcycle
 //			_gameObjects.Add(new Rat(new Vector2(600, 200), _game, this, CreateRectangle(_game, 50, 50, Color.Blue), 1, 1, false, new Vector2(5, 5), Keys.Up, Keys.Down, Keys.Left, Keys.Right));
 			_gameObjects.Add(
 				new Rat(
+					new Vector2(600, 200),
+					_game,
+					this,
+					ContentHandler.GetTexture("rat_ratCycle"),
+					1,
+					1,
+					5,
+					new Vector2(5,5),
+					Keys.Up,
+					Keys.Down,
+					Keys.Left,
+					Keys.Right
+				));
+            _gameObjects.Add(
+				new Rat(
 					new Vector2(400, 200),
 					_game,
 					this,
@@ -46,12 +61,36 @@ namespace Ratcycle
 				)
 			);
         }
+        /*
+         * 
+         */
 
+        public bool NotColliding (Entity entity, Rectangle fhb, Vector2 minc, Vector2 maxc)
+        {
+            Rectangle futureHitBox = fhb;
+
+            if (futureHitBox.Y < maxc.Y && futureHitBox.X > minc.X && futureHitBox.X < maxc.X && futureHitBox.Y > minc.Y)
+            {
+                foreach (TexturedGameObject gameObject in _gameObjects)
+                {
+                    if (gameObject is Entity && entity != gameObject && futureHitBox.Intersects(gameObject.HitBox))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         /// <summary>
         /// Loops through a list of GameObjects, filters out only the Entity extensions and checks if they loop 
         /// any other Entity object. Both the colliding objects will eventually have OnHit() invoked upon them, 
         /// so they both have their own reaction
         /// </summary>
+        /*
         private void CheckObjectCollision ()
         {
 			foreach (TexturedGameObject object1 in _gameObjects)
@@ -71,13 +110,13 @@ namespace Ratcycle
                 }
             }
         }
-
+        */
         /// <summary>
         /// Updates the stage, also invokes CheckObjectCollision before base.Update() so collision check is done before objects are updated.
         /// </summary>
         public override void Update()
         {
-            CheckObjectCollision();
+            //CheckObjectCollision();
             base.Update();
         }
 

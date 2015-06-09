@@ -9,6 +9,24 @@ namespace Ratcycle
 {
     public class Stage : View
     {
+		private Rat _rat;
+
+		public Vector2 RatPosition
+		{
+			get
+			{
+				return _rat.Position;
+			}
+		}
+
+		public Rectangle RatHitBox
+		{
+			get
+			{
+				return _rat.HitBox;
+			}
+		}
+
         /// <summary>
         /// Constructs the stage.
         /// </summary>
@@ -49,6 +67,13 @@ namespace Ratcycle
 					Keys.D
 				)
 			);
+
+			foreach (var gameObject in _gameObjects) {
+				if (gameObject is Rat) 
+				{
+					_rat = (Rat)gameObject;
+				}
+			}
         }
 
 		/// <summary>

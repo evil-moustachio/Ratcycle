@@ -44,10 +44,10 @@ namespace Ratcycle
             get
             {
                 return new Rectangle(
-                    (int)_position.X,
-                    (int)_position.Y - 50,
-                    _sourceRectangle.Width,
-                    _sourceRectangle.Height - 50);
+                    (int)_position.X + 55,
+                    (int)_position.Y + 100,
+                    _sourceRectangle.Width  - 55,
+                    _sourceRectangle.Height - 100);
             }
         }
         
@@ -58,27 +58,51 @@ namespace Ratcycle
         {
             Stage view = (Stage)_parentView;
 
-            if (KeyHandler.IsKeyDown(_up) && (view.NotColliding(this, new Rectangle((int)_position.X, (int)_position.Y - (int)_speed.Y, _sourceRectangle.Width, _sourceRectangle.Height), _minCoords, _maxCoords)))
+            if (KeyHandler.IsKeyDown(_up) && (view.NotColliding(this, MakeFutureRectangle(_up), _minCoords, _maxCoords)))
             {
                 _position.Y -= _speed.Y;
             }
 
-            if (KeyHandler.IsKeyDown(_down) && view.NotColliding(this, new Rectangle((int)_position.X, (int)_position.Y + (int)_speed.Y, _sourceRectangle.Width, _sourceRectangle.Height), _minCoords, _maxCoords))
+            if (KeyHandler.IsKeyDown(_down) && view.NotColliding(this, MakeFutureRectangle(_down), _minCoords, _maxCoords))
             {
                 _position.Y += _speed.Y;
             }
-            if (KeyHandler.IsKeyDown(_left) && view.NotColliding(this, new Rectangle((int)_position.X - (int)_speed.X, (int)_position.Y, _sourceRectangle.Width, _sourceRectangle.Height), _minCoords, _maxCoords))
+            if (KeyHandler.IsKeyDown(_left) && view.NotColliding(this, MakeFutureRectangle(_left), _minCoords, _maxCoords))
             {
                 _position.X -= _speed.X;
 
             }
-            if (KeyHandler.IsKeyDown(_right) && view.NotColliding(this, new Rectangle((int)_position.X + (int)_speed.X, (int)_position.Y, _sourceRectangle.Width, _sourceRectangle.Height), _minCoords, _maxCoords))
+            if (KeyHandler.IsKeyDown(_right) && view.NotColliding(this, MakeFutureRectangle(_right), _minCoords, _maxCoords))
             {
                 _position.X += _speed.X;
             }
              
         }
 
+        private Rectangle MakeFutureRectangle (Keys key)
+        {
+            if (key == _up)
+            { 
+                return new Rectangle(HitBox.X, HitBox.Y - (int)_speed.Y, HitBox.Width, HitBox.Height);
+            }
+            else if (key == _down)
+            {
+                return new Rectangle(HitBox.X, HitBox.Y + (int)_speed.Y, HitBox.Width, HitBox.Height);
+
+            }
+            else if (key == _left)
+            {
+                return new Rectangle(HitBox.X - (int)_speed.X, HitBox.Y, HitBox.Width, HitBox.Height);
+            }
+            else if (key == _right)
+            {
+                return new Rectangle(HitBox.X + (int)_speed.X, HitBox.Y, HitBox.Width, HitBox.Height);
+            }
+            else
+            {
+                return new Rectangle();
+            }
+        }
         /// <summary>
         /// Determines what happens on hit of a certain object. 
         /// </summary>

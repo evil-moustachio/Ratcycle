@@ -50,19 +50,7 @@ namespace Ratcycle
         /// <param name="height"></param>
         /// <param name="wantedColor"></param>
         /// <returns></returns>
-        protected Texture2D CreateRectangle(Game1 game, int width, int height, Color wantedColor)
-        {
-            Texture2D rectangleTexture = new Texture2D(game.GraphicsDevice, width, height);
-            Color[] color = new Color[width * height];
-
-            for (int i = 0; i < color.Length; i++)
-            {
-                color[i] = wantedColor;
-            }
-
-            rectangleTexture.SetData(color);
-            return rectangleTexture;
-        }
+        
 
         /// <summary>
         /// Updates the View's GameObjects

@@ -32,12 +32,12 @@ namespace Ratcycle
 
             // Default values for border boundaries for every entity
             // Change minimal values according to background.
-			_minCoords = new Vector2 (0, (240 - texture.Height));
-			_maxCoords = new Vector2 (_game.GraphicsDevice.Viewport.Width - _texture.Width,
-										_game.GraphicsDevice.Viewport.Height - _texture.Height);
+			_minCoords = new Vector2 (0, (240 - HitBox.Height));
+			_maxCoords = new Vector2 (_game.GraphicsDevice.Viewport.Width - HitBox.Width,
+										_game.GraphicsDevice.Viewport.Height - HitBox.Height);
         }
 
-        protected Texture2D CreateHitBox(Game1 game, int width, int height, Color wantedColor)
+        protected Texture2D CreateHitBoxTexture(Game1 game, int width, int height, Color wantedColor)
         {
             Texture2D rectangleTexture = new Texture2D(game.GraphicsDevice, width, height);
             Color[] color = new Color[width * height];
@@ -71,7 +71,6 @@ namespace Ratcycle
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            spriteBatch.Draw(CreateHitBoxTexture(), HitBox, Color.Red);
         }
 	}
 }

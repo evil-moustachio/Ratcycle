@@ -10,29 +10,13 @@ namespace Ratcycle
 		Model.ButtonStates buttonState = Model.ButtonStates.Inactive;
 		Model.ButtonTypes buttonType;
 		bool buttonStateSwitch;
-		Action<int> intEvent;
-		int eventInt;
-		Action<View> viewEvent;
-		View eventView;
+		Action eventHandler;
 
-		public Button (Vector2 position, Game1 game, View view, Texture2D texture, int frameRows) 
+		public Button (Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, Action evHandler) 
 			: base(position, game, view, texture, frameRows, Color.White)
 		{
 			_frameRows = 1;
-		}
-
-		public void addIntEvent(Action<int> iEvent, int eventI)
-		{
-			buttonType = Model.ButtonTypes.Int;
-			intEvent = iEvent;
-			eventInt = eventI;
-		}
-
-		public void addViewEvent(Action<View> vEvent, View eventV)
-		{
-			buttonType = Model.ButtonTypes.View;
-			viewEvent = vEvent;
-			eventView = eventV;
+			eventHandler = evHandler;
 		}
 
 		public override void Update()
@@ -49,7 +33,7 @@ namespace Ratcycle
 					//check if the mouse stops pressing (inside the button).
 
 					//Fire action
-					fireAction();
+					eventHandler();
 
 				} else if(!MouseHandler.LeftButtonPressed()){
 					//check if the mouse is released (in the button).
@@ -81,15 +65,6 @@ namespace Ratcycle
 					ChangeToFrame (2);
 					break;
 				}
-			}
-		}
-
-		private void fireAction()
-		{
-			if (buttonType == Model.ButtonTypes.Int) {
-				intEvent (eventInt);
-			} else if (buttonType == Model.ButtonTypes.View) {
-				viewEvent (eventView);
 			}
 		}
 	}

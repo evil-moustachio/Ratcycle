@@ -13,7 +13,9 @@ namespace Ratcycle
 		public static int counter = 0;
 		public enum ButtonStates { Inactive, Hover, Focus };
 		public enum ButtonTypes { Int, View };
-		public static string standartFontName = "Verdana";
+		public static string standartFontName = "Aero Matics Display-14";
+		public static int CurrentLevel = 0;
+		public static int ReachedLevel = 12;
 
         /// <summary>
         /// Returns the tick the game is currently on.

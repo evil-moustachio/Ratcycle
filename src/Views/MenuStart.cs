@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Ratcycle
 {
@@ -9,14 +8,12 @@ namespace Ratcycle
 		public MenuStart (Game1 game, ViewController viewController, Boolean mouseVisible)
 			: base(game, viewController, mouseVisible)
 		{
-			//TODO: Add logo
-			_gameObjects.Add(new Text(new Vector2(0), _game, this, "Verdana", "Hey sexy mothafucka", Color.Chocolate));
-			_gameObjects.Add (new Button (new Vector2(300, 310), _game, this, ContentHandler.GetTexture("StartButton"), 3, nextView));
+			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("startmenuBackground"), new Vector2(0,0), _game, this, Color.White, 1, 1, 1, false));
+			_gameObjects.Add (new Button (ContentHandler.GetTexture("startbutton_ratCycle"), new Vector2(275, 325), _game, this, nextView));
 		}
-
 		private void nextView()
 		{
-			_viewController.setView(new Stage(_game, _viewController, false));
+			_viewController.setView(new MenuChooseLevel(_game, _viewController, true));
 		}
 	}
 }

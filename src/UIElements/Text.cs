@@ -26,5 +26,11 @@ namespace Ratcycle
 		{
 			_text = text;
 		}
+
+		public void setString(String text, Vector2 pos)
+		{
+			_text = text;
+			_position = pos;
+		}
     }
 }

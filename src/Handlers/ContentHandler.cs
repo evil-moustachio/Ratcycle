@@ -16,11 +16,13 @@ namespace Ratcycle
 		/// </summary>
 		public static void SetTextures()
 		{
-			textures.Add ("StartButton", null);
             textures.Add("background_ratCycle", null);
             textures.Add("rat_ratCycle", null);
+			textures.Add ("startbutton_ratCycle", null);
+			textures.Add ("startmenuBackground", null);
+			textures.Add ("SquareButton", null);
 
-			fonts.Add ("Verdana", null);
+			fonts.Add ("Aero Matics Display-14", null);
         }
 
 		/// <summary>

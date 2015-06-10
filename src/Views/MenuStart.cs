@@ -16,7 +16,7 @@ namespace Ratcycle
 
 		private void nextView()
 		{
-			_viewController.setView(new MenuChooseLevel(_game, _viewController, true));
+			_viewController.setView(new Stage(_game, _viewController, false));
 		}
 	}
 }

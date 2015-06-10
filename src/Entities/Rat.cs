@@ -26,11 +26,9 @@ namespace Ratcycle
         /// <param name="down"></param>
         /// <param name="left"></param>
         /// <param name="right"></param>
-		public Rat(Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, int frameColumns, 
-			int fps, Vector2 speed, Keys up, Keys down, Keys left, Keys right)
-			: base(position, game, view, texture, frameRows, frameColumns, fps, speed, Color.White)
+		public Rat(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, Keys up, Keys down, Keys left, Keys right)
+            : base(texture, position, game, view, Color.White, 1, 1, 1, false, speed)
         {
-
             _health = 100;
             _up = up;
             _down = down;
@@ -60,6 +58,7 @@ namespace Ratcycle
             if (KeyHandler.IsKeyDown(_up) && (view.NotColliding(this, MakeFutureRectangle(_up), _minCoords, _maxCoords)))
             {
                 _position.Y -= _speed.Y;
+                
             }
 
             if (KeyHandler.IsKeyDown(_down) && view.NotColliding(this, MakeFutureRectangle(_down), _minCoords, _maxCoords))

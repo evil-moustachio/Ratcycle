@@ -38,15 +38,9 @@ namespace Ratcycle
 			_color = color;
 		}
 
-		public virtual void Update()
-		{
+        public virtual void Update () {}
 
-		}
-
-		public virtual void Draw(SpriteBatch spriteBatch)
-		{
-
-		}
+        public abstract void Draw(SpriteBatch spriteBatch);
 	}
 }
 

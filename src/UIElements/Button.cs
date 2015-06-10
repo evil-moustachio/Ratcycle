@@ -5,17 +5,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Ratcycle
 {
-	public class Button : TexturedGameObject
+	public class Button : AtlasObject
 	{
 		Model.ButtonStates buttonState = Model.ButtonStates.Inactive;
-		Model.ButtonTypes buttonType;
 		bool buttonStateSwitch;
 		Action eventHandler;
 
-		public Button (Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, Action evHandler) 
-			: base(position, game, view, texture, frameRows, Color.White)
+		public Button (Texture2D texture, Vector2 position, Game1 game, View view, Action evHandler)
+            : base(texture, position, game, view, Color.White, 1, 3, 1, false)
 		{
-			_frameRows = 1;
 			eventHandler = evHandler;
 		}
 
@@ -56,13 +54,13 @@ namespace Ratcycle
 				//and switch button to corresponding sprite.
 				switch (buttonState) {
 				case Model.ButtonStates.Inactive:
-					ChangeToFrame (0);
+					ChangeFrame (0);
 					break;
 				case Model.ButtonStates.Hover:
-					ChangeToFrame (1);
+					ChangeFrame (1);
 					break;
 				case Model.ButtonStates.Focus:
-					ChangeToFrame (2);
+					ChangeFrame (2);
 					break;
 				}
 			}

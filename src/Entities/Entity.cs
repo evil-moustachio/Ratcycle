@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Ratcycle
 {
-	public abstract class Entity : AnimatedGameObject
+	public abstract class Entity : AtlasObject
 	{
 		protected Vector2 _minCoords;
 		protected Vector2 _maxCoords;
@@ -24,9 +24,8 @@ namespace Ratcycle
         /// <param name="game"></param>
         /// <param name="view"></param>
         /// <param name="speed"></param>
-		public Entity(Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, int frameColumns, 
-			int fps, Vector2 speed, Color color) 
-			: base(position, game, view, texture, frameRows, frameColumns, fps, color)
+        public Entity(Texture2D texture, Vector2 position, Game1 game, View view, Color color, int rows, int columns, int totalFrames, bool animates, Vector2 speed) 
+			: base(texture, position, game, view, color, rows, columns, totalFrames, animates)
         {
             _speed = speed;
 

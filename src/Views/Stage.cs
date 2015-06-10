@@ -35,45 +35,12 @@ namespace Ratcycle
 		/// <param name="mouseVisible"></param>
 		public Stage (Game1 game, ViewController viewController, Boolean mouseVisible) : base (game, viewController, mouseVisible)
         {
-//  TODO:  delete        Texture2D texture = CreateRectangle(game, 50, 50, Color.Red);
 			_gameObjects.Add(
-				new Rat(
-					new Vector2(600, 200),
-					_game,
-					this,
-					ContentHandler.GetTexture("rat_ratCycle"),
-					1,
-					1,
-					5,
-					new Vector2(5,5),
-					Keys.Up,
-					Keys.Down,
-					Keys.Left,
-					Keys.Right
-				));
-			_gameObjects.Add(
-				new Rat(
-					new Vector2(400, 200),
-					_game,
-					this,
-					ContentHandler.GetTexture("rat_ratCycle"),
-					1,
-					1,
-					5,
-					new Vector2(5,5),
-					Keys.W,
-					Keys.S,
-					Keys.A,
-					Keys.D
-				)
+				new Rat(ContentHandler.GetTexture("rat_ratCycle.png"), new Vector2(200, 200), game, this, new Vector2(5,5), Keys.W, Keys.S, Keys.A, Keys.D)
 			);
 
-			foreach (var gameObject in _gameObjects) {
-				if (gameObject is Rat) 
-				{
-					_rat = (Rat)gameObject;
-				}
-			}
+			
+		    _rat = (Rat)_gameObjects[_gameObjects.Count - 1];
         }
 
 		/// <summary>
@@ -90,7 +57,7 @@ namespace Ratcycle
 
             if (futureHitBox.Y < maxc.Y && futureHitBox.X > minc.X && futureHitBox.X < maxc.X && futureHitBox.Y > minc.Y)
             {
-                foreach (TexturedGameObject gameObject in _gameObjects)
+                foreach (Entity gameObject in _gameObjects)
                 {
                     if (gameObject is Entity && entity != gameObject && futureHitBox.Intersects(gameObject.HitBox))
                     {

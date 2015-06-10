@@ -18,9 +18,8 @@ namespace Ratcycle
 		/// <param name="frameColumns">Frame columns.</param>
 		/// <param name="fps">Fps.</param>
 		/// <param name="speed">Speed.</param>
-		public Monster (Vector2 position, Game1 game, View view, Texture2D texture, int frameRows, int frameColumns, 
-			int fps, Vector2 speed) 
-			: base(position, game, view, texture, frameRows, frameColumns, fps, speed, Color.White)
+		public Monster (Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed) 
+			: base (texture, position, game, view, Color.White, 1, 1, 1, false, speed)
 		{
 		}
 

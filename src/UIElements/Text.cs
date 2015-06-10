@@ -21,5 +21,10 @@ namespace Ratcycle
         {
 			spriteBatch.DrawString(_font, _text, _position, _color);
         }
+
+		public void setString(String text)
+		{
+			_text = text;
+		}
     }
 }

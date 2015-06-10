@@ -13,6 +13,7 @@ namespace Ratcycle
 		public static int counter = 0;
 		public enum ButtonStates { Inactive, Hover, Focus };
 		public enum ButtonTypes { Int, View };
+		public static string standartFontName = "Verdana";
 
         /// <summary>
         /// Returns the tick the game is currently on.

@@ -7,7 +7,7 @@ namespace Ratcycle
 {
 	public class Button : AtlasObject
 	{
-		Model.ButtonStates buttonState = Model.ButtonStates.Inactive;
+		Model.Layout.ButtonStates buttonState = Model.Layout.ButtonStates.Inactive;
 		bool buttonStateSwitch;
 		Action eventHandler;
 
@@ -24,7 +24,7 @@ namespace Ratcycle
 
 				if (MouseHandler.LeftButtonBeginPress ()) {
 					//check if the mouse starts pressing (inside the button).
-					buttonState = Model.ButtonStates.Focus;
+					buttonState = Model.Layout.ButtonStates.Focus;
 					buttonStateSwitch = true;
 
 				} else if (MouseHandler.LeftButtonEndPress ()) {
@@ -32,18 +32,19 @@ namespace Ratcycle
 
 					//Fire action
 					eventHandler();
+					return;
 
 				} else if(!MouseHandler.LeftButtonPressed()){
 					//check if the mouse is released (in the button).
 
-					buttonState = Model.ButtonStates.Hover;
+					buttonState = Model.Layout.ButtonStates.Hover;
 					buttonStateSwitch = true;
 
 				}
-			} else if (buttonState == Model.ButtonStates.Hover || buttonState == Model.ButtonStates.Focus) {
+			} else if (buttonState == Model.Layout.ButtonStates.Hover || buttonState == Model.Layout.ButtonStates.Focus) {
 				//check if button is outside the button (and checks for the other two possibilities so it
 				//won't fire every update).
-				buttonState = Model.ButtonStates.Inactive;
+				buttonState = Model.Layout.ButtonStates.Inactive;
 				buttonStateSwitch = true;
 			}
 
@@ -53,13 +54,13 @@ namespace Ratcycle
 
 				//and switch button to corresponding sprite.
 				switch (buttonState) {
-				case Model.ButtonStates.Inactive:
+				case Model.Layout.ButtonStates.Inactive:
 					ChangeFrame (0);
 					break;
-				case Model.ButtonStates.Hover:
+				case Model.Layout.ButtonStates.Hover:
 					ChangeFrame (1);
 					break;
-				case Model.ButtonStates.Focus:
+				case Model.Layout.ButtonStates.Focus:
 					ChangeFrame (2);
 					break;
 				}

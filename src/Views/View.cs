@@ -57,10 +57,10 @@ namespace Ratcycle
         /// </summary>
 		public virtual void Update ()
 		{
-			foreach (GameObject gameObject in _gameObjects)
-            {
-                gameObject.Update();
-            }
+			for (int i = _gameObjects.Count - 1; i >= 0; i--) {
+				_gameObjects [i].Update ();
+			}
+
             _orderedList = _gameObjects.OrderBy(o => o.Position.Y).ToList();
 		}
 
@@ -70,21 +70,9 @@ namespace Ratcycle
         /// <param name="spriteBatch"></param>
 		public virtual void Draw (SpriteBatch spriteBatch)
 		{
-			foreach (GameObject gameObject in _orderedList)
-            {
-                if (gameObject is Entity)
-                {
-                    gameObject.Draw(spriteBatch);
-                }
-            }
-
-            foreach (GameObject gameObject in _orderedList)
-            {
-                if (!(gameObject is Entity))
-                {
-                    gameObject.Draw(spriteBatch);
-                }
-            }
+			for (int i = _orderedList.Count - 1; i >= 0; i--) {
+				_gameObjects [i].Draw (spriteBatch);
+			}
 		}
 	}
 }

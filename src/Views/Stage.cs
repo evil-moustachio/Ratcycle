@@ -27,7 +27,7 @@ namespace Ratcycle
 			_rat = new Rat (ContentHandler.GetTexture ("RatSprite"), new Vector2 (200, 200), game, this, new Vector2 (5, 5), 100, 5, Keys.W, Keys.S, Keys.A, Keys.D);
 			_gameObjects.Add (_rat);
 			_gameObjects.Add (new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, new Vector2(1,1), 100, 2, 20, 3.0f));
-			_hud = new StageHUD (_game, _viewController, false, _rat);
+			_hud = new StageHUD (_game, _viewController, false, _rat, this);
         }
 
 		/// <summary>
@@ -85,13 +85,7 @@ namespace Ratcycle
 			}
 
 			if (KeyHandler.checkNewKeyPressed (Keys.Escape)) {
-				if (_isPaused) {
-					_isPaused = false;
-					_hud.UnPause ();
-				} else {
-					_isPaused = true;
-					_hud.Pause ();
-				}
+				Pause ();
 			}
 
 			_hud.Update ();
@@ -105,5 +99,21 @@ namespace Ratcycle
 			//And draw HUD at the last moment
 			_hud.Draw(spriteBatch);
         }
+
+		public void Pause()
+		{
+			if (_isPaused) {
+				_isPaused = false;
+				_hud.UnPause ();
+			} else {
+				_isPaused = true;
+				_hud.Pause ();
+			}
+		}
+
+		public void GoToFinishLevelView()
+		{
+			_viewController.setView (new MenuFinishedLevel(_game, _viewController, true));
+		}
     }
 }

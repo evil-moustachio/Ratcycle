@@ -39,9 +39,9 @@ namespace Ratcycle
 			_health = health;
             _damage = damage;
             _range = range;
-            _atkspd = (long)(atkspd * Model.OneSecondAmountOfTicks);
+			_atkspd = (long)(atkspd * Model.Time.OneSecondOfTicks);
 
-            _nextAttack = Model.CurrentGameTick;
+			_nextAttack = Model.Time.CurrentGameTick;
 			_healthBar = new Healthbar (ContentHandler.GetTexture("HealthBarEntity"), _position, new Vector2(0,-25), _game, _parentView, _health);
 		}
 
@@ -116,11 +116,11 @@ namespace Ratcycle
 
         private void Attack ()
         {
-            if (Model.CurrentGameTick >= _nextAttack)
+			if (Model.Time.CurrentGameTick >= _nextAttack)
             {
                 if (((Stage)_parentView).AttackHandler(this, _damage, AttackBox))
                 {
-                    _nextAttack = Model.CurrentGameTick + _atkspd;
+					_nextAttack = Model.Time.CurrentGameTick + _atkspd;
                 }
 
             }

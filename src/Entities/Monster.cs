@@ -8,7 +8,7 @@ namespace Ratcycle
 	public class Monster : Entity
 	{
 		private float _health;
-		private HealthBarEntity _healthBar;
+		private HealthbarEntity _healthBar;
 	
 
 		/// <summary>
@@ -24,7 +24,7 @@ namespace Ratcycle
 			: base (texture, position, game, view, Color.White, 1, 1, 1, false, speed)
 		{
 			_health = health;
-			_healthBar = new HealthBarEntity (ContentHandler.GetTexture("HealthBarEntity"), _position, new Vector2(0,-25), _game, _parentView, this, _health);
+			_healthBar = new HealthbarEntity (ContentHandler.GetTexture("HealthBarEntity"), _position, new Vector2(0,-25), _game, _parentView, _health);
 		}
 
 		/// <summary>
@@ -88,6 +88,7 @@ namespace Ratcycle
 				Console.WriteLine("Got the Rat in the groin");
 			}
 
+			_healthBar.SetPositionFromBasePosition (_position);
 			_healthBar.Update ();
 		}
 

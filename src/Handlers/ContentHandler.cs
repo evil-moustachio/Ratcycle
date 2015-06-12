@@ -22,6 +22,8 @@ namespace Ratcycle
 			textures.Add ("startmenuBackground", null);
 			textures.Add ("SquareButton", null);
 			textures.Add ("HealthBarEntity", null);
+			textures.Add ("HUDHealthbarRat", null);
+			textures.Add ("HUDRat", null);
 
 			fonts.Add ("Aero Matics Display-14", null);
         }

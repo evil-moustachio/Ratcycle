@@ -10,22 +10,10 @@ namespace Ratcycle
     public class Stage : View
     {
 		private Rat _rat;
+		private StageHUD _hud;
 
-		public Vector2 RatPosition
-		{
-			get
-			{
-				return _rat.Position;
-			}
-		}
-
-		public Rectangle RatHitBox
-		{
-			get
-			{
-				return _rat.HitBox;
-			}
-		}
+		public Vector2 RatPosition { get { return _rat.Position; } }
+		public Rectangle RatHitBox { get { return _rat.HitBox; } }
 
         /// <summary>
         /// Constructs the stage.
@@ -36,10 +24,11 @@ namespace Ratcycle
 		public Stage (Game1 game, ViewController viewController, Boolean mouseVisible) : base (game, viewController, mouseVisible)
         {
 			_gameObjects.Add(
-				new Rat(ContentHandler.GetTexture("rat_ratCycle"), new Vector2(200, 200), game, this, new Vector2(5,5), Keys.W, Keys.S, Keys.A, Keys.D)
+				new Rat(ContentHandler.GetTexture("rat_ratCycle"), new Vector2(200, 200), game, this, new Vector2(5,5), 100, Keys.W, Keys.S, Keys.A, Keys.D)
 			);
 		    _rat = (Rat)_gameObjects[_gameObjects.Count - 1];
-//			_gameObjects.Add (new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, new Vector2(3,3), 100));
+			_gameObjects.Add (new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, new Vector2(3,3), 100));
+			_hud = new StageHUD (_game, _viewController, false, _rat);
         }
 
 		/// <summary>
@@ -103,12 +92,16 @@ namespace Ratcycle
         {
             //CheckObjectCollision();
             base.Update();
+			_hud.Update ();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(ContentHandler.GetTexture("background_ratCycle"), new Vector2());
             base.Draw(spriteBatch);
+
+			//And draw HUD at the last moment
+			_hud.Draw(spriteBatch);
         }
     }
 }

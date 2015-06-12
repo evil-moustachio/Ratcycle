@@ -6,10 +6,28 @@ using System;
 
 namespace Ratcycle
 {
-    class Rat : Entity
+    public class Rat : Entity
     {
         private Keys _up, _down, _left, _right;
-        private int _health;
+		private float _health;
+
+		public float Health
+		{
+			get { return _health; }
+			set { _health = value; }
+		}
+
+		public override Rectangle HitBox
+		{
+			get
+			{
+				return new Rectangle(
+					(int)_position.X + 55,
+					(int)_position.Y + 100,
+					_sourceRectangle.Width  - 55,
+					_sourceRectangle.Height - 100);
+			}
+		}
 
         /// <summary>
         /// Constructs the rat.
@@ -23,26 +41,14 @@ namespace Ratcycle
         /// <param name="down"></param>
         /// <param name="left"></param>
         /// <param name="right"></param>
-		public Rat(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, Keys up, Keys down, Keys left, Keys right)
+		public Rat(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, Keys up, Keys down, Keys left, Keys right)
             : base(texture, position, game, view, Color.White, 1, 1, 1, false, speed)
         {
-            _health = 100;
+			_health = health;
             _up = up;
             _down = down;
             _left = left;
             _right = right;
-        }
-
-        public override Rectangle HitBox
-        {
-            get
-            {
-                return new Rectangle(
-                    (int)_position.X + 55,
-                    (int)_position.Y + 100,
-                    _sourceRectangle.Width  - 55,
-                    _sourceRectangle.Height - 100);
-            }
         }
         
         /// <summary>

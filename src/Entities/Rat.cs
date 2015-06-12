@@ -79,12 +79,20 @@ namespace Ratcycle
             }
             if (KeyHandler.IsKeyDown(_left) && view.NotColliding(this, MakeFutureRectangle(_left), _minCoords, _maxCoords))
             {
+				if (!_flip) {
+					_position.X += 25;
+				}
+
                 ChangeFrame(1);
                 _position.X -= _speed.X;
 				_flip = true;
             }
             if (KeyHandler.IsKeyDown(_right) && view.NotColliding(this, MakeFutureRectangle(_right), _minCoords, _maxCoords))
             {
+				if (_flip) {
+					_position.X -= 25;
+				}
+
                 ChangeFrame(0);
                 _position.X += _speed.X;
 				_flip = false;

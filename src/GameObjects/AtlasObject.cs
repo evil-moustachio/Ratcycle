@@ -12,8 +12,7 @@ namespace Ratcycle
         protected Rectangle _sourceRectangle;
         private Texture2D _texture;
         private bool _animates;
-        private int _frameHeight, _frameWidth,
-            _columns;
+        private int _frameHeight, _frameWidth, _columns;
         private long _nextFrameTick;
         private float _ticksPerFrame;
         private float _scale = 1.0f;

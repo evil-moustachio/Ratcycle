@@ -7,9 +7,22 @@ namespace Ratcycle
 {
 	public class Monster : Entity
 	{
-		private float _health;
 		private Healthbar _healthBar;
-	
+        protected int _range;
+        protected long _atkspd;
+        protected long _nextAttack;
+
+        public override Rectangle AttackBox
+        {
+            get
+            {
+                return new Rectangle(
+                    HitBox.X -_range,
+                    HitBox.Y - _range,
+                    HitBox.Width + (_range*2),
+                    HitBox.Height +(_range*2));
+            }
+        }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Ratcycle.Enemy"/> class.
@@ -20,10 +33,15 @@ namespace Ratcycle
 		/// <param name="texture">Texture.</param>
 		/// <param name="speed">Speed.</param>
 		/// <param name="health">Health.</param>
-		public Monster (Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health) 
+		public Monster (Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, float damage, int range, float atkspd) 
 			: base (texture, position, game, view, Color.White, 1, 1, 1, false, speed)
 		{
 			_health = health;
+            _damage = damage;
+            _range = range;
+            _atkspd = (long)(atkspd * Model.OneSecondAmountOfTicks);
+
+            _nextAttack = Model.CurrentGameTick;
 			_healthBar = new Healthbar (ContentHandler.GetTexture("HealthBarEntity"), _position, new Vector2(0,-25), _game, _parentView, _health);
 		}
 
@@ -39,20 +57,31 @@ namespace Ratcycle
 
 			// Check if it's a straight line
 			if (target.X == _position.X) {
-				if (target.Y > _position.Y) {
+				if (target.Y > _position.Y) 
+                {
 					offset = speed * -1;
-				} else {
+				} 
+                else {
 					offset = speed;
 				}
+
 				newPosition = new Vector2 (_position.X, _position.Y + offset);
-			} else if (target.Y == _position.Y) {
-				if (target.X > _position.X) {
+			} 
+            else if (target.Y == _position.Y) 
+            {
+				if (target.X > _position.X) 
+                {
 					offset = speed * -1;
-				} else {
+				} 
+                else 
+                {
 					offset = speed;
 				}
+
 				newPosition = new Vector2 (_position.X + offset, _position.Y);
-			} else {
+			} 
+            else 
+            {
 
 				// Determine current trianlge
 				var diffX = target.X - _position.X;
@@ -69,32 +98,44 @@ namespace Ratcycle
 				var newY = _position.Y + offsetY;
 				newPosition = new Vector2 ((float)newX, (float)newY);
 			}
+
 			return newPosition;
 		}
+
+        private void Move()
+        {
+            Stage view = (Stage)_parentView;
+            Vector2 nextPosition = Target(((Stage)_parentView).RatPosition);
+            Rectangle nextHitbox = new Rectangle((int)nextPosition.X, (int)nextPosition.Y, HitBox.Width, HitBox.Height);
+
+            if (view.NotColliding(this, nextHitbox, _minCoords, _maxCoords))
+            {
+                _position = nextPosition;
+            }
+        }
+
+        private void Attack ()
+        {
+            if (Model.CurrentGameTick >= _nextAttack)
+            {
+                if (((Stage)_parentView).AttackHandler(this, _damage, AttackBox))
+                {
+                    _nextAttack = Model.CurrentGameTick + _atkspd;
+                }
+
+            }
+        }
+
 
 		public override void Update ()
 		{
 			base.Update ();
-			Stage view = (Stage)_parentView;
-			Vector2 nextPosition = Target (view.RatPosition);
-			Rectangle nextHitbox = new Rectangle ((int)nextPosition.X, (int)nextPosition.Y, HitBox.Width, HitBox.Height);
-
-			if (view.NotColliding(this, nextHitbox, _minCoords, _maxCoords))
-			{
-				_position = nextPosition;
-			}
-			else if (nextHitbox.Intersects(view.RatHitBox))
-			{
-				Console.WriteLine("Got the Rat in the groin");
-			}
+            Move();
+            Attack();
 
 			_healthBar.SetPositionFromBasePosition (_position);
 			_healthBar.Health = _health;
 			_healthBar.Update ();
-
-			if (KeyHandler.checkNewKeyPressed (Microsoft.Xna.Framework.Input.Keys.Space)) {
-				_health -= 1;
-			}
 		}
 
 		public override void Draw (SpriteBatch spriteBatch)

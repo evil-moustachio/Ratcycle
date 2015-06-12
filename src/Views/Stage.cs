@@ -24,12 +24,9 @@ namespace Ratcycle
 		/// <param name="mouseVisible"></param>
 		public Stage (Game1 game, ViewController viewController, Boolean mouseVisible) : base (game, viewController, mouseVisible)
         {
-			_rat = new Rat (ContentHandler.GetTexture ("RatSprite"), new Vector2 (200, 200), game, this, new Vector2 (5, 5), 100, Keys.W, Keys.S, Keys.A, Keys.D);
+			_rat = new Rat (ContentHandler.GetTexture ("RatSprite"), new Vector2 (200, 200), game, this, new Vector2 (5, 5), 100, 5, Keys.W, Keys.S, Keys.A, Keys.D);
 			_gameObjects.Add (_rat);
-			_rat = new Rat (ContentHandler.GetTexture ("RatSprite"), new Vector2 (400, 200), game, this, new Vector2 (5, 5), 100, Keys.Up, Keys.Down, Keys.Left, Keys.Right);
-			_gameObjects.Add (_rat);
-
-//			_gameObjects.Add (new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, new Vector2(1,1), 100));
+			_gameObjects.Add (new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, new Vector2(1,1), 100, 2, 20, 3.0f));
 			_hud = new StageHUD (_game, _viewController, false, _rat);
         }
 
@@ -60,6 +57,22 @@ namespace Ratcycle
             {
                 return false;
             }
+        }
+
+
+        public bool AttackHandler (Entity attacker, float attackerDamage, Rectangle AttackBox)
+        {
+            bool attacked = false;
+
+            foreach (Entity defender in _gameObjects)
+            {
+                if (defender is Entity && attacker != defender && AttackBox.Intersects(defender.HitBox) && attacker.GetType() != defender.GetType())
+                {
+                    defender.Health -= attackerDamage;
+                    attacked = true;
+                }
+            }
+            return attacked;
         }
 
         /// <summary>

@@ -12,6 +12,21 @@ namespace Ratcycle
 		protected Vector2 _minCoords;
 		protected Vector2 _maxCoords;
 		protected Vector2 _speed;
+        protected float _health, _damage;
+
+        public float Health
+        {
+            get { return _health; }
+            set { _health = value; }
+        }
+
+        public virtual Rectangle AttackBox
+        {
+            get
+            {
+                return new Rectangle();
+            }
+        }
 
         /// <summary>
         /// Entity constructor, extends GameObject.
@@ -51,20 +66,17 @@ namespace Ratcycle
         }
 
         /// <summary>
-        /// Determines what happens on hit of a certain object. Just in entity, because HUD doesn't count as hit.
-        /// </summary>
-        /// <param name="other"></param>
-        public virtual void OnHit(Entity other)
-        {
-            // Maybe make this function abstract
-        }
-        
-        /// <summary>
         /// Updates the entity (same as GameObject)
         /// </summary>
 		public override void Update()
         {
             base.Update();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            spriteBatch.Draw(CreateHitBoxTexture(_game, AttackBox.Width, AttackBox.Height, new Color(Color.Red, 0.5f)), AttackBox, new Color(Color.Red, 0.5f));
         }
 	}
 }

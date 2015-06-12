@@ -23,6 +23,7 @@ namespace Ratcycle
         public void Update()
         {
 			Player.Update();
+            Model.Update();
             _viewController.Update();
         }
 

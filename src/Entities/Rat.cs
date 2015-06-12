@@ -9,26 +9,45 @@ namespace Ratcycle
     public class Rat : Entity
     {
         private Keys _up, _down, _left, _right;
-		private float _health;
-		private Boolean _flip = false;
+        private Boolean _flip;
 
-		public float Health
-		{
-			get { return _health; }
-			set { _health = value; }
-		}
+        public override Rectangle AttackBox
+        {
+            get
+            {
+                if (_flip)
+                {
+                    return new Rectangle(
+                        (int)_position.X - 30,
+                        (int)_position.Y + 30,
+                        30,
+                        _sourceRectangle.Height - 30);
+                }
+                else
+                {
+                    return new Rectangle(
+                        (int)_position.X + _sourceRectangle.Width,
+                        (int)_position.Y + 30,
+                        30,
+                        _sourceRectangle.Height - 30);
+                }
+            }
+        }
 
 		public override Rectangle HitBox
 		{
 			get
 			{
-				if (_flip) {
+				if (_flip) 
+                {
 					return new Rectangle (
 						(int)_position.X,
 						(int)_position.Y + 50,
 						_sourceRectangle.Width - 25,
 						_sourceRectangle.Height - 50);
-				} else {
+				} 
+                else 
+                {
 					return new Rectangle (
 						(int)_position.X + 25,
 						(int)_position.Y + 50,
@@ -50,11 +69,13 @@ namespace Ratcycle
         /// <param name="down"></param>
         /// <param name="left"></param>
         /// <param name="right"></param>
-		public Rat(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, Keys up, Keys down, Keys left, Keys right)
+		public Rat(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, float damage, Keys up, Keys down, Keys left, Keys right)
             : base(texture, position, game, view, Color.White, 2, 1, 1, false, speed)
         {
 			_health = health;
+            _damage = damage;
 
+            _flip = false;
             _up = up;
             _down = down;
             _left = left;
@@ -99,6 +120,16 @@ namespace Ratcycle
             }
              
         }
+        
+        private void Attack ()
+        {
+            if (KeyHandler.checkNewKeyPressed(Keys.Space))
+            {
+                //Animatie
+
+                ((Stage)_parentView).AttackHandler(this, _damage, AttackBox);
+            }
+        }
 
         private Rectangle MakeFutureRectangle (Keys key)
         {
@@ -132,12 +163,7 @@ namespace Ratcycle
         {
             base.Update();
             Move();
+            Attack();
         }
-
-		public override void Draw(SpriteBatch spriteBatch)
-		{
-			base.Draw(spriteBatch);
-			spriteBatch.Draw (CreateHitBoxTexture(_game, HitBox.Width, HitBox.Height, new Color(Color.Red, 0.5f)), HitBox, new Color(Color.Red, 0.5f));
-		}
     }
 }

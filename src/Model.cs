@@ -9,6 +9,7 @@ namespace Ratcycle
 {
 	public static class Model
 	{
+        // Counter used to show difference in CW's
 		public static int counter = 0;
 
         /// <summary>

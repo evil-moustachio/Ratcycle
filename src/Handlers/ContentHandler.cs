@@ -34,15 +34,18 @@ namespace Ratcycle
 		/// Loads the textures.
 		/// </summary>
 		/// <param name="content">Content.</param>
-		public static void LoadContent (ContentManager content)
+		public static void LoadContent(ContentManager content)
 		{
-			for (int i = textures.Count - 1; i >= 0; --i) {
+			for (int i = textures.Count - 1; i >= 0; --i) 
+            {
 				string key = textures.Keys.ElementAt (i);
-				textures [key] = content.Load<Texture2D> (key);
+				textures [key] = content.Load<Texture2D>(key);
 			}
-			for (int i = fonts.Count - 1; i >= 0; --i) {
+
+			for (int i = fonts.Count - 1; i >= 0; --i) 
+            {
 				string key = fonts.Keys.ElementAt (i);
-				fonts [key] = content.Load<SpriteFont> (key);
+				fonts [key] = content.Load<SpriteFont>(key);
 			}
 		}
 

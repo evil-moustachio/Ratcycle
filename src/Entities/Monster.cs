@@ -33,7 +33,7 @@ namespace Ratcycle
 		/// <param name="texture">Texture.</param>
 		/// <param name="speed">Speed.</param>
 		/// <param name="health">Health.</param>
-		public Monster (Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, float damage, int range, float atkspd) 
+		public Monster(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, float damage, int range, float atkspd) 
 			: base (texture, position, game, view, Color.White, 1, 1, 1, false, speed)
 		{
 			_health = health;
@@ -55,8 +55,8 @@ namespace Ratcycle
 			float offset;
 			float speed = _speed.X;
 
-			// Check if it's a straight line
-			if (target.X == _position.X) {
+			if (target.X == _position.X) 
+            {
 				if (target.Y > _position.Y) 
                 {
 					offset = speed * -1;
@@ -114,7 +114,7 @@ namespace Ratcycle
             }
         }
 
-        private void Attack ()
+        private void Attack()
         {
 			if (Model.Time.CurrentGameTick >= _nextAttack)
             {
@@ -127,21 +127,21 @@ namespace Ratcycle
         }
 
 
-		public override void Update ()
+		public override void Update()
 		{
-			base.Update ();
+			base.Update();
             Move();
             Attack();
 
-			_healthBar.SetPositionFromBasePosition (_position);
+			_healthBar.SetPositionFromBasePosition(_position);
 			_healthBar.Health = _health;
-			_healthBar.Update ();
+			_healthBar.Update();
 		}
 
 		public override void Draw (SpriteBatch spriteBatch)
 		{
-			base.Draw (spriteBatch);
-			_healthBar.Draw (spriteBatch);
+			base.Draw(spriteBatch);
+			_healthBar.Draw(spriteBatch);
 		}
 	}
 }

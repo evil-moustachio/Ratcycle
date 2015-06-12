@@ -15,14 +15,15 @@ namespace Ratcycle
         protected ViewController _viewController;
 		protected List<GameObject> _gameObjects;
         protected List<GameObject> _orderedList;
-		private Boolean _mouseVisible;
+		private bool _mouseVisible;
 
 		public ViewController ViewController
 		{
 			get { return _viewController; }
 		}
 
-		public Boolean MouseVisible {
+		public bool MouseVisible 
+        {
 			get { return _mouseVisible; }
 		}
 
@@ -32,33 +33,24 @@ namespace Ratcycle
         /// <param name="game"></param>
         /// <param name="viewController"></param>
 		/// <param name="mouseVisible"></param>
-		public View (Game1 game, ViewController viewController, Boolean mouseVisible)
+		public View(Game1 game, ViewController viewController, bool mouseVisible)
 		{
             _game = game;
             _viewController = viewController;
+            _mouseVisible = mouseVisible;
+
 			_gameObjects = new List<GameObject>();
             _orderedList = new List<GameObject>();
-			_mouseVisible = mouseVisible;
 		}
-
-		//TODO: Delete CreateRectangle function
-        /// <summary>
-        /// Delete this function later on, using this just for testing. Makes textures blocks.
-        /// </summary>
-        /// <param name="game"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="wantedColor"></param>
-        /// <returns></returns>
-        
 
         /// <summary>
         /// Updates the View's GameObjects
         /// </summary>
-		public virtual void Update ()
+		public virtual void Update()
 		{
-			for (int i = _gameObjects.Count - 1; i >= 0; i--) {
-				_gameObjects [i].Update ();
+			for (int i = _gameObjects.Count - 1; i >= 0; i--) 
+            {
+				_gameObjects[i].Update();
 			}
 
             _orderedList = _gameObjects.OrderBy(o => o.Position.Y).ToList();
@@ -68,10 +60,11 @@ namespace Ratcycle
         /// Draws the View's GameObjects
         /// </summary>
         /// <param name="spriteBatch"></param>
-		public virtual void Draw (SpriteBatch spriteBatch)
+		public virtual void Draw(SpriteBatch spriteBatch)
 		{
-			for (int i = _orderedList.Count - 1; i >= 0; i--) {
-				_gameObjects [i].Draw (spriteBatch);
+			for (int i = _orderedList.Count - 1; i >= 0; i--) 
+            {
+				_gameObjects[i].Draw (spriteBatch);
 			}
 		}
 	}

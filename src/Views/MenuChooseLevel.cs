@@ -6,7 +6,7 @@ namespace Ratcycle
 	public class MenuChooseLevel : View
 	{
 		private Text levelCounterText;
-		private int levelCounter = Model.Level.Current;
+        private int levelCounter;
 
 		public MenuChooseLevel (Game1 game, ViewController viewController, Boolean mouseVisible) : base(game, viewController, mouseVisible)
 		{
@@ -17,11 +17,14 @@ namespace Ratcycle
 			levelCounterText = (Text)_gameObjects [_gameObjects.Count - 1];
 			_gameObjects.Add (new Button(ContentHandler.GetTexture("SquareButton"), new Vector2(455, 200), _game, this, addLevel));
 			_gameObjects.Add (new Button(ContentHandler.GetTexture("startbutton_ratCycle"), new Vector2(580, 500), _game, this, nextView));
+
+            levelCounter = Model.Level.Current;
 		}
 
 		private void addLevel() 
 		{
-			if (Model.Level.Reached > levelCounter) {
+			if (Model.Level.Reached > levelCounter) 
+            {
 				levelCounter++;
 			}
 			levelCounterText.setString (levelCounter.ToString());
@@ -29,7 +32,8 @@ namespace Ratcycle
 
 		private void subsLevel()
 		{
-			if (levelCounter > 0) {
+			if (levelCounter > 0) 
+            {
 				levelCounter--;
 			}
 			levelCounterText.setString (levelCounter.ToString());
@@ -38,7 +42,7 @@ namespace Ratcycle
 		private void nextView()
 		{
 			Model.Level.Current = levelCounter;
-			_viewController.setView (new Stage (_game, _viewController, false));
+			_viewController.SetView (new Stage (_game, _viewController, false));
 		}
 	}
 }

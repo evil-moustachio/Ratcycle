@@ -20,12 +20,9 @@ namespace Ratcycle
             set { _health = value; }
         }
 
-        public virtual Rectangle AttackBox
+        public abstract Rectangle AttackBox
         {
-            get
-            {
-                return new Rectangle();
-            }
+            get;
         }
 
         /// <summary>
@@ -44,8 +41,6 @@ namespace Ratcycle
         {
             _speed = speed;
 
-            // Default values for border boundaries for every entity
-            // Change minimal values according to background.
 			_minCoords = new Vector2 (0, (240 - HitBox.Height));
 			_maxCoords = new Vector2 (_game.GraphicsDevice.Viewport.Width - HitBox.Width,
 										_game.GraphicsDevice.Viewport.Height - HitBox.Height);

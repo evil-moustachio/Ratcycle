@@ -13,7 +13,7 @@ namespace Ratcycle
 		public static void Update()
 		{
 			prevKeyboardState = keyboardState;
-			keyboardState = Keyboard.GetState ();
+			keyboardState = Keyboard.GetState();
 		}
 
 		/// <summary>
@@ -23,7 +23,7 @@ namespace Ratcycle
 		/// <param name="key">Key.</param>
 		public static bool IsKeyDown(Keys key)
 		{
-			return keyboardState.IsKeyDown (key);
+			return keyboardState.IsKeyDown(key);
 		}
 
 		/// <summary>
@@ -33,7 +33,7 @@ namespace Ratcycle
 		/// <param name="key">Key.</param>
 		public static Boolean checkKeyReleased(Keys key)
 		{
-			return (prevKeyboardState.IsKeyDown (key) && keyboardState.IsKeyUp (key));
+			return (prevKeyboardState.IsKeyDown(key) && keyboardState.IsKeyUp(key));
 		}
 
 		/// <summary>
@@ -41,9 +41,9 @@ namespace Ratcycle
 		/// </summary>
 		/// <returns><c>true</c>, if new key was pressed, <c>false</c> otherwise.</returns>
 		/// <param name="key">Key.</param>
-		public static Boolean checkNewKeyPressed (Keys key)
+		public static Boolean checkNewKeyPressed(Keys key)
 		{
-			return (prevKeyboardState.IsKeyUp (key) && keyboardState.IsKeyDown (key));
+			return (prevKeyboardState.IsKeyUp (key) && keyboardState.IsKeyDown(key));
 		}
 
 	}

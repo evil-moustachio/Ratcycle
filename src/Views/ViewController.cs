@@ -11,32 +11,47 @@ namespace Ratcycle
     public class ViewController
     {
 		private Game1 _game;
-		private View view;
+		private View _view;
 
+        /// <summary>
+        /// Constructs the ViewController
+        /// </summary>
+        /// <param name="game"></param>
         public ViewController(Game1 game)
         {
             _game = game;
 			_game.IsMouseVisible = true;
 
-			view = new MenuStart (_game, this, true);
+			_view = new MenuStart (_game, this, true);
         }
 
-		public void setView(View newView)
+        /// <summary>
+        /// Sets the view to a new view.
+        /// </summary>
+        /// <param name="newView"></param>
+		public void SetView(View newView)
 		{
-			view = newView;
+			_view = newView;
 			_game.IsMouseVisible = newView.MouseVisible;
 		}
 
+        /// <summary>
+        /// Updates the current view.
+        /// </summary>
         public void Update()
 		{
 			// Update the current view
-			view.Update();
+			_view.Update();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
 		{
 			// Draw the current view
-			view.Draw(spriteBatch);
+			_view.Draw(spriteBatch);
 		}
     }
 }

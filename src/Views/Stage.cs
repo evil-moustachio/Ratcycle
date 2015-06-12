@@ -22,12 +22,13 @@ namespace Ratcycle
         /// <param name="game"></param>
         /// <param name="viewController"></param>
 		/// <param name="mouseVisible"></param>
-		public Stage (Game1 game, ViewController viewController, Boolean mouseVisible) : base (game, viewController, mouseVisible)
+		public Stage(Game1 game, ViewController viewController, Boolean mouseVisible) : base (game, viewController, mouseVisible)
         {
-			_rat = new Rat (ContentHandler.GetTexture ("RatSprite"), new Vector2 (200, 200), game, this, new Vector2 (5, 5), 100, 5, Keys.W, Keys.S, Keys.A, Keys.D);
-			_gameObjects.Add (_rat);
-			_gameObjects.Add (new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, new Vector2(1,1), 100, 2, 20, 3.0f));
-			_hud = new StageHUD (_game, _viewController, false, _rat, this);
+			_rat = new Rat(ContentHandler.GetTexture ("RatSprite"), new Vector2 (200, 200), game, this, new Vector2 (5, 5), 100, 5, Keys.W, Keys.S, Keys.A, Keys.D);
+			_gameObjects.Add(_rat);
+
+			_gameObjects.Add(new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, new Vector2(1,1), 100, 2, 20, 3.0f));
+			_hud = new StageHUD(_game, _viewController, false, _rat, this);
         }
 
 		/// <summary>
@@ -38,7 +39,7 @@ namespace Ratcycle
 		/// <param name="fhb">FutureHitBox.</param>
 		/// <param name="minc">MinCoord.</param>
 		/// <param name="maxc">MaxCoord.</param>
-        public bool NotColliding (Entity entity, Rectangle fhb, Vector2 minc, Vector2 maxc)
+        public bool NotColliding(Entity entity, Rectangle fhb, Vector2 minc, Vector2 maxc)
         {
             Rectangle futureHitBox = fhb;
 
@@ -72,6 +73,7 @@ namespace Ratcycle
                     attacked = true;
                 }
             }
+
             return attacked;
         }
 
@@ -80,15 +82,17 @@ namespace Ratcycle
         /// </summary>
         public override void Update()
         {
-			if (!_isPaused) {
-				base.Update ();
+			if (!_isPaused) 
+            {
+				base.Update();
 			}
 
-			if (KeyHandler.checkNewKeyPressed (Keys.Escape)) {
-				Pause ();
+			if (KeyHandler.checkNewKeyPressed (Keys.Escape)) 
+            {
+				Pause();
 			}
 
-			_hud.Update ();
+			_hud.Update();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -96,24 +100,26 @@ namespace Ratcycle
             spriteBatch.Draw(ContentHandler.GetTexture("background_ratCycle"), new Vector2());
             base.Draw(spriteBatch);
 
-			//And draw HUD at the last moment
 			_hud.Draw(spriteBatch);
         }
 
 		public void Pause()
 		{
-			if (_isPaused) {
+			if (_isPaused) 
+            {
 				_isPaused = false;
 				_hud.UnPause ();
-			} else {
+			} 
+            else 
+            {
 				_isPaused = true;
 				_hud.Pause ();
 			}
 		}
 
-		public void GoToFinishLevelView()
+		public void ChangeToFinished()
 		{
-			_viewController.setView (new MenuFinishedLevel(_game, _viewController, true));
+			_viewController.SetView (new MenuFinishedLevel(_game, _viewController, true));
 		}
     }
 }

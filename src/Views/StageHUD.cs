@@ -21,9 +21,8 @@ namespace Ratcycle
 			_stage = stage;
 			_rat = rat;
 
-			_healthBar = new Healthbar (ContentHandler.GetTexture ("HUDHealthbarRat"), 
-				new Vector2 (25, 25), 
-				new Vector2 (0, 0), _game, this, _rat.Health);
+			_healthBar = new Healthbar (ContentHandler.GetTexture ("HUDHealthbarRat"), new Vector2 (25, 25), new Vector2 (0, 0),
+                _game, this, _rat.Health);
 
 			_gameObjects.Add (_healthBar);
 			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("HUDRat"), new Vector2(25,25), _game, this, 
@@ -34,55 +33,66 @@ namespace Ratcycle
 
 		public override void Update ()
 		{
-			if (_goUnPause) {
-				for (int i = _pausedItems.Count - 1; i >= 0; i--) {
+			if (_goUnPause) 
+            {
+				for (int i = _pausedItems.Count - 1; i >= 0; i--) 
+                {
 					_gameObjects.Remove (_pausedItems [i]);
 					_pausedItems.Remove (_pausedItems [i]);
 				}
+
 				_goUnPause = false;
-			} else {
+			} 
+            else 
+            {
 				base.Update ();
 			}
+
 			_healthBar.Health = _rat.Health;
 			_healthBar.Update ();
 		}
 
 		public override void Draw (SpriteBatch spriteBatch)
 		{
-			for (int i = 0; i < _gameObjects.Count; i++) {
+			for (int i = 0; i < _gameObjects.Count; i++) 
+            {
 				_gameObjects [i].Draw (spriteBatch);
 			}
 		}
 
-		public void Pause() {
-			if (!_isPaused) {
+		public void Pause() 
+        {
+			if (!_isPaused) 
+            {
 				_game.IsMouseVisible = true;
 				_isPaused = true;
 
-				Vector2 center = new Vector2 (_game.GraphicsDevice.Viewport.Width / 2, 
+				Vector2 center = new Vector2(_game.GraphicsDevice.Viewport.Width / 2, 
 					_game.GraphicsDevice.Viewport.Height / 2);
 
-				_pausedItems.Add (new AtlasObject (ContentHandler.GetTexture ("OrangeBG"), new Vector2 (0), _game, this, 
+				_pausedItems.Add(new AtlasObject(ContentHandler.GetTexture("OrangeBG"), new Vector2 (0), _game, this, 
 					Color.White, 1, 1, 1, false));
 
 				_pausedItems.Add(new Text(new Vector2(center.X - 100, 100), _game, this,
 					Model.Layout.standartFontName, "Gepauzeerd", Color.White));
 
-				_pausedItems.Add (new Button(ContentHandler.GetTexture("startbutton_ratCycle"), 
+				_pausedItems.Add(new Button(ContentHandler.GetTexture("startbutton_ratCycle"), 
 						center + new Vector2(-ContentHandler.GetTexture("startbutton_ratCycle").Width / 2, 0), 
 					_game, this, _stage.Pause));
-				_pausedItems.Add (new Button(ContentHandler.GetTexture("SquareButton"), 
+				_pausedItems.Add(new Button(ContentHandler.GetTexture("SquareButton"), 
 					center + new Vector2(-ContentHandler.GetTexture("SquareButton").Width / 2, 100), 
-					_game, this, _stage.GoToFinishLevelView));
+					_game, this, _stage.ChangeToFinished));
 
-				for (int i = 0; i < _pausedItems.Count; i++) {
-					_gameObjects.Add (_pausedItems [i]);
+				for (int i = 0; i < _pausedItems.Count; i++) 
+                {
+					_gameObjects.Add(_pausedItems[i]);
 				}
 			}
 		}
 
 		public void UnPause() {
-			if (_isPaused) {
+			if (_isPaused) 
+            {
 				_game.IsMouseVisible = false;
 				_isPaused = false;
 				_goUnPause = true;

@@ -17,7 +17,7 @@ namespace Ratcycle
             _text = text;
         }
 
-        public override void Draw (SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
 			spriteBatch.DrawString(_font, _text, _position, _color);
         }

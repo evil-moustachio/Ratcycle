@@ -9,7 +9,7 @@ namespace Ratcycle
     public class Rat : Entity
     {
         private Keys _up, _down, _left, _right;
-        private Boolean _flip;
+        private bool _flip = false;
 
         public override Rectangle AttackBox
         {
@@ -75,7 +75,6 @@ namespace Ratcycle
 			_health = health;
             _damage = damage;
 
-            _flip = false;
             _up = up;
             _down = down;
             _left = left;
@@ -98,6 +97,7 @@ namespace Ratcycle
             {
                 _position.Y += _speed.Y;
             }
+
             if (KeyHandler.IsKeyDown(_left) && view.NotColliding(this, MakeFutureRectangle(_left), _minCoords, _maxCoords))
             {
 				if (!_flip) {
@@ -108,6 +108,7 @@ namespace Ratcycle
                 _position.X -= _speed.X;
 				_flip = true;
             }
+
             if (KeyHandler.IsKeyDown(_right) && view.NotColliding(this, MakeFutureRectangle(_right), _minCoords, _maxCoords))
             {
 				if (_flip) {
@@ -121,11 +122,11 @@ namespace Ratcycle
              
         }
         
-        private void Attack ()
+        private void Attack()
         {
             if (KeyHandler.checkNewKeyPressed(Keys.Space))
             {
-                //Animatie
+                //Animate
 
                 ((Stage)_parentView).AttackHandler(this, _damage, AttackBox);
             }

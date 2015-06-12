@@ -15,7 +15,7 @@ namespace Ratcycle
 		public static void Update()
 		{
 			prevMouseState = mouseState;
-			mouseState = Mouse.GetState ();
+			mouseState = Mouse.GetState();
 		}
 
 		/// <summary>

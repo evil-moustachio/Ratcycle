@@ -25,19 +25,19 @@ namespace Ratcycle
             }
         }
 
-		public Game1 ()
+		public Game1()
 		{
 			graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "GameFiles/Content";
 			graphics.IsFullScreen = false;
 			graphics.PreferredBackBufferHeight = 600;
 			graphics.PreferredBackBufferWidth = 800;
-			ContentHandler.SetTextures ();
+			ContentHandler.SetTextures();
 		}
 
-		protected override void Initialize ()
+		protected override void Initialize()
 		{
-			base.Initialize ();
+			base.Initialize();
 			_world = new World(this);
 		}
 
@@ -49,13 +49,13 @@ namespace Ratcycle
 
 		}
 			
-		protected override void Update (GameTime gameTime)
+		protected override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
 			_world.Update();
 		}
 			
-		protected override void Draw (GameTime gameTime)
+		protected override void Draw(GameTime gameTime)
 		{
 			// Resets the image 
 			graphics.GraphicsDevice.Clear(Color.White);

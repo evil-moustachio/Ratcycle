@@ -13,6 +13,10 @@ namespace Ratcycle
         private ViewController _viewController;
         public Player Player;
 
+        /// <summary>
+        /// Constructs the world.
+        /// </summary>
+        /// <param name="game"></param>
         public World(Game1 game)
         {
             _game = game;
@@ -20,6 +24,9 @@ namespace Ratcycle
             _viewController = new ViewController(_game);
         }
 
+        /// <summary>
+        /// Updates the world
+        /// </summary>
         public void Update()
         {
 			Player.Update();
@@ -27,6 +34,10 @@ namespace Ratcycle
             _viewController.Update();
         }
 
+        /// <summary>
+        /// Draws the world
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
             // Draw the views

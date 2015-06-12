@@ -19,50 +19,46 @@ namespace Ratcycle
 
 		public override void Update()
 		{
-			//check if mouse is in button.
-			if (HitBox.Contains (MouseHandler.MouseLocation ())) {
-
-				if (MouseHandler.LeftButtonBeginPress ()) {
-					//check if the mouse starts pressing (inside the button).
+			if (HitBox.Contains (MouseHandler.MouseLocation())) 
+            {
+				if (MouseHandler.LeftButtonBeginPress ()) 
+                {
 					buttonState = Model.Layout.ButtonStates.Focus;
 					buttonStateSwitch = true;
+				} 
+                else if (MouseHandler.LeftButtonEndPress()) 
+                {
 
-				} else if (MouseHandler.LeftButtonEndPress ()) {
-					//check if the mouse stops pressing (inside the button).
-
-					//Fire action
 					eventHandler();
 					return;
-
-				} else if(!MouseHandler.LeftButtonPressed()){
-					//check if the mouse is released (in the button).
-
+				} 
+                else if(!MouseHandler.LeftButtonPressed())
+                {
 					buttonState = Model.Layout.ButtonStates.Hover;
 					buttonStateSwitch = true;
-
 				}
-			} else if (buttonState == Model.Layout.ButtonStates.Hover || buttonState == Model.Layout.ButtonStates.Focus) {
-				//check if button is outside the button (and checks for the other two possibilities so it
-				//won't fire every update).
+			}
+            else if (buttonState == Model.Layout.ButtonStates.Hover || buttonState == Model.Layout.ButtonStates.Focus)
+            {
 				buttonState = Model.Layout.ButtonStates.Inactive;
 				buttonStateSwitch = true;
 			}
 
-			//check if the buttonState has switched.
-			if (buttonStateSwitch) {
+			if (buttonStateSwitch) 
+            {
 				buttonStateSwitch = false;
 
-				//and switch button to corresponding sprite.
-				switch (buttonState) {
-				case Model.Layout.ButtonStates.Inactive:
-					ChangeFrame (0);
-					break;
-				case Model.Layout.ButtonStates.Hover:
-					ChangeFrame (1);
-					break;
-				case Model.Layout.ButtonStates.Focus:
-					ChangeFrame (2);
-					break;
+				switch (buttonState) 
+                {
+				    case Model.Layout.ButtonStates.Inactive:
+					    ChangeFrame(0);
+					    break;
+				    case Model.Layout.ButtonStates.Hover:
+					    ChangeFrame(1);
+					    break;
+				    case Model.Layout.ButtonStates.Focus:
+					    ChangeFrame(2);
+					    break;
 				}
 			}
 		}

@@ -8,11 +8,12 @@ namespace Ratcycle
 		private Vector2 _offset;
 		private float _health, _maxHealth;
 
-		public float Health {
+		public float Health 
+        {
 			set { _health = value; }
 		}
 
-		public Healthbar (Texture2D texture, Vector2 position, Vector2 offset, Game1 game, View view, 
+		public Healthbar(Texture2D texture, Vector2 position, Vector2 offset, Game1 game, View view, 
 			float health)
 			: base (texture, position + offset, game, view, Color.White, 25, 1, 1, false)
 		{
@@ -20,15 +21,16 @@ namespace Ratcycle
 			_health = _maxHealth = health;
 		}
 
-		public void SetPositionFromBasePosition(Vector2 v) {
+		public void SetPositionFromBasePosition(Vector2 v) 
+        {
 			_position = v + _offset;
 		}
 
-		public override void Update ()
+		public override void Update()
 		{
-			base.Update ();
+			base.Update();
 
-			ChangeFrame((int)(_health / _maxHealth * -25 + 25));
+			ChangeFrame((int)(_health / _maxHealth * - 25 + 25));
 		}
 	}
 }

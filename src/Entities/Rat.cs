@@ -16,9 +16,6 @@ namespace Ratcycle
         /// </summary>
         /// <param name="position"></param>
 		/// <param name="texture"></param>
-		/// <param name="frameColumns"></param>
-		/// <param name="frameRows"></param>
-        /// <param name="animates"></param>
         /// <param name="game"></param>
         /// <param name="view"></param>
         /// <param name="speed"></param>

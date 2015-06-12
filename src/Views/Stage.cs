@@ -36,11 +36,10 @@ namespace Ratcycle
 		public Stage (Game1 game, ViewController viewController, Boolean mouseVisible) : base (game, viewController, mouseVisible)
         {
 			_gameObjects.Add(
-				new Rat(ContentHandler.GetTexture("rat_ratCycle.png"), new Vector2(200, 200), game, this, new Vector2(5,5), Keys.W, Keys.S, Keys.A, Keys.D)
+				new Rat(ContentHandler.GetTexture("rat_ratCycle"), new Vector2(200, 200), game, this, new Vector2(5,5), Keys.W, Keys.S, Keys.A, Keys.D)
 			);
-
-			
 		    _rat = (Rat)_gameObjects[_gameObjects.Count - 1];
+//			_gameObjects.Add (new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, new Vector2(3,3), 100));
         }
 
 		/// <summary>

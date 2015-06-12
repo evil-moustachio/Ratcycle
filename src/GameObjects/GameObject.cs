@@ -33,8 +33,6 @@ namespace Ratcycle
 			_position = position;
             _game = game;
             _parentView = view;
-
-			// Default settings.
 			_color = color;
 		}
 

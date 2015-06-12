@@ -12,7 +12,7 @@ namespace Ratcycle
 		Action eventHandler;
 
 		public Button (Texture2D texture, Vector2 position, Game1 game, View view, Action evHandler)
-            : base(texture, position, game, view, Color.White, 1, 3, 1, false)
+            : base(texture, position, game, view, Color.White, 3, 1, 1, false)
 		{
 			eventHandler = evHandler;
 		}

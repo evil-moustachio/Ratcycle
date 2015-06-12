@@ -7,6 +7,10 @@ namespace Ratcycle
 {
 	public class Monster : Entity
 	{
+		private float _health;
+		private HealthBarEntity _healthBar;
+	
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Ratcycle.Enemy"/> class.
 		/// </summary>
@@ -14,13 +18,13 @@ namespace Ratcycle
 		/// <param name="game">Game.</param>
 		/// <param name="view">View.</param>
 		/// <param name="texture">Texture.</param>
-		/// <param name="frameRows">Frame rows.</param>
-		/// <param name="frameColumns">Frame columns.</param>
-		/// <param name="fps">Fps.</param>
 		/// <param name="speed">Speed.</param>
-		public Monster (Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed) 
+		/// <param name="health">Health.</param>
+		public Monster (Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health) 
 			: base (texture, position, game, view, Color.White, 1, 1, 1, false, speed)
 		{
+			_health = health;
+			_healthBar = new HealthBarEntity (ContentHandler.GetTexture("HealthBarEntity"), _position, new Vector2(0,-25), _game, _parentView, this, _health);
 		}
 
 		/// <summary>
@@ -83,6 +87,14 @@ namespace Ratcycle
 			{
 				Console.WriteLine("Got the Rat in the groin");
 			}
+
+			_healthBar.Update ();
+		}
+
+		public override void Draw (SpriteBatch spriteBatch)
+		{
+			base.Draw (spriteBatch);
+			_healthBar.Draw (spriteBatch);
 		}
 	}
 }

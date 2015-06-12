@@ -53,11 +53,11 @@ namespace Ratcycle
 				_gameObjects[i].Update();
 			}
 
-            _orderedList = _gameObjects.OrderBy(o => o.Position.Y).ToList();
+            _orderedList = _gameObjects.OrderBy(o => -o.Position.Y).ToList();
 		}
 
         /// <summary>
-        /// Draws the View's GameObjects
+        /// Draws the View's GameObjects ordered by Y value
         /// </summary>
         /// <param name="spriteBatch"></param>
 		public virtual void Draw(SpriteBatch spriteBatch)

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace Ratcycle
 {
-	public class MenuStart : View
+	public class MenuStart : Menu
 	{
 		public MenuStart (Game1 game, ViewController viewController, Boolean mouseVisible)
 			: base(game, viewController, mouseVisible)

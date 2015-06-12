@@ -22,7 +22,7 @@ namespace Ratcycle
             _game = game;
 			_game.IsMouseVisible = true;
 
-			_view = new MenuStart (_game, this, true);
+			_view = Model.Debug.DefaultStartClass(_game, this);
         }
 
         /// <summary>

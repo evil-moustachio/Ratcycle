@@ -21,6 +21,17 @@ namespace Ratcycle
 			Time.Update ();
         }
 
+		public static class Debug
+		{
+			public static bool debug = true;
+
+			public static View DefaultStartClass(Game1 game, ViewController viewController){
+				if(debug)
+					return new Ratcycle.Stage (game, viewController, false);
+				return new MenuStart (game, viewController, true);
+			}
+		}
+
 		public static class Layout
 		{
 			public enum ButtonStates { Inactive, Hover, Focus };

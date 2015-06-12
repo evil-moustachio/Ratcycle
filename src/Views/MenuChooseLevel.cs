@@ -3,13 +3,16 @@ using Microsoft.Xna.Framework;
 
 namespace Ratcycle
 {
-	public class MenuChooseLevel : View
+	public class MenuChooseLevel : Menu
 	{
 		private Text levelCounterText;
 		private int levelCounter = Model.Level.Current;
 
 		public MenuChooseLevel (Game1 game, ViewController viewController, Boolean mouseVisible) : base(game, viewController, mouseVisible)
 		{
+			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("background_ratCycle"), new Vector2(0,0), _game, this, Color.White, 1, 1, 1, false));
+			_gameObjects.Add (new RectangleDrawer(new Rectangle(0, 0, _game.GraphicsDevice.Viewport.Width, _game.GraphicsDevice.Viewport.Height), _game, this, Color.Black));
+
 			_gameObjects.Add (new AtlasObject (ContentHandler.GetTexture ("OrangeBG"), new Vector2 (0), _game, this, 
 				Color.White, 1, 1, 1, false));
 			_gameObjects.Add (new Text(new Vector2(320, 40), _game, this, Model.Layout.standartFontName, 

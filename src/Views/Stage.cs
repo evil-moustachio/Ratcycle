@@ -48,9 +48,9 @@ namespace Ratcycle
 
             if (futureHitBox.Y < maxc.Y && futureHitBox.X > minc.X && futureHitBox.X < maxc.X && futureHitBox.Y > minc.Y)
             {
-                foreach (Entity gameObject  in _gameObjects)
+                for (int i = _gameObjects.Count - 1; i >= 0; i--)
                 {
-                    if (gameObject is Entity && entity != gameObject && futureHitBox.Intersects(gameObject.HitBox))
+                    if (_gameObjects[i] is Entity && _gameObjects[i] != entity && futureHitBox.Intersects(((Entity)_gameObjects[i]).HitBox))
                     {
                         return false;
                     }
@@ -68,11 +68,11 @@ namespace Ratcycle
         {
             bool attacked = false;
 
-            foreach (Entity defender in _gameObjects)
+            for (int i = _gameObjects.Count - 1; i >= 0; i--)
             {
-                if (defender is Entity && attacker != defender && AttackBox.Intersects(defender.HitBox) && attacker.GetType() != defender.GetType())
+                if (_gameObjects[i] is Entity && attacker != _gameObjects[i] && AttackBox.Intersects(((Entity)_gameObjects[i]).HitBox) && attacker.GetType() != _gameObjects[i].GetType())
                 {
-                    defender.Health -= attackerDamage;
+                    ((Entity)_gameObjects[i]).Health -= attackerDamage;
                     attacked = true;
                 }
             }
@@ -95,13 +95,7 @@ namespace Ratcycle
         {
 			if (!_isPaused) 
             {
-                for (int i = _gameObjects.Count - 1; i >= 0; i--)
-                {
-                    if (_gameObjects[i] is Entity && ((Entity) _gameObjects[i]).IsDead)
-                    {
-                        ((Entity)_gameObjects[i]).DieEntity();
-                    }
-                }
+
 
 				base.Update();
 			}

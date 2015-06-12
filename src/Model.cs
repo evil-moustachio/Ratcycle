@@ -9,7 +9,7 @@ namespace Ratcycle
 {
 	public static class Model
 	{
-        // Counter used to show difference in CW's
+        // Counter used to show difference in update cycles in Console.WriteLine ()'s.
 		public static int counter = 0;
 
         /// <summary>

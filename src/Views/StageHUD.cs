@@ -42,9 +42,11 @@ namespace Ratcycle
 				}
 
 				_goUnPause = false;
+			} 
+            else 
+            {
+				base.Update ();
 			}
-
-			base.Update ();
 
 			_healthBar.Health = _rat.Health;
 			_healthBar.Update ();

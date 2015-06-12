@@ -59,17 +59,10 @@ namespace Ratcycle
 			return textures [name];
 		}
 
-		/// <summary>
-		/// Gets the font by the specified name.
-		/// </summary>
-		/// <returns>The font.</returns>
-		/// <param name="name">Name.</param>
 		public static SpriteFont GetFont(string name)
 		{
 			return fonts [name];
 		}
-
-
 	}
 }
 

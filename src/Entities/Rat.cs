@@ -42,9 +42,10 @@ namespace Ratcycle
         /// <param name="left"></param>
         /// <param name="right"></param>
 		public Rat(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, Keys up, Keys down, Keys left, Keys right)
-            : base(texture, position, game, view, Color.White, 1, 1, 1, false, speed)
+            : base(texture, position, game, view, Color.White, 2, 1, 1, false, speed)
         {
 			_health = health;
+
             _up = up;
             _down = down;
             _left = left;
@@ -61,7 +62,6 @@ namespace Ratcycle
             if (KeyHandler.IsKeyDown(_up) && (view.NotColliding(this, MakeFutureRectangle(_up), _minCoords, _maxCoords)))
             {
                 _position.Y -= _speed.Y;
-                
             }
 
             if (KeyHandler.IsKeyDown(_down) && view.NotColliding(this, MakeFutureRectangle(_down), _minCoords, _maxCoords))
@@ -70,11 +70,12 @@ namespace Ratcycle
             }
             if (KeyHandler.IsKeyDown(_left) && view.NotColliding(this, MakeFutureRectangle(_left), _minCoords, _maxCoords))
             {
+                ChangeFrame(1);
                 _position.X -= _speed.X;
-
             }
             if (KeyHandler.IsKeyDown(_right) && view.NotColliding(this, MakeFutureRectangle(_right), _minCoords, _maxCoords))
             {
+                ChangeFrame(0);
                 _position.X += _speed.X;
             }
              
@@ -103,16 +104,6 @@ namespace Ratcycle
             {
                 return new Rectangle();
             }
-        }
-        /// <summary>
-        /// Determines what happens on hit of a certain object. 
-        /// </summary>
-        /// <param name="other"></param>
-        public override void OnHit(Entity other)
-		{
-			// Write code what happens OnHit
-			Console.WriteLine("I'm being hit!!! My up key is: " + _up + " " + Model.counter);
-			Model.counter++;
         }
 
         /// <summary>

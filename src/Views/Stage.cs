@@ -24,10 +24,10 @@ namespace Ratcycle
 		public Stage (Game1 game, ViewController viewController, Boolean mouseVisible) : base (game, viewController, mouseVisible)
         {
 			_gameObjects.Add(
-				new Rat(ContentHandler.GetTexture("rat_ratCycle"), new Vector2(200, 200), game, this, new Vector2(5,5), 100, Keys.W, Keys.S, Keys.A, Keys.D)
+                new Rat(ContentHandler.GetTexture("RatSprite"), new Vector2(200, 200), game, this, new Vector2(5, 5), 100, Keys.W, Keys.S, Keys.A, Keys.D)
 			);
 		    _rat = (Rat)_gameObjects[_gameObjects.Count - 1];
-			_gameObjects.Add (new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, new Vector2(3,3), 100));
+			_gameObjects.Add (new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, new Vector2(1,1), 100));
 			_hud = new StageHUD (_game, _viewController, false, _rat);
         }
 
@@ -59,32 +59,7 @@ namespace Ratcycle
                 return false;
             }
         }
-        /// <summary>
-        /// Loops through a list of GameObjects, filters out only the Entity extensions and checks if they loop 
-        /// any other Entity object. Both the colliding objects will eventually have OnHit() invoked upon them, 
-        /// so they both have their own reaction
-        /// </summary>
-        /*
-        private void CheckObjectCollision ()
-        {
-			foreach (TexturedGameObject object1 in _gameObjects)
-            {
-                if (object1 is Entity)
-                {
-					foreach (TexturedGameObject object2 in _gameObjects)
-                    {
-                        if (object2 is Entity)
-                        {
-                            if (object1.HitBox.Intersects(object2.HitBox) && object1 != object2)
-                            {
-                                ((Entity) object1).OnHit((Entity) object2);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        */
+
         /// <summary>
         /// Updates the stage, also invokes CheckObjectCollision before base.Update() so collision check is done before objects are updated.
         /// </summary>

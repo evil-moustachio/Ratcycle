@@ -53,7 +53,7 @@ namespace Ratcycle
 
             _animates = animates;
 
-			_ticksPerFrame = Model.OneSecondAmountOfTicks / (totalFrames*2);
+			_ticksPerFrame = Model.Time.OneSecondOfTicks / (totalFrames*2);
             _nextFrameTick = DateTime.Now.Ticks + (int)_ticksPerFrame;
 
             _sourceRectangle = new Rectangle(_currentX, _currentY, _frameWidth, _frameHeight);

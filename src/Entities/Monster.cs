@@ -45,6 +45,29 @@ namespace Ratcycle
 			_healthBar = new Healthbar (ContentHandler.GetTexture("HealthBarEntity"), _position, new Vector2(0,-25), _game, _parentView, _health);
 		}
 
+        /// <summary>
+        /// Determines current triangle.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="speed"></param>
+        /// <returns></returns>
+        private Vector2 DetermineCurrentTriangle(Vector2 target, float speed)
+        {
+            var diffX = target.X - _position.X;
+            var diffY = target.Y - _position.Y;
+            var totalDistance = Math.Sqrt(Math.Pow(diffX, 2) + Math.Pow(diffY, 2));
+
+            // New triangle
+            var scale = totalDistance / speed;
+            var offsetX = diffX / scale;
+            var offsetY = diffY / scale;
+
+            // Next position
+            var newX = _position.X + offsetX;
+            var newY = _position.Y + offsetY;
+            return new Vector2((float)newX, (float)newY);
+        }
+
 		/// <summary>
 		/// Returns a Vector2 with the next location towards the target.
 		/// </summary>
@@ -57,6 +80,7 @@ namespace Ratcycle
 
 			if (target.X == _position.X) 
             {
+                //Maybe put this in seperate function
 				if (target.Y > _position.Y) 
                 {
 					offset = speed * -1;
@@ -69,6 +93,7 @@ namespace Ratcycle
 			} 
             else if (target.Y == _position.Y) 
             {
+                //This as well?
 				if (target.X > _position.X) 
                 {
 					offset = speed * -1;
@@ -82,21 +107,7 @@ namespace Ratcycle
 			} 
             else 
             {
-
-				// Determine current trianlge
-				var diffX = target.X - _position.X;
-				var diffY = target.Y - _position.Y;
-				var totalDistance = Math.Sqrt (Math.Pow(diffX, 2) + Math.Pow(diffY, 2));
-
-				// New triangle
-				var scale = totalDistance / speed;
-				var offsetX = diffX / scale;
-				var offsetY = diffY / scale;
-
-				// Next position
-				var newX = _position.X + offsetX;
-				var newY = _position.Y + offsetY;
-				newPosition = new Vector2 ((float)newX, (float)newY);
+                newPosition = DetermineCurrentTriangle(target, speed);
 			}
 
 			return newPosition;

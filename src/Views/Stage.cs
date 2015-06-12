@@ -11,6 +11,7 @@ namespace Ratcycle
     {
 		private Rat _rat;
 		private StageHUD _hud;
+		private Boolean _isPaused;
 
 		public Vector2 RatPosition { get { return _rat.Position; } }
 		public Rectangle RatHitBox { get { return _rat.HitBox; } }
@@ -66,8 +67,20 @@ namespace Ratcycle
         /// </summary>
         public override void Update()
         {
-            //CheckObjectCollision();
-            base.Update();
+			if (!_isPaused) {
+				base.Update ();
+			}
+
+			if (KeyHandler.checkNewKeyPressed (Keys.Escape)) {
+				if (_isPaused) {
+					_isPaused = false;
+					_hud.UnPause ();
+				} else {
+					_isPaused = true;
+					_hud.Pause ();
+				}
+			}
+
 			_hud.Update ();
         }
 

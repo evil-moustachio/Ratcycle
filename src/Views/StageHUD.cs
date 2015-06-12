@@ -28,6 +28,14 @@ namespace Ratcycle
 			_healthBar.Health = _rat.Health;
 			_healthBar.Update ();
 		}
+
+		public void Pause() {
+
+		}
+
+		public void UnPause() {
+
+		}
 	}
 }
 

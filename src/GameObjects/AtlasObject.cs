@@ -21,7 +21,7 @@ namespace Ratcycle
         private int _currentX, _currentY = 0;
         private Vector2 _origin = Vector2.Zero;
 
-        public virtual Rectangle HitBox
+		public virtual Rectangle HitBox
         {
             get
             {
@@ -54,7 +54,7 @@ namespace Ratcycle
 
             _animates = animates;
 
-            _ticksPerFrame = 10000000 / (totalFrames*2);
+			_ticksPerFrame = Model.OneSecondAmountOfTicks / (totalFrames*2);
             _nextFrameTick = DateTime.Now.Ticks + (int)_ticksPerFrame;
 
             _sourceRectangle = new Rectangle(_currentX, _currentY, _frameWidth, _frameHeight);

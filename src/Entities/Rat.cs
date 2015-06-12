@@ -10,6 +10,7 @@ namespace Ratcycle
     {
         private Keys _up, _down, _left, _right;
 		private float _health;
+		private Boolean _flip = false;
 
 		public float Health
 		{
@@ -21,11 +22,19 @@ namespace Ratcycle
 		{
 			get
 			{
-				return new Rectangle(
-					(int)_position.X + 55,
-					(int)_position.Y + 100,
-					_sourceRectangle.Width  - 55,
-					_sourceRectangle.Height - 100);
+				if (_flip) {
+					return new Rectangle (
+						(int)_position.X,
+						(int)_position.Y + 50,
+						_sourceRectangle.Width - 25,
+						_sourceRectangle.Height - 50);
+				} else {
+					return new Rectangle (
+						(int)_position.X + 25,
+						(int)_position.Y + 50,
+						_sourceRectangle.Width - 25,
+						_sourceRectangle.Height - 50);
+				}
 			}
 		}
 
@@ -72,11 +81,13 @@ namespace Ratcycle
             {
                 ChangeFrame(1);
                 _position.X -= _speed.X;
+				_flip = true;
             }
             if (KeyHandler.IsKeyDown(_right) && view.NotColliding(this, MakeFutureRectangle(_right), _minCoords, _maxCoords))
             {
                 ChangeFrame(0);
                 _position.X += _speed.X;
+				_flip = false;
             }
              
         }
@@ -115,5 +126,10 @@ namespace Ratcycle
             Move();
         }
 
+		public override void Draw(SpriteBatch spriteBatch)
+		{
+			base.Draw(spriteBatch);
+			spriteBatch.Draw (CreateHitBoxTexture(_game, HitBox.Width, HitBox.Height, new Color(Color.Red, 0.5f)), HitBox, new Color(Color.Red, 0.5f));
+		}
     }
 }

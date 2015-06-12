@@ -23,11 +23,12 @@ namespace Ratcycle
 		/// <param name="mouseVisible"></param>
 		public Stage (Game1 game, ViewController viewController, Boolean mouseVisible) : base (game, viewController, mouseVisible)
         {
-			_gameObjects.Add(
-                new Rat(ContentHandler.GetTexture("RatSprite"), new Vector2(200, 200), game, this, new Vector2(5, 5), 100, Keys.W, Keys.S, Keys.A, Keys.D)
-			);
-		    _rat = (Rat)_gameObjects[_gameObjects.Count - 1];
-			_gameObjects.Add (new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, new Vector2(1,1), 100));
+			_rat = new Rat (ContentHandler.GetTexture ("RatSprite"), new Vector2 (200, 200), game, this, new Vector2 (5, 5), 100, Keys.W, Keys.S, Keys.A, Keys.D);
+			_gameObjects.Add (_rat);
+			_rat = new Rat (ContentHandler.GetTexture ("RatSprite"), new Vector2 (400, 200), game, this, new Vector2 (5, 5), 100, Keys.Up, Keys.Down, Keys.Left, Keys.Right);
+			_gameObjects.Add (_rat);
+
+//			_gameObjects.Add (new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, new Vector2(1,1), 100));
 			_hud = new StageHUD (_game, _viewController, false, _rat);
         }
 

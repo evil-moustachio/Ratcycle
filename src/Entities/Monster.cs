@@ -8,7 +8,7 @@ namespace Ratcycle
 	public class Monster : Entity
 	{
 		private float _health;
-		private HealthbarEntity _healthBar;
+		private Healthbar _healthBar;
 	
 
 		/// <summary>
@@ -24,7 +24,7 @@ namespace Ratcycle
 			: base (texture, position, game, view, Color.White, 1, 1, 1, false, speed)
 		{
 			_health = health;
-			_healthBar = new HealthbarEntity (ContentHandler.GetTexture("HealthBarEntity"), _position, new Vector2(0,-25), _game, _parentView, _health);
+			_healthBar = new Healthbar (ContentHandler.GetTexture("HealthBarEntity"), _position, new Vector2(0,-25), _game, _parentView, _health);
 		}
 
 		/// <summary>
@@ -89,7 +89,12 @@ namespace Ratcycle
 			}
 
 			_healthBar.SetPositionFromBasePosition (_position);
+			_healthBar.Health = _health;
 			_healthBar.Update ();
+
+			if (KeyHandler.checkNewKeyPressed (Microsoft.Xna.Framework.Input.Keys.Space)) {
+				_health -= 1;
+			}
 		}
 
 		public override void Draw (SpriteBatch spriteBatch)

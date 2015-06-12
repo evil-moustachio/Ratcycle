@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace Ratcycle
 {
-	public class HealthbarEntity : AtlasObject
+	public class Healthbar : AtlasObject
 	{
 		private Vector2 _offset;
 		private float _health, _maxHealth;
@@ -12,7 +12,7 @@ namespace Ratcycle
 			set { _health = value; }
 		}
 
-		public HealthbarEntity (Texture2D texture, Vector2 position, Vector2 offset, Game1 game, View view, 
+		public Healthbar (Texture2D texture, Vector2 position, Vector2 offset, Game1 game, View view, 
 			float health)
 			: base (texture, position + offset, game, view, Color.White, 25, 1, 1, false)
 		{

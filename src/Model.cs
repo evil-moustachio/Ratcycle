@@ -16,6 +16,7 @@ namespace Ratcycle
 		public static string standartFontName = "Aero Matics Display-14";
 		public static int CurrentLevel = 0;
 		public static int ReachedLevel = 12;
+		public static int OneSecondAmountOfTicks = 10000000;
 
         /// <summary>
         /// Returns the tick the game is currently on.

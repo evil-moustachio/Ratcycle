@@ -66,11 +66,6 @@ namespace Ratcycle
         {
             base.Update();
         }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
-        }
 	}
 }
 

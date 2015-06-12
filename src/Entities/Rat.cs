@@ -157,6 +157,11 @@ namespace Ratcycle
             }
         }
 
+        public override void DieEntity()
+        {
+            Console.WriteLine("Im ded lel im da rat");
+        }
+
         /// <summary>
         /// Updates the rat.
         /// </summary>

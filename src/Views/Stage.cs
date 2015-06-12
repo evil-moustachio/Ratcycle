@@ -26,7 +26,7 @@ namespace Ratcycle
 			: base (game, viewController, mouseVisible)
         {
 			_rat = new Rat(ContentHandler.GetTexture ("RatSprite"), new Vector2 (200, 200), game, this, 
-				new Vector2 (5, 5), 100, 5, Keys.W, Keys.S, Keys.A, Keys.D);
+				new Vector2 (5, 5), 100, 45, Keys.W, Keys.S, Keys.A, Keys.D);
 			_gameObjects.Add(_rat);
 
 			_gameObjects.Add(new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, 
@@ -48,7 +48,7 @@ namespace Ratcycle
 
             if (futureHitBox.Y < maxc.Y && futureHitBox.X > minc.X && futureHitBox.X < maxc.X && futureHitBox.Y > minc.Y)
             {
-                foreach (Entity gameObject in _gameObjects)
+                foreach (Entity gameObject  in _gameObjects)
                 {
                     if (gameObject is Entity && entity != gameObject && futureHitBox.Intersects(gameObject.HitBox))
                     {
@@ -80,6 +80,14 @@ namespace Ratcycle
             return attacked;
         }
 
+        public void MonsterToGarbage(Monster monster, Texture2D texture)
+        {            
+            Garbage garbage = new Garbage(texture, monster.Position, _game, this, new Color(Color.Black, 0.7f));
+
+            _gameObjects.Remove(monster);
+            _gameObjects.Add(garbage);
+        }
+
         /// <summary>
         /// Updates the stage, also invokes CheckObjectCollision before base.Update() so collision check is done before objects are updated.
         /// </summary>
@@ -87,6 +95,14 @@ namespace Ratcycle
         {
 			if (!_isPaused) 
             {
+                for (int i = _gameObjects.Count - 1; i >= 0; i--)
+                {
+                    if (_gameObjects[i] is Entity && ((Entity) _gameObjects[i]).IsDead)
+                    {
+                        ((Entity)_gameObjects[i]).DieEntity();
+                    }
+                }
+
 				base.Update();
 			}
 

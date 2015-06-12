@@ -64,7 +64,7 @@ namespace Ratcycle
 		{
 			for (int i = _orderedList.Count - 1; i >= 0; i--) 
             {
-				_gameObjects[i].Draw (spriteBatch);
+				_orderedList[i].Draw (spriteBatch);
 			}
 		}
 	}

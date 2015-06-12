@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Ratcycle
 {
+    //This class should become abstract
 	public class Monster : Entity
 	{
 		private Healthbar _healthBar;
@@ -133,10 +134,19 @@ namespace Ratcycle
                 {
 					_nextAttack = Model.Time.CurrentGameTick + _atkspd;
                 }
-
             }
         }
+        
+        /// <summary>
+        /// The monster dies and turns into garbage.
+        /// NOTE: This could become an abstract function.
+        /// </summary>
+        /// 
 
+        public override void DieEntity()
+        {
+            ((Stage)_parentView).MonsterToGarbage(this, _texture);
+        }
 
 		public override void Update()
 		{

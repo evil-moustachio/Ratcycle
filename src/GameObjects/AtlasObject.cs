@@ -10,7 +10,7 @@ namespace Ratcycle
     public class AtlasObject : GameObject
     {
         protected Rectangle _sourceRectangle;
-        private Texture2D _texture;
+        protected Texture2D _texture; //Change back to private later.
         private bool _animates;
         private int _frameHeight, _frameWidth, _columns;
         private long _nextFrameTick;

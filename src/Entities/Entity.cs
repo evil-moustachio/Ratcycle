@@ -12,6 +12,7 @@ namespace Ratcycle
 		protected Vector2 _minCoords;
 		protected Vector2 _maxCoords;
 		protected Vector2 _speed;
+        protected bool _isDead;
         protected float _health, _damage;
 
         public float Health
@@ -23,6 +24,11 @@ namespace Ratcycle
         public abstract Rectangle AttackBox
         {
             get;
+        }
+
+        public bool IsDead 
+        { 
+            get { return _isDead; }
         }
 
         /// <summary>
@@ -60,12 +66,21 @@ namespace Ratcycle
             return rectangleTexture;
         }
 
+        protected void CheckHealth()
+        {
+            if (_health <= 0)
+                _isDead = true;
+        }
+
+        public abstract void DieEntity();
+
         /// <summary>
         /// Updates the entity (same as GameObject)
         /// </summary>
 		public override void Update()
         {
             base.Update();
+            CheckHealth();
         }
 
         public override void Draw(SpriteBatch spriteBatch)

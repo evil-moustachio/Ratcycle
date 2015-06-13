@@ -157,7 +157,7 @@ namespace Ratcycle
             }
         }
 
-        public override void DieEntity()
+        public override void KillEntity()
         {
             Console.WriteLine("Im ded lel im da rat");
         }

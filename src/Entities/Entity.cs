@@ -64,11 +64,11 @@ namespace Ratcycle
         {
             if (_health <= 0)
             {
-                DieEntity();
+                KillEntity();
             }
         }
 
-        public abstract void DieEntity();
+        public abstract void KillEntity();
 
         /// <summary>
         /// Updates the entity (same as GameObject)

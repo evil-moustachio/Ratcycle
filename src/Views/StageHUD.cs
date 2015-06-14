@@ -104,16 +104,16 @@ namespace Ratcycle
 			}
 		}
 
-		public void DrawGarbage(Model.GameRules.Categories cat, Model.GameRules.Types type)
+		public void DrawGarbage(Model.GameRules.Category cat, Model.GameRules.Type type)
 		{
 			Vector2 v = new Vector2 (140, 100);
 
 			_inventoryBG = new AtlasObject (ContentHandler.GetTexture ("pcInventory"), new Vector2 (100, 80), _game, 
 				this, Color.White, 1, 1, 1, false);
 
-			if (cat == Model.GameRules.Categories.Plastic) 
+			if (cat == Model.GameRules.Category.Plastic) 
 			{
-				if (type == Model.GameRules.Types.Normal) 
+				if (type == Model.GameRules.Type.Normal) 
 				{
 					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_PLASTIC_KLEIN"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
@@ -124,9 +124,9 @@ namespace Ratcycle
 						Color.White, 1, 1, 1, false);
 				}
 			} 
-			else if (cat == Model.GameRules.Categories.Paper) 
+			else if (cat == Model.GameRules.Category.Paper) 
 			{
-				if (type == Model.GameRules.Types.Normal) 
+				if (type == Model.GameRules.Type.Normal) 
 				{
 					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_PAPER_KLEIN"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
@@ -137,9 +137,9 @@ namespace Ratcycle
 						Color.White, 1, 1, 1, false);
 				}
 			}  
-			else if (cat == Model.GameRules.Categories.Chemical) 
+			else if (cat == Model.GameRules.Category.Chemical) 
 			{
-				if (type == Model.GameRules.Types.Normal) 
+				if (type == Model.GameRules.Type.Normal) 
 				{
 					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_CHEMISCH_KLEIN"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
@@ -150,9 +150,9 @@ namespace Ratcycle
 						Color.White, 1, 1, 1, false);
 				}
 			}
-			else if (cat == Model.GameRules.Categories.Green) 
+			else if (cat == Model.GameRules.Category.Green) 
 			{
-				if (type == Model.GameRules.Types.Normal) 
+				if (type == Model.GameRules.Type.Normal) 
 				{
 					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_GFT_KLEIN"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
@@ -163,9 +163,9 @@ namespace Ratcycle
 						Color.White, 1, 1, 1, false);
 				}
 			} 
-			else if (cat == Model.GameRules.Categories.Other) 
+			else if (cat == Model.GameRules.Category.Other) 
 			{
-				if (type == Model.GameRules.Types.Normal) 
+				if (type == Model.GameRules.Type.Normal) 
 				{
 					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_REST_KLEIN"), v, _game, this, 
 						Color.White, 1, 1, 1, false);

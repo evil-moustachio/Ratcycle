@@ -140,11 +140,12 @@ namespace Ratcycle
 
         private void PickUp()
         {
-            if (KeyHandler.checkNewKeyPressed(Keys.F) && _inventory == null)
+            if (KeyHandler.checkNewKeyPressed(Keys.F))
             {
                 _inventory = ((Stage)_parentView).GarbageHandler();
             }
         }
+
 
         private Rectangle MakeFutureRectangle (Keys key)
         {

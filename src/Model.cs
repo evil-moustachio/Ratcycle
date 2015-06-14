@@ -11,7 +11,6 @@ namespace Ratcycle
 	{
         // Counter used to show difference in update cycles in Console.WriteLine ()'s.
 		public static int counter = 0;
-
         /// <summary>
         /// Updates the Model.
         /// </summary>
@@ -86,8 +85,9 @@ namespace Ratcycle
 			/// <summary>
 			/// Types of garbage
 			/// </summary>
-			public enum Types { Normal, Strong }
-			public enum Categories { Plastic, Paper, Chemical, Green, Other }
+            public static int points = 0;
+			public enum Type { Normal, Strong }
+			public enum Category { Plastic, Paper, Chemical, Green, Other }
 		}
 	}
 }

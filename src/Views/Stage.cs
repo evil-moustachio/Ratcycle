@@ -28,7 +28,7 @@ namespace Ratcycle
 			_rat = new Rat(ContentHandler.GetTexture ("RatSprite"), new Vector2 (200, 200), game, this, 
 				new Vector2 (5, 5), 100, 45, Keys.W, Keys.S, Keys.A, Keys.D);
 			_gameObjects.Add(_rat);
-
+            _gameObjects.Add(new Bin(ContentHandler.GetTexture("PCSquareButton"), new Vector2(100, 500), _game, this, Color.White, 1, 1, 1, false, Model.GameRules.Category.Green));
 			_gameObjects.Add(new Monster(ContentHandler.GetTexture("PCSquareButton"), new Vector2(700, 100), _game, this, 
 				new Vector2(1,1), 100, 2, 20, 3.0f));
 			_hud = new StageHUD(_game, _viewController, false, _rat, this);
@@ -50,7 +50,7 @@ namespace Ratcycle
             {
                 for (int i = _gameObjects.Count - 1; i >= 0; i--)
                 {
-                    if (_gameObjects[i] is Entity && _gameObjects[i] != entity && futureHitBox.Intersects(((Entity)_gameObjects[i]).HitBox))
+                    if ((_gameObjects[i] is Entity || _gameObjects[i] is Bin) && _gameObjects[i] != entity && futureHitBox.Intersects(((AtlasObject)_gameObjects[i]).HitBox))
                     {
                         return false;
                     }
@@ -86,12 +86,19 @@ namespace Ratcycle
 
             for (int i = _gameObjects.Count - 1; i >= 0; i--)
             {
-				if (_gameObjects[i] is Garbage && _rat.AttackBox.Intersects(((Garbage)_gameObjects[i]).HitBox))
+				if (_gameObjects[i] is Garbage && _rat.AttackBox.Intersects(((Garbage)_gameObjects[i]).HitBox) && _rat.Inventory == null)
                 {
                     garbage = (Garbage)_gameObjects[i];
 					_hud.DrawGarbage (garbage.Category, garbage.Type);
 					garbage.PickUp ();
                     return garbage;
+                }
+                else if (_gameObjects[i] is Bin && _rat.AttackBox.Intersects(((Bin)_gameObjects[i]).HitBox) && _rat.Inventory != null)
+                {
+                    _hud.RemoveGarbage();
+                    ((Bin)_gameObjects[i]).AddGarbage(_rat.Inventory);
+                    _gameObjects.Remove(_rat.Inventory);
+                    return null;
                 }
             }
 
@@ -100,7 +107,7 @@ namespace Ratcycle
 
         public void MonsterToGarbage(Monster monster, Texture2D texture)
         {            
-			Garbage garbage = new Garbage(texture, monster.Position, _game, this, new Color(Color.Black, 0.7f), Model.GameRules.Categories.Green, Model.GameRules.Types.Normal, 1);
+			Garbage garbage = new Garbage(texture, monster.Position, _game, this, new Color(Color.Black, 0.7f), Model.GameRules.Category.Green, Model.GameRules.Type.Normal, 1);
 
             _gameObjects.Remove(monster);
             _gameObjects.Add(garbage);

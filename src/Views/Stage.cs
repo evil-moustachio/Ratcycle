@@ -80,6 +80,23 @@ namespace Ratcycle
             return attacked;
         }
 
+        public Garbage GarbageHandler ()
+        {
+            Garbage garbage;
+
+            for (int i = _gameObjects.Count - 1; i >= 0; i--)
+            {
+                if (_gameObjects[i] is Garbage && _rat.AttackBox.Intersects(((Garbage)_gameObjects[i]).HitBox))
+                {
+                    garbage = (Garbage)_gameObjects[i];
+                    garbage.function();
+                    return garbage;
+                }
+            }
+
+            return null;
+        }
+
         public void MonsterToGarbage(Monster monster, Texture2D texture)
         {            
             Garbage garbage = new Garbage(texture, monster.Position, _game, this, new Color(Color.Black, 0.7f));

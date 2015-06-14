@@ -82,7 +82,7 @@ namespace Ratcycle
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            spriteBatch.Draw(CreateHitBoxTexture(_game, AttackBox.Width, AttackBox.Height, new Color(Color.Red, 0.5f)), AttackBox, new Color(Color.Red, 0.5f));
+            //spriteBatch.Draw(CreateHitBoxTexture(_game, AttackBox.Width, AttackBox.Height, new Color(Color.Red, 0.5f)), AttackBox, new Color(Color.Red, 0.5f));
         }
 	}
 }

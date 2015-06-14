@@ -10,6 +10,12 @@ namespace Ratcycle
     {
         private Keys _up, _down, _left, _right;
         private bool _flip = false;
+        private Garbage _inventory;
+
+        public Garbage Inventory
+        {
+            get { return _inventory; }
+        }
 
         public override Rectangle AttackBox
         {
@@ -132,6 +138,14 @@ namespace Ratcycle
             }
         }
 
+        private void PickUp()
+        {
+            if (KeyHandler.checkNewKeyPressed(Keys.F) && _inventory == null)
+            {
+                _inventory = ((Stage)_parentView).GarbageHandler();
+            }
+        }
+
         private Rectangle MakeFutureRectangle (Keys key)
         {
             if (key == _up)
@@ -169,6 +183,7 @@ namespace Ratcycle
         {
             base.Update();
             Move();
+            PickUp();
             Attack();
         }
     }

@@ -5,7 +5,7 @@ using System;
 
 namespace Ratcycle
 {
-    class Garbage : AtlasObject
+    public class Garbage : AtlasObject
     {
         //Has a type var.
         //Pts/Cat
@@ -14,6 +14,10 @@ namespace Ratcycle
             : base(texture, position, game, view, color, 1, 1, 1, false)
         {
             
+        }
+
+        public void function()
+        {
         }
 
         // function pick up.

@@ -90,7 +90,7 @@ namespace Ratcycle
                 {
                     garbage = (Garbage)_gameObjects[i];
 					_hud.DrawGarbage (garbage.Category, garbage.Type);
-//                    garbage();
+					garbage.PickUp ();
                     return garbage;
                 }
             }

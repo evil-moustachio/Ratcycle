@@ -29,6 +29,9 @@ namespace Ratcycle
 			_type = type;
         }
 
-        // function pick up.
+		public void PickUp()
+		{
+			_position.X = 100000;
+		}
     }
 }

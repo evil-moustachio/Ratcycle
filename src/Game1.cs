@@ -32,7 +32,7 @@ namespace Ratcycle
 			graphics.IsFullScreen = false;
 			graphics.PreferredBackBufferHeight = 600;
 			graphics.PreferredBackBufferWidth = 800;
-			ContentHandler.SetTextures();
+			ContentHandler.SetContent();
 		}
 
 		protected override void Initialize()

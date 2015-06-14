@@ -12,24 +12,44 @@ namespace Ratcycle
 		static Dictionary <string, SpriteFont> fonts = new Dictionary<string, SpriteFont>();
 
 		/// <summary>
-		/// Sets the textures.
+		/// Sets the content.
 		/// </summary>
-		public static void SetTextures()
+		public static void SetContent()
 		{
-            textures.Add("background_ratCycle", null);
-            textures.Add("RatSprite", null);
+			
+			//MENUS
 			textures.Add ("startbutton_ratCycle", null);
 			textures.Add ("startmenuBackground", null);
-			textures.Add ("PCSquareButton", null);
+			textures.Add ("OrangeBG", null);
+
+			//STAGES
+			textures.Add("background_ratCycle", null);
+
+			//HUD
 			textures.Add ("HealthBarEntity", null);
 			textures.Add ("HUDHealthbarRat", null);
 			textures.Add ("HUDRat", null);
 			textures.Add ("EscButton", null);
-			textures.Add ("OrangeBG", null);
+
+			//ENTITIES
+			textures.Add("RatSprite", null);
+
+			//PLACEHOLDERS
+			textures.Add ("PCSquareButton", null);
+
+			textures.Add ("pcInventory", null);
+			textures.Add ("PC_CHEMISCH_KLEIN", null);
+			textures.Add ("PC_CHEMISCH_GROOT", null);
 			textures.Add ("PC_GFT_KLEIN", null);
 			textures.Add ("PC_GFT_GROOT", null);
-			textures.Add ("pcInventory", null);
+			textures.Add ("PC_PAPIER_KLEIN", null);
+			textures.Add ("PC_PAPIER_GROOT", null);
+			textures.Add ("PC_PLASTIC_KLEIN", null);
+			textures.Add ("PC_PLASTIC_GROOT", null);
+			textures.Add ("PC_REST_KLEIN", null);
+			textures.Add ("PC_REST_GROOT", null);
 
+			//FONTS
 			fonts.Add ("Aero Matics Display-14", null);
         }
 
@@ -71,8 +91,6 @@ namespace Ratcycle
 		{
 			return fonts [name];
 		}
-
-
 	}
 }
 

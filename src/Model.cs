@@ -80,5 +80,13 @@ namespace Ratcycle
 		{
 			public static int currentStage;
 		}
+
+		public static class GameRules
+		{
+			/// <summary>
+			/// Types of garbage
+			/// </summary>
+			public enum Types { Plastic, Paper, Chemical, Green, Other }
+		}
 	}
 }

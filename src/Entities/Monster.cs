@@ -53,7 +53,7 @@ namespace Ratcycle
 		/// Plots a path towards the specified target. Only returns a position within the speed of the Monster.
 		/// </summary>
 		/// <param name="target">Target.</param>
-		public Vector2 Target(Vector2 target)
+		private Vector2 MoveToTarget(Vector2 target)
 		{
 			// Determines current triangle.
 			var diffX = target.X - _position.X;
@@ -77,7 +77,7 @@ namespace Ratcycle
         private void Move()
         {
 			// Creates the next Hitbox with an updated position.
-            Vector2 nextPosition = Target(((Stage)_parentView).RatPosition);
+            Vector2 nextPosition = MoveToTarget(((Stage)_parentView).RatPosition);
             Rectangle nextHitbox = new Rectangle((int)nextPosition.X, (int)nextPosition.Y, HitBox.Width, HitBox.Height);
 
 			// Updates the position if the move is allowed.

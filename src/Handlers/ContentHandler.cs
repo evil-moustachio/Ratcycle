@@ -26,6 +26,9 @@ namespace Ratcycle
 			textures.Add ("HUDRat", null);
 			textures.Add ("EscButton", null);
 			textures.Add ("OrangeBG", null);
+			textures.Add ("PC_GFT_KLEIN", null);
+			textures.Add ("PC_GFT_GROOT", null);
+			textures.Add ("pcInventory", null);
 
 			fonts.Add ("Aero Matics Display-14", null);
         }

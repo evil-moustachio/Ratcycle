@@ -86,10 +86,11 @@ namespace Ratcycle
 
             for (int i = _gameObjects.Count - 1; i >= 0; i--)
             {
-                if (_gameObjects[i] is Garbage && _rat.AttackBox.Intersects(((Garbage)_gameObjects[i]).HitBox))
+				if (_gameObjects[i] is Garbage && _rat.AttackBox.Intersects(((Garbage)_gameObjects[i]).HitBox))
                 {
                     garbage = (Garbage)_gameObjects[i];
-                    garbage.function();
+					_hud.DrawGarbage (garbage.Category, garbage.Type);
+//                    garbage();
                     return garbage;
                 }
             }
@@ -99,7 +100,7 @@ namespace Ratcycle
 
         public void MonsterToGarbage(Monster monster, Texture2D texture)
         {            
-            Garbage garbage = new Garbage(texture, monster.Position, _game, this, new Color(Color.Black, 0.7f));
+			Garbage garbage = new Garbage(texture, monster.Position, _game, this, new Color(Color.Black, 0.7f), Model.GameRules.Categories.Green, Model.GameRules.Types.Normal, 1);
 
             _gameObjects.Remove(monster);
             _gameObjects.Add(garbage);

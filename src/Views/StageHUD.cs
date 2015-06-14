@@ -9,10 +9,11 @@ namespace Ratcycle
 	public class StageHUD : View
 	{
 		private readonly Healthbar _healthBar;
-		private Rat _rat;
 		private Boolean _isPaused, _goUnPause;
 		private List<GameObject> _pausedItems;
 		private Stage _stage;
+		private Rat _rat;
+		private AtlasObject _inventoryBG, _inventory;
 
 		public StageHUD (Game1 game, ViewController viewController, Boolean mouseVisible, Rat rat, Stage stage) 
 			: base (game, viewController, mouseVisible)
@@ -101,6 +102,34 @@ namespace Ratcycle
 			{
 				_gameObjects.Add(_pausedItems[i]);
 			}
+		}
+
+		public void DrawGarbage(Model.GameRules.Categories cat, Model.GameRules.Types type)
+		{
+			Vector2 v = new Vector2 (100, 100);
+
+			_inventoryBG = new AtlasObject (ContentHandler.GetTexture ("pcInventory"), new Vector2 (100, 80), _game, this, Color.White, 1, 1, 1, false);
+
+			if (cat == Model.GameRules.Categories.Green) 
+			{
+				if (type == Model.GameRules.Types.Normal) 
+				{
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_GFT_KLEIN"), v, _game, this, Color.White, 1, 1, 1, false);
+				} 
+				else 
+				{
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_GFT_GROOT"), v, _game, this, Color.White, 1, 1, 1, false);
+				}
+			}
+
+			_gameObjects.Add (_inventoryBG);
+			_gameObjects.Add (_inventory);
+		}
+
+		public void RemoveGarbage()
+		{
+			_gameObjects.Remove (_inventoryBG);
+			_gameObjects.Remove (_inventory);
 		}
 	}
 }

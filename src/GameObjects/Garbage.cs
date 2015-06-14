@@ -1,23 +1,32 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Ratcycle
 {
     public class Garbage : AtlasObject
     {
-        //Has a type var.
-        //Pts/Cat
+		private int _points;
+		private Model.GameRules.Categories _category;
+		private Model.GameRules.Types _type;
 
-        public Garbage(Texture2D texture, Vector2 position, Game1 game, View view, Color color)
+		public Model.GameRules.Categories Category
+		{
+			get { return _category; }
+		}
+
+		public Model.GameRules.Types Type
+		{
+			get { return _type; }
+		}
+
+		public Garbage(Texture2D texture, Vector2 position, Game1 game, View view, Color color, Model.GameRules.Categories category, Model.GameRules.Types type, int points)
             : base(texture, position, game, view, color, 1, 1, 1, false)
         {
-            
-        }
-
-        public void function()
-        {
+			_points = points;
+			_category = category;
+			_type = type;
         }
 
         // function pick up.

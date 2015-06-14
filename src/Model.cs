@@ -23,7 +23,7 @@ namespace Ratcycle
 
 		public static class Debug
 		{
-			public static bool debug = false;
+			public static bool debug = true;
 
 			public static View DefaultStartClass(Game1 game, ViewController viewController){
 				if(debug)
@@ -86,7 +86,8 @@ namespace Ratcycle
 			/// <summary>
 			/// Types of garbage
 			/// </summary>
-			public enum Types { Plastic, Paper, Chemical, Green, Other }
+			public enum Types { Normal, Strong }
+			public enum Categories { Plastic, Paper, Chemical, Green, Other }
 		}
 	}
 }

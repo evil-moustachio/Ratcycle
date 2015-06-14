@@ -20,7 +20,7 @@ namespace Ratcycle
             textures.Add("RatSprite", null);
 			textures.Add ("startbutton_ratCycle", null);
 			textures.Add ("startmenuBackground", null);
-			textures.Add ("SquareButton", null);
+			textures.Add ("PCSquareButton", null);
 			textures.Add ("HealthBarEntity", null);
 			textures.Add ("HUDHealthbarRat", null);
 			textures.Add ("HUDRat", null);

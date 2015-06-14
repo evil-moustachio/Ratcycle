@@ -29,7 +29,7 @@ namespace Ratcycle
 				new Vector2 (5, 5), 100, 45, Keys.W, Keys.S, Keys.A, Keys.D);
 			_gameObjects.Add(_rat);
 
-			_gameObjects.Add(new Monster(ContentHandler.GetTexture("SquareButton"), new Vector2(700, 100), _game, this, 
+			_gameObjects.Add(new Monster(ContentHandler.GetTexture("PCSquareButton"), new Vector2(700, 100), _game, this, 
 				new Vector2(1,1), 100, 2, 20, 3.0f));
 			_hud = new StageHUD(_game, _viewController, false, _rat, this);
         }

@@ -23,7 +23,7 @@ namespace Ratcycle
 
 		public static class Debug
 		{
-			public static bool debug = true;
+			public static bool debug = false;
 
 			public static View DefaultStartClass(Game1 game, ViewController viewController){
 				if(debug)

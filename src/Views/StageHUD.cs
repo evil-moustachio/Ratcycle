@@ -93,8 +93,8 @@ namespace Ratcycle
 			_pausedItems.Add(new Button(ContentHandler.GetTexture("startbutton_ratCycle"), 
 				center + new Vector2(-ContentHandler.GetTexture("startbutton_ratCycle").Width / 2, 0), 
 				_game, this, _stage.Pause));
-			_pausedItems.Add(new Button(ContentHandler.GetTexture("SquareButton"), 
-				center + new Vector2(-ContentHandler.GetTexture("SquareButton").Width / 2, 100), 
+			_pausedItems.Add(new Button(ContentHandler.GetTexture("PCSquareButton"), 
+				center + new Vector2(-ContentHandler.GetTexture("PCSquareButton").Width / 2, 100), 
 				_game, this, _stage.ChangeToFinished));
 
 			for (int i = 0; i < _pausedItems.Count; i++) 

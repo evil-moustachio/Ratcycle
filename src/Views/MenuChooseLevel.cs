@@ -17,12 +17,12 @@ namespace Ratcycle
 				Color.White, 1, 1, 1, false));
 			_gameObjects.Add (new Text(new Vector2(320, 40), _game, this, Model.Layout.standartFontName, 
 				"Selecteer level", Color.Black));
-			_gameObjects.Add (new Button(ContentHandler.GetTexture("SquareButton"), new Vector2(305, 200), _game, this, 
+			_gameObjects.Add (new Button(ContentHandler.GetTexture("PCSquareButton"), new Vector2(305, 200), _game, this, 
 				subsLevel));
 			_gameObjects.Add (new Text (new Vector2 (395, 200), _game, this, Model.Layout.standartFontName, 
 				levelCounter.ToString(), Color.Black));
 			levelCounterText = (Text)_gameObjects [_gameObjects.Count - 1];
-			_gameObjects.Add (new Button(ContentHandler.GetTexture("SquareButton"), new Vector2(455, 200), _game, this,
+			_gameObjects.Add (new Button(ContentHandler.GetTexture("PCSquareButton"), new Vector2(455, 200), _game, this,
 				addLevel));
 			_gameObjects.Add (new Button(ContentHandler.GetTexture("startbutton_ratCycle"), new Vector2(580, 500), 
 				_game, this, nextView));

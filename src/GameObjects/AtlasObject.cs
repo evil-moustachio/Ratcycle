@@ -10,7 +10,8 @@ namespace Ratcycle
     public class AtlasObject : GameObject
     {
         protected Rectangle _sourceRectangle;
-        protected Texture2D _texture; //Change back to private later.
+        protected Texture2D _texture; //TODO: Change back to private later.
+		private Rectangle _hitBox;
         private bool _animates;
         private int _frameHeight, _frameWidth, _columns;
         private long _nextFrameTick;
@@ -24,11 +25,8 @@ namespace Ratcycle
         {
             get
             {
-                return new Rectangle(
-                    (int)_position.X,
-                    (int)_position.Y,
-                    _sourceRectangle.Width,
-                    _sourceRectangle.Height);
+				updateHitbox ();
+				return _hitBox;
             }
         }
 
@@ -110,5 +108,14 @@ namespace Ratcycle
         {
             spriteBatch.Draw(_texture, _position, _sourceRectangle, _color, _rotation, _origin, _scale, SpriteEffects.None, 0f);
         }
+
+		private void updateHitbox()
+		{
+			_hitBox = new Rectangle(
+				(int)_position.X,
+				(int)_position.Y,
+				_sourceRectangle.Width,
+				_sourceRectangle.Height);
+		}
     }
 }

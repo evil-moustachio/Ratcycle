@@ -85,7 +85,7 @@ namespace Ratcycle
 			/// <summary>
 			/// Types of garbage
 			/// </summary>
-            public static int points = 0;
+            public static int points;
 			public enum Type { Normal, Strong }
 			public enum Category { Plastic, Paper, Chemical, Green, Other }
 		}

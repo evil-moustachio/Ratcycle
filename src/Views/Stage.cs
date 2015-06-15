@@ -13,7 +13,7 @@ namespace Ratcycle
 		private StageHUD _hud;
 		private Boolean _isPaused;
 
-		public Vector2 RatPosition { get { return _rat.Position; } }
+		public Vector2 RatBase { get { return new Vector2(_rat.HitBox.Center.X, _rat.HitBox.Bottom); } }
 		public Rectangle RatHitBox { get { return _rat.HitBox; } }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Ratcycle
 				new Vector2 (5, 5), 100, 45, Keys.W, Keys.S, Keys.A, Keys.D);
 			_gameObjects.Add(_rat);
             _gameObjects.Add(new Bin(ContentHandler.GetTexture("PCSquareButton"), new Vector2(100, 500), _game, this, Color.White, 1, 1, 1, false, Model.GameRules.Category.Green));
-			_gameObjects.Add(new Monster(ContentHandler.GetTexture("PCSquareButton"), new Vector2(700, 100), _game, this, 
+			_gameObjects.Add(new Monster(ContentHandler.GetTexture("PC_GFT_KLEIN"), new Vector2(700, 300), _game, this, 
 				new Vector2(1,1), 100, 2, 20, 3.0f));
 			_hud = new StageHUD(_game, _viewController, false, _rat, this);
         }
@@ -111,7 +111,7 @@ namespace Ratcycle
 
             _gameObjects.Remove(monster);
 			_gameObjects.Add(garbage);
-			_gameObjects.Add(new Monster(ContentHandler.GetTexture("PCSquareButton"), new Vector2(700, 100), _game, this, 
+			_gameObjects.Add(new Monster(ContentHandler.GetTexture("PC_GFT_KLEIN"), new Vector2(700, 300), _game, this, 
 				new Vector2(1,1), 100, 2, 20, 3.0f));
         }
 

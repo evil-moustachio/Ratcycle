@@ -56,8 +56,8 @@ namespace Ratcycle
 		private Vector2 MoveToTarget(Vector2 target)
 		{
 			// Determines current triangle.
-			var diffX = target.X - _position.X;
-			var diffY = target.Y - _position.Y;
+			var diffX = target.X - HitBox.Center.X;
+			var diffY = target.Y - HitBox.Bottom;
 			var totalDistance = Math.Sqrt(Math.Pow(diffX, 2) + Math.Pow(diffY, 2));
 
 			// Calculates the sides of the smaller triangle.
@@ -77,14 +77,19 @@ namespace Ratcycle
         private void Move()
         {
 			// Creates the next Hitbox with an updated position.
-            Vector2 nextPosition = MoveToTarget(((Stage)_parentView).RatPosition);
-            Rectangle nextHitbox = new Rectangle((int)nextPosition.X, (int)nextPosition.Y, HitBox.Width, HitBox.Height);
+			Vector2 nextPosition = MoveToTarget(((Stage)_parentView).RatBase);
+			Rectangle nextXHitbox = new Rectangle((int)nextPosition.X, (int)_position.Y, HitBox.Width, HitBox.Height);
+			Rectangle nextYHitbox = new Rectangle((int)_position.X, (int)nextPosition.Y, HitBox.Width, HitBox.Height);
 
 			// Updates the position if the move is allowed.
-			if (((Stage)_parentView).NotColliding(this, nextHitbox, _minCoords, _maxCoords))
-            {
-                _position = nextPosition;
-            }
+			if (((Stage)_parentView).NotColliding(this, nextXHitbox, _minCoords, _maxCoords))
+			{
+				_position.X = nextPosition.X;
+			}
+			if (((Stage)_parentView).NotColliding(this, nextYHitbox, _minCoords, _maxCoords))
+			{
+				_position.Y = nextPosition.Y;
+			}
         }
 
 		/// <summary>

@@ -27,11 +27,11 @@ namespace Ratcycle
         {
 			_rat = new Rat(ContentHandler.GetTexture ("RatSprite"), new Vector2 (200, 200), game, this, 
 				new Vector2 (5, 5), 100, 45, Keys.W, Keys.S, Keys.A, Keys.D);
-			_gameObjects.Add(_rat);
-            _gameObjects.Add(new Bin(ContentHandler.GetTexture("PCSquareButton"), new Vector2(100, 500), _game, this, Color.White, 1, 1, 1, false, Model.GameRules.Category.Green));
-			_gameObjects.Add(new Monster(ContentHandler.GetTexture("PC_GFT_KLEIN"), new Vector2(700, 300), _game, this, 
-				new Vector2(1,1), 100, 2, 20, 3.0f));
 			_hud = new StageHUD(_game, _viewController, false, _rat, this);
+
+            _gameObjects.Add(_rat);
+            _gameObjects.Add(new ChemicalBin(new Vector2(100, 200), _game, this));
+            _gameObjects.Add(new StrongChemical(new Vector2(600, 400), _game, this));
         }
 
 		/// <summary>
@@ -107,12 +107,10 @@ namespace Ratcycle
 
         public void MonsterToGarbage(Monster monster, Texture2D texture)
         {            
-			Garbage garbage = new Garbage(texture, monster.Position, _game, this, new Color(Color.Black, 0.7f), Model.GameRules.Category.Green, Model.GameRules.Type.Normal, 1);
+			Garbage garbage = new Garbage(texture, monster.Position, _game, this, new Color(Color.Black, 0.7f), monster.Category, monster.Type, 1);
 
             _gameObjects.Remove(monster);
 			_gameObjects.Add(garbage);
-			_gameObjects.Add(new Monster(ContentHandler.GetTexture("PC_GFT_KLEIN"), new Vector2(700, 300), _game, this, 
-				new Vector2(1,1), 100, 2, 20, 3.0f));
         }
 
         /// <summary>
@@ -121,16 +119,10 @@ namespace Ratcycle
         public override void Update()
         {
 			if (!_isPaused) 
-            {
-
-
 				base.Update();
-			}
 
 			if (KeyHandler.checkNewKeyPressed (Keys.Escape)) 
-            {
 				Pause();
-			}
 
 			_hud.Update();
         }

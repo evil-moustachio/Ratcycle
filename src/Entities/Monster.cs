@@ -12,6 +12,11 @@ namespace Ratcycle
         protected int _range;
         protected long _atkspd;
         protected long _nextAttack;
+        protected Model.GameRules.Category _cat;
+        protected Model.GameRules.Type _type;
+
+        public Model.GameRules.Category Category { get { return _cat; } }
+        public Model.GameRules.Type Type { get { return _type; } }
 
         public override Rectangle AttackBox
         {
@@ -37,13 +42,15 @@ namespace Ratcycle
 		/// <param name="damage">The amount of damage the Monster may deal.</param>
 		/// <param name="range">The Monster's attack range.</param>
 		/// <param name="atkspd">Cooldown period for the Monster's attack.</param>
-		public Monster(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, float damage, int range, float atkspd) 
+		public Monster(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, float damage, int range, float atkspd, Model.GameRules.Category cat, Model.GameRules.Type type) 
 			: base (texture, position, game, view, Color.White, 1, 1, 1, false, speed)
 		{
 			_health = health;
             _damage = damage;
             _range = range;
 			_atkspd = (long)(atkspd * Model.Time.OneSecondOfTicks);
+            _cat = cat;
+            _type = type;
 
 			_nextAttack = Model.Time.CurrentGameTick;
 			_healthBar = new Healthbar (ContentHandler.GetTexture("HealthBarEntity"), _position, new Vector2(0,-25), _game, _parentView, _health);

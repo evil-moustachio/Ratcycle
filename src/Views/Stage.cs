@@ -110,7 +110,9 @@ namespace Ratcycle
 			Garbage garbage = new Garbage(texture, monster.Position, _game, this, new Color(Color.Black, 0.7f), Model.GameRules.Category.Green, Model.GameRules.Type.Normal, 1);
 
             _gameObjects.Remove(monster);
-            _gameObjects.Add(garbage);
+			_gameObjects.Add(garbage);
+			_gameObjects.Add(new Monster(ContentHandler.GetTexture("PCSquareButton"), new Vector2(700, 100), _game, this, 
+				new Vector2(1,1), 100, 2, 20, 3.0f));
         }
 
         /// <summary>

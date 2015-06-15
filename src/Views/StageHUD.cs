@@ -8,12 +8,17 @@ namespace Ratcycle
 {
 	public class StageHUD : View
 	{
+		private Stage _stage;
+
+		//Elements that have to be recalled later
+		private Rat _rat;
 		private readonly Healthbar _healthBar;
+		private AtlasObject _inventoryBG, _inventory;
+		private Text _points;
+
+		//Paused items
 		private Boolean _isPaused, _goUnPause;
 		private List<GameObject> _pausedItems;
-		private Stage _stage;
-		private Rat _rat;
-		private AtlasObject _inventoryBG, _inventory;
 
 		public StageHUD (Game1 game, ViewController viewController, Boolean mouseVisible, Rat rat, Stage stage) 
 			: base (game, viewController, mouseVisible)
@@ -22,12 +27,15 @@ namespace Ratcycle
 			_stage = stage;
 			_rat = rat;
 
+			//Rat items
 			_healthBar = new Healthbar (ContentHandler.GetTexture ("HUDHealthbarRat"), new Vector2 (25, 25), 
 				new Vector2 (0, 0), _game, this, _rat.Health);
-
 			_gameObjects.Add (_healthBar);
 			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("HUDRat"), new Vector2(25,25), _game, this, 
 				Color.White, 1, 1, 1, false));
+			_points = new Text (new Vector2(239, 57), _game, this, "Aero Matics Display-14", "0 punten", Color.Black);
+			_gameObjects.Add (_points);
+
 			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("EscButton"), new Vector2(710, 25), _game, this, 
 				Color.White, 1, 1, 1, false));
 		}
@@ -49,6 +57,7 @@ namespace Ratcycle
 
 			_healthBar.Health = _rat.Health;
 			_healthBar.Update ();
+			UpdatePoints (Model.GameRules.points);
 		}
 
 		public override void Draw (SpriteBatch spriteBatch)
@@ -59,6 +68,10 @@ namespace Ratcycle
 			}
 		}
 
+
+		/// <summary>
+		/// Pause the game.
+		/// </summary>
 		public void Pause() 
         {
 			if (!_isPaused) 
@@ -70,6 +83,9 @@ namespace Ratcycle
 			}
 		}
 
+		/// <summary>
+		/// Unpause the game
+		/// </summary>
 		public void UnPause() 
 		{
 			if (_isPaused) 
@@ -80,6 +96,9 @@ namespace Ratcycle
 			}
 		}
 
+		/// <summary>
+		/// Creates the pause overlay.
+		/// </summary>
 		private void createPauseHUD()
 		{
 			Vector2 center = new Vector2(_game.GraphicsDevice.Viewport.Width / 2, 
@@ -104,6 +123,11 @@ namespace Ratcycle
 			}
 		}
 
+		/// <summary>
+		/// Draws the garbage in the HUD.
+		/// </summary>
+		/// <param name="cat">Category.</param>
+		/// <param name="type">Type.</param>
 		public void DrawGarbage(Model.GameRules.Category cat, Model.GameRules.Type type)
 		{
 			Vector2 v = new Vector2 (140, 100);
@@ -181,10 +205,22 @@ namespace Ratcycle
 			_gameObjects.Add (_inventory);
 		}
 
+		/// <summary>
+		/// Removes the garbage from the HUD.
+		/// </summary>
 		public void RemoveGarbage()
 		{
 			_gameObjects.Remove (_inventoryBG);
 			_gameObjects.Remove (_inventory);
+		}
+
+		/// <summary>
+		/// Updates the points.
+		/// </summary>
+		/// <param name="points">Points.</param>
+		private void UpdatePoints(int points)
+		{
+			_points.setString (points + " punten");
 		}
 	}
 }

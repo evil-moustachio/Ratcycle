@@ -11,9 +11,9 @@ namespace Ratcycle
 			_bins = bins;
 
 			//Background
-			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("background_ratCycle"), new Vector2(0,0), _game, 
+			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("Background-02"), new Vector2(0,0), _game, 
 				this, Color.White, 1, 1, 1, false));
-			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("GrayBackground"), new Vector2(0,0), _game, this, 
+			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("BackgroundGray"), new Vector2(0,0), _game, this, 
 				Color.White, 1, 1, 1, false));
 		}
 	}

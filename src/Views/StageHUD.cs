@@ -36,7 +36,7 @@ namespace Ratcycle
 			_points = new Text (new Vector2(239, 57), _game, this, "Aero Matics Display-14", "0 punten", Color.Black);
 			_gameObjects.Add (_points);
 
-			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("EscButton"), new Vector2(710, 25), _game, this, 
+			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("ButtonEsc"), new Vector2(710, 25), _game, this, 
 				Color.White, 1, 1, 1, false));
 		}
 
@@ -104,14 +104,14 @@ namespace Ratcycle
 			Vector2 center = new Vector2(_game.GraphicsDevice.Viewport.Width / 2, 
 				_game.GraphicsDevice.Viewport.Height / 2);
 
-			_pausedItems.Add(new AtlasObject(ContentHandler.GetTexture("OrangeBG"), new Vector2 (0), _game, this, 
+			_pausedItems.Add(new AtlasObject(ContentHandler.GetTexture("BackgroundOrange"), new Vector2 (0), _game, this, 
 				Color.White, 1, 1, 1, false));
 
 			_pausedItems.Add(new Text(new Vector2(center.X - 100, 100), _game, this,
 				Model.Layout.standartFontName, "Gepauzeerd", Color.White));
 
-			_pausedItems.Add(new Button(ContentHandler.GetTexture("startbutton_ratCycle"), 
-				center + new Vector2(-ContentHandler.GetTexture("startbutton_ratCycle").Width / 2, 0), 
+			_pausedItems.Add(new Button(ContentHandler.GetTexture("ButtonStart"), 
+				center + new Vector2(-ContentHandler.GetTexture("ButtonStart").Width / 2, 0), 
 				_game, this, _stage.Pause));
 			_pausedItems.Add(new Button(ContentHandler.GetTexture("PCSquareButton"), 
 				center + new Vector2(-ContentHandler.GetTexture("PCSquareButton").Width / 2, 100), 

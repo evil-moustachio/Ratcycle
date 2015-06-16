@@ -130,7 +130,7 @@ namespace Ratcycle
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(ContentHandler.GetTexture("background_ratCycle"), new Vector2());
+            spriteBatch.Draw(ContentHandler.GetTexture("Background-01"), new Vector2());
             base.Draw(spriteBatch);
 
 			_hud.Draw(spriteBatch);

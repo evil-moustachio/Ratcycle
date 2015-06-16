@@ -8,9 +8,9 @@ namespace Ratcycle
 		public MenuStart (Game1 game, ViewController viewController, Boolean mouseVisible)
 			: base(game, viewController, mouseVisible)
 		{
-			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("startmenuBackground"), new Vector2(0,0), _game, 
+			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("BackgroundStartmenu"), new Vector2(0,0), _game, 
 				this, Color.White, 1, 1, 1, false));
-			_gameObjects.Add (new Button (ContentHandler.GetTexture("startbutton_ratCycle"), new Vector2(275, 325), 
+			_gameObjects.Add (new Button (ContentHandler.GetTexture("ButtonStart"), new Vector2(275, 325), 
 				_game, this, nextView));
 		}
 

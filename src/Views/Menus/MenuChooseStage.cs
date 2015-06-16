@@ -14,13 +14,13 @@ namespace Ratcycle
 		public MenuChooseStage (Game1 game, ViewController viewController, Boolean mouseVisible) : base(game, viewController, mouseVisible)
 		{
 			//Background
-			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("background_ratCycle"), new Vector2(0,0), _game, 
+			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("Background-01"), new Vector2(0,0), _game, 
 				this, Color.White, 1, 1, 1, false));
-			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("GrayBackground"), new Vector2(0,0), _game, this, 
+			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("BackgroundGray"), new Vector2(0,0), _game, this, 
 				Color.White, 1, 1, 1, false));
 
 			//Orange background
-			_gameObjects.Add (new AtlasObject (ContentHandler.GetTexture ("OrangeBG"), new Vector2 (0), _game, this, 
+			_gameObjects.Add (new AtlasObject (ContentHandler.GetTexture ("BackgroundOrange"), new Vector2 (0), _game, this, 
 				Color.White, 1, 1, 1, false));
 
 			//Select level text
@@ -32,7 +32,7 @@ namespace Ratcycle
 			float[] xCoordinatesText = {157, 274, 389, 509, 622};
 			for (int i = 0; i < 5; i++) {
 				_levelCounterText [i] = new Text (new Vector2 (xCoordinatesText [i], _lowText), _game, this, "Aero Matics Display-28", "0", Color.White);
-				_stageButtons [i] = new Button (ContentHandler.GetTexture ("PC_ChooseLevelButtons-0" + (i + 1)), new Vector2 (xCoordinatesButtons [i], _lowButton), _game, this, 2, setCurrentStage, i + 1);
+				_stageButtons [i] = new Button (ContentHandler.GetTexture ("ChooseLevel_Button-0" + (i + 1)), new Vector2 (xCoordinatesButtons [i], _lowButton), _game, this, 2, setCurrentStage, i + 1);
 				_gameObjects.Add (_levelCounterText[i]);
 				_gameObjects.Add(_stageButtons[i]);
 			}
@@ -40,8 +40,8 @@ namespace Ratcycle
 			updateStages ();
 
 			//Select-level add/substract buttons
-			_subButton = new Button (ContentHandler.GetTexture ("LeftButton"), new Vector2 (76.8f, 335.3f), _game, this, subsLevel);
-			_addButton = new Button (ContentHandler.GetTexture ("RightButton"), new Vector2 (697f, 335.3f), _game, this, addLevel);
+			_subButton = new Button (ContentHandler.GetTexture ("ButtonLeft"), new Vector2 (76.8f, 335.3f), _game, this, subsLevel);
+			_addButton = new Button (ContentHandler.GetTexture ("ButtonRight"), new Vector2 (697f, 335.3f), _game, this, addLevel);
 			if(_bottomCount != 1)
 				_gameObjects.Add (_subButton); 
 			
@@ -49,7 +49,7 @@ namespace Ratcycle
 				_gameObjects.Add (_addButton);
 
 			//Next button
-			_gameObjects.Add (new Button(ContentHandler.GetTexture("startbutton_ratCycle"), new Vector2(277.5f, 444), 
+			_gameObjects.Add (new Button(ContentHandler.GetTexture("ButtonStart"), new Vector2(277.5f, 444), 
 				_game, this, nextView));
 		}
 

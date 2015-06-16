@@ -17,22 +17,31 @@ namespace Ratcycle
 		public static void SetContent()
 		{
 
-			//MENUS
-			textures.Add ("startbutton_ratCycle", null);
-			textures.Add ("RightButton", null);
-			textures.Add ("LeftButton", null);
-			textures.Add ("startmenuBackground", null);
-			textures.Add ("OrangeBG", null);
-			textures.Add ("GrayBackground", null);
+			//BACKGROUNDS
+			textures.Add ("BackgroundGray", null);
+			textures.Add ("BackgroundOrange", null);
+			textures.Add ("BackgroundStartmenu", null);
+			textures.Add ("Background-01", null);
+			textures.Add ("Background-02", null);
+			textures.Add ("Background-03", null);
+			textures.Add ("Background-04", null);
+			textures.Add ("Background-05", null);
 
-			//STAGES
-			textures.Add("background_ratCycle", null);
+			//BUTTONS
+			textures.Add ("ButtonStart", null);
+			textures.Add ("ButtonRight", null);
+			textures.Add ("ButtonLeft", null);
+			textures.Add ("ChooseLevel_Button-01", null);
+			textures.Add ("ChooseLevel_Button-02", null);
+			textures.Add ("ChooseLevel_Button-03", null);
+			textures.Add ("ChooseLevel_Button-04", null);
+			textures.Add ("ChooseLevel_Button-05", null);
 
 			//HUD
+			textures.Add ("ButtonEsc", null);
 			textures.Add ("HealthBarEntity", null);
 			textures.Add ("HUDHealthbarRat", null);
 			textures.Add ("HUDRat", null);
-			textures.Add ("EscButton", null);
 
 			//ENTITIES
 			textures.Add("RatSprite", null);
@@ -50,11 +59,6 @@ namespace Ratcycle
 			textures.Add ("PC_PLASTIC_GROOT", null);
 			textures.Add ("PC_REST_KLEIN", null);
 			textures.Add ("PC_REST_GROOT", null);
-			textures.Add ("PC_ChooseLevelButtons-01", null);
-			textures.Add ("PC_ChooseLevelButtons-02", null);
-			textures.Add ("PC_ChooseLevelButtons-03", null);
-			textures.Add ("PC_ChooseLevelButtons-04", null);
-			textures.Add ("PC_ChooseLevelButtons-05", null);
 
 			//FONTS
 			fonts.Add ("Aero Matics Display-14", null);

@@ -20,6 +20,10 @@ namespace Ratcycle
             {
                return _position;
             }
+			set 
+			{
+				_position = value;
+			}
         }
 
         /// <summary>

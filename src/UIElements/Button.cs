@@ -10,6 +10,8 @@ namespace Ratcycle
 		Model.Layout.ButtonStates buttonState = Model.Layout.ButtonStates.Inactive;
 		bool buttonStateSwitch;
 		Action eventHandler;
+		Action<int> eventIntHandler;
+		int eventInt;
 
 		public Button (Texture2D texture, Vector2 position, Game1 game, View view, Action evHandler)
 			: base(texture, position, game, view, Color.White, 3, 1, 1, false)
@@ -17,10 +19,11 @@ namespace Ratcycle
 			eventHandler = evHandler;
 		}
 			
-		public Button (Texture2D texture, Vector2 position, Game1 game, View view, Action evHandler, int Columns)
+		public Button (Texture2D texture, Vector2 position, Game1 game, View view, int Columns, Action<int> evHandler, int evInt)
 			: base(texture, position, game, view, Color.White, 3, Columns, 1, false)
 		{
-			eventHandler = evHandler;
+			eventIntHandler = evHandler;
+			eventInt = evInt;
 		}
 
 		public override void Update()
@@ -37,7 +40,7 @@ namespace Ratcycle
                 else if (MouseHandler.LeftButtonEndPress()) 
                 {
 					//check if mouse stops pressing the button, inside the button
-					eventHandler();
+					handleEvent();
 					return;
 				} 
                 else if(!MouseHandler.LeftButtonPressed())
@@ -71,6 +74,18 @@ namespace Ratcycle
 					    ChangeFrame(2);
 					    break;
 				}
+			}
+		}
+
+		private void handleEvent()
+		{
+			if (eventHandler != null) 
+			{
+				eventHandler ();
+			} 
+			else 
+			{
+				eventIntHandler (eventInt);
 			}
 		}
 	}

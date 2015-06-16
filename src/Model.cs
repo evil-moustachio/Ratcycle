@@ -68,8 +68,8 @@ namespace Ratcycle
 		/// </summary>
 		public static class Stage
 		{
-			public static int Current = 4;
-			public static int Reached = 12;
+			public static int Current = 7;
+			public static int Reached = 18;
 		}
 
 		public static class GameRules

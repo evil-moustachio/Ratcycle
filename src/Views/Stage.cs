@@ -12,6 +12,7 @@ namespace Ratcycle
 		private Rat _rat;
 		private StageHUD _hud;
 		private Boolean _isPaused;
+		private Bin[] _bins = new Bin[3];
 
 		public Vector2 RatBase { get { return new Vector2(_rat.HitBox.Center.X, _rat.HitBox.Bottom); } }
 		public Rectangle RatHitBox { get { return _rat.HitBox; } }
@@ -149,9 +150,9 @@ namespace Ratcycle
 			}
 		}
 
-		public void ChangeToFinished()
+		public void NextView()
 		{
-			_viewController.SetView (new MenuFinishedLevel(_game, _viewController, true));
+			_viewController.SetView (new MenuFinishedLevel(_game, _viewController, true, _bins));
 		}
     }
 }

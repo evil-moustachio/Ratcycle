@@ -9,6 +9,7 @@ namespace Ratcycle
 {
 	public class Player
 	{
+		Keys _up, _down, _left, _right; // TODO: this
         /// <summary>
         /// Constructs the player
         /// </summary>

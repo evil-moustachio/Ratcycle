@@ -1,10 +1,5 @@
 ﻿using System;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Storage;
-using Microsoft.Xna.Framework.Input;
-
 namespace Ratcycle
 {
 	public static class Model
@@ -68,8 +63,9 @@ namespace Ratcycle
 		/// </summary>
 		public static class Stage
 		{
-			public static int Current = 7;
-			public static int Reached = 18;
+			public static int CurrentPlaying = 1;
+			public static int Current;
+			public static int Reached = 6;
 		}
 
 		public static class GameRules

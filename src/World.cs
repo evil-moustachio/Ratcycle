@@ -31,7 +31,6 @@ namespace Ratcycle
         {
 			Player.Update();
             Model.Update();
-            Console.WriteLine("My points are: " + Model.GameRules.points);
             _viewController.Update();
         }
 

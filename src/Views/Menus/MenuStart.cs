@@ -16,7 +16,7 @@ namespace Ratcycle
 
 		private void nextView()
 		{
-			_viewController.SetView(new MenuChooseLevel(_game, _viewController, true));
+			_viewController.SetView(new MenuChooseStage(_game, _viewController, true));
 		}
 	}
 }

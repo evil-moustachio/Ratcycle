@@ -22,7 +22,7 @@ namespace Ratcycle
 
 		public static class Debug
 		{
-			public static bool debug = true;
+			public static bool debug;
 
 			public static View DefaultStartClass(Game1 game, ViewController viewController){
 				if(debug)
@@ -64,20 +64,12 @@ namespace Ratcycle
 		}
 
 		/// <summary>
-		/// All level vars
-		/// </summary>
-		public static class Level
-		{
-			public static int Current = 0;
-			public static int Reached = 12;
-		}
-
-		/// <summary>
 		/// All stage vars
 		/// </summary>
 		public static class Stage
 		{
-			public static int currentStage;
+			public static int Current = 4;
+			public static int Reached = 12;
 		}
 
 		public static class GameRules

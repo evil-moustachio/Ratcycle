@@ -19,8 +19,11 @@ namespace Ratcycle
 			
 			//MENUS
 			textures.Add ("startbutton_ratCycle", null);
+			textures.Add ("RightButton", null);
+			textures.Add ("LeftButton", null);
 			textures.Add ("startmenuBackground", null);
 			textures.Add ("OrangeBG", null);
+			textures.Add ("GrayBackground", null);
 
 			//STAGES
 			textures.Add("background_ratCycle", null);
@@ -36,7 +39,6 @@ namespace Ratcycle
 
 			//PLACEHOLDERS
 			textures.Add ("PCSquareButton", null);
-
 			textures.Add ("pcInventory", null);
 			textures.Add ("PC_CHEMISCH_KLEIN", null);
 			textures.Add ("PC_CHEMISCH_GROOT", null);
@@ -48,9 +50,20 @@ namespace Ratcycle
 			textures.Add ("PC_PLASTIC_GROOT", null);
 			textures.Add ("PC_REST_KLEIN", null);
 			textures.Add ("PC_REST_GROOT", null);
+			textures.Add ("PC_ChooseMenu", null);
+			textures.Add ("PC_ChooseLevelButtons-01", null);
+			textures.Add ("PC_ChooseLevelButtons-02", null);
+			textures.Add ("PC_ChooseLevelButtons-03", null);
+			textures.Add ("PC_ChooseLevelButtons-04", null);
+			textures.Add ("PC_ChooseLevelButtons-05", null);
 
 			//FONTS
 			fonts.Add ("Aero Matics Display-14", null);
+			fonts.Add ("Aero Matics Display-18", null);
+			fonts.Add ("Aero Matics Display-24", null);
+			fonts.Add ("Aero Matics Display-28", null);
+			fonts.Add ("Aero Matics Display-36", null);
+			fonts.Add ("Aero Matics Display-48", null);
         }
 
 		/// <summary>

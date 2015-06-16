@@ -69,25 +69,25 @@ namespace Ratcycle
 			base.Update ();
 
 			//TODO: remove this (and make position in gameobject get only again)
-			float speed;
-			if (KeyHandler.IsKeyDown (Microsoft.Xna.Framework.Input.Keys.LeftShift)) {
-				speed = 1f;
-			} else {
-				speed = 0.1f;
-			}
-			if (KeyHandler.IsKeyDown (Microsoft.Xna.Framework.Input.Keys.Left)) {
-				_moveable.Position -= new Vector2(speed, 0);
-			}
-			if (KeyHandler.IsKeyDown (Microsoft.Xna.Framework.Input.Keys.Right)) {
-				_moveable.Position += new Vector2(speed, 0);
-			}
-			if (KeyHandler.IsKeyDown (Microsoft.Xna.Framework.Input.Keys.Up)) {
-				_moveable.Position -= new Vector2(0, speed);
-			}
-			if (KeyHandler.IsKeyDown (Microsoft.Xna.Framework.Input.Keys.Down)) {
-				_moveable.Position += new Vector2(0, speed);
-			}
-			Console.WriteLine (_moveable.Position);
+//			float speed;
+//			if (KeyHandler.IsKeyDown (Microsoft.Xna.Framework.Input.Keys.LeftShift)) {
+//				speed = 1f;
+//			} else {
+//				speed = 0.1f;
+//			}
+//			if (KeyHandler.IsKeyDown (Microsoft.Xna.Framework.Input.Keys.Left)) {
+//				_moveable.Position -= new Vector2(speed, 0);
+//			}
+//			if (KeyHandler.IsKeyDown (Microsoft.Xna.Framework.Input.Keys.Right)) {
+//				_moveable.Position += new Vector2(speed, 0);
+//			}
+//			if (KeyHandler.IsKeyDown (Microsoft.Xna.Framework.Input.Keys.Up)) {
+//				_moveable.Position -= new Vector2(0, speed);
+//			}
+//			if (KeyHandler.IsKeyDown (Microsoft.Xna.Framework.Input.Keys.Down)) {
+//				_moveable.Position += new Vector2(0, speed);
+//			}
+//			Console.WriteLine (_moveable.Position);
 		}
 	}
 }

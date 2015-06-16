@@ -16,7 +16,7 @@ namespace Ratcycle
 		/// </summary>
 		public static void SetContent()
 		{
-			
+
 			//MENUS
 			textures.Add ("startbutton_ratCycle", null);
 			textures.Add ("RightButton", null);
@@ -50,7 +50,6 @@ namespace Ratcycle
 			textures.Add ("PC_PLASTIC_GROOT", null);
 			textures.Add ("PC_REST_KLEIN", null);
 			textures.Add ("PC_REST_GROOT", null);
-			textures.Add ("PC_ChooseMenu", null);
 			textures.Add ("PC_ChooseLevelButtons-01", null);
 			textures.Add ("PC_ChooseLevelButtons-02", null);
 			textures.Add ("PC_ChooseLevelButtons-03", null);
@@ -64,7 +63,7 @@ namespace Ratcycle
 			fonts.Add ("Aero Matics Display-28", null);
 			fonts.Add ("Aero Matics Display-36", null);
 			fonts.Add ("Aero Matics Display-48", null);
-        }
+		}
 
 		/// <summary>
 		/// Loads the textures.
@@ -73,13 +72,13 @@ namespace Ratcycle
 		public static void LoadContent(ContentManager content)
 		{
 			for (int i = textures.Count - 1; i >= 0; --i) 
-            {
+			{
 				string key = textures.Keys.ElementAt (i);
 				textures [key] = content.Load<Texture2D>(key);
 			}
 
 			for (int i = fonts.Count - 1; i >= 0; --i) 
-            {
+			{
 				string key = fonts.Keys.ElementAt (i);
 				fonts [key] = content.Load<SpriteFont>(key);
 			}

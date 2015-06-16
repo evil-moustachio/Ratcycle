@@ -9,7 +9,7 @@ namespace Ratcycle
 {
 	public class Player
 	{
-		Keys _up, _down, _left, _right; // TODO: this
+		Keys _up = Keys.W, _down = Keys.S, _left = Keys.A, _right = Keys.D;
         /// <summary>
         /// Constructs the player
         /// </summary>
@@ -23,6 +23,15 @@ namespace Ratcycle
         /// </summary>
 		public void Update()
 		{
+			if (KeyHandler.IsKeyDown (_up))
+				Rat.Direction.Add (Model.Player.Direction.Up);
+			if (KeyHandler.IsKeyDown (_down))
+				Rat.Direction.Add (Model.Player.Direction.Down);
+			if (KeyHandler.IsKeyDown (_left))
+				Rat.Direction.Add (Model.Player.Direction.Left);
+			if (KeyHandler.IsKeyDown (_right))
+				Rat.Direction.Add (Model.Player.Direction.Right);
+
 			KeyHandler.Update ();
 			MouseHandler.Update ();
 		}

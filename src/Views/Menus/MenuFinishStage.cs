@@ -3,10 +3,10 @@ using Microsoft.Xna.Framework;
 
 namespace Ratcycle
 {
-	public class MenuFinishedLevel : Menu
+	public class MenuFinishStage : Menu
 	{
 		private Bin[] _bins = new Bin[3];
-		public MenuFinishedLevel (Game1 game, ViewController viewController, Boolean mouseVisible, Bin[] bins) : base (game, viewController, mouseVisible)
+		public MenuFinishStage (Game1 game, ViewController viewController, Boolean mouseVisible, Bin[] bins) : base (game, viewController, mouseVisible)
 		{
 			_bins = bins;
 

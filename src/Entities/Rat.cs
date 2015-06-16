@@ -1,14 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace Ratcycle
 {
     public class Rat : Entity
     {
-        private Keys _up, _down, _left, _right;
+		public static List<Model.Player.Direction> Direction { get; set; }
         private bool _flip = false;
         private Garbage _inventory;
 
@@ -75,16 +75,12 @@ namespace Ratcycle
         /// <param name="down"></param>
         /// <param name="left"></param>
         /// <param name="right"></param>
-		public Rat(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, float damage, Keys up, Keys down, Keys left, Keys right)
+		public Rat(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, float damage)
             : base(texture, position, game, view, Color.White, 2, 1, 1, false, speed)
         {
 			_health = health;
             _damage = damage;
-
-            _up = up;
-            _down = down;
-            _left = left;
-            _right = right;
+			Direction = new List<Model.Player.Direction>();
         }
         
         /// <summary>
@@ -94,17 +90,22 @@ namespace Ratcycle
         {
             Stage view = (Stage)_parentView;
 
-            if (KeyHandler.IsKeyDown(_up) && (view.NotColliding(this, MakeFutureRectangle(_up), _minCoords, _maxCoords)))
+			if (Direction.Contains(Model.Player.Direction.Up) && (view.NotColliding(this, 
+				MakeFutureRectangle(Model.Player.Direction.Up), _minCoords, _maxCoords)))
             {
                 _position.Y -= _speed.Y;
+				Direction.Remove (Model.Player.Direction.Up);
             }
 
-            if (KeyHandler.IsKeyDown(_down) && view.NotColliding(this, MakeFutureRectangle(_down), _minCoords, _maxCoords))
+			if (Direction.Contains(Model.Player.Direction.Down) && view.NotColliding(this, 
+				MakeFutureRectangle(Model.Player.Direction.Down), _minCoords, _maxCoords))
             {
                 _position.Y += _speed.Y;
+				Direction.Remove (Model.Player.Direction.Down);
             }
 
-            if (KeyHandler.IsKeyDown(_left) && view.NotColliding(this, MakeFutureRectangle(_left), _minCoords, _maxCoords))
+			if (Direction.Contains(Model.Player.Direction.Left) && view.NotColliding(this, 
+				MakeFutureRectangle(Model.Player.Direction.Left), _minCoords, _maxCoords))
             {
 				if (!_flip) {
 					_position.X += 25;
@@ -113,9 +114,11 @@ namespace Ratcycle
                 ChangeFrame(1);
                 _position.X -= _speed.X;
 				_flip = true;
+				Direction.Remove (Model.Player.Direction.Left);
             }
 
-            if (KeyHandler.IsKeyDown(_right) && view.NotColliding(this, MakeFutureRectangle(_right), _minCoords, _maxCoords))
+			if (Direction.Contains(Model.Player.Direction.Right) && view.NotColliding(this, 
+				MakeFutureRectangle(Model.Player.Direction.Right), _minCoords, _maxCoords))
             {
 				if (_flip) {
 					_position.X -= 25;
@@ -124,6 +127,7 @@ namespace Ratcycle
                 ChangeFrame(0);
                 _position.X += _speed.X;
 				_flip = false;
+				Direction.Remove (Model.Player.Direction.Right);
             }
              
         }
@@ -147,22 +151,21 @@ namespace Ratcycle
         }
 
 
-        private Rectangle MakeFutureRectangle (Keys key)
+		private Rectangle MakeFutureRectangle (Model.Player.Direction direction)
         {
-            if (key == _up)
+			if (direction == Model.Player.Direction.Up)
             { 
                 return new Rectangle(HitBox.X, HitBox.Y - (int)_speed.Y, HitBox.Width, HitBox.Height);
             }
-            else if (key == _down)
+			else if (direction == Model.Player.Direction.Down)
             {
                 return new Rectangle(HitBox.X, HitBox.Y + (int)_speed.Y, HitBox.Width, HitBox.Height);
-
             }
-            else if (key == _left)
+			else if (direction == Model.Player.Direction.Left)
             {
                 return new Rectangle(HitBox.X - (int)_speed.X, HitBox.Y, HitBox.Width, HitBox.Height);
             }
-            else if (key == _right)
+			else if (direction == Model.Player.Direction.Right)
             {
                 return new Rectangle(HitBox.X + (int)_speed.X, HitBox.Y, HitBox.Width, HitBox.Height);
             }

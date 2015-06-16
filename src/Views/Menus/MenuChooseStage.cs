@@ -135,7 +135,7 @@ namespace Ratcycle
 				} 
 				else
 				{
-					_stageButtons [i].ChangeFrame (2, 0);
+					_stageButtons [i].ChangeFrame (1, 0);
 					_levelCounterText [i].Position = new Vector2 (_levelCounterText [i].Position.X, _lowText);
 					_stageButtons [i].Position = new Vector2(_stageButtons[i].Position.X, _lowButton);
 				}

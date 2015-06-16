@@ -15,9 +15,12 @@ namespace Ratcycle
 			Time.Update ();
         }
 
+		/// <summary>
+		/// All debug functions and vars
+		/// </summary>
 		public static class Debug
 		{
-			public static bool debug;
+			public static bool debug = true;
 
 			public static View DefaultStartClass(Game1 game, ViewController viewController){
 				if(debug)
@@ -33,7 +36,7 @@ namespace Ratcycle
 		}
 
 		/// <summary>
-		/// All time vars
+		/// All time vars and functions.
 		/// </summary>
 		public static class Time
 		{
@@ -59,15 +62,18 @@ namespace Ratcycle
 		}
 
 		/// <summary>
-		/// All stage vars
+		/// All stage vars.
 		/// </summary>
 		public static class Stage
 		{
 			public static int CurrentPlaying = 1;
 			public static int Current;
-			public static int Reached = 6;
+			public static int Reached = 12;
 		}
 
+		/// <summary>
+		/// All gamerules vars and functions.
+		/// </summary>
 		public static class GameRules
 		{
 			/// <summary>
@@ -76,6 +82,11 @@ namespace Ratcycle
             public static int points;
 			public enum Type { Normal, Strong }
 			public enum Category { Plastic, Paper, Chemical, Green, Other }
+		}
+
+		public static class Player
+		{
+			public enum Direction { Up, Down, Left, Right }
 		}
 	}
 }

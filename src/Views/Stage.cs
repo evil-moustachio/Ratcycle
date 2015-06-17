@@ -26,7 +26,7 @@ namespace Ratcycle
 		public Stage(Game1 game, ViewController viewController, Boolean mouseVisible) 
 			: base (game, viewController, mouseVisible)
         {
-			_rat = new Rat(ContentHandler.GetTexture ("RatSprite"), new Vector2 (200, 200), game, this, 
+			_rat = new Rat(ContentHandler.GetTexture ("Entity_rat"), new Vector2 (200, 200), game, this, 
 				new Vector2 (5, 5), 100, 45);
 			_hud = new StageHUD(_game, _viewController, false, _rat, this);
 
@@ -152,7 +152,7 @@ namespace Ratcycle
 
 		public void NextView()
 		{
-			_viewController.SetView (new MenuFinishStage(_game, _viewController, true, _bins));
+//			_viewController.SetView (new MenuFinishStage(_game, _viewController, true, _bins));
 		}
     }
 }

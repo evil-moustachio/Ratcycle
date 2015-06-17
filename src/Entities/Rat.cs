@@ -8,7 +8,7 @@ namespace Ratcycle
 {
     public class Rat : Entity
     {
-		public static List<Model.Player.Direction> Direction { get; set; }
+		public static List<Model.Player.Direction> Directions { get; set; }
         private bool _flip = false;
         private Garbage _inventory;
 
@@ -80,7 +80,7 @@ namespace Ratcycle
         {
 			_health = health;
             _damage = damage;
-			Direction = new List<Model.Player.Direction>();
+			Directions = new List<Model.Player.Direction>();
         }
         
         /// <summary>
@@ -90,45 +90,45 @@ namespace Ratcycle
         {
             Stage view = (Stage)_parentView;
 
-			if (Direction.Contains(Model.Player.Direction.Up) && (view.NotColliding(this, 
-				MakeFutureRectangle(Model.Player.Direction.Up), _minCoords, _maxCoords)))
-            {
-                _position.Y -= _speed.Y;
-				Direction.Remove (Model.Player.Direction.Up);
-            }
-
-			if (Direction.Contains(Model.Player.Direction.Down) && view.NotColliding(this, 
-				MakeFutureRectangle(Model.Player.Direction.Down), _minCoords, _maxCoords))
-            {
-                _position.Y += _speed.Y;
-				Direction.Remove (Model.Player.Direction.Down);
-            }
-
-			if (Direction.Contains(Model.Player.Direction.Left) && view.NotColliding(this, 
-				MakeFutureRectangle(Model.Player.Direction.Left), _minCoords, _maxCoords))
-            {
-				if (!_flip) {
-					_position.X += 25;
+			if (Directions.Contains (Model.Player.Direction.Up)) {
+				if (view.NotColliding (this, MakeFutureRectangle (Model.Player.Direction.Up), _minCoords, _maxCoords)) {
+					_position.Y -= _speed.Y;
 				}
+				Directions.Remove (Model.Player.Direction.Up);
+			}
 
-                ChangeFrame(1);
-                _position.X -= _speed.X;
-				_flip = true;
-				Direction.Remove (Model.Player.Direction.Left);
-            }
-
-			if (Direction.Contains(Model.Player.Direction.Right) && view.NotColliding(this, 
-				MakeFutureRectangle(Model.Player.Direction.Right), _minCoords, _maxCoords))
-            {
-				if (_flip) {
-					_position.X -= 25;
+			if (Directions.Contains (Model.Player.Direction.Down)) {
+				if (view.NotColliding (this, MakeFutureRectangle (Model.Player.Direction.Down), _minCoords, _maxCoords)) {
+					_position.Y += _speed.Y;
 				}
+				Directions.Remove (Model.Player.Direction.Down);
+			}
 
-                ChangeFrame(0);
-                _position.X += _speed.X;
-				_flip = false;
-				Direction.Remove (Model.Player.Direction.Right);
-            }
+			if (Directions.Contains (Model.Player.Direction.Left)) {
+				if (view.NotColliding (this, MakeFutureRectangle (Model.Player.Direction.Left), _minCoords, _maxCoords)) {
+					if (!_flip) {
+						_position.X += 25;
+					}
+
+					ChangeFrame (1);
+					_position.X -= _speed.X;
+					_flip = true;
+				}
+				Directions.Remove (Model.Player.Direction.Left);
+			}
+
+			if (Directions.Contains (Model.Player.Direction.Right)) {
+				if (view.NotColliding (this, MakeFutureRectangle (Model.Player.Direction.Right), _minCoords, _maxCoords)) {
+					if (_flip) {
+						_position.X -= 25;
+					}
+
+					ChangeFrame (0);
+					_position.X += _speed.X;
+					_flip = false;
+				}
+				Directions.Remove (Model.Player.Direction.Right);
+			}
              
         }
         

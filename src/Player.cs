@@ -23,17 +23,17 @@ namespace Ratcycle
         /// </summary>
 		public void Update()
 		{
-			if (KeyHandler.IsKeyDown (_up))
-				Rat.Direction.Add (Model.Player.Direction.Up);
-			if (KeyHandler.IsKeyDown (_down))
-				Rat.Direction.Add (Model.Player.Direction.Down);
-			if (KeyHandler.IsKeyDown (_left))
-				Rat.Direction.Add (Model.Player.Direction.Left);
-			if (KeyHandler.IsKeyDown (_right))
-				Rat.Direction.Add (Model.Player.Direction.Right);
-
 			KeyHandler.Update ();
 			MouseHandler.Update ();
+
+			if (KeyHandler.IsKeyDown (_up))
+				Rat.Directions.Add (Model.Player.Direction.Up);
+			if (KeyHandler.IsKeyDown (_down))
+				Rat.Directions.Add (Model.Player.Direction.Down);
+			if (KeyHandler.IsKeyDown (_left))
+				Rat.Directions.Add (Model.Player.Direction.Left);
+			if (KeyHandler.IsKeyDown (_right))
+				Rat.Directions.Add (Model.Player.Direction.Right);
 		}
 	}
 }

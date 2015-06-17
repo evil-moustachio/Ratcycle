@@ -44,7 +44,13 @@ namespace Ratcycle
 			textures.Add ("HUDRat", null);
 
 			//ENTITIES
-			textures.Add("RatSprite", null);
+			textures.Add ("Entity_rat", null);
+			textures.Add ("Entity_BinChemical", null);
+			textures.Add ("Entity_BinGreen", null);
+			textures.Add ("Entity_BinOther", null);
+			textures.Add ("Entity_BinPaper", null);
+			textures.Add ("Entity_BinPlastic", null);
+			textures.Add ("Entity_Garbagetruck", null);
 
 			//PLACEHOLDERS
 			textures.Add ("PCSquareButton", null);

@@ -108,6 +108,7 @@ namespace Ratcycle
             {
                 if (((Stage)_parentView).AttackHandler(this, _damage, AttackBox))
                 {
+                    Console.WriteLine(_nextAttack);
 					_nextAttack = Model.Time.CurrentGameTick + _atkspd;
                 }
             }

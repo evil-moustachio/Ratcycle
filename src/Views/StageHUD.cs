@@ -152,12 +152,12 @@ namespace Ratcycle
 			{
 				if (type == Model.GameRules.Type.Normal) 
 				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_PAPER_KLEIN"), v, _game, this, 
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_PAPIER_KLEIN"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
 				} 
 				else 
 				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_PAPER_GROOT"), v, _game, this, 
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_PAPIER_GROOT"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
 				}
 			}  

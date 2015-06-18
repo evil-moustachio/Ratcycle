@@ -18,8 +18,9 @@ namespace Ratcycle
         private Model.GameRules.Category[] _stageCategories;
         private Bin[] _bins;
         private List<Monster> _currentMonsters;
-        private long _resumeTime;
         private int _deadMonsters = 0;
+        private const float _waveTime = 5;
+        private float _remainingWaveTime = _waveTime;
 
 		public Vector2 RatBase { get { return new Vector2(_rat.HitBox.Center.X, _rat.HitBox.Bottom); } }
 		public Rectangle RatHitBox { get { return _rat.HitBox; } }
@@ -38,7 +39,6 @@ namespace Ratcycle
             MakeBins();
             MakeMonsters();
 
-            _resumeTime = Model.Time.CurrentGameTick;
 			_rat = new Rat(ContentHandler.GetTexture ("Entity_rat"), new Vector2 (200, 200), game, this, 
 				new Vector2 (5, 5), 100, 45);
 			_hud = new StageHUD(_game, _viewController, false, _rat, this);
@@ -191,6 +191,8 @@ namespace Ratcycle
                 {
                     if ((_gameObjects[i] is Entity || _gameObjects[i] is Bin) && _gameObjects[i] != entity && futureHitBox.Intersects(((AtlasObject)_gameObjects[i]).HitBox))
                     {
+                        Console.WriteLine(entity.GetType());
+                        Console.WriteLine("I am colliding!!! " + Model.counter);
                         return false;
                     }
                 }
@@ -258,14 +260,23 @@ namespace Ratcycle
         {
             if (_currentMonsters.Count == 0 && _totalMonsters != 0)
             {
-                Wait(3);
+                WaitForWave();
             }
         }
-        
-        public void Wait(int waitTime)
+
+        public void WaitForWave()
         {
+            var timer = (float) _game.GameTime.ElapsedGameTime.TotalSeconds;
+
+            _remainingWaveTime -= timer;
+
+            if (_remainingWaveTime <= 0)
+            {
                 MakeMonsters();
+                _remainingWaveTime = _waveTime;
+            }
         }
+
         /// <summary>
         /// Updates the stage, also invokes CheckObjectCollision before base.Update() so collision check is done before objects are updated.
         /// </summary>

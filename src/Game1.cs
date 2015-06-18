@@ -16,12 +16,21 @@ namespace Ratcycle
 		SpriteBatch spriteBatch;
 
         private World _world;
+        private GameTime _gameTime;
 
         public World World
         {
             get
             {
                 return _world;
+            }
+        }
+
+        public GameTime GameTime
+        {
+            get
+            {
+                return _gameTime;
             }
         }
 
@@ -52,6 +61,7 @@ namespace Ratcycle
 		protected override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
+            _gameTime = gameTime;
 			_world.Update();
 		}
 			

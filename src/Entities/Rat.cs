@@ -8,9 +8,12 @@ namespace Ratcycle
 {
     public class Rat : Entity
     {
-		public static List<Model.Player.Direction> Directions { get; set; }
-        private bool _flip = false;
         private Garbage _inventory;
+        private bool _flip = false;
+        private Keys _up = Keys.W;
+        private Keys _down = Keys.S;
+        private Keys _left = Keys.A;
+        private Keys _right = Keys.D;
 
         public Garbage Inventory
         {
@@ -80,7 +83,6 @@ namespace Ratcycle
         {
 			_health = health;
             _damage = damage;
-			Directions = new List<Model.Player.Direction>();
         }
         
         /// <summary>
@@ -90,47 +92,38 @@ namespace Ratcycle
         {
             Stage view = (Stage)_parentView;
 
-			if (Directions.Contains (Model.Player.Direction.Up)) {
-				if (view.NotColliding (this, MakeFutureRectangle (Model.Player.Direction.Up), _minCoords, _maxCoords)) {
-					_position.Y -= _speed.Y;
-				}
-				Directions.Remove (Model.Player.Direction.Up);
+
+			if (KeyHandler.IsKeyDown(_up) && view.NotColliding(this, MakeFutureRectangle("up"), _minCoords, _maxCoords)) 
+            {
+				_position.Y -= _speed.Y;
 			}
-
-			if (Directions.Contains (Model.Player.Direction.Down)) {
-				if (view.NotColliding (this, MakeFutureRectangle (Model.Player.Direction.Down), _minCoords, _maxCoords)) {
-					_position.Y += _speed.Y;
-				}
-				Directions.Remove (Model.Player.Direction.Down);
+			if (KeyHandler.IsKeyDown(_down) && view.NotColliding(this, MakeFutureRectangle("down"), _minCoords, _maxCoords)) 
+            {
+				_position.Y += _speed.Y;
 			}
-
-			if (Directions.Contains (Model.Player.Direction.Left)) {
-				if (view.NotColliding (this, MakeFutureRectangle (Model.Player.Direction.Left), _minCoords, _maxCoords)) {
-					if (!_flip) {
-						_position.X += 25;
-					}
-
-					ChangeFrame (1);
-					_position.X -= _speed.X;
-					_flip = true;
+			if (KeyHandler.IsKeyDown(_left) && view.NotColliding(this, MakeFutureRectangle("right"), _minCoords, _maxCoords)) 
+            {
+				if (!_flip) 
+                {
+					_position.X += 25;
 				}
-				Directions.Remove (Model.Player.Direction.Left);
-			}
 
-			if (Directions.Contains (Model.Player.Direction.Right)) {
-				if (view.NotColliding (this, MakeFutureRectangle (Model.Player.Direction.Right), _minCoords, _maxCoords)) {
-					if (_flip) {
+				ChangeFrame (1);
+				_position.X -= _speed.X;
+				_flip = true;
+			}
+			if (KeyHandler.IsKeyDown(_right) && view.NotColliding(this, MakeFutureRectangle("left"), _minCoords, _maxCoords)) 
+            {
+					if (_flip) 
+                    {
 						_position.X -= 25;
 					}
 
 					ChangeFrame (0);
 					_position.X += _speed.X;
 					_flip = false;
-				}
-				Directions.Remove (Model.Player.Direction.Right);
 			}
-             
-        }
+		}
         
         private void Attack()
         {
@@ -151,21 +144,21 @@ namespace Ratcycle
         }
 
 
-		private Rectangle MakeFutureRectangle (Model.Player.Direction direction)
+		private Rectangle MakeFutureRectangle (String direction)
         {
-			if (direction == Model.Player.Direction.Up)
+			if (direction == "up")
             { 
                 return new Rectangle(HitBox.X, HitBox.Y - (int)_speed.Y, HitBox.Width, HitBox.Height);
             }
-			else if (direction == Model.Player.Direction.Down)
+			else if (direction == "down")
             {
                 return new Rectangle(HitBox.X, HitBox.Y + (int)_speed.Y, HitBox.Width, HitBox.Height);
             }
-			else if (direction == Model.Player.Direction.Left)
+			else if (direction == "left")
             {
                 return new Rectangle(HitBox.X - (int)_speed.X, HitBox.Y, HitBox.Width, HitBox.Height);
             }
-			else if (direction == Model.Player.Direction.Right)
+			else if (direction == "right")
             {
                 return new Rectangle(HitBox.X + (int)_speed.X, HitBox.Y, HitBox.Width, HitBox.Height);
             }

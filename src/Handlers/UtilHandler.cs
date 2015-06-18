@@ -33,5 +33,9 @@ namespace Ratcycle
             }
         }
 
+        public static void Wait()
+        {
+
+        }
     }
 }

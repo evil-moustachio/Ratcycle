@@ -46,6 +46,16 @@ namespace Ratcycle
 										_game.GraphicsDevice.Viewport.Height - HitBox.Height);
         }
 
+        public Entity(Texture2D texture, Game1 game, View view, Color color, int rows, int columns, int totalFrames, bool animates, Vector2 speed)
+            : base(texture, game, view, color, rows, columns, totalFrames, animates)
+        {
+            _speed = speed;
+
+            _minCoords = new Vector2(0, (240 - HitBox.Height));
+            _maxCoords = new Vector2(_game.GraphicsDevice.Viewport.Width - HitBox.Width,
+                                        _game.GraphicsDevice.Viewport.Height - HitBox.Height);
+        }
+
         protected Texture2D CreateHitBoxTexture(Game1 game, int width, int height, Color wantedColor)
         {
             Texture2D rectangleTexture = new Texture2D(game.GraphicsDevice, width, height);

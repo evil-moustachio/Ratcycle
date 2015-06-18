@@ -83,10 +83,5 @@ namespace Ratcycle
 			public enum Type { Normal, Strong }
 			public enum Category { Plastic, Paper, Chemical, Green, Other }
 		}
-
-		public static class Player
-		{
-			public enum Direction { Up, Down, Left, Right }
-		}
 	}
 }

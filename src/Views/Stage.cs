@@ -67,9 +67,9 @@ namespace Ratcycle
             Bin[] bins = new Bin[3];
             Vector2[] binPositions = new Vector2[3]
             {
-                new Vector2(),
-                new Vector2(0, 200),
-                new Vector2(0, 400)
+                new Vector2(150, 60),
+                new Vector2(400, 60),
+                new Vector2(650, 60)
             };
 
             for (int i = 0; i < 3; i++)
@@ -107,12 +107,6 @@ namespace Ratcycle
                 int maxMonsters = 3;
                 Random r = new Random();
                 List<Monster> currentMonsters = new List<Monster>();
-                Vector2[] monsterPositions = new Vector2[3]
-                {
-                    new Vector2(600, 300),
-                    new Vector2(600, 400),
-                    new Vector2(600, 500)
-                };
 
                 while (currentMonsters.Count != maxMonsters)
                 {
@@ -121,51 +115,51 @@ namespace Ratcycle
                         case Model.GameRules.Category.Chemical:
                             if (r.Next(0, 1) == 0)
                             {
-                                currentMonsters.Add(new NormalChemical(monsterPositions[i], _game, this));
+                                currentMonsters.Add(new NormalChemical(_game, this));
                             }
                             else
                             {
-                                currentMonsters.Add(new StrongChemical(monsterPositions[i], _game, this));
+                                currentMonsters.Add(new StrongChemical(_game, this));
                             }
                             break;
                         case Model.GameRules.Category.Green:
                             if (r.Next(0, 1) == 0)
                             {
-                                currentMonsters.Add(new NormalGreen(monsterPositions[i], _game, this));
+                                currentMonsters.Add(new NormalGreen(_game, this));
                             }
                             else
                             {
-                                currentMonsters.Add(new StrongGreen(monsterPositions[i], _game, this));
+                                currentMonsters.Add(new StrongGreen(_game, this));
                             }
                             break;
                         case Model.GameRules.Category.Other:
                             if (r.Next(0, 1) == 0)
                             {
-                                currentMonsters.Add(new NormalOther(monsterPositions[i], _game, this));
+                                currentMonsters.Add(new NormalOther(_game, this));
                             }
                             else
                             {
-                                currentMonsters.Add(new StrongOther(monsterPositions[i], _game, this));
+                                currentMonsters.Add(new StrongOther(_game, this));
                             }
                             break;
                         case Model.GameRules.Category.Paper:
                             if (r.Next(0, 1) == 0)
                             {
-                                currentMonsters.Add(new NormalPaper(monsterPositions[i], _game, this));
+                                currentMonsters.Add(new NormalPaper(_game, this));
                             }
                             else
                             {
-                                currentMonsters.Add(new StrongPaper(monsterPositions[i], _game, this));
+                                currentMonsters.Add(new StrongPaper(_game, this));
                             }
                             break;
                         case Model.GameRules.Category.Plastic:
                             if (r.Next(0, 1) == 0)
                             {
-                                currentMonsters.Add(new NormalPlastic(monsterPositions[i], _game, this));
+                                currentMonsters.Add(new NormalPlastic(_game, this));
                             }
                             else
                             {
-                                currentMonsters.Add(new StrongPlastic(monsterPositions[i], _game, this));
+                                currentMonsters.Add(new StrongPlastic(_game, this));
                             }
                             break;
                     }
@@ -178,6 +172,7 @@ namespace Ratcycle
             }
         }
 
+       
 		/// <summary>
 		/// Checks if Entity collides with any other entity
 		/// </summary>
@@ -190,7 +185,7 @@ namespace Ratcycle
         {
             Rectangle futureHitBox = fhb;
 
-            if (futureHitBox.Y < maxc.Y && futureHitBox.X > minc.X && futureHitBox.X < maxc.X && futureHitBox.Y > minc.Y)
+            if ((entity is Monster && futureHitBox.Y > minc.Y)|| (futureHitBox.Y < maxc.Y && futureHitBox.X > minc.X && futureHitBox.X < maxc.X && futureHitBox.Y > minc.Y))
             {
                 for (int i = _gameObjects.Count - 1; i >= 0; i--)
                 {
@@ -214,7 +209,7 @@ namespace Ratcycle
 
             for (int i = _gameObjects.Count - 1; i >= 0; i--)
             {
-                if (_gameObjects[i] is Entity && attacker != _gameObjects[i] && AttackBox.Intersects(((Entity)_gameObjects[i]).HitBox) && attacker.GetType() != _gameObjects[i].GetType())
+                if (_gameObjects[i] is Entity && attacker != _gameObjects[i] && AttackBox.Intersects(((Entity)_gameObjects[i]).HitBox) && !(attacker is Monster && _gameObjects[i] is Monster))
                 {
                     ((Entity)_gameObjects[i]).Health -= attackerDamage;
                     attacked = true;

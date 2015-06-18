@@ -42,9 +42,11 @@ namespace Ratcycle
 		/// <param name="damage">The amount of damage the Monster may deal.</param>
 		/// <param name="range">The Monster's attack range.</param>
 		/// <param name="atkspd">Cooldown period for the Monster's attack.</param>
-		public Monster(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, float damage, int range, float atkspd, Model.GameRules.Category cat, Model.GameRules.Type type) 
-			: base (texture, position, game, view, Color.White, 1, 1, 1, false, speed)
+		public Monster(Texture2D texture, Game1 game, View view, Vector2 speed, float health, float damage, int range, float atkspd, Model.GameRules.Category cat, Model.GameRules.Type type) 
+			: base (texture, game, view, Color.White, 1, 1, 1, false, speed)
 		{
+            Spawn();
+
 			_health = health;
             _damage = damage;
             _range = range;
@@ -55,6 +57,46 @@ namespace Ratcycle
 			_nextAttack = Model.Time.CurrentGameTick;
 			_healthBar = new Healthbar (ContentHandler.GetTexture("HealthBarEntity"), _position, new Vector2(0,-25), _game, _parentView, _health);
 		}
+
+        private void Spawn()
+        {
+            Rectangle futureHitBox;
+            Vector2 position = new Vector2();
+            Random r = new Random();
+            bool spawned = false;
+
+            while(!spawned)
+            {
+                int i = r.Next(0, 3);
+                
+                int x, y;
+
+                if(i == 0)
+                {
+                    x = r.Next(-300, (0 - _sourceRectangle.Width));
+                    y = r.Next(240, (_game.GraphicsDevice.Viewport.Height + 300));
+                }
+                else if (i == 1)
+                {
+                    x = r.Next(_game.GraphicsDevice.Viewport.Width, (_game.GraphicsDevice.Viewport.Width + 300));
+                    y = r.Next(240, (_game.GraphicsDevice.Viewport.Height + 300));
+                }
+                else
+                {
+                    x = r.Next(-300, _game.GraphicsDevice.Viewport.Width + 300);
+                    y = r.Next(_game.GraphicsDevice.Viewport.Height, (_game.GraphicsDevice.Viewport.Height + 300));
+                }
+
+                futureHitBox = new Rectangle(x, y, HitBox.Height, HitBox.Width);
+                spawned = ((Stage)_parentView).NotColliding(this, futureHitBox, _minCoords, _maxCoords);
+                position.X = x;
+                position.Y = y;
+            }
+
+            _position = position;
+            Console.WriteLine(_position);
+
+        }
 
 		/// <summary>
 		/// Plots a path towards the specified target. Only returns a position within the speed of the Monster.
@@ -108,7 +150,6 @@ namespace Ratcycle
             {
                 if (((Stage)_parentView).AttackHandler(this, _damage, AttackBox))
                 {
-                    Console.WriteLine(_nextAttack);
 					_nextAttack = Model.Time.CurrentGameTick + _atkspd;
                 }
             }

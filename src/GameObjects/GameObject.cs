@@ -40,6 +40,13 @@ namespace Ratcycle
 			_color = color;
 		}
 
+        public GameObject(Game1 game, View view, Color color)
+        {
+            _game = game;
+            _parentView = view;
+            _color = color;
+        }
+
         public virtual void Update() { }
 
         public abstract void Draw(SpriteBatch spriteBatch);

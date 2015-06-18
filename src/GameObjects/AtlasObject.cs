@@ -57,6 +57,22 @@ namespace Ratcycle
             _sourceRectangle = new Rectangle(_currentX, _currentY, _frameWidth, _frameHeight);
         }
 
+        public AtlasObject(Texture2D texture, Game1 game, View view, Color color, int rows, int columns, int totalFrames, bool animates)
+            : base(game, view, color)
+        {
+            _texture = texture;
+            _frameHeight = _texture.Height / rows;
+            _frameWidth = _texture.Width / columns;
+            _columns = columns;
+
+            _animates = animates;
+
+            _ticksPerFrame = Model.Time.OneSecondOfTicks / (totalFrames * 2);
+            _nextFrameTick = DateTime.Now.Ticks + (int)_ticksPerFrame;
+
+            _sourceRectangle = new Rectangle(_currentX, _currentY, _frameWidth, _frameHeight);
+        }
+
 		/// <summary>
 		/// Changes the frame.
 		/// </summary>

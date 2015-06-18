@@ -9,8 +9,8 @@ namespace Ratcycle
 {
     public class NormalOther : Monster
     {
-        public NormalOther(Vector2 position, Game1 game, View view)
-            : base(ContentHandler.GetTexture("PC_REST_KLEIN"), position, game, view, new Vector2(1, 1), 100, 1, 15, 0.8f, Model.GameRules.Category.Other, Model.GameRules.Type.Normal)
+        public NormalOther(Game1 game, View view)
+            : base(ContentHandler.GetTexture("monster_NormalOther"), game, view, new Vector2(1, 1), 100, 1, 15, 0.8f, Model.GameRules.Category.Other, Model.GameRules.Type.Normal)
         {
         }
     }

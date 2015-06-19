@@ -20,6 +20,7 @@ namespace Ratcycle
         private float _rotation = 0f;
         private int _currentX, _currentY = 0;
         private Vector2 _origin = Vector2.Zero;
+		private bool _lockedInMovement = false;
 
 		public virtual Rectangle HitBox
         {
@@ -51,7 +52,7 @@ namespace Ratcycle
 
             _animates = animates;
 
-			_ticksPerFrame = Model.Time.OneSecondOfTicks / (totalFrames*2);
+			_ticksPerFrame = Model.Time.OneSecondOfTicks / 18;
             _nextFrameTick = DateTime.Now.Ticks + (int)_ticksPerFrame;
 
             _sourceRectangle = new Rectangle(_currentX, _currentY, _frameWidth, _frameHeight);
@@ -67,7 +68,7 @@ namespace Ratcycle
 
             _animates = animates;
 
-            _ticksPerFrame = Model.Time.OneSecondOfTicks / (totalFrames * 2);
+			_ticksPerFrame = Model.Time.OneSecondOfTicks / 18;
             _nextFrameTick = DateTime.Now.Ticks + (int)_ticksPerFrame;
 
             _sourceRectangle = new Rectangle(_currentX, _currentY, _frameWidth, _frameHeight);
@@ -79,7 +80,11 @@ namespace Ratcycle
 		/// <param name="y">The y coordinate.</param>
         public void ChangeFrame(int y)
         {
-            _sourceRectangle.Y = y * _frameHeight;
+			if (!_lockedInMovement) 
+			{
+				_currentY = y;
+				_sourceRectangle.Y = y * _frameHeight;
+			}
         }
 
 		/// <summary>
@@ -89,9 +94,23 @@ namespace Ratcycle
 		/// <param name="y">The y coordinate.</param>
         public void ChangeFrame(int x, int y)
         {
-            _sourceRectangle.X = x * _frameWidth;
-            _sourceRectangle.Y = y * _frameHeight;
+			if (!_lockedInMovement) 
+			{
+				_currentX = x;
+				_sourceRectangle.X = x * _frameWidth;
+
+				_currentY = y;
+				_sourceRectangle.Y = y * _frameHeight;
+			}
         }
+
+		public void StartSingleMovement(int y)
+		{
+			_currentX = 0;
+			_currentY = y;
+			_sourceRectangle.Y = y * _frameHeight;
+			_lockedInMovement = true;
+		}
 
 		/// <summary>
 		/// Changes the frame based on the animation
@@ -100,11 +119,12 @@ namespace Ratcycle
         {
             if (DateTime.Now.Ticks > _nextFrameTick)
             {
-                _currentX = _currentX + 1;
+                _currentX++;
 
                 if (_currentX == _columns)
                 {
                     _currentX = 0;
+					_lockedInMovement = false;
                 }
 
                 ChangeFrame(_currentX, _currentY);

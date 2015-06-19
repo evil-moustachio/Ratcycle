@@ -86,7 +86,7 @@ namespace Ratcycle
         /// <param name="health"></param>
         /// <param name="damage"></param>
 		public Rat(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, float damage)
-            : base(texture, position, game, view, Color.White, 2, 1, 1, false, speed)
+            : base(texture, position, game, view, Color.White, 6, 6, 36, true, speed)
         {
 			_health = health;
             _damage = damage;
@@ -115,7 +115,7 @@ namespace Ratcycle
 					_position.X += 25;
 				}
 
-				ChangeFrame (1);
+				ChangeFrame (3);
 				
 				_flip = true;
                 if (view.NotColliding(this, MakeFutureRectangle(Directions.Left), _minCoords, _maxCoords))
@@ -130,13 +130,20 @@ namespace Ratcycle
 						_position.X -= 25;
 					}
 
-					ChangeFrame (0);
+					ChangeFrame (2);
 					
 					_flip = false;
                     if (view.NotColliding(this, MakeFutureRectangle(Directions.Right), _minCoords, _maxCoords))
                     {
                         _position.X += _speed.X;
                     }
+			}
+			if (!KeyHandler.IsKeyDown (_right) && !KeyHandler.IsKeyDown (_left)) 
+			{
+				if (_flip)
+					ChangeFrame (5);
+				else
+					ChangeFrame (4);
 			}
 		}
         
@@ -145,7 +152,11 @@ namespace Ratcycle
             if (KeyHandler.checkNewKeyPressed(Keys.Space))
             {
                 //Animate
-
+				if (_flip)
+					StartSingleMovement(1);
+				else
+					StartSingleMovement(0);
+				
                 ((Stage)_parentView).AttackHandler(this, _damage, AttackBox);
             }
         }

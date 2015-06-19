@@ -139,12 +139,12 @@ namespace Ratcycle
 			{
 				if (type == Model.GameRules.Type.Normal) 
 				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_PLASTIC_KLEIN"), v, _game, this, 
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalPlastic"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
 				} 
 				else 
 				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_PLASTIC_GROOT"), v, _game, this, 
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongPlastic"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
 				}
 			} 
@@ -152,12 +152,12 @@ namespace Ratcycle
 			{
 				if (type == Model.GameRules.Type.Normal) 
 				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_PAPIER_KLEIN"), v, _game, this, 
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalPaper"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
 				} 
 				else 
 				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_PAPIER_GROOT"), v, _game, this, 
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongPaper"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
 				}
 			}  
@@ -165,12 +165,12 @@ namespace Ratcycle
 			{
 				if (type == Model.GameRules.Type.Normal) 
 				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_CHEMISCH_KLEIN"), v, _game, this, 
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalChemical"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
 				} 
 				else 
 				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_CHEMISCH_GROOT"), v, _game, this, 
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongChemical"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
 				}
 			}
@@ -178,12 +178,12 @@ namespace Ratcycle
 			{
 				if (type == Model.GameRules.Type.Normal) 
 				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_GFT_KLEIN"), v, _game, this, 
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalGreen"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
 				} 
 				else 
 				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_GFT_GROOT"), v, _game, this, 
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongGreen"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
 				}
 			} 
@@ -191,12 +191,12 @@ namespace Ratcycle
 			{
 				if (type == Model.GameRules.Type.Normal) 
 				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_REST_KLEIN"), v, _game, this, 
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalOther"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
 				} 
 				else 
 				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("PC_REST_GROOT"), v, _game, this, 
+					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongOther"), v, _game, this, 
 						Color.White, 1, 1, 1, false);
 				}
 			}

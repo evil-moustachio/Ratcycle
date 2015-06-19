@@ -51,22 +51,20 @@ namespace Ratcycle
 			textures.Add ("Entity_BinPaper", null);
 			textures.Add ("Entity_BinPlastic", null);
 			textures.Add ("Entity_Garbagetruck", null);
+			textures.Add("monster_NormalChemical", null); //PLACEHOLDER
+			textures.Add("monster_StrongChemical", null); //PLACEHOLDER
+			textures.Add("monster_NormalGreen", null); //PLACEHOLDER
+			textures.Add("monster_StrongGreen", null); //PLACEHOLDER
+			textures.Add("monster_NormalPaper", null); //PLACEHOLDER
+			textures.Add("monster_StrongPaper", null); //PLACEHOLDER
+			textures.Add("monster_NormalPlastic", null); //PLACEHOLDER
+			textures.Add("monster_StrongPlastic", null); //PLACEHOLDER
+			textures.Add("monster_NormalOther", null); //PLACEHOLDER
+			textures.Add("monster_StrongOther", null); //PLACEHOLDER
 
 			//PLACEHOLDERS
 			textures.Add("PCSquareButton", null);
 			textures.Add("pcInventory", null);
-
-            //MONSTER PLACEHOLDERS
-            textures.Add("monster_NormalChemical", null);
-            textures.Add("monster_StrongChemical", null);
-            textures.Add("monster_NormalGreen", null);
-            textures.Add("monster_StrongGreen", null);
-            textures.Add("monster_NormalPaper", null);
-            textures.Add("monster_StrongPaper", null);
-			textures.Add("monster_NormalPlastic", null);
-			textures.Add("monster_StrongPlastic", null);
-            textures.Add("monster_NormalOther", null);
-            textures.Add("monster_StrongOther", null);
 
 			//FONTS
 			fonts.Add ("Aero Matics Display-14", null);

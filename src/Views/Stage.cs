@@ -224,7 +224,7 @@ namespace Ratcycle
             return attacked;
         }
 
-        public Garbage GarbageHandler ()
+        public Garbage GarbageHandler (Garbage inventory)
         {
             Garbage garbage;
 
@@ -246,7 +246,7 @@ namespace Ratcycle
                 }
             }
 
-            return null;
+            return inventory;
         }
 
         public void MonsterToGarbage(Monster monster, Texture2D texture)

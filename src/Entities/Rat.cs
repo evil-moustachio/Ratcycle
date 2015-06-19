@@ -154,7 +154,7 @@ namespace Ratcycle
         {
             if (KeyHandler.checkNewKeyPressed(Keys.F))
             {
-                _inventory = ((Stage)_parentView).GarbageHandler();
+                _inventory = ((Stage)_parentView).GarbageHandler(_inventory);
             }
         }
 

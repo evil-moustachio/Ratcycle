@@ -108,7 +108,7 @@ namespace Ratcycle
             {
 				_position.Y += _speed.Y;
 			}
-			if (KeyHandler.IsKeyDown(_left) && view.NotColliding(this, MakeFutureRectangle(Directions.Left), _minCoords, _maxCoords)) 
+			if (KeyHandler.IsKeyDown(_left)) 
             {
 				if (!_flip) 
                 {
@@ -116,10 +116,14 @@ namespace Ratcycle
 				}
 
 				ChangeFrame (1);
-				_position.X -= _speed.X;
+				
 				_flip = true;
+                if (view.NotColliding(this, MakeFutureRectangle(Directions.Left), _minCoords, _maxCoords))
+                {
+                    _position.X -= _speed.X;
+                }
 			}
-			if (KeyHandler.IsKeyDown(_right) && view.NotColliding(this, MakeFutureRectangle(Directions.Right), _minCoords, _maxCoords)) 
+			if (KeyHandler.IsKeyDown(_right))
             {
 					if (_flip) 
                     {
@@ -127,8 +131,12 @@ namespace Ratcycle
 					}
 
 					ChangeFrame (0);
-					_position.X += _speed.X;
+					
 					_flip = false;
+                    if (view.NotColliding(this, MakeFutureRectangle(Directions.Right), _minCoords, _maxCoords))
+                    {
+                        _position.X += _speed.X;
+                    }
 			}
 		}
         

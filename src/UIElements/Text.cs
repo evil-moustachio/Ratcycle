@@ -5,10 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Ratcycle
 {
-	class Text : GameObject
+	public class Text : GameObject
     {
-        private SpriteFont _font;
-        private String _text;
+        protected SpriteFont _font;
+        protected String _text;
 
 		public Text(Vector2 position, Game1 game, View view, String fontName, String text, Color color)
 			: base(position, game, view, color)

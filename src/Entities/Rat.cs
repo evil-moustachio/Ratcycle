@@ -15,6 +15,14 @@ namespace Ratcycle
         private Keys _left = Keys.A;
         private Keys _right = Keys.D;
 
+		public enum Directions
+		{
+			Up,
+			Right,
+			Down,
+			Left
+		}
+
         public Garbage Inventory
         {
             get { return _inventory; }
@@ -74,10 +82,8 @@ namespace Ratcycle
         /// <param name="game"></param>
         /// <param name="view"></param>
         /// <param name="speed"></param>
-        /// <param name="up"></param>
-        /// <param name="down"></param>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
+        /// <param name="health"></param>
+        /// <param name="damage"></param>
 		public Rat(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, float damage)
             : base(texture, position, game, view, Color.White, 2, 1, 1, false, speed)
         {
@@ -93,15 +99,15 @@ namespace Ratcycle
             Stage view = (Stage)_parentView;
 
 
-			if (KeyHandler.IsKeyDown(_up) && view.NotColliding(this, MakeFutureRectangle("up"), _minCoords, _maxCoords)) 
+			if (KeyHandler.IsKeyDown(_up) && view.NotColliding(this, MakeFutureRectangle(Directions.Up), _minCoords, _maxCoords)) 
             {
 				_position.Y -= _speed.Y;
 			}
-			if (KeyHandler.IsKeyDown(_down) && view.NotColliding(this, MakeFutureRectangle("down"), _minCoords, _maxCoords)) 
+			if (KeyHandler.IsKeyDown(_down) && view.NotColliding(this, MakeFutureRectangle(Directions.Down), _minCoords, _maxCoords)) 
             {
 				_position.Y += _speed.Y;
 			}
-			if (KeyHandler.IsKeyDown(_left) && view.NotColliding(this, MakeFutureRectangle("right"), _minCoords, _maxCoords)) 
+			if (KeyHandler.IsKeyDown(_left) && view.NotColliding(this, MakeFutureRectangle(Directions.Left), _minCoords, _maxCoords)) 
             {
 				if (!_flip) 
                 {
@@ -112,7 +118,7 @@ namespace Ratcycle
 				_position.X -= _speed.X;
 				_flip = true;
 			}
-			if (KeyHandler.IsKeyDown(_right) && view.NotColliding(this, MakeFutureRectangle("left"), _minCoords, _maxCoords)) 
+			if (KeyHandler.IsKeyDown(_right) && view.NotColliding(this, MakeFutureRectangle(Directions.Right), _minCoords, _maxCoords)) 
             {
 					if (_flip) 
                     {
@@ -144,28 +150,21 @@ namespace Ratcycle
         }
 
 
-		private Rectangle MakeFutureRectangle (String direction)
+		private Rectangle MakeFutureRectangle (Directions direction)
         {
-			if (direction == "up")
-            { 
-                return new Rectangle(HitBox.X, HitBox.Y - (int)_speed.Y, HitBox.Width, HitBox.Height);
-            }
-			else if (direction == "down")
-            {
-                return new Rectangle(HitBox.X, HitBox.Y + (int)_speed.Y, HitBox.Width, HitBox.Height);
-            }
-			else if (direction == "left")
-            {
-                return new Rectangle(HitBox.X - (int)_speed.X, HitBox.Y, HitBox.Width, HitBox.Height);
-            }
-			else if (direction == "right")
-            {
-                return new Rectangle(HitBox.X + (int)_speed.X, HitBox.Y, HitBox.Width, HitBox.Height);
-            }
-            else
-            {
-                return new Rectangle();
-            }
+			switch (direction) 
+			{
+				case Directions.Up:
+					return new Rectangle (HitBox.X, HitBox.Y - (int)_speed.Y, HitBox.Width, HitBox.Height);
+				case Directions.Down:
+					return new Rectangle (HitBox.X, HitBox.Y + (int)_speed.Y, HitBox.Width, HitBox.Height);
+				case Directions.Left:
+					return new Rectangle (HitBox.X - (int)_speed.X, HitBox.Y, HitBox.Width, HitBox.Height);
+				case Directions.Right:
+					return new Rectangle (HitBox.X + (int)_speed.X, HitBox.Y, HitBox.Width, HitBox.Height);
+				default:
+					return new Rectangle();
+			}
         }
 
         public override void KillEntity()

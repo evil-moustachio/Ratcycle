@@ -15,8 +15,6 @@ namespace Ratcycle
         private float _speed;
         private int _counter;
 
-        private Bin _parent;
-
         /// <summary>
         /// Gives the player feedback on his actions.
         /// </summary>
@@ -27,12 +25,10 @@ namespace Ratcycle
         /// <param name="color"></param>
         /// <param name="game"></param>
         /// <param name="view"></param>
-        /// <param name="parent"></param>
         /// <param name="fontName"></param>
-        public PointNotification(Vector2 position, float distance, float duration, string text, Color color, Game1 game, View view, Bin parent, string fontName)
+        public PointNotification(Vector2 position, float distance, float duration, string text, Color color, Game1 game, View view, string fontName)
             : base(position, game, view, fontName, text, color)
         {
-            _parent = parent;
             _duration = duration;
             _target = new Vector2(_position.X, _position.Y - distance);
             _speed = distance / _duration;
@@ -78,7 +74,7 @@ namespace Ratcycle
             else
             {
                 // Target reached, Kill this instance.
-                _parent.removePointNotification(this);
+				((Stage)_parentView).removePointNotification(this);
             }
         }
     }

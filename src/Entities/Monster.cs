@@ -94,7 +94,7 @@ namespace Ratcycle
             }
 
             _position = position;
-            Console.WriteLine(_position);
+			Console.WriteLine("new " + this.GetType() + " spawned at " + _position);
 
         }
 
@@ -172,6 +172,7 @@ namespace Ratcycle
         /// </summary>
         public override void KillEntity()
         {
+			Console.WriteLine (this.GetType () + " died. " + Model.counter);
             ((Stage)_parentView).MonsterToGarbage(this, _texture);
         }
 

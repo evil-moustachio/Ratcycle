@@ -14,6 +14,7 @@ namespace Ratcycle
         private Keys _down = Keys.S;
         private Keys _left = Keys.A;
         private Keys _right = Keys.D;
+		private bool _alive = true;
 
 		public enum Directions
 		{
@@ -178,9 +179,13 @@ namespace Ratcycle
         public override void Update()
         {
             base.Update();
-            Move();
-            PickUp();
-            Attack();
+			if (_alive) 
+			{
+				Move ();
+				PickUp ();
+				Attack ();
+			}
         }
     }
 }
+	

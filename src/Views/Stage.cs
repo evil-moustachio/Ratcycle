@@ -21,6 +21,7 @@ namespace Ratcycle
         private int _deadMonsters = 0;
         private const float _waveTime = 5;
         private float _remainingWaveTime = _waveTime;
+		private List<PointNotification> _pointNotifications;
 
 		public Vector2 RatBase { get { return new Vector2(_rat.HitBox.Center.X, _rat.HitBox.Bottom); } }
 		public Rectangle RatHitBox { get { return _rat.HitBox; } }
@@ -44,6 +45,8 @@ namespace Ratcycle
 			_hud = new StageHUD(_game, _viewController, false, _rat, this);
 
             _gameObjects.Add(_rat);
+
+			_pointNotifications = new List<PointNotification>();
         }
 
         public void RandomizeCategories()
@@ -191,8 +194,8 @@ namespace Ratcycle
                 {
                     if ((_gameObjects[i] is Entity || _gameObjects[i] is Bin) && _gameObjects[i] != entity && futureHitBox.Intersects(((AtlasObject)_gameObjects[i]).HitBox))
                     {
-                        Console.WriteLine(entity.GetType());
-                        Console.WriteLine("I am colliding!!! " + Model.counter);
+						if (entity is Monster && _gameObjects[i] is Monster)
+							Console.WriteLine(entity.GetType() + " collided with " + _gameObjects[i].GetType() + " " + Model.counter);
                         return false;
                     }
                 }
@@ -254,6 +257,8 @@ namespace Ratcycle
             _gameObjects.Remove(monster);
             _currentMonsters.Remove(monster);
 			_gameObjects.Add(garbage);
+
+			Console.WriteLine (_totalMonsters + " Monsters left.");
         }
 
         public void CheckFinished()
@@ -277,13 +282,51 @@ namespace Ratcycle
             }
         }
 
+		public void UpdatePointNotifications()
+		{
+			for (int i = _pointNotifications.Count - 1; i >= 0; i--)
+			{
+				_pointNotifications[i].Update();
+			}
+		}
+
+		public void DrawPointNotifications(SpriteBatch spriteBatch)
+		{
+			for (int i = _pointNotifications.Count - 1; i >= 0; i--)
+			{
+				_pointNotifications[i].Draw(spriteBatch);
+			}
+		}
+
+		public void removePointNotification(PointNotification pointNotification)
+		{
+			_pointNotifications.Remove(pointNotification);
+		}
+
+		/// <summary>
+		/// Creates a upward moving string that notifies the user of something.
+		/// </summary>
+		/// <param name="text">The string that will be displayed.</param>
+		/// <param name="color">Color of the notification.</param>
+		/// <param name="position">Where the notification will start it's movement.</param>
+		/// <param name="distance">The amount of Y the notification will travel.</param>
+		/// <param name="duration">The amount of updates the notification will take to travel.</param>
+		public void addPointNotification(string text, Color color, Vector2 position, float distance, float duration)
+		{
+			_pointNotifications.Add (new PointNotification (position, distance, duration, text, color, _game, this, "Aero Matics Display-48"));
+		}
+
         /// <summary>
         /// Updates the stage, also invokes CheckObjectCollision before base.Update() so collision check is done before objects are updated.
         /// </summary>
         public override void Update()
         {
 			if (!_isPaused) 
-				base.Update();
+			{
+				base.Update ();
+				UpdatePointNotifications ();
+			}
+			
 
 			if (KeyHandler.checkNewKeyPressed (Keys.Escape)) 
 				Pause();
@@ -295,6 +338,7 @@ namespace Ratcycle
         {
             spriteBatch.Draw(ContentHandler.GetTexture("Background-01"), new Vector2());
             base.Draw(spriteBatch);
+			DrawPointNotifications (spriteBatch);
 
 			_hud.Draw(spriteBatch);
         }

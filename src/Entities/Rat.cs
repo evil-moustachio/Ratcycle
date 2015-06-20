@@ -15,6 +15,9 @@ namespace Ratcycle
         private Keys _left = Keys.A;
         private Keys _right = Keys.D;
 		private bool _alive = true;
+        private const float _regenTime = 3;
+        private float _remainingRegenTime = _regenTime;
+
 
 		public enum Directions
 		{
@@ -88,7 +91,7 @@ namespace Ratcycle
 		public Rat(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, float damage)
             : base(texture, position, game, view, Color.White, 6, 6, 36, true, speed)
         {
-			_health = health;
+			_health = (100 * (0.75f * (float) Model.Stage.Reached));
             _damage = damage;
         }
         
@@ -186,6 +189,30 @@ namespace Ratcycle
 					return new Rectangle();
 			}
         }
+        
+        private void RegenerateHealth()
+        {
+            var timer = (float)_game.GameTime.ElapsedGameTime.TotalSeconds;
+            float health = _health;
+            float regen = 0.8f * (Model.Stage.CurrentPlaying);
+
+            _remainingRegenTime -= timer;
+
+            if (_remainingRegenTime <= 0 && _health < (100 * (0.75f * (float) Model.Stage.Reached)))
+            {
+                Console.WriteLine(_health);
+                health += regen;
+
+                if (health > (100 * (0.75 * (float) Model.Stage.Reached)))
+                {
+                    health = (100 * (0.75f * (float)Model.Stage.Reached));
+                }
+
+                _health = health;
+                //((Stage)_parentView).addPointNotification("+" + Math.Round(regen), Color.Green, new Vector2(HitBox.X, HitBox.Y), 125f, 30f);
+                _remainingRegenTime = _regenTime;
+            }
+        }
 
         public override void KillEntity()
         {
@@ -200,6 +227,7 @@ namespace Ratcycle
             base.Update();
 			if (_alive) 
 			{
+                RegenerateHealth();
 				Move ();
 				PickUp ();
 				Attack ();

@@ -194,8 +194,6 @@ namespace Ratcycle
                 {
                     if ((_gameObjects[i] is Entity || _gameObjects[i] is Bin) && _gameObjects[i] != entity && futureHitBox.Intersects(((AtlasObject)_gameObjects[i]).HitBox))
                     {
-						if (entity is Monster && _gameObjects[i] is Monster)
-							Console.WriteLine(entity.GetType() + " collided with " + _gameObjects[i].GetType() + " " + Model.counter);
                         return false;
                     }
                 }

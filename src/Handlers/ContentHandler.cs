@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework.Media;
 
 namespace Ratcycle
 {
@@ -10,6 +11,7 @@ namespace Ratcycle
 	{
 		static Dictionary <string, Texture2D> textures = new Dictionary<string, Texture2D>();
 		static Dictionary <string, SpriteFont> fonts = new Dictionary<string, SpriteFont>();
+        static Dictionary <string, Song> music = new Dictionary<string, Song>();
 
 		/// <summary>
 		/// Sets the content.
@@ -73,6 +75,9 @@ namespace Ratcycle
 			fonts.Add ("Aero Matics Display-28", null);
 			fonts.Add ("Aero Matics Display-36", null);
 			fonts.Add ("Aero Matics Display-48", null);
+
+            //MUSIC
+            music.Add("Nova3", null);
 		}
 
 		/// <summary>
@@ -92,6 +97,12 @@ namespace Ratcycle
 				string key = fonts.Keys.ElementAt (i);
 				fonts [key] = content.Load<SpriteFont>(key);
 			}
+
+            for (int i = music.Count - 1; i >= 0; --i)
+            {
+                string key = music.Keys.ElementAt(i);
+                music[key] = content.Load<Song>(key);
+            }
 		}
 
 		/// <summary>
@@ -113,6 +124,16 @@ namespace Ratcycle
 		{
 			return fonts [name];
 		}
+
+        /// <summary>
+        /// Gets the music by the specified name.
+        /// </summary>
+        /// <returns>The 'music.</returns>
+        /// <param name="name">Name.</param>
+        public static Song GetMusic(string name)
+        {
+            return music[name];
+        }
 	}
 }
 

@@ -28,13 +28,13 @@ namespace Ratcycle
 				// Positive
 				Model.GameRules.points += garbage.Points;
 				((Stage)_parentView).addPointNotification("+" + garbage.Points, Color.Green, _position, 75f, 30f);
-                _soundEffect = new SoundEffectHandler("Correct", _game);
+                _soundEffect = new SoundEffectHandler("Correct", 1.0f, _game);
                 _soundEffect.Play();
 			} else {
 				// Negative
 				Model.GameRules.points -= garbage.Points;
 				((Stage)_parentView).addPointNotification("-" + garbage.Points, Color.Red, _position, 75f, 30f);
-                _soundEffect = new SoundEffectHandler("Wrong", _game);
+                _soundEffect = new SoundEffectHandler("Wrong", 1.0f, _game);
                 _soundEffect.Play();
 			}
 		}

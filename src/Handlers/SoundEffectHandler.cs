@@ -10,28 +10,41 @@ namespace Ratcycle
     class SoundEffectHandler
     {
         SoundEffect effect;
-        
+        SoundEffectInstance instance;
 
-        public SoundEffectHandler(String location, Game game)
+        public SoundEffectHandler(String location, float volume, Game game)
         {
             //You MUST use Monogame Pipeline to convert the song to the right format! Else you will get error
             effect = ContentHandler.GetSoundEffect(location);
+            instance = effect.CreateInstance();
+            instance.Volume = volume;
         }
 
-        public SoundEffectHandler(String location, Game game, bool loop)
+        public SoundEffectHandler(String location, float volume, Game game, bool loop)
         {
             //You MUST use Monogame Pipeline to convert the song to the right format! Else you will get error
             effect = ContentHandler.GetSoundEffect(location);
-            SoundEffectInstance instance = effect.CreateInstance();
+            instance = effect.CreateInstance();
             if (loop)
             {
                 instance.IsLooped = loop;
             }
+            instance.Volume = volume;
         }
 
         public void Play()
         {
-            effect.Play();
+            instance.Play();
+        }
+
+        public void Pause()
+        {
+            instance.Pause();
+        }
+
+        public void Stop()
+        {
+            instance.Stop();
         }
     }
 }

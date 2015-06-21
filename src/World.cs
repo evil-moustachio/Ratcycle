@@ -23,7 +23,7 @@ namespace Ratcycle
             _game = game;
             Player = new Player();
             _viewController = new ViewController(_game);
-            _soundEffect = new SoundEffectHandler("Nova", _game, true);
+            _soundEffect = new SoundEffectHandler("Nova", 1.0f, _game, true);
             _soundEffect.Play();
         }
 

@@ -36,7 +36,7 @@ namespace Ratcycle
                 {
 					//check if the mouse starts pressing the button
 					buttonState = Model.Layout.ButtonStates.Focus;
-                    _soundEffect = new SoundEffectHandler("Button", _game);
+                    _soundEffect = new SoundEffectHandler("Button", 1.0f, _game);
                     _soundEffect.Play();
 					buttonStateSwitch = true;
 				} 

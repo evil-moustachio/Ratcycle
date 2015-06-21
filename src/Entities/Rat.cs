@@ -182,7 +182,7 @@ namespace Ratcycle
             if (KeyHandler.checkNewKeyPressed(Keys.Space))
             {
                 //SoundEffect
-                _soundEffect = new SoundEffectHandler("Woosj", _game);
+                _soundEffect = new SoundEffectHandler("Woosj", 1.0f, _game);
                 _soundEffect.Play();
 
                 //Animate

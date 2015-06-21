@@ -12,7 +12,6 @@ namespace Ratcycle
 	{
 		static Dictionary <string, Texture2D> textures = new Dictionary<string, Texture2D>();
 		static Dictionary <string, SpriteFont> fonts = new Dictionary<string, SpriteFont>();
-        static Dictionary <string, Song> music = new Dictionary<string, Song>();
         static Dictionary<string, SoundEffect> soundEffects = new Dictionary<string, SoundEffect>();
 
 		/// <summary>
@@ -78,13 +77,11 @@ namespace Ratcycle
 			fonts.Add ("Aero Matics Display-36", null);
 			fonts.Add ("Aero Matics Display-48", null);
 
-            //MUSIC
-            music.Add("Nova", null);
-
             //SOUND EFFECTS
             soundEffects.Add("Hit", null);
             soundEffects.Add("Correct", null);
             soundEffects.Add("Wrong", null);
+            soundEffects.Add("Nova", null);
 		}
 
 		/// <summary>
@@ -105,16 +102,10 @@ namespace Ratcycle
 				fonts [key] = content.Load<SpriteFont>(key);
 			}
 
-            for (int i = music.Count - 1; i >= 0; --i)
-            {
-                string key = music.Keys.ElementAt(i);
-                music[key] = content.Load<Song>("Audio/" + GetDevice() + "/Music/" + key);
-            }
-
             for (int i = soundEffects.Count - 1; i >= 0; --i)
             {
                 string key = soundEffects.Keys.ElementAt(i);
-                soundEffects[key] = content.Load<SoundEffect>("Audio/" + GetDevice() + "/SoundEffects/" + key);
+                soundEffects[key] = content.Load<SoundEffect>("Audio/" + GetDevice() + "/" + key);
             }
 		}
 
@@ -137,16 +128,6 @@ namespace Ratcycle
 		{
 			return fonts [name];
 		}
-
-        /// <summary>
-        /// Gets the music by the specified name.
-        /// </summary>
-        /// <returns>The 'music.</returns>
-        /// <param name="name">Name.</param>
-        public static Song GetMusic(string name)
-        {
-            return music[name];
-        }
 
         /// <summary>
         /// Gets the sound effect by the specified name.

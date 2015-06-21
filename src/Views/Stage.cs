@@ -362,11 +362,15 @@ namespace Ratcycle
 		{
 			if (_isPaused) 
             {
+				_game.World.ChangeMusic("GameTheme");
+				
 				_isPaused = false;
 				_hud.UnPause();
 			} 
             else 
             {
+				_game.World.ChangeMusic("DeathTheme");
+				
 				_isPaused = true;
 				_hud.Pause();
 			}

@@ -111,11 +111,22 @@ namespace Ratcycle
 				Model.Layout.Font.ExtraExtraLarge, "Gepauzeerd", Color.White));
 
 			_overviewItems.Add(new Button(ContentHandler.GetTexture("ButtonStart"), 
-				center + new Vector2(-ContentHandler.GetTexture("ButtonStart").Width / 2, 0), 
+				center + new Vector2(-ContentHandler.GetTexture("ButtonStart").Width / 2, -50), 
 				_game, this, _stage.Pause));
-			_overviewItems.Add(new Button(ContentHandler.GetTexture("PCSquareButton"), 
-				center + new Vector2(-ContentHandler.GetTexture("PCSquareButton").Width / 2, 100), 
-				_game, this, _stage.NextView));
+			_overviewItems.Add(new Button(
+				ContentHandler.GetTexture("ButtonRestart"),
+				center + new Vector2 (-ContentHandler.GetTexture ("ButtonRestart").Width / 2, 25), 
+				_game,
+				this,
+				ResetStage 
+			));
+			_overviewItems.Add(new Button(
+				ContentHandler.GetTexture("ButtonChooseLevel"),
+				center + new Vector2 (-ContentHandler.GetTexture ("ButtonChooseLevel").Width / 2, 100), 
+				_game,
+				this,
+				ToMenuChooseStage 
+			));
 
 			for (int i = 0; i < _overviewItems.Count; i++) 
 			{

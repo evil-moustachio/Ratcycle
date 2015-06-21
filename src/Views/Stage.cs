@@ -232,7 +232,7 @@ namespace Ratcycle
                 {
                     garbage = (Garbage)_gameObjects[i];
 					_hud.DrawGarbage (garbage.Category, garbage.Type);
-					garbage.PickUp ();
+					garbage.PickUp();
                     return garbage;
                 }
                 else if (_gameObjects[i] is Bin && _rat.BodyBox.Intersects(((Bin)_gameObjects[i]).HitBox) && _rat.Inventory != null)
@@ -321,8 +321,8 @@ namespace Ratcycle
         {
 			if (!_isPaused) 
 			{
-				base.Update ();
-				UpdatePointNotifications ();
+				base.Update();
+				UpdatePointNotifications();
 			}
 			
 
@@ -341,17 +341,30 @@ namespace Ratcycle
 			_hud.Draw(spriteBatch);
         }
 
+		public void GameOver()
+		{
+			if (_rat.IsAlive) 
+			{
+				// Got to results
+			}
+			else 
+			{
+				_isPaused = true;
+				_hud.GameOver();
+			}
+		}
+
 		public void Pause()
 		{
 			if (_isPaused) 
             {
 				_isPaused = false;
-				_hud.UnPause ();
+				_hud.UnPause();
 			} 
             else 
             {
 				_isPaused = true;
-				_hud.Pause ();
+				_hud.Pause();
 			}
 		}
 

@@ -18,7 +18,9 @@ namespace Ratcycle
         private const float _regenTime = 3;
         private float _remainingRegenTime = _regenTime;
         private SoundEffectHandler _soundEffect;
+		private long _gameOverTick;
 
+		public bool IsAlive { get { return _alive; } }
 
 		public enum Directions
 		{
@@ -245,7 +247,12 @@ namespace Ratcycle
 
         public override void KillEntity()
         {
-            Console.WriteLine("Im ded lel im da rat");
+			if (_alive) 
+			{
+				((Stage)_parentView).addPointNotification("Fatality", Color.Red, new Vector2(_position.X - 30, _position.Y), 30f, 100f);
+				_alive = false;
+				_gameOverTick = Model.Time.CurrentGameTick + (Model.Time.OneSecondOfTicks * 2);
+			} 
         }
 
         /// <summary>
@@ -257,10 +264,24 @@ namespace Ratcycle
 			if (_alive) 
 			{
                 RegenerateHealth();
-				Move ();
-				PickUp ();
-				Attack ();
+				Move();
+				PickUp();
+				Attack();
 			}
+			else
+			{
+				// Makes the rat stop breathing
+				if (_flip)
+					ChangeFrame (5, 0);
+				else
+					ChangeFrame (4, 0);
+			}
+
+			if (Model.Time.CurrentGameTick >= _gameOverTick) 
+			{
+				((Stage)_parentView).GameOver();
+			}
+				
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

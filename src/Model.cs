@@ -32,7 +32,17 @@ namespace Ratcycle
 		public static class Layout
 		{
 			public enum ButtonStates { Inactive, Hover, Focus };
-			public static string standartFontName = "Aero Matics Display-14";
+
+			public static class Font
+			{
+				public static string Small = "Aero Matics Display-14";
+				public static string Medium = "Aero Matics Display-18";
+				public static string MediumLarge = "Aero Matics Display-24";
+				public static string Large = "Aero Matics Display-28";
+				public static string ExtraLarge = "Aero Matics Display-36";
+				public static string ExtraExtraLarge = "Aero Matics Display-48";
+			}
+
 		}
 
 		/// <summary>
@@ -68,7 +78,7 @@ namespace Ratcycle
 		{
 			public static int CurrentPlaying = 1;
 			public static int Current;
-			public static int Reached = 12;
+			public static int Reached = 1;
 		}
 
 		/// <summary>

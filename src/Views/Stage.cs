@@ -235,7 +235,7 @@ namespace Ratcycle
 					garbage.PickUp ();
                     return garbage;
                 }
-                else if (_gameObjects[i] is Bin && _rat.AttackBox.Intersects(((Bin)_gameObjects[i]).HitBox) && _rat.Inventory != null)
+                else if (_gameObjects[i] is Bin && _rat.BodyBox.Intersects(((Bin)_gameObjects[i]).HitBox) && _rat.Inventory != null)
                 {
                     _hud.RemoveGarbage();
                     ((Bin)_gameObjects[i]).AddGarbage(_rat.Inventory);

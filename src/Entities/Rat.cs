@@ -56,6 +56,19 @@ namespace Ratcycle
             }
         }
 
+        public Rectangle BodyBox
+        {
+            get
+            {
+                return new Rectangle(
+                    (int)_position.X,
+                    (int)_position.Y,
+                    _sourceRectangle.Width,
+                    _sourceRectangle.Height
+                );
+            }
+        }
+
 		public override Rectangle HitBox
 		{
 			get
@@ -248,6 +261,10 @@ namespace Ratcycle
 				PickUp ();
 				Attack ();
 			}
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
         }
     }
 }

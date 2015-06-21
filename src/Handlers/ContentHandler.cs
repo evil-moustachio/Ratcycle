@@ -82,6 +82,7 @@ namespace Ratcycle
             soundEffects.Add("Correct", null);
             soundEffects.Add("Wrong", null);
             soundEffects.Add("Nova", null);
+            soundEffects.Add("Woosj", null);
 		}
 
 		/// <summary>

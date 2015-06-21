@@ -17,6 +17,7 @@ namespace Ratcycle
 		private bool _alive = true;
         private const float _regenTime = 3;
         private float _remainingRegenTime = _regenTime;
+        private SoundEffectHandler _soundEffect;
 
 
 		public enum Directions
@@ -165,6 +166,10 @@ namespace Ratcycle
         {
             if (KeyHandler.checkNewKeyPressed(Keys.Space))
             {
+                //SoundEffect
+                _soundEffect = new SoundEffectHandler("Woosj", _game, true);
+                _soundEffect.Play();
+
                 //Animate
 				if (_flip)
 					StartSingleMovement(1);

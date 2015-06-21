@@ -22,7 +22,6 @@ namespace Ratcycle
         private const float _waveTime = 5;
         private float _remainingWaveTime = _waveTime;
 		private List<PointNotification> _pointNotifications;
-        private SoundEffectHandler _soundEffect;
 
 		public Vector2 RatBase { get { return new Vector2(_rat.HitBox.Center.X, _rat.HitBox.Bottom); } }
 		public Rectangle RatHitBox { get { return _rat.HitBox; } }
@@ -215,8 +214,6 @@ namespace Ratcycle
             {
                 if (_gameObjects[i] is Entity && attacker != _gameObjects[i] && AttackBox.Intersects(((Entity)_gameObjects[i]).HitBox) && !(attacker is Monster && _gameObjects[i] is Monster))
                 {
-                    _soundEffect = new SoundEffectHandler("Hit", _game);
-                    _soundEffect.Play();
                     ((Entity)_gameObjects[i]).Health -= attackerDamage;
                     attacked = true;
                 }

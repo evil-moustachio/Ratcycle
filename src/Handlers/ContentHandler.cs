@@ -78,7 +78,7 @@ namespace Ratcycle
 			fonts.Add ("Aero Matics Display-48", null);
 
             //SOUND EFFECTS
-            soundEffects.Add("Hit", null);
+            soundEffects.Add("MonsterHitsRat", null);
             soundEffects.Add("Correct", null);
             soundEffects.Add("Wrong", null);
             soundEffects.Add("Nova", null);

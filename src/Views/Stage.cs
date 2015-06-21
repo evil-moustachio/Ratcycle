@@ -192,7 +192,7 @@ namespace Ratcycle
             {
                 for (int i = _gameObjects.Count - 1; i >= 0; i--)
                 {
-                    if ((_gameObjects[i] is Entity || _gameObjects[i] is Bin) && _gameObjects[i] != entity && futureHitBox.Intersects(((AtlasObject)_gameObjects[i]).HitBox))
+                    if (_gameObjects[i] is Entity && _gameObjects[i] != entity && futureHitBox.Intersects(((AtlasObject)_gameObjects[i]).HitBox))
                     {
                         return false;
                     }

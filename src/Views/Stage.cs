@@ -70,9 +70,9 @@ namespace Ratcycle
             Bin[] bins = new Bin[3];
             Vector2[] binPositions = new Vector2[3]
             {
-                new Vector2(150, 60),
-                new Vector2(400, 60),
-                new Vector2(650, 60)
+                new Vector2(150, 136),
+                new Vector2(400, 136),
+                new Vector2(650, 136)
             };
 
             for (int i = 0; i < 3; i++)

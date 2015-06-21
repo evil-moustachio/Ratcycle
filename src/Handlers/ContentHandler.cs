@@ -79,13 +79,18 @@ namespace Ratcycle
 			fonts.Add ("Aero Matics Display-36", null);
 			fonts.Add ("Aero Matics Display-48", null);
 
+            //MUSIC
+            soundEffects.Add("DeathTheme", null);
+            soundEffects.Add("GameTheme", null);
+            soundEffects.Add("MainTheme", null);
+
             //SOUND EFFECTS
             soundEffects.Add ("MonsterHitsRat", null);
             soundEffects.Add ("Correct", null);
             soundEffects.Add ("Wrong", null);
-            soundEffects.Add ("Nova", null);
             soundEffects.Add ("Woosj", null);
             soundEffects.Add ("Button", null);
+            soundEffects.Add("DeathSpiral", null);
 		}
 
 		/// <summary>

@@ -23,7 +23,7 @@ namespace Ratcycle
 		public StageHUD (Game1 game, ViewController viewController, Boolean mouseVisible, Rat rat, Stage stage) 
 			: base (game, viewController, mouseVisible)
 		{
-			_pausedItems = new List<GameObject> ();
+			_pausedItems = new List<GameObject>();
 			_stage = stage;
 			_rat = rat;
 
@@ -40,12 +40,12 @@ namespace Ratcycle
 				Color.White, 1, 1, 1, false));
 		}
 
-		public override void Update ()
+		public override void Update()
 		{
 			if (_goUnPause) 
-            {
+			{
 				for (int i = _pausedItems.Count - 1; i >= 0; i--) 
-                {
+				{
 					_gameObjects.Remove (_pausedItems [i]);
 					_pausedItems.Remove (_pausedItems [i]);
 				}
@@ -53,17 +53,17 @@ namespace Ratcycle
 				_goUnPause = false;
 			}
 
-			base.Update ();
+			base.Update();
 
 			_healthBar.Health = _rat.Health;
-			_healthBar.Update ();
+			_healthBar.Update();
 			UpdatePoints (Model.GameRules.points);
 		}
 
 		public override void Draw (SpriteBatch spriteBatch)
 		{
 			for (int i = 0; i < _gameObjects.Count; i++) 
-            {
+			{
 				_gameObjects [i].Draw (spriteBatch);
 			}
 		}
@@ -73,9 +73,9 @@ namespace Ratcycle
 		/// Pause the game.
 		/// </summary>
 		public void Pause() 
-        {
+		{
 			if (!_isPaused) 
-            {
+			{
 				_game.IsMouseVisible = true;
 				_isPaused = true;
 
@@ -89,7 +89,7 @@ namespace Ratcycle
 		public void UnPause() 
 		{
 			if (_isPaused) 
-            {
+			{
 				_game.IsMouseVisible = false;
 				_isPaused = false;
 				_goUnPause = true;
@@ -107,7 +107,7 @@ namespace Ratcycle
 			_pausedItems.Add(new AtlasObject(ContentHandler.GetTexture("BackgroundOrange"), new Vector2 (0), _game, this, 
 				Color.White, 1, 1, 1, false));
 
-			_pausedItems.Add(new Text(new Vector2(center.X - 100, 100), _game, this,
+			_pausedItems.Add(new Text(new Vector2(center.X - 150, 100), _game, this,
 				Model.Layout.Font.ExtraExtraLarge, "Gepauzeerd", Color.White));
 
 			_pausedItems.Add(new Button(ContentHandler.GetTexture("ButtonStart"), 
@@ -116,6 +116,39 @@ namespace Ratcycle
 			_pausedItems.Add(new Button(ContentHandler.GetTexture("PCSquareButton"), 
 				center + new Vector2(-ContentHandler.GetTexture("PCSquareButton").Width / 2, 100), 
 				_game, this, _stage.NextView));
+
+			for (int i = 0; i < _pausedItems.Count; i++) 
+			{
+				_gameObjects.Add(_pausedItems[i]);
+			}
+		}
+
+		public void GameOver()
+		{
+			_game.IsMouseVisible = true;
+			_isPaused = true;
+			_stage.Pause();
+
+			createGameOverHUD();
+		}
+
+		private void createGameOverHUD()
+		{
+			Vector2 center = new Vector2(_game.GraphicsDevice.Viewport.Width / 2, 
+				_game.GraphicsDevice.Viewport.Height / 2);
+
+			_pausedItems.Add(new AtlasObject(ContentHandler.GetTexture("BackgroundOrange"), new Vector2 (0), _game, this, 
+				Color.White, 1, 1, 1, false));
+
+			_pausedItems.Add(new Text(new Vector2(center.X - 140, 100), _game, this,
+				Model.Layout.Font.ExtraExtraLarge, "Game Over", Color.White));
+
+			//			_pausedItems.Add(new Button(ContentHandler.GetTexture("ButtonReStart"), 
+			//				center + new Vector2(-ContentHandler.GetTexture("ButtonStart").Width / 2, 0), 
+			//				_game, this, _stage.Pause));
+			//			_pausedItems.Add(new Button(ContentHandler.GetTexture("ButtonToMenu"), 
+			//				center + new Vector2(-ContentHandler.GetTexture("ButtonToMenu").Width / 2, 0), 
+			//				_game, this, _stage.Pause));
 
 			for (int i = 0; i < _pausedItems.Count; i++) 
 			{

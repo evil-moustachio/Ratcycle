@@ -17,7 +17,9 @@ namespace Ratcycle
 		private bool _alive = true;
         private const float _regenTime = 3;
         private float _remainingRegenTime = _regenTime;
+		private int _updatesSinceDeath;
 
+		public bool IsAlive { get { return _alive; } }
 
 		public enum Directions
 		{
@@ -227,7 +229,13 @@ namespace Ratcycle
 
         public override void KillEntity()
         {
-            Console.WriteLine("Im ded lel im da rat");
+			if (_alive) 
+			{
+				((Stage)_parentView).addPointNotification ("Fatality", Color.Red, _position, 30f, 50f);
+				_alive = false;
+			} 
+			else
+				_updatesSinceDeath++;
         }
 
         /// <summary>
@@ -239,10 +247,15 @@ namespace Ratcycle
 			if (_alive) 
 			{
                 RegenerateHealth();
-				Move ();
-				PickUp ();
-				Attack ();
+				Move();
+				PickUp();
+				Attack();
 			}
+			if (_updatesSinceDeath >= 50) 
+			{
+  				((Stage)_parentView).GameOver();
+			}
+				
         }
     }
 }

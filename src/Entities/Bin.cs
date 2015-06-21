@@ -11,6 +11,7 @@ namespace Ratcycle
     {
         private List<Model.GameRules.Category> _contents;
         private Model.GameRules.Category _category;
+        private SoundEffectHandler _soundEffect;
 
         public Bin(Texture2D texture, Vector2 position, Game1 game, View view, Model.GameRules.Category category)
             : base(texture, position, game, view, Color.White, 1, 1, 1, false)
@@ -27,10 +28,14 @@ namespace Ratcycle
 				// Positive
 				Model.GameRules.points += garbage.Points;
 				((Stage)_parentView).addPointNotification("+" + garbage.Points, Color.Green, _position, 75f, 30f);
+                _soundEffect = new SoundEffectHandler("Correct", _game);
+                _soundEffect.Play();
 			} else {
 				// Negative
 				Model.GameRules.points -= garbage.Points;
 				((Stage)_parentView).addPointNotification("-" + garbage.Points, Color.Red, _position, 75f, 30f);
+                _soundEffect = new SoundEffectHandler("Wrong", _game);
+                _soundEffect.Play();
 			}
 		}
     }

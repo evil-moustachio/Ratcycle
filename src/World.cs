@@ -23,7 +23,7 @@ namespace Ratcycle
             _game = game;
             Player = new Player();
             _viewController = new ViewController(_game);
-            _music = new MusicHandler("Nova3", _game, true);
+            _music = new MusicHandler("Nova", _game, true);
             _music.Play();
         }
 

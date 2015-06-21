@@ -13,13 +13,14 @@ namespace Ratcycle
 
         public MusicHandler(String location, Game game)
         {
-            song = game.Content.Load<Song>(location);
+            //You MUST use Monogame Pipeline to convert the song to the right format! Else you will get error
+            song = ContentHandler.GetMusic(location);
         }
 
         public MusicHandler(String location, Game game, bool repeat)
         {
             //You MUST use Monogame Pipeline to convert the song to the right format! Else you will get error
-            song = ContentHandler.GetMusic("Nova3");
+            song = ContentHandler.GetMusic(location);
             if (repeat)
                 MediaPlayer.IsRepeating = repeat;
         }

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Ratcycle
 {
@@ -12,6 +13,7 @@ namespace Ratcycle
 		static Dictionary <string, Texture2D> textures = new Dictionary<string, Texture2D>();
 		static Dictionary <string, SpriteFont> fonts = new Dictionary<string, SpriteFont>();
         static Dictionary <string, Song> music = new Dictionary<string, Song>();
+        static Dictionary<string, SoundEffect> soundEffects = new Dictionary<string, SoundEffect>();
 
 		/// <summary>
 		/// Sets the content.
@@ -77,7 +79,12 @@ namespace Ratcycle
 			fonts.Add ("Aero Matics Display-48", null);
 
             //MUSIC
-            music.Add("Nova3", null);
+            music.Add("Nova", null);
+
+            //SOUND EFFECTS
+            soundEffects.Add("Hit", null);
+            soundEffects.Add("Correct", null);
+            soundEffects.Add("Wrong", null);
 		}
 
 		/// <summary>
@@ -101,7 +108,13 @@ namespace Ratcycle
             for (int i = music.Count - 1; i >= 0; --i)
             {
                 string key = music.Keys.ElementAt(i);
-                music[key] = content.Load<Song>(key);
+                music[key] = content.Load<Song>("Audio/" + GetDevice() + "/Music/" + key);
+            }
+
+            for (int i = soundEffects.Count - 1; i >= 0; --i)
+            {
+                string key = soundEffects.Keys.ElementAt(i);
+                soundEffects[key] = content.Load<SoundEffect>("Audio/" + GetDevice() + "/SoundEffects/" + key);
             }
 		}
 
@@ -133,6 +146,28 @@ namespace Ratcycle
         public static Song GetMusic(string name)
         {
             return music[name];
+        }
+
+        /// <summary>
+        /// Gets the sound effect by the specified name.
+        /// </summary>
+        /// <returns>The 'soundeffect.</returns>
+        /// <param name="name">Name.</param>
+        public static SoundEffect GetSoundEffect(string name)
+        {
+            return soundEffects[name];
+        }
+
+        public static String GetDevice()
+        {
+            if (Environment.OSVersion.ToString().Contains("Windows"))
+            {
+                return "Windows";
+            }
+            else
+            {
+                return "Mac";
+            } 
         }
 	}
 }

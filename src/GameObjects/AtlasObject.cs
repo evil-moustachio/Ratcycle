@@ -94,11 +94,11 @@ namespace Ratcycle
 		/// <param name="y">The y coordinate.</param>
         public void ChangeFrame(int x, int y)
         {
-			if (!_lockedInMovement) 
-			{
 				_currentX = x;
 				_sourceRectangle.X = x * _frameWidth;
 
+			if (!_lockedInMovement) 
+			{
 				_currentY = y;
 				_sourceRectangle.Y = y * _frameHeight;
 			}

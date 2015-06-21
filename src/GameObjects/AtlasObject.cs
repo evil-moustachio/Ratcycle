@@ -106,9 +106,7 @@ namespace Ratcycle
 
 		public void StartSingleMovement(int y)
 		{
-			_currentX = 0;
-			_currentY = y;
-			_sourceRectangle.Y = y * _frameHeight;
+			ChangeFrame (0, y);
 			_lockedInMovement = true;
 		}
 

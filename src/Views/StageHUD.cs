@@ -108,7 +108,7 @@ namespace Ratcycle
 				Color.White, 1, 1, 1, false));
 
 			_pausedItems.Add(new Text(new Vector2(center.X - 100, 100), _game, this,
-				Model.Layout.standartFontName, "Gepauzeerd", Color.White));
+				Model.Layout.Font.ExtraExtraLarge, "Gepauzeerd", Color.White));
 
 			_pausedItems.Add(new Button(ContentHandler.GetTexture("ButtonStart"), 
 				center + new Vector2(-ContentHandler.GetTexture("ButtonStart").Width / 2, 0), 

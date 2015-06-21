@@ -18,12 +18,12 @@ namespace Ratcycle
 
 		//Paused items
 		private Boolean _isPaused, _goUnPause;
-		private List<GameObject> _pausedItems;
+		private List<GameObject> _overviewItems;
 
 		public StageHUD (Game1 game, ViewController viewController, Boolean mouseVisible, Rat rat, Stage stage) 
 			: base (game, viewController, mouseVisible)
 		{
-			_pausedItems = new List<GameObject>();
+			_overviewItems = new List<GameObject>();
 			_stage = stage;
 			_rat = rat;
 
@@ -44,10 +44,10 @@ namespace Ratcycle
 		{
 			if (_goUnPause) 
 			{
-				for (int i = _pausedItems.Count - 1; i >= 0; i--) 
+				for (int i = _overviewItems.Count - 1; i >= 0; i--) 
 				{
-					_gameObjects.Remove (_pausedItems [i]);
-					_pausedItems.Remove (_pausedItems [i]);
+					_gameObjects.Remove (_overviewItems [i]);
+					_overviewItems.Remove (_overviewItems [i]);
 				}
 
 				_goUnPause = false;
@@ -104,22 +104,22 @@ namespace Ratcycle
 			Vector2 center = new Vector2(_game.GraphicsDevice.Viewport.Width / 2, 
 				_game.GraphicsDevice.Viewport.Height / 2);
 
-			_pausedItems.Add(new AtlasObject(ContentHandler.GetTexture("BackgroundOrange"), new Vector2 (0), _game, this, 
+			_overviewItems.Add(new AtlasObject(ContentHandler.GetTexture("BackgroundOrange"), new Vector2 (0), _game, this, 
 				Color.White, 1, 1, 1, false));
 
-			_pausedItems.Add(new Text(new Vector2(center.X - 150, 100), _game, this,
+			_overviewItems.Add(new Text(new Vector2(center.X - 150, 100), _game, this,
 				Model.Layout.Font.ExtraExtraLarge, "Gepauzeerd", Color.White));
 
-			_pausedItems.Add(new Button(ContentHandler.GetTexture("ButtonStart"), 
+			_overviewItems.Add(new Button(ContentHandler.GetTexture("ButtonStart"), 
 				center + new Vector2(-ContentHandler.GetTexture("ButtonStart").Width / 2, 0), 
 				_game, this, _stage.Pause));
-			_pausedItems.Add(new Button(ContentHandler.GetTexture("PCSquareButton"), 
+			_overviewItems.Add(new Button(ContentHandler.GetTexture("PCSquareButton"), 
 				center + new Vector2(-ContentHandler.GetTexture("PCSquareButton").Width / 2, 100), 
 				_game, this, _stage.NextView));
 
-			for (int i = 0; i < _pausedItems.Count; i++) 
+			for (int i = 0; i < _overviewItems.Count; i++) 
 			{
-				_gameObjects.Add(_pausedItems[i]);
+				_gameObjects.Add(_overviewItems[i]);
 			}
 		}
 
@@ -127,7 +127,6 @@ namespace Ratcycle
 		{
 			_game.IsMouseVisible = true;
 			_isPaused = true;
-			_stage.Pause();
 
 			createGameOverHUD();
 		}
@@ -137,22 +136,30 @@ namespace Ratcycle
 			Vector2 center = new Vector2(_game.GraphicsDevice.Viewport.Width / 2, 
 				_game.GraphicsDevice.Viewport.Height / 2);
 
-			_pausedItems.Add(new AtlasObject(ContentHandler.GetTexture("BackgroundOrange"), new Vector2 (0), _game, this, 
+			_overviewItems.Add(new AtlasObject(ContentHandler.GetTexture("BackgroundOrange"), new Vector2 (0), _game, this, 
 				Color.White, 1, 1, 1, false));
 
-			_pausedItems.Add(new Text(new Vector2(center.X - 140, 100), _game, this,
+			_overviewItems.Add(new Text(new Vector2(center.X - 140, 100), _game, this,
 				Model.Layout.Font.ExtraExtraLarge, "Game Over", Color.White));
 
-			//			_pausedItems.Add(new Button(ContentHandler.GetTexture("ButtonReStart"), 
-			//				center + new Vector2(-ContentHandler.GetTexture("ButtonStart").Width / 2, 0), 
-			//				_game, this, _stage.Pause));
-			//			_pausedItems.Add(new Button(ContentHandler.GetTexture("ButtonToMenu"), 
-			//				center + new Vector2(-ContentHandler.GetTexture("ButtonToMenu").Width / 2, 0), 
-			//				_game, this, _stage.Pause));
+			_overviewItems.Add(new Button(
+				ContentHandler.GetTexture("ButtonRestart"),
+				center + new Vector2 (-ContentHandler.GetTexture ("ButtonRestart").Width / 2, 0), 
+				_game,
+				this,
+				ResetStage 
+			));
+			_overviewItems.Add(new Button(
+				ContentHandler.GetTexture("ButtonChooseLevel"),
+				center + new Vector2 (-ContentHandler.GetTexture ("ButtonChooseLevel").Width / 2, 100), 
+				_game,
+				this,
+				ToMenuChooseStage 
+			));
 
-			for (int i = 0; i < _pausedItems.Count; i++) 
+			for (int i = 0; i < _overviewItems.Count; i++) 
 			{
-				_gameObjects.Add(_pausedItems[i]);
+				_gameObjects.Add(_overviewItems[i]);
 			}
 		}
 
@@ -254,6 +261,16 @@ namespace Ratcycle
 		private void UpdatePoints(int points)
 		{
 			_points.setString (points + " punten");
+		}
+
+		private void ResetStage()
+		{
+			_viewController.SetView(new Stage(_game, _viewController, false));
+		}
+
+		private void ToMenuChooseStage()
+		{
+			_viewController.SetView(new MenuChooseStage(_game, _viewController, true));
 		}
 	}
 }

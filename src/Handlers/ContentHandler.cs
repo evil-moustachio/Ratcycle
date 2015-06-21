@@ -32,6 +32,8 @@ namespace Ratcycle
 
 			//BUTTONS
 			textures.Add ("ButtonStart", null);
+			textures.Add ("ButtonRestart", null);
+			textures.Add ("ButtonChooseLevel", null);
 			textures.Add ("ButtonRight", null);
 			textures.Add ("ButtonLeft", null);
 			textures.Add ("ChooseLevel_Button-01", null);

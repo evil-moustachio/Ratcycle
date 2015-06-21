@@ -17,7 +17,7 @@ namespace Ratcycle
 		private bool _alive = true;
         private const float _regenTime = 3;
         private float _remainingRegenTime = _regenTime;
-		private int _updatesSinceDeath;
+		private long _gameOverTick;
 
 		public bool IsAlive { get { return _alive; } }
 
@@ -231,11 +231,10 @@ namespace Ratcycle
         {
 			if (_alive) 
 			{
-				((Stage)_parentView).addPointNotification ("Fatality", Color.Red, _position, 30f, 50f);
+				((Stage)_parentView).addPointNotification("Fatality", Color.Red, new Vector2(_position.X - 30, _position.Y), 30f, 100f);
 				_alive = false;
+				_gameOverTick = Model.Time.CurrentGameTick + (Model.Time.OneSecondOfTicks * 2);
 			} 
-			else
-				_updatesSinceDeath++;
         }
 
         /// <summary>
@@ -251,9 +250,18 @@ namespace Ratcycle
 				PickUp();
 				Attack();
 			}
-			if (_updatesSinceDeath >= 50) 
+			else
 			{
-  				((Stage)_parentView).GameOver();
+				// Makes the rat stop breathing
+				if (_flip)
+					ChangeFrame (5, 0);
+				else
+					ChangeFrame (4, 0);
+			}
+
+			if (Model.Time.CurrentGameTick >= _gameOverTick) 
+			{
+				((Stage)_parentView).GameOver();
 			}
 				
         }

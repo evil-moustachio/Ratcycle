@@ -17,7 +17,6 @@ namespace Ratcycle
 		private bool _alive = true;
         private const float _regenTime = 3;
         private float _remainingRegenTime = _regenTime;
-        private SoundEffectHandler _soundEffect;
 		private long _gameOverTick;
 
 		public bool IsAlive { get { return _alive; } }
@@ -182,7 +181,7 @@ namespace Ratcycle
             if (KeyHandler.checkNewKeyPressed(Keys.Space))
             {
                 //SoundEffect
-                _soundEffect = new SoundEffectHandler("Woosj", 1.0f, _game);
+				_soundEffect = new SoundHandler("Woosj", Model.Settings.SoundEffectVolume, _game);
                 _soundEffect.Play();
 
                 //Animate
@@ -247,8 +246,12 @@ namespace Ratcycle
 
         public override void KillEntity()
         {
-			if (_alive) 
+			if (_alive)
 			{
+				_game.World.Music.Stop ();
+				_soundEffect = new SoundHandler ("DeathSpiral", Model.Settings.SoundEffectVolume, _game);
+				_soundEffect.Play ();
+
 				((Stage)_parentView).addPointNotification("Fatality", Color.Red, new Vector2(_position.X - 30, _position.Y), 30f, 100f);
 				_alive = false;
 				_gameOverTick = Model.Time.CurrentGameTick + (Model.Time.OneSecondOfTicks * 2);

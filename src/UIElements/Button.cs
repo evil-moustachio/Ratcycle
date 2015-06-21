@@ -12,7 +12,6 @@ namespace Ratcycle
 		Action eventHandler;
 		Action<int> eventIntHandler;
 		int eventInt;
-        private SoundEffectHandler _soundEffect;
 
 		public Button (Texture2D texture, Vector2 position, Game1 game, View view, Action evHandler)
 			: base(texture, position, game, view, Color.White, 3, 1, 1, false)
@@ -36,7 +35,7 @@ namespace Ratcycle
                 {
 					//check if the mouse starts pressing the button
 					buttonState = Model.Layout.ButtonStates.Focus;
-                    _soundEffect = new SoundEffectHandler("Button", 1.0f, _game);
+					_soundEffect = new SoundHandler("Button", Model.Settings.SoundEffectVolume, _game);
                     _soundEffect.Play();
 					buttonStateSwitch = true;
 				} 

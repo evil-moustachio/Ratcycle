@@ -93,5 +93,14 @@ namespace Ratcycle
 			public enum Type { Normal, Strong }
 			public enum Category { Plastic, Paper, Chemical, Green, Other }
 		}
+
+		/// <summary>
+		/// All settings that affect the presentation of the game.
+		/// </summary>
+		public static class Settings
+		{
+			public static float MusicVolume = 0.5f;
+			public static float SoundEffectVolume = 1f;
+		}
 	}
 }

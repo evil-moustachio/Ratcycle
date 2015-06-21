@@ -47,6 +47,8 @@ namespace Ratcycle
             _gameObjects.Add(_rat);
 
 			_pointNotifications = new List<PointNotification>();
+
+			_game.World.ChangeMusic ("GameTheme");
         }
 
         public void RandomizeCategories()
@@ -349,6 +351,8 @@ namespace Ratcycle
 			}
 			else 
 			{
+				_game.World.ChangeMusic("DeathTheme");
+
 				_isPaused = true;
 				_hud.GameOver();
 			}

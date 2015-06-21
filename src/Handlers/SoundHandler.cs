@@ -7,12 +7,12 @@ using System.Text;
 
 namespace Ratcycle
 {
-    class SoundEffectHandler
+    public class SoundHandler
     {
         SoundEffect effect;
         SoundEffectInstance instance;
 
-        public SoundEffectHandler(String location, float volume, Game game)
+        public SoundHandler(String location, float volume, Game game)
         {
             //You MUST use Monogame Pipeline to convert the song to the right format! Else you will get error
             effect = ContentHandler.GetSoundEffect(location);
@@ -20,7 +20,7 @@ namespace Ratcycle
             instance.Volume = volume;
         }
 
-        public SoundEffectHandler(String location, float volume, Game game, bool loop)
+        public SoundHandler(String location, float volume, Game game, bool loop)
         {
             //You MUST use Monogame Pipeline to convert the song to the right format! Else you will get error
             effect = ContentHandler.GetSoundEffect(location);

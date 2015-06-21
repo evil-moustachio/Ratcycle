@@ -13,6 +13,7 @@ namespace Ratcycle
         protected Game1 _game;
 		protected View _parentView;
 		protected Color _color;
+		protected SoundHandler _soundEffect;
 
         public Vector2 Position
         {

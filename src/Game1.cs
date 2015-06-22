@@ -57,7 +57,7 @@ namespace Ratcycle
 
 			ContentHandler.LoadContent (Content);
 
-            Music = new SoundHandler("MainTheme", Model.Settings.MusicVolume, this, true);
+            Music = new SoundHandler("MainTheme", Model.Settings.MusicVolume, true);
             Music.Play();
 		}
 			
@@ -86,7 +86,7 @@ namespace Ratcycle
             if (name != Music.GetName() || !Music.IsPlaying())
             {
                 Music.Stop();
-                Music = new SoundHandler(name, Model.Settings.MusicVolume, this, true);
+                Music = new SoundHandler(name, Model.Settings.MusicVolume, true);
                 Music.Play();
             }
         }

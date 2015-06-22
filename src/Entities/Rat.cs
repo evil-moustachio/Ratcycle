@@ -179,7 +179,7 @@ namespace Ratcycle
             if (KeyHandler.checkNewKeyPressed(Keys.Space))
             {
                 //SoundEffect
-				_soundEffect = new SoundHandler("Woosj", Model.Settings.SoundEffectVolume, _game);
+				_soundEffect = new SoundHandler("Woosj", Model.Settings.SoundEffectVolume);
                 _soundEffect.Play();
 
                 //Animate
@@ -246,7 +246,7 @@ namespace Ratcycle
 			if (_alive)
 			{
 				_game.Music.Stop ();
-				_soundEffect = new SoundHandler ("DeathSpiral", Model.Settings.SoundEffectVolume, _game);
+				_soundEffect = new SoundHandler ("DeathSpiral", Model.Settings.SoundEffectVolume);
 				_soundEffect.Play ();
 
 				((Stage)_parentView).NewPlayerFeedback("Fatality", Color.Red, new Vector2(_position.X - 30, _position.Y), 30f, 100f);

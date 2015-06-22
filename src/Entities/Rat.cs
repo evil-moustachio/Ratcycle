@@ -184,9 +184,9 @@ namespace Ratcycle
 
                 //Animate
 				if (_flip)
-					StartSingleMovement(3);
+					StartSingleMotion(3);
 				else
-					StartSingleMovement(2);
+					StartSingleMotion(2);
 				
                 ((Stage)_parentView).AttackHandler(this, _damage, AttackBox);
             }

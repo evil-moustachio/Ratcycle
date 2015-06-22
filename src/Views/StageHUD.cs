@@ -101,8 +101,7 @@ namespace Ratcycle
 		/// </summary>
 		private void createPauseHUD()
 		{
-			Vector2 center = new Vector2(_game.GraphicsDevice.Viewport.Width / 2, 
-				_game.GraphicsDevice.Viewport.Height / 2);
+            var center = Model.Layout.Center(_game);
 
 			_overviewItems.Add(new AtlasObject(ContentHandler.GetTexture("BackgroundOrange"), new Vector2 (0), _game, this, 
 				Color.White, 1, 1, 1, false));
@@ -110,19 +109,23 @@ namespace Ratcycle
 			_overviewItems.Add(new Text(new Vector2(center.X - 150, 100), _game, this,
 				Model.Layout.Font.ExtraExtraLarge, "Gepauzeerd", Color.White));
 
-			_overviewItems.Add(new Button(ContentHandler.GetTexture("ButtonStart"), 
-				center + new Vector2(-ContentHandler.GetTexture("ButtonStart").Width / 2, -50), 
-				_game, this, _stage.Pause));
+            // Buttons
+			_overviewItems.Add(new Button(ContentHandler.GetTexture("ButtonContinue"), 
+				center + new Vector2(-ContentHandler.GetTexture("ButtonContinue").Width / 2, -80), 
+				_game,
+                this,
+                _stage.Pause
+            ));
 			_overviewItems.Add(new Button(
-				ContentHandler.GetTexture("ButtonRestart"),
-				center + new Vector2 (-ContentHandler.GetTexture ("ButtonRestart").Width / 2, 25), 
+				ContentHandler.GetTexture("ButtonRetry"),
+                center + new Vector2(-ContentHandler.GetTexture("ButtonRetry").Width / 2, 10), 
 				_game,
 				this,
 				ResetStage 
 			));
 			_overviewItems.Add(new Button(
-				ContentHandler.GetTexture("ButtonChooseLevel"),
-				center + new Vector2 (-ContentHandler.GetTexture ("ButtonChooseLevel").Width / 2, 100), 
+				ContentHandler.GetTexture("ButtonStop"),
+				center + new Vector2 (-ContentHandler.GetTexture ("ButtonStop").Width / 2, 100), 
 				_game,
 				this,
 				ToMenuChooseStage 
@@ -144,8 +147,7 @@ namespace Ratcycle
 
 		private void createGameOverHUD()
 		{
-			Vector2 center = new Vector2(_game.GraphicsDevice.Viewport.Width / 2, 
-				_game.GraphicsDevice.Viewport.Height / 2);
+            var center = Model.Layout.Center(_game);
 
 			_overviewItems.Add(new AtlasObject(ContentHandler.GetTexture("BackgroundOrange"), new Vector2 (0), _game, this, 
 				Color.White, 1, 1, 1, false));
@@ -154,15 +156,15 @@ namespace Ratcycle
 				Model.Layout.Font.ExtraExtraLarge, "Game Over", Color.White));
 
 			_overviewItems.Add(new Button(
-				ContentHandler.GetTexture("ButtonRestart"),
-				center + new Vector2 (-ContentHandler.GetTexture ("ButtonRestart").Width / 2, 0), 
+                ContentHandler.GetTexture("ButtonRetry"),
+                center + new Vector2(-ContentHandler.GetTexture("ButtonRetry").Width / 2, -50), 
 				_game,
 				this,
 				ResetStage 
 			));
 			_overviewItems.Add(new Button(
-				ContentHandler.GetTexture("ButtonChooseLevel"),
-				center + new Vector2 (-ContentHandler.GetTexture ("ButtonChooseLevel").Width / 2, 100), 
+                ContentHandler.GetTexture("ButtonStop"),
+                center + new Vector2(-ContentHandler.GetTexture("ButtonStop").Width / 2, 50), 
 				_game,
 				this,
 				ToMenuChooseStage 

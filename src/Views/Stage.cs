@@ -337,6 +337,17 @@ namespace Ratcycle
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(ContentHandler.GetTexture("Background-01"), new Vector2());
+
+			// Draw garbage first
+			for (int i = _orderedList.Count - 1; i >= 0; i--) 
+			{
+				if (_orderedList[i] is Garbage)
+				{
+					_orderedList[i].Draw(spriteBatch);
+					_orderedList.Remove(_orderedList[i]);
+				}
+			}
+
             base.Draw(spriteBatch);
 			DrawPointNotifications (spriteBatch);
 

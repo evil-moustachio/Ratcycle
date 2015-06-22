@@ -27,6 +27,14 @@ namespace Ratcycle
 			}
         }
 
+		public virtual int LowestY
+		{
+			get
+			{
+				return (int)_position.Y;
+			}
+		}
+
         /// <summary>
         /// GameObject constructor.
         /// </summary>

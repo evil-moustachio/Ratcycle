@@ -32,6 +32,18 @@ namespace Ratcycle
         }
 
 		/// <summary>
+		/// Returns the Y position of the bottom of the texture.
+		/// </summary>
+		/// <value>The lowest y.</value>
+		public override int LowestY 
+		{
+			get 
+			{
+				return (int)_position.Y + _sourceRectangle.Height;
+			}
+		}
+
+		/// <summary>
 		/// Initializes a new instance of the <see cref="Ratcycle.AtlasObject"/> class.
 		/// </summary>
 		/// <param name="texture">Texture.</param>

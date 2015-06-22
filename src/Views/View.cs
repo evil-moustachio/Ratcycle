@@ -53,7 +53,7 @@ namespace Ratcycle
 				_gameObjects[i].Update();
 			}
 
-            _orderedList = _gameObjects.OrderBy(o => -o.Position.Y).ToList();
+            _orderedList = _gameObjects.OrderBy(o => -o.LowestY).ToList();
 		}
 
         /// <summary>
@@ -65,6 +65,7 @@ namespace Ratcycle
 			for (int i = _orderedList.Count - 1; i >= 0; i--) 
             {
 				_orderedList[i].Draw (spriteBatch);
+				_orderedList.Remove (_orderedList [i]);
 			}
 		}
 	}

@@ -21,7 +21,7 @@ namespace Ratcycle
         private int _deadMonsters = 0;
         private const float _waveTime = 5;
         private float _remainingWaveTime = _waveTime;
-		private List<PointNotification> _pointNotifications;
+		private List<PlayerFeedback> _playerFeedbackList;
 
 		public Vector2 RatBase { get { return new Vector2(_rat.HitBox.Center.X, _rat.HitBox.Bottom); } }
 		public Rectangle RatHitBox { get { return _rat.HitBox; } }
@@ -46,7 +46,7 @@ namespace Ratcycle
 
             _gameObjects.Add(_rat);
 
-			_pointNotifications = new List<PointNotification>();
+			_playerFeedbackList = new List<PlayerFeedback>();
 
 			_game.World.ChangeMusic ("GameTheme");
         }
@@ -285,25 +285,25 @@ namespace Ratcycle
             }
         }
 
-		public void UpdatePointNotifications()
+		public void UpdatePlayerFeedback()
 		{
-			for (int i = _pointNotifications.Count - 1; i >= 0; i--)
+			for (int i = _playerFeedbackList.Count - 1; i >= 0; i--)
 			{
-				_pointNotifications[i].Update();
+				_playerFeedbackList[i].Update();
 			}
 		}
 
-		public void DrawPointNotifications(SpriteBatch spriteBatch)
+		public void DrawPlayerNotification(SpriteBatch spriteBatch)
 		{
-			for (int i = _pointNotifications.Count - 1; i >= 0; i--)
+			for (int i = _playerFeedbackList.Count - 1; i >= 0; i--)
 			{
-				_pointNotifications[i].Draw(spriteBatch);
+				_playerFeedbackList[i].Draw(spriteBatch);
 			}
 		}
 
-		public void removePointNotification(PointNotification pointNotification)
+		public void removePlayerFeedback(PlayerFeedback playerFeedback)
 		{
-			_pointNotifications.Remove(pointNotification);
+			_playerFeedbackList.Remove(playerFeedback);
 		}
 
 		/// <summary>
@@ -314,9 +314,9 @@ namespace Ratcycle
 		/// <param name="position">Where the notification will start it's movement.</param>
 		/// <param name="distance">The amount of Y the notification will travel.</param>
 		/// <param name="duration">The amount of updates the notification will take to travel.</param>
-		public void AddPointNotification(string text, Color color, Vector2 position, float distance, float duration)
+		public void NewPlayerFeedback(string text, Color color, Vector2 position, float distance, float duration)
 		{
-			_pointNotifications.Add (new PointNotification (position, distance, duration, text, color, _game, this, "Aero Matics Display-48"));
+			_playerFeedbackList.Add (new PlayerFeedback (position, distance, duration, text, color, _game, this, "Aero Matics Display-48"));
 		}
 
         /// <summary>
@@ -327,7 +327,7 @@ namespace Ratcycle
 			if (!_isPaused) 
 			{
 				base.Update();
-				UpdatePointNotifications();
+				UpdatePlayerFeedback();
 				CheckFinished();
 			}
 			
@@ -352,7 +352,7 @@ namespace Ratcycle
 			}
 
             base.Draw(spriteBatch);
-			DrawPointNotifications (spriteBatch);
+			DrawPlayerNotification (spriteBatch);
 
 			_hud.Draw(spriteBatch);
         }
@@ -393,7 +393,7 @@ namespace Ratcycle
 
 		public void NextView()
 		{
-			AddPointNotification ("Stage Cleared", Color.Green, _rat.Position, 30f, 100f);
+			NewPlayerFeedback ("Stage Cleared", Color.Green, _rat.Position, 30f, 100f);
 //			_viewController.SetView (new MenuFinishStage(_game, _viewController, true, _bins));
 		}
     }

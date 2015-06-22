@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Ratcycle
 {
-    public class PointNotification : Text
+    public class PlayerFeedback : Text
     {
         private float _duration;
         private Vector2 _target;
@@ -26,7 +26,7 @@ namespace Ratcycle
         /// <param name="game"></param>
         /// <param name="view"></param>
         /// <param name="fontName"></param>
-        public PointNotification(Vector2 position, float distance, float duration, string text, Color color, Game1 game, View view, string fontName)
+        public PlayerFeedback(Vector2 position, float distance, float duration, string text, Color color, Game1 game, View view, string fontName)
             : base(position, game, view, fontName, text, color)
         {
             _duration = duration;
@@ -74,7 +74,7 @@ namespace Ratcycle
             else
             {
                 // Target reached, Kill this instance.
-				((Stage)_parentView).removePointNotification(this);
+				((Stage)_parentView).removePlayerFeedback(this);
             }
         }
     }

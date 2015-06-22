@@ -238,7 +238,7 @@ namespace Ratcycle
                 }
 
                 _health = health;
-                //((Stage)_parentView).addPointNotification("+" + Math.Round(regen), Color.Green, new Vector2(HitBox.X, HitBox.Y), 125f, 30f);
+                //((Stage)_parentView).NewPlayerFeedback("+" + Math.Round(regen), Color.Green, new Vector2(HitBox.X, HitBox.Y), 125f, 30f);
                 _remainingRegenTime = _regenTime;
             }
         }
@@ -251,7 +251,7 @@ namespace Ratcycle
 				_soundEffect = new SoundHandler ("DeathSpiral", Model.Settings.SoundEffectVolume, _game);
 				_soundEffect.Play ();
 
-				((Stage)_parentView).AddPointNotification("Fatality", Color.Red, new Vector2(_position.X - 30, _position.Y), 30f, 100f);
+				((Stage)_parentView).NewPlayerFeedback("Fatality", Color.Red, new Vector2(_position.X - 30, _position.Y), 30f, 100f);
 				_alive = false;
 				_gameOverTick = Model.Time.CurrentGameTick + (Model.Time.OneSecondOfTicks * 2);
 			} 

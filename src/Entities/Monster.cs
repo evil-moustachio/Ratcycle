@@ -127,17 +127,29 @@ namespace Ratcycle
         {
 			// Creates the next Hitbox with an updated position.
 			Vector2 nextPosition = MoveToTarget(((Stage)_parentView).RatBase);
-			Rectangle nextXHitbox = new Rectangle((int)nextPosition.X, (int)_position.Y, HitBox.Width, HitBox.Height);
-			Rectangle nextYHitbox = new Rectangle((int)_position.X, (int)nextPosition.Y, HitBox.Width, HitBox.Height);
+			Rectangle nextHitBox = new Rectangle ((int)nextPosition.X, (int)nextPosition.Y, HitBox.Width, HitBox.Height);
 
-			// Updates the position if the move is allowed.
-			if (((Stage)_parentView).NotColliding(this, nextXHitbox, _minCoords, _maxCoords))
+			// Check if next position will cause a collision
+			if (((Stage)_parentView).NotColliding (this, nextHitBox, _minCoords, _maxCoords)) 
 			{
-				_position.X = nextPosition.X;
+				_position = nextPosition;
 			}
-			if (((Stage)_parentView).NotColliding(this, nextYHitbox, _minCoords, _maxCoords))
+
+			// Check if individual X and Y movement are allowed.
+			else
 			{
-				_position.Y = nextPosition.Y;
+				Rectangle nextXHitbox = new Rectangle((int)nextPosition.X, (int)_position.Y, HitBox.Width, HitBox.Height);
+				Rectangle nextYHitbox = new Rectangle((int)_position.X, (int)nextPosition.Y, HitBox.Width, HitBox.Height);
+
+				// Updates the position if the move is allowed.
+				if (((Stage)_parentView).NotColliding(this, nextXHitbox, _minCoords, _maxCoords))
+				{
+					_position.X = nextPosition.X;
+				}
+				if (((Stage)_parentView).NotColliding(this, nextYHitbox, _minCoords, _maxCoords))
+				{
+					_position.Y = nextPosition.Y;
+				}
 			}
         }
 

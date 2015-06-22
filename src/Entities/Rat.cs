@@ -121,7 +121,6 @@ namespace Ratcycle
             {
 				_position.Y -= _speed.Y;
 
-                Console.WriteLine(_flip);
                 if (_flip)
                     ChangeFrame(3);
                 else
@@ -132,9 +131,9 @@ namespace Ratcycle
 				_position.Y += _speed.Y;
 
                 if (_flip)
-                    ChangeFrame(3);
+                    ChangeFrame(1);
                 else
-                    ChangeFrame(2);
+                    ChangeFrame(0);
 			}
 			if (KeyHandler.IsKeyDown(_left)) 
             {
@@ -143,7 +142,7 @@ namespace Ratcycle
 					_position.X += 25;
 				}
 
-				ChangeFrame (3);
+				ChangeFrame (1);
 				
 				_flip = true;
                 if (view.NotColliding(this, MakeFutureRectangle(Directions.Left), _minCoords, _maxCoords))
@@ -158,7 +157,7 @@ namespace Ratcycle
 						_position.X -= 25;
 					}
 
-					ChangeFrame (2);
+					ChangeFrame (0);
 					
 					_flip = false;
                     if (view.NotColliding(this, MakeFutureRectangle(Directions.Right), _minCoords, _maxCoords))
@@ -185,9 +184,9 @@ namespace Ratcycle
 
                 //Animate
 				if (_flip)
-					StartSingleMovement(1);
+					StartSingleMovement(3);
 				else
-					StartSingleMovement(0);
+					StartSingleMovement(2);
 				
                 ((Stage)_parentView).AttackHandler(this, _damage, AttackBox);
             }
@@ -229,7 +228,6 @@ namespace Ratcycle
 
             if (_remainingRegenTime <= 0 && _health < (100 * (0.75f * (float) Model.Stage.Reached)))
             {
-                Console.WriteLine(_health);
                 health += regen;
 
                 if (health > (100 * (0.75 * (float) Model.Stage.Reached)))

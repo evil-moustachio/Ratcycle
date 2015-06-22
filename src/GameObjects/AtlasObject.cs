@@ -20,7 +20,7 @@ namespace Ratcycle
         private float _rotation = 0f;
         private int _currentX, _currentY = 0;
         private Vector2 _origin = Vector2.Zero;
-		private bool _lockedInMovement = false;
+		private bool _lockedInMotion = false;
 
 		public virtual Rectangle HitBox
         {
@@ -92,7 +92,7 @@ namespace Ratcycle
 		/// <param name="y">The y coordinate.</param>
         public void ChangeFrame(int y)
         {
-			if (!_lockedInMovement) 
+			if (!_lockedInMotion) 
 			{
 				_currentY = y;
 				_sourceRectangle.Y = y * _frameHeight;
@@ -109,17 +109,21 @@ namespace Ratcycle
 				_currentX = x;
 				_sourceRectangle.X = x * _frameWidth;
 
-			if (!_lockedInMovement) 
+			if (!_lockedInMotion) 
 			{
 				_currentY = y;
 				_sourceRectangle.Y = y * _frameHeight;
 			}
         }
 
-		public void StartSingleMovement(int y)
+		public void StartSingleMotion(int y)
 		{
-			ChangeFrame (0, y);
-			_lockedInMovement = true;
+			_currentX = 0;
+			_sourceRectangle.X = 0;
+			_currentY = y;
+			_sourceRectangle.Y = y * _frameHeight;
+
+			_lockedInMotion = true;
 		}
 
 		/// <summary>
@@ -134,7 +138,7 @@ namespace Ratcycle
                 if (_currentX == _columns)
                 {
                     _currentX = 0;
-					_lockedInMovement = false;
+					_lockedInMotion = false;
                 }
 
                 ChangeFrame(_currentX, _currentY);

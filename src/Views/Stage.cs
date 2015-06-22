@@ -232,6 +232,8 @@ namespace Ratcycle
             {
 				if (_gameObjects[i] is Garbage && _rat.AttackBox.Intersects(((Garbage)_gameObjects[i]).HitBox) && _rat.Inventory == null)
                 {
+                    _game._soundEffect = new SoundHandler("PickupMonster", Model.Settings.SoundEffectVolume);
+                    _game._soundEffect.Play();
                     garbage = (Garbage)_gameObjects[i];
 					_hud.DrawGarbage (garbage.Category, garbage.Type);
 					garbage.PickUp();

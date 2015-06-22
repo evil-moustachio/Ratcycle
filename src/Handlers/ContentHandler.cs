@@ -94,6 +94,7 @@ namespace Ratcycle
             soundEffects.Add ("Button", null);
             soundEffects.Add("DeathSpiral", null);
             soundEffects.Add("PickupMonster", null);
+            soundEffects.Add("MonsterDie", null);
 		}
 
 		/// <summary>

@@ -51,6 +51,9 @@ namespace Ratcycle
 			//Next button
 			_gameObjects.Add (new Button(ContentHandler.GetTexture("ButtonStart"), new Vector2(277.5f, 444), 
 				_game, this, nextView));
+
+            //music
+            _game.ChangeMusic("MainTheme");
 		}
 
 		/// <summary>

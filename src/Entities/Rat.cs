@@ -245,7 +245,7 @@ namespace Ratcycle
         {
 			if (_alive)
 			{
-				_game.World.Music.Stop ();
+				_game.Music.Stop ();
 				_soundEffect = new SoundHandler ("DeathSpiral", Model.Settings.SoundEffectVolume, _game);
 				_soundEffect.Play ();
 

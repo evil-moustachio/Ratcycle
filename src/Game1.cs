@@ -17,6 +17,7 @@ namespace Ratcycle
 
         private World _world;
         private GameTime _gameTime;
+        public SoundHandler Music;
 
         public World World
         {
@@ -56,6 +57,8 @@ namespace Ratcycle
 
 			ContentHandler.LoadContent (Content);
 
+            Music = new SoundHandler("MainTheme", Model.Settings.MusicVolume, this, true);
+            Music.Play();
 		}
 			
 		protected override void Update(GameTime gameTime)
@@ -77,6 +80,16 @@ namespace Ratcycle
 			// Ends the spritebatch
 			spriteBatch.End();
 		}
+
+        public void ChangeMusic(string name)
+        {
+            if (name != Music.GetName() || !Music.IsPlaying())
+            {
+                Music.Stop();
+                Music = new SoundHandler(name, Model.Settings.MusicVolume, this, true);
+                Music.Play();
+            }
+        }
 	}
 }
 

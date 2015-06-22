@@ -12,7 +12,6 @@ namespace Ratcycle
         private Game1 _game;
         private ViewController _viewController;
         public Player Player;
-		public SoundHandler Music;
 
         /// <summary>
         /// Constructs the world.
@@ -23,16 +22,7 @@ namespace Ratcycle
             _game = game;
             Player = new Player();
             _viewController = new ViewController(_game);
-			Music = new SoundHandler("MainTheme", Model.Settings.MusicVolume, _game, true);
-            Music.Play();
         }
-
-		public void ChangeMusic (string location)
-		{
-			_game.World.Music.Stop ();
-			_game.World.Music = new SoundHandler (location, Model.Settings.MusicVolume, _game, true);
-			_game.World.Music.Play ();
-		}
 
         /// <summary>
         /// Updates the world

@@ -48,7 +48,7 @@ namespace Ratcycle
 
 			_playerFeedbackList = new List<PlayerFeedback>();
 
-			_game.World.ChangeMusic ("GameTheme");
+			_game.ChangeMusic ("GameTheme");
         }
 
         public void RandomizeCategories()
@@ -366,7 +366,7 @@ namespace Ratcycle
 			}
 			else 
 			{
-				_game.World.ChangeMusic("DeathTheme");
+				_game.ChangeMusic("DeathTheme");
 
 				_isPaused = true;
 				_hud.GameOver();
@@ -377,14 +377,14 @@ namespace Ratcycle
 		{
 			if (_isPaused) 
             {
-				_game.World.ChangeMusic("GameTheme");
+				_game.ChangeMusic("GameTheme");
 				
 				_isPaused = false;
 				_hud.UnPause();
 			} 
             else 
             {
-				_game.World.ChangeMusic("DeathTheme");
+				_game.ChangeMusic("DeathTheme");
 				
 				_isPaused = true;
 				_hud.Pause();

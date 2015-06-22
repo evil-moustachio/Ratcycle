@@ -155,7 +155,7 @@ namespace Ratcycle
 		/// Gets the device.
 		/// </summary>
 		/// <returns>The device.</returns>
-		private static String GetDevice()
+		public static String GetDevice()
         {
             if (Environment.OSVersion.ToString().Contains("Windows"))
             {

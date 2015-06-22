@@ -46,5 +46,37 @@ namespace Ratcycle
         {
             instance.Stop();
         }
+
+        public bool IsPlaying()
+        {
+            if (instance.State == SoundState.Playing)
+                return true;
+            else
+                return false;
+        }
+
+        public bool IsPaused()
+        {
+            if (instance.State == SoundState.Paused)
+                return true;
+            else
+                return false;
+        }
+
+        public bool IsStopped()
+        {
+            if (instance.State == SoundState.Stopped)
+                return true;
+            else
+                return false;
+        }
+
+        public string GetName()
+        {
+            string name = effect.Name;
+            string strToReplace = "Audio/" + ContentHandler.GetDevice() + "/";
+            name = name.Replace(strToReplace, "");
+            return name;
+        }
     }
 }

@@ -23,6 +23,8 @@ namespace Ratcycle
 			//BACKGROUNDS
 			textures.Add ("BackgroundGray", null);
 			textures.Add ("BackgroundOrange", null);
+			textures.Add ("BackgroundOrangeSmall", null);
+			textures.Add ("BackgroundOrangeBig", null);
 			textures.Add ("BackgroundStartmenu", null);
 			textures.Add ("Background-01", null);
 			textures.Add ("Background-02", null);

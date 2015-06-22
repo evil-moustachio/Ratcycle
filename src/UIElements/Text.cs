@@ -9,7 +9,7 @@ namespace Ratcycle
 	public class Text : GameObject
     {
         protected SpriteFont _font;
-		protected StringBuilder _text;
+		protected StringBuilder _text = new StringBuilder();
 
 		public Text(Vector2 position, Game1 game, View view, String fontName, String text, Color color)
 			: base(position, game, view, color)

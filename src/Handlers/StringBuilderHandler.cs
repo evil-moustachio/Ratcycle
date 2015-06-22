@@ -18,17 +18,17 @@ namespace Ratcycle
 
 			while (!isRightSize) {
 				newString = oldString [oldString.Length - 1] + newString;
-				oldString = oldString.Remove (oldString.Length - 1);
 
-				if (getCurrentWidth(oldString, f) < width) {
+				if (getCurrentWidth(oldString) < width && oldString[oldString.Length - 1] == ' ') {
 					sb.AppendLine (oldString);
 					oldString = newString;
 					newString = "";
-					if (getCurrentWidth(oldString, f) < width) {
+					if (getCurrentWidth(oldString) < width && oldString[oldString.Length - 1] == ' ') {
 						sb.AppendLine (oldString);
 						isRightSize = true;
 					}
 				}
+				oldString = oldString.Remove (oldString.Length - 1);
 			}
 
 			return sb;
@@ -36,7 +36,7 @@ namespace Ratcycle
 
 		private static float getCurrentWidth(string s)
 		{
-			return f.MeasureString (s, f).X;
+			return f.MeasureString (s).X;
 		}
 	}
 }

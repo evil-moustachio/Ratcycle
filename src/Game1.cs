@@ -18,7 +18,7 @@ namespace Ratcycle
         private World _world;
         private GameTime _gameTime;
         public SoundHandler Music;
-        public SoundHandler _soundEffect;
+        public SoundHandler soundEffect;
 
         public World World
         {

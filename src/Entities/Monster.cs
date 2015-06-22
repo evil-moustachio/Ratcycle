@@ -163,8 +163,8 @@ namespace Ratcycle
                 if (((Stage)_parentView).AttackHandler(this, _damage, AttackBox))
                 {
 					_nextAttack = Model.Time.CurrentGameTick + _atkspd;
-					_game._soundEffect = new SoundHandler("MonsterHitsRat", Model.Settings.SoundEffectVolume);
-                    _game._soundEffect.Play();
+					_game.soundEffect = new SoundHandler("MonsterHitsRat", Model.Settings.SoundEffectVolume);
+                    _game.soundEffect.Play();
                 }
             }
         }

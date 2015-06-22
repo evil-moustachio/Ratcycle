@@ -276,6 +276,7 @@ namespace Ratcycle
 
 		private void ResetStage()
 		{
+            Model.GameRules.points = 0;
 			_viewController.SetView(new Stage(_game, _viewController, false));
 		}
 

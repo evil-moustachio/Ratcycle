@@ -216,7 +216,7 @@ namespace Ratcycle
             {
                 if (_gameObjects[i] is Entity && attacker != _gameObjects[i] && AttackBox.Intersects(((Entity)_gameObjects[i]).HitBox) && !(attacker is Monster && _gameObjects[i] is Monster))
                 {
-                    ((Entity)_gameObjects[i]).Health -= attackerDamage;
+					((Entity)_gameObjects[i]).Damage(attackerDamage);
                     attacked = true;
                 }
             }
@@ -263,9 +263,12 @@ namespace Ratcycle
 
         public void CheckFinished()
         {
-            if (_currentMonsters.Count == 0 && _totalMonsters != 0)
+            if (_currentMonsters.Count == 0)
             {
-                WaitForWave();
+				if (_totalMonsters != 0)
+                	WaitForWave();
+				else
+					GameOver();
             }
         }
 
@@ -311,7 +314,7 @@ namespace Ratcycle
 		/// <param name="position">Where the notification will start it's movement.</param>
 		/// <param name="distance">The amount of Y the notification will travel.</param>
 		/// <param name="duration">The amount of updates the notification will take to travel.</param>
-		public void addPointNotification(string text, Color color, Vector2 position, float distance, float duration)
+		public void AddPointNotification(string text, Color color, Vector2 position, float distance, float duration)
 		{
 			_pointNotifications.Add (new PointNotification (position, distance, duration, text, color, _game, this, "Aero Matics Display-48"));
 		}
@@ -325,12 +328,12 @@ namespace Ratcycle
 			{
 				base.Update();
 				UpdatePointNotifications();
+				CheckFinished();
 			}
 			
 
 			if (KeyHandler.checkNewKeyPressed (Keys.Escape)) 
 				Pause();
-            CheckFinished();
 			_hud.Update();
         }
 
@@ -359,6 +362,7 @@ namespace Ratcycle
 			if (_rat.IsAlive) 
 			{
 				// Got to results
+				NextView();
 			}
 			else 
 			{
@@ -389,6 +393,7 @@ namespace Ratcycle
 
 		public void NextView()
 		{
+			AddPointNotification ("Stage Cleared", Color.Green, _rat.Position, 30f, 100f);
 //			_viewController.SetView (new MenuFinishStage(_game, _viewController, true, _bins));
 		}
     }

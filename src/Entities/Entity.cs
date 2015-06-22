@@ -13,11 +13,11 @@ namespace Ratcycle
 		protected Vector2 _maxCoords;
 		protected Vector2 _speed;
         protected float _health, _damage;
+		protected bool _alive = true;
 
         public float Health
         {
             get { return _health; }
-            set { _health = value; }
         }
 
         public abstract Rectangle AttackBox
@@ -30,8 +30,8 @@ namespace Ratcycle
         /// </summary>
 		/// <param name="position"></param>
 		/// <param name="texture"></param>
-		/// <param name="frameColumns"></param>
-		/// <param name="frameRows"></param>
+		/// <param name="rows"></param>
+		/// <param name="columns"></param>
         /// <param name="animates"></param>
         /// <param name="game"></param>
         /// <param name="view"></param>
@@ -72,11 +72,20 @@ namespace Ratcycle
 
         protected void CheckHealth()
         {
-            if (_health <= 0)
+            if (_alive && _health <= 0)
             {
                 KillEntity();
             }
         }
+
+		/// <summary>
+		/// Applies damage to Entity.
+		/// </summary>
+		/// <param name="damage">Damage.</param>
+		public virtual void Damage(float damage)
+		{
+			_health -= damage;
+		}
 
         public abstract void KillEntity();
 

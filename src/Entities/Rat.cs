@@ -14,7 +14,6 @@ namespace Ratcycle
         private Keys _down = Keys.S;
         private Keys _left = Keys.A;
         private Keys _right = Keys.D;
-		private bool _alive = true;
         private const float _regenTime = 3;
         private float _remainingRegenTime = _regenTime;
 		private long _gameOverTick;
@@ -252,7 +251,7 @@ namespace Ratcycle
 				_soundEffect = new SoundHandler ("DeathSpiral", Model.Settings.SoundEffectVolume, _game);
 				_soundEffect.Play ();
 
-				((Stage)_parentView).addPointNotification("Fatality", Color.Red, new Vector2(_position.X - 30, _position.Y), 30f, 100f);
+				((Stage)_parentView).AddPointNotification("Fatality", Color.Red, new Vector2(_position.X - 30, _position.Y), 30f, 100f);
 				_alive = false;
 				_gameOverTick = Model.Time.CurrentGameTick + (Model.Time.OneSecondOfTicks * 2);
 			} 
@@ -271,24 +270,23 @@ namespace Ratcycle
 				PickUp();
 				Attack();
 			}
-			else
+			else if (!_alive)
 			{
 				// Makes the rat stop breathing
 				if (_flip)
 					ChangeFrame (5, 0);
 				else
 					ChangeFrame (4, 0);
+
+				// Show GameOver Screen at right time
+				if (Model.Time.CurrentGameTick >= _gameOverTick)
+				{
+					((Stage)_parentView).GameOver();
+				}
 			}
 
-			if (Model.Time.CurrentGameTick >= _gameOverTick) 
-			{
-				((Stage)_parentView).GameOver();
-			}
+
 				
-        }
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
         }
     }
 }

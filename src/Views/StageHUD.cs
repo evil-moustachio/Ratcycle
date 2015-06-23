@@ -64,7 +64,7 @@ namespace Ratcycle
 
 			_healthBar.Health = _rat.Health;
 			_healthBar.Update();
-			UpdatePoints (Model.GameRules.points);
+			UpdatePoints ((int)Model.GameRules.points);
 		}
 
 		public override void Draw (SpriteBatch spriteBatch)

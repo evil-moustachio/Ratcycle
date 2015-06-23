@@ -94,7 +94,6 @@ namespace Ratcycle
             }
 
             _position = position;
-			Console.WriteLine("new " + this.GetType() + " spawned at " + _position);
 
         }
 
@@ -203,7 +202,6 @@ namespace Ratcycle
         {
             _game.soundEffect = new SoundHandler("MonsterDie", Model.Settings.SoundEffectVolume);
             _game.soundEffect.Play();
-			Console.WriteLine (this.GetType () + " died. " + Model.counter);
             ((Stage)_parentView).MonsterToGarbage(this, _texture, _flip);
         }
 

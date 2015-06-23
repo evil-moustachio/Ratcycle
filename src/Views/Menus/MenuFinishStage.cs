@@ -12,7 +12,7 @@ namespace Ratcycle
 		private Model.GameRules.Category[] _categories;
 		private Text _trivia;
 		private Random r = new Random();
-		private int _binCounter = 1;
+		private int _binCounter = 1, _textTimerInSeconds = 10;
 		private long _nextTriviaMoment, _buttonTimeOut = 0;
 		private bool _leveled = false;
 
@@ -52,7 +52,7 @@ namespace Ratcycle
 
 			_gameObjects.Add (CreateBigBit ());
 
-			_nextTriviaMoment = Model.Time.CurrentGameTick + Model.Time.OneSecondOfTicks * 6;
+			_nextTriviaMoment = Model.Time.CurrentGameTick + Model.Time.OneSecondOfTicks * _textTimerInSeconds;
 		}
 
 		private Frame CreateBinInfo(Bin bin)
@@ -144,7 +144,7 @@ namespace Ratcycle
                 "Wist je dat bijna al het karton van oud papier gemaakt wordt?",
                 "Wist je dat er 1,5 tot 2 kilo hout nodig is voor 1 kilo papier?",
                 "Wist je dat we door papierrecycling we in Nederland per jaar genoeg hout besparen om een 2 meter hoog hek te maken tussen Amsterdam en Parijs?",
-                "Wist je dat in 2013 in Nederland 2.350.000.000 kilo oud papier is ingezameld?",
+                "Wist je dat in 2013 in Nederland 2,350 miljard kilo oud papier is ingezameld?",
                 "Wist je dat wij nu per jaar 7 miljoen bomen kunnen laten staan door het recyclen van papier?",
 
                 "Wist je dat wij in Nederland per jaar 3.200 vrachtwagens vol GFT afval inzamelen?",
@@ -181,7 +181,11 @@ namespace Ratcycle
 		{
 			if (_nextTriviaMoment < Model.Time.CurrentGameTick) {
 				setRandomTrivia ();
+<<<<<<< Updated upstream
 				_nextTriviaMoment = Model.Time.CurrentGameTick + Model.Time.OneSecondOfTicks * 10;
+=======
+				_nextTriviaMoment = Model.Time.CurrentGameTick + Model.Time.OneSecondOfTicks * _textTimerInSeconds;
+>>>>>>> Stashed changes
 			}
 		}
 

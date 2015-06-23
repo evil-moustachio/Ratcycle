@@ -64,7 +64,6 @@ namespace Ratcycle
             for (int i = 0; i < 3; i++)
             {
                 stageCategories[i] = allCategories[i];
-                Console.WriteLine(stageCategories[i]);
             }
 
             _stageCategories = stageCategories;
@@ -269,8 +268,6 @@ namespace Ratcycle
             _gameObjects.Remove(monster);
             _currentMonsters.Remove(monster);
 			_gameObjects.Add(garbage);
-
-			Console.WriteLine (_totalMonsters + " Monsters left.");
         }
 
         public void CheckFinished()

@@ -102,8 +102,8 @@ namespace Ratcycle
 		public Rat(Texture2D texture, Vector2 position, Game1 game, View view, Vector2 speed, float health, float damage)
             : base(texture, position, game, view, Color.White, 6, 6, 36, true, speed)
         {
-			_health = (100 + (10*(float) Model.Rat.level));
-            _damage = (18 + (4 * (float)Model.Rat.level));
+			_health = (100 + (15 * (float) Model.Rat.level));
+            _damage = (18 + (3 * (float)Model.Rat.level));
         }
         
         /// <summary>

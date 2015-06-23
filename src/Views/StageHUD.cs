@@ -20,6 +20,8 @@ namespace Ratcycle
 		private Boolean _isPaused, _goUnPause;
 		private List<GameObject> _overviewItems;
 
+        public Inventory Inventory;
+
 		public StageHUD (Game1 game, ViewController viewController, Boolean mouseVisible, Rat rat, Stage stage) 
 			: base (game, viewController, mouseVisible)
 		{
@@ -27,10 +29,16 @@ namespace Ratcycle
 			_stage = stage;
 			_rat = rat;
 
-			//Rat items
+			//Rat healthbar
 			_healthBar = new Healthbar (ContentHandler.GetTexture ("HUDHealthbarRat"), new Vector2 (25, 25), 
 				new Vector2 (0, 0), _game, this, _rat.Health);
 			_gameObjects.Add (_healthBar);
+
+            // Rat Inventory
+            _gameObjects.Add(new Inventory(new Vector2(97, 67), _game, this));
+            Inventory = (Inventory)_gameObjects[_gameObjects.Count - 1];
+
+            // Rat face
 			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("HUDRat"), new Vector2(25,25), _game, this, 
 				Color.White, 1, 1, 1, false));
 			_points = new Text (new Vector2(239, 57), _game, this, "Aero Matics Display-14", "0 punten", Color.Black);
@@ -174,88 +182,6 @@ namespace Ratcycle
 			{
 				_gameObjects.Add(_overviewItems[i]);
 			}
-		}
-
-		/// <summary>
-		/// Draws the garbage in the HUD.
-		/// </summary>
-		/// <param name="cat">Category.</param>
-		/// <param name="type">Type.</param>
-		public void DrawGarbage(Model.GameRules.Category cat, Model.GameRules.Type type)
-		{
-			Vector2 v = new Vector2 (140, 100);
-
-			_inventoryBG = new AtlasObject (ContentHandler.GetTexture ("pcInventory"), new Vector2 (100, 80), _game, 
-				this, Color.White, 1, 1, 1, false);
-
-			if (cat == Model.GameRules.Category.Plastic) 
-			{
-				if (type == Model.GameRules.Type.Normal) 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalPlastic"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				} 
-				else 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongPlastic"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				}
-			} 
-			else if (cat == Model.GameRules.Category.Paper) 
-			{
-				if (type == Model.GameRules.Type.Normal) 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalPaper"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				} 
-				else 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongPaper"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				}
-			}  
-			else if (cat == Model.GameRules.Category.Chemical) 
-			{
-				if (type == Model.GameRules.Type.Normal) 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalChemical"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				} 
-				else 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongChemical"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				}
-			}
-			else if (cat == Model.GameRules.Category.Green) 
-			{
-				if (type == Model.GameRules.Type.Normal) 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalGreen"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				} 
-				else 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongGreen"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				}
-			} 
-			else if (cat == Model.GameRules.Category.Other) 
-			{
-				if (type == Model.GameRules.Type.Normal) 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalOther"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				} 
-				else 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongOther"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				}
-			}
-
-			_gameObjects.Add (_inventoryBG);
-			_gameObjects.Add (_inventory);
 		}
 
 		/// <summary>

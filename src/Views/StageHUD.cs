@@ -13,7 +13,6 @@ namespace Ratcycle
 		//Elements that have to be recalled later
 		private Rat _rat;
 		private readonly Healthbar _healthBar;
-		private AtlasObject _inventoryBG, _inventory;
 		private Text _points;
 
 		//Paused items

@@ -155,12 +155,12 @@ namespace Ratcycle
             // Flip texture if needed:
             var differenceInX = _position.X - oldPosition.X;
 
-            if (differenceInX > 0 && _flip)
+            if (differenceInX > 0)
             {
                 _flip = false;
                 ChangeFrame(1);
             }
-            else if (differenceInX < 0 && !_flip)
+            else if (differenceInX < 0)
             {
                 _flip = true;
                 ChangeFrame(0);

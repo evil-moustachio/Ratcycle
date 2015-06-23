@@ -37,6 +37,7 @@ namespace Ratcycle
 		public Stage(Game1 game, ViewController viewController, Boolean mouseVisible) 
 			: base (game, viewController, mouseVisible)
         {
+			Model.GameRules.points = 0;
             _totalMonsters = ((9 + (3 * Model.Stage.CurrentPlaying)) - _deadMonsters);
             RandomizeCategories();
             MakeBins();

@@ -262,7 +262,7 @@ namespace Ratcycle
 				points = 20;
 			}
 
-			Garbage garbage = new Garbage(texture, monster.Position, _game, this, flip, new Color(Color.Black, 0.7f), monster.Category, monster.Type, points);
+			Garbage garbage = new Garbage(texture, monster.Position, _game, this, flip, Color.White, monster.Category, monster.Type, points);
 
             _totalMonsters--;
             _gameObjects.Remove(monster);

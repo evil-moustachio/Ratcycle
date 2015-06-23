@@ -27,7 +27,7 @@ namespace Ratcycle
 			if (Model.Rat.exp >= Model.Rat.levelExp) {
 				Model.Rat.exp = Model.Rat.exp - Model.Rat.levelExp;
 				Model.Rat.level++;
-				Model.Rat.levelExp += Model.Rat.levelExp / 2;
+
 				_leveled = true;
 			}
 

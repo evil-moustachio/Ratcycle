@@ -19,15 +19,24 @@ namespace Ratcycle
 			Model.GameRules.Category[] categories) : base (game, viewController, mouseVisible)
 		{
 			_bins = bins;
-			Console.WriteLine (_bins.Length);
 			_categories = categories;
 
+			if (Model.Stage.CurrentPlaying == Model.Stage.Reached)
+				Model.Stage.Reached++;
+			
+			Model.Stage.CurrentPlaying++;
+
+			createView ();
+		}
+
+		private void createView()
+		{
 			//Background
 			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("Background-0" + Model.Stage.Current), 
 				new Vector2(0,0), _game, this, Color.White, 1, 1, 1, false));
 			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("BackgroundGray"), new Vector2(0,0), _game, this, 
 				Color.White, 1, 1, 1, false));
-			
+
 			_frame = CreateBinInfo (_bins [0]);
 			_gameObjects.Add (_frame);
 
@@ -60,13 +69,12 @@ namespace Ratcycle
 				if (bin.Category == bin.Contents [i].Category) {
 					points += bin.Contents [i].Points;
 				} else {
-					if (points >= bin.Contents [i].Points) {
-						points -= bin.Contents [i].Points;
-					} else {
-						points = 0;
-					}
+					points -= bin.Contents [i].Points;
 				}
 			}
+
+			if (points < 0)
+				points = 0;
 
 			frameObjects.Add(new AtlasObject (ContentHandler.GetTexture ("BackgroundOrangeSmall"), new Vector2 (), _game, 
 				this, Color.White, 1, 1, 1, false));
@@ -146,7 +154,7 @@ namespace Ratcycle
 					_buttonTimeOut = Model.Time.CurrentGameTick + Model.Time.OneSecondOfTicks * 1;
 				}
 			} else {
-				_viewController.SetView (new MenuChooseStage (_game, _viewController, true));
+				_viewController.SetView (new MenuStart (_game, _viewController, true));
 			}
 		}
 

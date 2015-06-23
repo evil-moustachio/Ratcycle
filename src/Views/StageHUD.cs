@@ -118,7 +118,7 @@ namespace Ratcycle
 			_overviewItems.Add(new Button(
 				ContentHandler.GetTexture("Button_stoppen"),
 				center + new Vector2 (-ContentHandler.GetTexture ("Button_stoppen").Width / 2, 100), _game, this,
-				ToMenuChooseStage));
+				ToStartMenu));
 
 			for (int i = 0; i < _overviewItems.Count; i++) 
 			{
@@ -150,7 +150,7 @@ namespace Ratcycle
 				ResetStage));
 			_overviewItems.Add(new Button(ContentHandler.GetTexture("Button_stoppen"),
 				center + new Vector2 (-ContentHandler.GetTexture ("Button_stoppen").Width / 2, 100), _game, this,
-				ToMenuChooseStage));
+				ToStartMenu));
 
 			for (int i = 0; i < _overviewItems.Count; i++) 
 			{
@@ -264,9 +264,9 @@ namespace Ratcycle
 			_viewController.SetView(new Stage(_game, _viewController, false));
 		}
 
-		private void ToMenuChooseStage()
+		private void ToStartMenu()
 		{
-			_viewController.SetView(new MenuChooseStage(_game, _viewController, true));
+			_viewController.SetView(new MenuStart(_game, _viewController, true));
 		}
 	}
 }

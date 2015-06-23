@@ -35,7 +35,7 @@ namespace Ratcycle
 			} else {
 				// Negative
 				Model.GameRules.points -= garbage.Points / 2;
-				((Stage)_parentView).NewPlayerFeedback("-" + garbage.Points, Color.Red, _position, 75f, 30f);
+				((Stage)_parentView).NewPlayerFeedback("-" + (garbage.Points / 2), Color.Red, _position, 75f, 30f);
                 _game.soundEffect = new SoundHandler("Wrong", Model.Settings.SoundEffectVolume);
                 _game.soundEffect.Play();
 			}

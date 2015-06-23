@@ -152,45 +152,36 @@ namespace Ratcycle
 			createGameOverHUD();
 		}
 
-		private void createGameOverHUD()
-		{
+        private void createGameOverHUD()
+        {
             var center = Model.Layout.Center(_game);
 
-			_overviewItems.Add(new AtlasObject(ContentHandler.GetTexture("BackgroundOrange"), new Vector2 (0), _game, this, 
-				Color.White, 1, 1, 1, false));
+            _overviewItems.Add(new AtlasObject(ContentHandler.GetTexture("BackgroundOrange"), new Vector2(0), _game, this,
+                Color.White, 1, 1, 1, false));
 
-			_overviewItems.Add(new Text(new Vector2(center.X - 140, 100), _game, this,
-				Model.Layout.Font.ExtraExtraLarge, "Game Over", Color.White));
+            _overviewItems.Add(new Text(new Vector2(center.X - 140, 100), _game, this,
+                Model.Layout.Font.ExtraExtraLarge, "Game Over", Color.White));
 
-			_overviewItems.Add(new Button(
+            _overviewItems.Add(new Button(
                 ContentHandler.GetTexture("ButtonRetry"),
-                center + new Vector2(-ContentHandler.GetTexture("ButtonRetry").Width / 2, -50), 
-				_game,
-				this,
-				ResetStage 
-			));
-			_overviewItems.Add(new Button(
+                center + new Vector2(-ContentHandler.GetTexture("ButtonRetry").Width / 2, -50),
+                _game,
+                this,
+                ResetStage
+            ));
+            _overviewItems.Add(new Button(
                 ContentHandler.GetTexture("ButtonStop"),
-                center + new Vector2(-ContentHandler.GetTexture("ButtonStop").Width / 2, 50), 
-				_game,
-				this,
-				ToMenuChooseStage 
-			));
+                center + new Vector2(-ContentHandler.GetTexture("ButtonStop").Width / 2, 50),
+                _game,
+                this,
+                ToMenuChooseStage
+            ));
 
-			for (int i = 0; i < _overviewItems.Count; i++) 
-			{
-				_gameObjects.Add(_overviewItems[i]);
-			}
-		}
-
-		/// <summary>
-		/// Removes the garbage from the HUD.
-		/// </summary>
-		public void RemoveGarbage()
-		{
-			_gameObjects.Remove (_inventoryBG);
-			_gameObjects.Remove (_inventory);
-		}
+            for (int i = 0; i < _overviewItems.Count; i++)
+            {
+                _gameObjects.Add(_overviewItems[i]);
+            }
+        }
 
 		/// <summary>
 		/// Updates the points.

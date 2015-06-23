@@ -52,7 +52,7 @@ namespace Ratcycle
 			Dictionary<Model.GameRules.Category, string> catNames = new Dictionary<Model.GameRules.Category, string> ();
 			int[] heights = { 110, 140 };
 			int heightIndex = 0;
-			int points = 0;
+			float points = 0;
 			catCount.Add (Model.GameRules.Category.Chemical, 0);
 			catCount.Add (Model.GameRules.Category.Green, 0);
 			catCount.Add (Model.GameRules.Category.Other, 0);
@@ -69,7 +69,7 @@ namespace Ratcycle
 				if (bin.Category == bin.Contents [i].Category) {
 					points += bin.Contents [i].Points;
 				} else {
-					points -= bin.Contents [i].Points;
+					points -= bin.Contents [i].Points / 2;
 				}
 			}
 

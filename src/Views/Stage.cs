@@ -254,8 +254,15 @@ namespace Ratcycle
         }
 
         public void MonsterToGarbage(Monster monster, Texture2D texture, bool flip)
-        {            
-			Garbage garbage = new Garbage(texture, monster.Position, _game, this, flip, Color.White, monster.Category, monster.Type, 1);
+        {   
+			int points;
+			if (monster.Type == Model.GameRules.Type.Normal) {
+				points = 10;
+			} else {
+				points = 20;
+			}
+
+			Garbage garbage = new Garbage(texture, monster.Position, _game, this, flip, new Color(Color.Black, 0.7f), monster.Category, monster.Type, points);
 
             _totalMonsters--;
             _gameObjects.Remove(monster);

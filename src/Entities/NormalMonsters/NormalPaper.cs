@@ -10,7 +10,7 @@ namespace Ratcycle
     class NormalPaper : Monster
     {
         public NormalPaper(Game1 game, View view)
-            : base(ContentHandler.GetTexture("monster_NormalPaper"), game, view, new Vector2(1, 1), 100, 1, 15, 3.0f, Model.GameRules.Category.Paper, Model.GameRules.Type.Normal)
+            : base(ContentHandler.GetTexture("monster_NormalPaper"), game, view, new Vector2(1, 1), (30 + (10 * (float)Model.Stage.Current)),(0.5f + (0.1f * (float)Model.Stage.Current)), 20, 0.8f, Model.GameRules.Category.Paper, Model.GameRules.Type.Normal)
         {
         }
     }

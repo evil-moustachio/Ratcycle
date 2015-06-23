@@ -141,12 +141,40 @@ namespace Ratcycle
 		{
 			string[] s = {
 				"Wist je dat 75% van het gebruikte papier gerecycled wordt?",
-				"Wist je dat bijna al het karton van oud papier gemaakt wordt?",
-				"Wist je dat er 1,5 tot 2 kilo hout nodig is voor 1 kilo papier?",
-				"Wist je dat we door papierrecycling we in Nederland per jaar genoeg hout besparen om een 2 meter " +
-				"hoog hek te maken tussen Amsterdam en Parijs?"
+                "Wist je dat bijna al het karton van oud papier gemaakt wordt?",
+                "Wist je dat er 1,5 tot 2 kilo hout nodig is voor 1 kilo papier?",
+                "Wist je dat we door papierrecycling we in Nederland per jaar genoeg hout besparen om een 2 meter hoog hek te maken tussen Amsterdam en Parijs?",
+                "Wist je dat in 2013 in Nederland 2.350.000.000 kilo oud papier is ingezameld?",
+                "Wist je dat wij nu per jaar 7 miljoen bomen kunnen laten staan door het recyclen van papier?",
+
+                "Wist je dat wij in Nederland per jaar 3.200 vrachtwagens vol GFT afval inzamelen?",
+                "Wist je dat 1 GFT verwerkingsbedrijf genoeg groene stroom opwekt voor het bedrijf zelf en nog eens 4000 huizen?",
+                "Wist je dat van overgebleven GFT afval onder andere Compost wordt gemaakt, wat planten beter laat groeien?",
+
+                "Wist je dat wij chemisch afval apart inschakelen, omdat deze producten ongezond zijn voor de vuilnismannen?",
+                "Wist je dat jij ongeveer 2 tot 2,5 kilo chemisch afval weggooit?",
+
+                "Wist je dat plastic gemaakt wordt van aardolie, en er met ons huidige gebruik nog maar voor 40 jaar aardolie beschikbaar is?",
+                "Wist je dat jij per jaar ongeveer 15 kilo aan plastic verpakkingen weggooit?",
+                "Wist je dat je door het recyclen van 1 plastic flesje, je een lamp 6 uur lang kan laten branden?",
+                "Wist je dat als je bioplastic gebruikt, dat dit 20% minder schadelijk is voor het milieu dan gewoon plastic?",
+
+                "Wist je dat je een boete van €140,- kan krijgen voor het gooien van afval op straat?",
+                "Wist je dat er in Nederland per jaar ongeveer 9 miljard peuken op de grond worden gegooid?",
+                "Wist je dat er tussen de 50 miljoen en 300 miljoen kilo afval op straat wordt gegooid per jaar?",
+                "Wist je dat het ongeveer 250 miljoen euro per jaar kost om het zwerfafval in Nederland op te ruimen?",
+                "Wist je dat het een jaar duurt voordat een bananenschil is verteerd?",
+                "Wist je dat het 20 jaar duurt voordat een kauwgompje verteerd is?",
+                "Wist je dat het 12 jaar kan duren voordat de natuur een sigaret heeft opgeruimd.",
+                "Wist je dat het 50 jaar duurt voordat een blikje is weggeroest?",
+                "Wist je dat roestvrijstalen en glazen voorwerpen duizenden jaren in de natuur kunnen blijven rondslingeren?",
+                "Wist je dat Nederlanders zich meer ergeren aan vervuiling dan aan files en sigarettenrook?",
+                "Wist je dat jongeren van 12 tot 24 jaar meer zwerfafval achterlaten dan de gemiddelde Nederlander?",
+                "Wist je dat het grootste deel van het zwerfafval zich in zee bevindt?",
+                "Wist je dat in de Grote Oceaan afvalhopen drijven van wel 100 miljard kilo, die even groot zijn als 34 keer Nederland?",
+                "Wist je dat elke Nederlander per jaar zorgt voor 5000 kilo afval?"
 			};
-			return StringBuilderHandler.CreateStringWithNewLines (s[r.Next(0, s.Length - 1)], width, font);
+			return StringBuilderHandler.CreateStringWithNewLines (s[r.Next(0, s.Length)], width, font);
 		}
 
 		private void checkForNextTrivia()

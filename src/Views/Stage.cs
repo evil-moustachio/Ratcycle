@@ -120,7 +120,7 @@ namespace Ratcycle
                     switch (_stageCategories[i])
                     {
                         case Model.GameRules.Category.Chemical:
-                            if (r.Next(0, 1) == 0)
+                            if (r.Next(0, 2) == 0)
                             {
                                 currentMonsters.Add(new NormalChemical(_game, this));
                             }
@@ -130,7 +130,7 @@ namespace Ratcycle
                             }
                             break;
                         case Model.GameRules.Category.Green:
-                            if (r.Next(0, 1) == 0)
+                            if (r.Next(0, 2) == 0)
                             {
                                 currentMonsters.Add(new NormalGreen(_game, this));
                             }
@@ -140,7 +140,7 @@ namespace Ratcycle
                             }
                             break;
                         case Model.GameRules.Category.Other:
-                            if (r.Next(0, 1) == 0)
+                            if (r.Next(0, 2) == 0)
                             {
                                 currentMonsters.Add(new NormalOther(_game, this));
                             }
@@ -150,7 +150,7 @@ namespace Ratcycle
                             }
                             break;
                         case Model.GameRules.Category.Paper:
-                            if (r.Next(0, 1) == 0)
+                            if (r.Next(0, 2) == 0)
                             {
                                 currentMonsters.Add(new NormalPaper(_game, this));
                             }
@@ -160,7 +160,7 @@ namespace Ratcycle
                             }
                             break;
                         case Model.GameRules.Category.Plastic:
-                            if (r.Next(0, 1) == 0)
+                            if (r.Next(0, 2) == 0)
                             {
                                 currentMonsters.Add(new NormalPlastic(_game, this));
                             }

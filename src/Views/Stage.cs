@@ -346,9 +346,6 @@ namespace Ratcycle
 			if (KeyHandler.checkNewKeyPressed (Keys.Escape)) 
 				Pause();
 			_hud.Update();
-
-			if (KeyHandler.checkNewKeyPressed (Keys.K))
-				NextView ();
         }
 
         public override void Draw(SpriteBatch spriteBatch)

@@ -255,10 +255,11 @@ namespace Ratcycle
 
         public void MonsterToGarbage(Monster monster, Texture2D texture)
         {   
+			int points;
 			if (monster.Type == Model.GameRules.Type.Normal) {
-				int points = 10;
+				points = 10;
 			} else {
-				int points = 20;
+				points = 20;
 			}
 
 			Garbage garbage = new Garbage(texture, monster.Position, _game, this, new Color(Color.Black, 0.7f), monster.Category, monster.Type, points);

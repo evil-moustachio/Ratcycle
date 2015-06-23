@@ -9,7 +9,6 @@ namespace Ratcycle
     public class Rat : Entity
     {
         private Garbage _inventory;
-        private bool _flip = false;
         private Keys _up = Keys.W;
         private Keys _down = Keys.S;
         private Keys _left = Keys.A;

@@ -14,6 +14,7 @@ namespace Ratcycle
 		protected Vector2 _speed;
         protected float _health, _damage;
 		protected bool _alive = true;
+        protected bool _flip = false;
 
         public float Health
         {
@@ -101,7 +102,7 @@ namespace Ratcycle
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            spriteBatch.Draw(CreateHitBoxTexture(_game, HitBox.Width, HitBox.Height, new Color(Color.Red, 0.5f)), HitBox, new Color(Color.Red, 0.5f));
+            // spriteBatch.Draw(CreateHitBoxTexture(_game, HitBox.Width, HitBox.Height, new Color(Color.Red, 0.5f)), HitBox, new Color(Color.Red, 0.5f));
         }
 	}
 }

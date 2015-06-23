@@ -43,7 +43,7 @@ namespace Ratcycle
 		/// <param name="range">The Monster's attack range.</param>
 		/// <param name="atkspd">Cooldown period for the Monster's attack.</param>
 		public Monster(Texture2D texture, Game1 game, View view, Vector2 speed, float health, float damage, int range, float atkspd, Model.GameRules.Category cat, Model.GameRules.Type type) 
-			: base (texture, game, view, Color.White, 1, 1, 1, false, speed)
+			: base (texture, game, view, Color.White, 4, 1, 1, false, speed)
 		{
             Spawn();
 
@@ -126,6 +126,7 @@ namespace Ratcycle
         private void Move()
         {
 			// Creates the next Hitbox with an updated position.
+            Vector2 oldPosition = _position;
 			Vector2 nextPosition = MoveToTarget(((Stage)_parentView).RatBase);
 			Rectangle nextHitBox = new Rectangle ((int)nextPosition.X, (int)nextPosition.Y, HitBox.Width, HitBox.Height);
 
@@ -151,6 +152,20 @@ namespace Ratcycle
 					_position.Y = nextPosition.Y;
 				}
 			}
+
+            // Flip texture if needed:
+            var differenceInX = _position.X - oldPosition.X;
+
+            if (differenceInX > 0 && _flip)
+            {
+                _flip = false;
+                ChangeFrame(1);
+            }
+            else if (differenceInX < 0 && !_flip)
+            {
+                _flip = true;
+                ChangeFrame(0);
+            }
         }
 
 		/// <summary>
@@ -189,7 +204,7 @@ namespace Ratcycle
             _game.soundEffect = new SoundHandler("MonsterDie", Model.Settings.SoundEffectVolume);
             _game.soundEffect.Play();
 			Console.WriteLine (this.GetType () + " died. " + Model.counter);
-            ((Stage)_parentView).MonsterToGarbage(this, _texture);
+            ((Stage)_parentView).MonsterToGarbage(this, _texture, _flip);
         }
 
 		public override void Update()

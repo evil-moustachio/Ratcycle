@@ -253,9 +253,9 @@ namespace Ratcycle
             return inventory;
         }
 
-        public void MonsterToGarbage(Monster monster, Texture2D texture)
+        public void MonsterToGarbage(Monster monster, Texture2D texture, bool flip)
         {            
-			Garbage garbage = new Garbage(texture, monster.Position, _game, this, new Color(Color.Black, 0.7f), monster.Category, monster.Type, 1);
+			Garbage garbage = new Garbage(texture, monster.Position, _game, this, flip, Color.White, monster.Category, monster.Type, 1);
 
             _totalMonsters--;
             _gameObjects.Remove(monster);

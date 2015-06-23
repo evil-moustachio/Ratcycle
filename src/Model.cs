@@ -32,6 +32,12 @@ namespace Ratcycle
 			}
 		}
 
+		public static class Rat 
+		{
+			public static long level = 1;
+			public static float exp = 0;
+		}
+
 		public static class Layout
 		{
 			public enum ButtonStates { Inactive, Hover, Focus };

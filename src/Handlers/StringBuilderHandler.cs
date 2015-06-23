@@ -10,28 +10,29 @@ namespace Ratcycle
 		private static SpriteFont f;
 		public static StringBuilder CreateStringWithNewLines(string text, int width, string font)
 		{
-			StringBuilder sb = new StringBuilder ();
-			string oldString = text, newString = "";
-			bool isRightSize = false;
-
 			f = ContentHandler.GetFont (font);
 
-			while (!isRightSize) {
-				newString = oldString [oldString.Length - 1] + newString;
+			StringBuilder sb = new StringBuilder ();
 
-				if (getCurrentWidth(oldString) < width && oldString[oldString.Length - 1] == ' ') {
-					sb.AppendLine (oldString);
-					oldString = newString;
-					newString = "";
-					if (getCurrentWidth(oldString) < width && oldString[oldString.Length - 1] == ' ') {
-						sb.AppendLine (oldString);
-						isRightSize = true;
+			string[] originalLines = text.Split (new string[] { " " }, StringSplitOptions.None);
+			string newLine = "";
+
+			foreach (string word in originalLines) {
+				if (getCurrentWidth (newLine) + getCurrentWidth (" " + word) <= width) {
+					if (word == originalLines [0]) {
+						newLine += word;
+					} else {
+						newLine += " " + word;
 					}
+				} else {
+					sb.AppendLine (newLine);
+					newLine = word;
 				}
-				oldString = oldString.Remove (oldString.Length - 1);
 			}
+			sb.AppendLine (newLine);
 
 			return sb;
+
 		}
 
 		private static float getCurrentWidth(string s)

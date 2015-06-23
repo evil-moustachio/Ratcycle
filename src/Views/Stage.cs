@@ -394,7 +394,7 @@ namespace Ratcycle
 		public void NextView()
 		{
 			NewPlayerFeedback ("Stage Cleared", Color.Green, _rat.Position, 30f, 100f);
-//			_viewController.SetView (new MenuFinishStage(_game, _viewController, true, _bins));
+			_viewController.SetView (new MenuFinishStage(_game, _viewController, true, _bins, _stageCategories));
 		}
     }
 }

@@ -9,19 +9,22 @@ namespace Ratcycle
 {
     public class Bin : AtlasObject
     {
-        private List<Model.GameRules.Category> _contents;
+		private List<Garbage> _contents;
         private Model.GameRules.Category _category;
+
+		public List<Garbage> Contents { get { return _contents; } }
+		public Model.GameRules.Category Category { get { return _category; } }
 
         public Bin(Texture2D texture, Vector2 position, Game1 game, View view, Model.GameRules.Category category)
             : base(texture, position, game, view, Color.White, 1, 1, 1, false)
         {
-            _contents = new List<Model.GameRules.Category>();
+			_contents = new List<Garbage>();
             _category = category;
         }
 
         public virtual void AddGarbage(Garbage garbage)
 		{
-			_contents.Add (garbage.Category);
+			_contents.Add (garbage);
 
 			if (_category == garbage.Category) {
 				// Positive

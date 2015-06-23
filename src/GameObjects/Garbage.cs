@@ -34,9 +34,9 @@ namespace Ratcycle
 			_type = type;
 
             if (flip)
-                ChangeFrame(3);
-            else
                 ChangeFrame(2);
+            else
+                ChangeFrame(3);
         }
 
 		public void PickUp()

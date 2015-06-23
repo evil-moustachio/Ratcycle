@@ -181,7 +181,7 @@ namespace Ratcycle
 		{
 			if (_nextTriviaMoment < Model.Time.CurrentGameTick) {
 				setRandomTrivia ();
-				_nextTriviaMoment = Model.Time.CurrentGameTick + Model.Time.OneSecondOfTicks * 6;
+				_nextTriviaMoment = Model.Time.CurrentGameTick + Model.Time.OneSecondOfTicks * 10;
 			}
 		}
 

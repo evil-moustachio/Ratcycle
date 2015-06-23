@@ -117,7 +117,7 @@ namespace Ratcycle
 		/// </summary>
 		public static class Settings
 		{
-			public static float MusicVolume;
+			public static float MusicVolume = 0.3f;
 			public static float SoundEffectVolume = 1f;
 		}
 	}

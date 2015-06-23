@@ -43,7 +43,7 @@ namespace Ratcycle
 			_points = new Text (new Vector2(239, 57), _game, this, "Aero Matics Display-14", "0 punten", Color.Black);
 			_gameObjects.Add (_points);
 
-			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("Button_Esc"), new Vector2(710, 25), _game, this, 
+			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("Button_Escape"), new Vector2(710, 25), _game, this, 
 				Color.White, 1, 1, 1, false));
 		}
 
@@ -117,14 +117,14 @@ namespace Ratcycle
 				Model.Layout.Font.ExtraExtraLarge, "Gepauzeerd", Color.White));
 
             // Buttons
-			_overviewItems.Add(new Button(ContentHandler.GetTexture("Button_hervatten"), 
-				center + new Vector2(-ContentHandler.GetTexture("Button_hervatten").Width / 2, -80), 
+			_overviewItems.Add(new Button(ContentHandler.GetTexture("Button_Continue"), 
+				center + new Vector2(-ContentHandler.GetTexture("Button_Continue").Width / 2, -80), 
 				_game, this, _stage.Pause));
-			_overviewItems.Add(new Button(ContentHandler.GetTexture("Button_opnieuw"),
-				center + new Vector2 (-ContentHandler.GetTexture ("Button_opnieuw").Width / 2, 10), _game, this, ResetStage));
+			_overviewItems.Add(new Button(ContentHandler.GetTexture("Button_Restart"),
+				center + new Vector2 (-ContentHandler.GetTexture ("Button_Restart").Width / 2, 10), _game, this, ResetStage));
 			_overviewItems.Add(new Button(
-				ContentHandler.GetTexture("Button_stoppen"),
-				center + new Vector2 (-ContentHandler.GetTexture ("Button_stoppen").Width / 2, 100), _game, this,
+				ContentHandler.GetTexture("Button_Stop"),
+				center + new Vector2 (-ContentHandler.GetTexture ("Button_Stop").Width / 2, 100), _game, this,
 				ToStageChooser));
 
 			for (int i = 0; i < _overviewItems.Count; i++) 
@@ -152,11 +152,11 @@ namespace Ratcycle
 			_overviewItems.Add(new Text(new Vector2(center.X - 140, 100), _game, this,
 				Model.Layout.Font.ExtraExtraLarge, "Game Over", Color.White));
 
-			_overviewItems.Add(new Button(ContentHandler.GetTexture("Button_opnieuw"),
-				center + new Vector2 (-ContentHandler.GetTexture ("Button_opnieuw").Width / 2, -50), _game, this, 
+			_overviewItems.Add(new Button(ContentHandler.GetTexture("Button_Restart"),
+				center + new Vector2 (-ContentHandler.GetTexture ("Button_Restart").Width / 2, -50), _game, this, 
 				ResetStage));
-			_overviewItems.Add(new Button(ContentHandler.GetTexture("Button_stoppen"),
-				center + new Vector2 (-ContentHandler.GetTexture ("Button_stoppen").Width / 2, 50), _game, this,
+			_overviewItems.Add(new Button(ContentHandler.GetTexture("Button_Stop"),
+				center + new Vector2 (-ContentHandler.GetTexture ("Button_Stop").Width / 2, 50), _game, this,
 				ToStageChooser));
 
 			for (int i = 0; i < _overviewItems.Count; i++) 

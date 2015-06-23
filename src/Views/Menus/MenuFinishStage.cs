@@ -126,8 +126,8 @@ namespace Ratcycle
 					Color.White));
 			}
 
-			frameObjects.Add (new Button (ContentHandler.GetTexture ("Button_volgende"), 
-				new Vector2 (center.X - ContentHandler.GetTexture("Button_volgende").Width / 2, 400), _game, this, buttonPress));
+			frameObjects.Add (new Button (ContentHandler.GetTexture ("Button_Next"), 
+				new Vector2 (center.X - ContentHandler.GetTexture("Button_Next").Width / 2, 400), _game, this, buttonPress));
 
 			return new Frame (new Vector2 (327.2122f, 49.179f), _game, this, frameObjects);
 		}

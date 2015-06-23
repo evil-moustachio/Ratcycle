@@ -177,7 +177,7 @@ namespace Ratcycle
 
                 _currentMonsters = currentMonsters;
             }
-        }
+        }	
 
        
 		/// <summary>

@@ -49,7 +49,7 @@ namespace Ratcycle
 				_gameObjects.Add (_addButton);
 
 			//Next button
-			_gameObjects.Add (new Button (ContentHandler.GetTexture ("Button_volgende"), new Vector2 (220.942f, 444), 
+			_gameObjects.Add (new Button (ContentHandler.GetTexture ("Button_Next"), new Vector2 (220.942f, 444), 
 				_game, this, nextView));
 
             //music

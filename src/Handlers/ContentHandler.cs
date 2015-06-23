@@ -35,13 +35,13 @@ namespace Ratcycle
 			textures.Add ("infoScreen", null);
 
 			//BUTTONS
-			textures.Add ("Button_start_gray", null);
-			textures.Add ("Button_hervatten", null);
-			textures.Add ("Button_opnieuw", null);
-			textures.Add ("Button_opties", null);
-			textures.Add ("Button_start_orange", null);
-			textures.Add ("Button_stoppen", null);
-			textures.Add ("Button_volgende", null);
+			textures.Add ("Button_Start_Gray", null);
+			textures.Add ("Button_Start_Orange", null);
+			textures.Add ("Button_Continue", null);
+			textures.Add ("Button_Restart", null);
+			textures.Add ("Button_Options", null);
+			textures.Add ("Button_Stop", null);
+			textures.Add ("Button_Next", null);
 			textures.Add ("Button_Right", null);
 			textures.Add ("Button_Left", null);
 			textures.Add ("Button_ChooseLevel-01", null);
@@ -51,7 +51,7 @@ namespace Ratcycle
 			textures.Add ("Button_ChooseLevel-05", null);
 
 			//HUD
-			textures.Add ("Button_Esc", null);
+			textures.Add ("Button_Escape", null);
 			textures.Add ("HealthBarEntity", null);
 			textures.Add ("HUDHealthbarRat", null);
 			textures.Add ("HUDRat", null);

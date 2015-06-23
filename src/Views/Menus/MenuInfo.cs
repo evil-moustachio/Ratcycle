@@ -17,7 +17,7 @@ namespace Ratcycle
 				                   _game.GraphicsDevice.Viewport.Height / 2 - ContentHandler.GetTexture ("infoScreen").Height / 2);
 			_gameObjects.Add (new AtlasObject (ContentHandler.GetTexture ("infoScreen"), position, _game, this, Color.White, 1, 1, 1, false));
 
-			_gameObjects.Add (new Button (ContentHandler.GetTexture ("Button_volgende"), new Vector2(221.8f, 408.0997f), _game, this, nextView));
+			_gameObjects.Add (new Button (ContentHandler.GetTexture ("Button_Next"), new Vector2(221.8f, 408.0997f), _game, this, nextView));
 		}
 
 		private void nextView()

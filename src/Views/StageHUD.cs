@@ -13,12 +13,13 @@ namespace Ratcycle
 		//Elements that have to be recalled later
 		private Rat _rat;
 		private readonly Healthbar _healthBar;
-		private AtlasObject _inventoryBG, _inventory;
 		private Text _points;
 
 		//Paused items
 		private Boolean _isPaused, _goUnPause;
 		private List<GameObject> _overviewItems;
+
+        public Inventory Inventory;
 
 		public StageHUD (Game1 game, ViewController viewController, Boolean mouseVisible, Rat rat, Stage stage) 
 			: base (game, viewController, mouseVisible)
@@ -27,10 +28,16 @@ namespace Ratcycle
 			_stage = stage;
 			_rat = rat;
 
-			//Rat items
+			//Rat healthbar
 			_healthBar = new Healthbar (ContentHandler.GetTexture ("HUDHealthbarRat"), new Vector2 (25, 25), 
 				new Vector2 (0, 0), _game, this, _rat.Health);
 			_gameObjects.Add (_healthBar);
+
+            // Rat Inventory
+            _gameObjects.Add(new Inventory(new Vector2(97, 67), _game, this));
+            Inventory = (Inventory)_gameObjects[_gameObjects.Count - 1];
+
+            // Rat face
 			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("HUDRat"), new Vector2(25,25), _game, this, 
 				Color.White, 1, 1, 1, false));
 			_points = new Text (new Vector2(239, 57), _game, this, "Aero Matics Display-14", "0 punten", Color.Black);
@@ -101,8 +108,7 @@ namespace Ratcycle
 		/// </summary>
 		private void createPauseHUD()
 		{
-			Vector2 center = new Vector2(_game.GraphicsDevice.Viewport.Width / 2, 
-				_game.GraphicsDevice.Viewport.Height / 2);
+            var center = Model.Layout.Center(_game);
 
 			_overviewItems.Add(new AtlasObject(ContentHandler.GetTexture("BackgroundOrange"), new Vector2 (0), _game, this, 
 				Color.White, 1, 1, 1, false));
@@ -110,11 +116,12 @@ namespace Ratcycle
 			_overviewItems.Add(new Text(new Vector2(center.X - 150, 100), _game, this,
 				Model.Layout.Font.ExtraExtraLarge, "Gepauzeerd", Color.White));
 
+            // Buttons
 			_overviewItems.Add(new Button(ContentHandler.GetTexture("Button_hervatten"), 
-				center + new Vector2(-ContentHandler.GetTexture("Button_hervatten").Width / 2, -50), 
+				center + new Vector2(-ContentHandler.GetTexture("Button_hervatten").Width / 2, -80), 
 				_game, this, _stage.Pause));
 			_overviewItems.Add(new Button(ContentHandler.GetTexture("Button_opnieuw"),
-				center + new Vector2 (-ContentHandler.GetTexture ("Button_opnieuw").Width / 2, 25), _game, this, ResetStage));
+				center + new Vector2 (-ContentHandler.GetTexture ("Button_opnieuw").Width / 2, 10), _game, this, ResetStage));
 			_overviewItems.Add(new Button(
 				ContentHandler.GetTexture("Button_stoppen"),
 				center + new Vector2 (-ContentHandler.GetTexture ("Button_stoppen").Width / 2, 100), _game, this,
@@ -146,107 +153,16 @@ namespace Ratcycle
 				Model.Layout.Font.ExtraExtraLarge, "Game Over", Color.White));
 
 			_overviewItems.Add(new Button(ContentHandler.GetTexture("Button_opnieuw"),
-				center + new Vector2 (-ContentHandler.GetTexture ("Button_opnieuw").Width / 2, 0), _game, this, 
+				center + new Vector2 (-ContentHandler.GetTexture ("Button_opnieuw").Width / 2, -50), _game, this, 
 				ResetStage));
 			_overviewItems.Add(new Button(ContentHandler.GetTexture("Button_stoppen"),
-				center + new Vector2 (-ContentHandler.GetTexture ("Button_stoppen").Width / 2, 100), _game, this,
+				center + new Vector2 (-ContentHandler.GetTexture ("Button_stoppen").Width / 2, 50), _game, this,
 				ToStartMenu));
 
 			for (int i = 0; i < _overviewItems.Count; i++) 
 			{
 				_gameObjects.Add(_overviewItems[i]);
 			}
-		}
-
-		/// <summary>
-		/// Draws the garbage in the HUD.
-		/// </summary>
-		/// <param name="cat">Category.</param>
-		/// <param name="type">Type.</param>
-		public void DrawGarbage(Model.GameRules.Category cat, Model.GameRules.Type type)
-		{
-			Vector2 v = new Vector2 (140, 100);
-
-			_inventoryBG = new AtlasObject (ContentHandler.GetTexture ("pcInventory"), new Vector2 (100, 80), _game, 
-				this, Color.White, 1, 1, 1, false);
-
-			if (cat == Model.GameRules.Category.Plastic) 
-			{
-				if (type == Model.GameRules.Type.Normal) 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalPlastic"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				} 
-				else 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongPlastic"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				}
-			} 
-			else if (cat == Model.GameRules.Category.Paper) 
-			{
-				if (type == Model.GameRules.Type.Normal) 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalPaper"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				} 
-				else 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongPaper"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				}
-			}  
-			else if (cat == Model.GameRules.Category.Chemical) 
-			{
-				if (type == Model.GameRules.Type.Normal) 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalChemical"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				} 
-				else 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongChemical"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				}
-			}
-			else if (cat == Model.GameRules.Category.Green) 
-			{
-				if (type == Model.GameRules.Type.Normal) 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalGreen"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				} 
-				else 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongGreen"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				}
-			} 
-			else if (cat == Model.GameRules.Category.Other) 
-			{
-				if (type == Model.GameRules.Type.Normal) 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_NormalOther"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				} 
-				else 
-				{
-					_inventory = new AtlasObject (ContentHandler.GetTexture ("monster_StrongOther"), v, _game, this, 
-						Color.White, 1, 1, 1, false);
-				}
-			}
-
-			_gameObjects.Add (_inventoryBG);
-			_gameObjects.Add (_inventory);
-		}
-
-		/// <summary>
-		/// Removes the garbage from the HUD.
-		/// </summary>
-		public void RemoveGarbage()
-		{
-			_gameObjects.Remove (_inventoryBG);
-			_gameObjects.Remove (_inventory);
 		}
 
 		/// <summary>

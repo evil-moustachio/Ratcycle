@@ -237,13 +237,13 @@ namespace Ratcycle
                     _game.soundEffect = new SoundHandler("PickupMonster", Model.Settings.SoundEffectVolume);
                     _game.soundEffect.Play();
                     garbage = (Garbage)_gameObjects[i];
-					_hud.DrawGarbage (garbage.Category, garbage.Type);
+					_hud.Inventory.AddGarbage (garbage.Category, garbage.Type);
 					garbage.PickUp();
                     return garbage;
                 }
                 else if (_gameObjects[i] is Bin && _rat.BodyBox.Intersects(((Bin)_gameObjects[i]).HitBox) && _rat.Inventory != null)
                 {
-                    _hud.RemoveGarbage();
+                    _hud.Inventory.RemoveGarbage();
                     ((Bin)_gameObjects[i]).AddGarbage(_rat.Inventory);
                     _gameObjects.Remove(_rat.Inventory);
                     return null;

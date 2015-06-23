@@ -1,5 +1,8 @@
 ﻿using System;
 
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 namespace Ratcycle
 {
 	public static class Model
@@ -32,6 +35,14 @@ namespace Ratcycle
 		public static class Layout
 		{
 			public enum ButtonStates { Inactive, Hover, Focus };
+
+            public static Vector2 Center(Game1 game)
+            {
+                return new Vector2(
+                    game.GraphicsDevice.Viewport.Width / 2,
+                    game.GraphicsDevice.Viewport.Height / 2
+                );
+            }
 
 			public static class Font
 			{

@@ -53,6 +53,7 @@ namespace Ratcycle
 			textures.Add ("HealthBarEntity", null);
 			textures.Add ("HUDHealthbarRat", null);
 			textures.Add ("HUDRat", null);
+            textures.Add ("inventory", null);
 
 			//ENTITIES
 			textures.Add ("Entity_rat", null);
@@ -75,7 +76,6 @@ namespace Ratcycle
 
 			//PLACEHOLDERS
 			textures.Add("PCSquareButton", null);
-			textures.Add("pcInventory", null);
 
 			//FONTS
 			fonts.Add ("Aero Matics Display-14", null);

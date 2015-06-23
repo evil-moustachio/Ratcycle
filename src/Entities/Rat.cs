@@ -131,9 +131,9 @@ namespace Ratcycle
 				_position.Y += _speed.Y;
 
                 if (_flip)
-                    ChangeFrame(1);
+                    ChangeFrame(3);
                 else
-                    ChangeFrame(0);
+                    ChangeFrame(2);
 			}
 			if (KeyHandler.IsKeyDown(_left)) 
             {
@@ -142,7 +142,7 @@ namespace Ratcycle
 					_position.X += 25;
 				}
 
-				ChangeFrame (1);
+				ChangeFrame (3);
 				
 				_flip = true;
                 if (view.NotColliding(this, MakeFutureRectangle(Directions.Left), _minCoords, _maxCoords))
@@ -157,7 +157,7 @@ namespace Ratcycle
 						_position.X -= 25;
 					}
 
-					ChangeFrame (0);
+					ChangeFrame (2);
 					
 					_flip = false;
                     if (view.NotColliding(this, MakeFutureRectangle(Directions.Right), _minCoords, _maxCoords))
@@ -184,9 +184,9 @@ namespace Ratcycle
 
                 //Animate
 				if (_flip)
-					StartSingleMotion(3);
+					StartSingleMotion(1);
 				else
-					StartSingleMotion(2);
+					StartSingleMotion(0);
 				
                 ((Stage)_parentView).AttackHandler(this, _damage, AttackBox);
             }

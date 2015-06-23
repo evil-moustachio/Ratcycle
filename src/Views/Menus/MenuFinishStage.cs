@@ -181,11 +181,8 @@ namespace Ratcycle
 		{
 			if (_nextTriviaMoment < Model.Time.CurrentGameTick) {
 				setRandomTrivia ();
-<<<<<<< Updated upstream
-				_nextTriviaMoment = Model.Time.CurrentGameTick + Model.Time.OneSecondOfTicks * 10;
-=======
+
 				_nextTriviaMoment = Model.Time.CurrentGameTick + Model.Time.OneSecondOfTicks * _textTimerInSeconds;
->>>>>>> Stashed changes
 			}
 		}
 

@@ -83,11 +83,11 @@ namespace Ratcycle
                 }
                 else
                 {
-                    x = r.Next(-300, _game.GraphicsDevice.Viewport.Width + 300);
+                    x = r.Next(-500, _game.GraphicsDevice.Viewport.Width + 300);
                     y = r.Next(_game.GraphicsDevice.Viewport.Height, (_game.GraphicsDevice.Viewport.Height + 300));
                 }
 
-                futureHitBox = new Rectangle(x, y, HitBox.Height + 80 , HitBox.Width + 80);
+                futureHitBox = new Rectangle(x, y, HitBox.Height + 100 , HitBox.Width + 100);
                 spawned = ((Stage)_parentView).NotColliding(this, futureHitBox, _minCoords, _maxCoords);
                 position.X = x;
                 position.Y = y;
@@ -186,6 +186,8 @@ namespace Ratcycle
         /// </summary>
         public override void KillEntity()
         {
+            _game.soundEffect = new SoundHandler("MonsterDie", Model.Settings.SoundEffectVolume);
+            _game.soundEffect.Play();
 			Console.WriteLine (this.GetType () + " died. " + Model.counter);
             ((Stage)_parentView).MonsterToGarbage(this, _texture);
         }

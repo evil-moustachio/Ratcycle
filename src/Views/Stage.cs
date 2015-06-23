@@ -21,6 +21,8 @@ namespace Ratcycle
         private int _deadMonsters = 0;
         private const float _waveTime = 5;
         private float _remainingWaveTime = _waveTime;
+        private const float _resultsTime = 10;
+        private float _remainingResultsTime = _resultsTime;
 		private List<PlayerFeedback> _playerFeedbackList;
 
 		public Vector2 RatBase { get { return new Vector2(_rat.HitBox.Center.X, _rat.HitBox.Bottom); } }
@@ -364,7 +366,7 @@ namespace Ratcycle
 			if (_rat.IsAlive) 
 			{
 				// Got to results
-				NextView();
+                WaitForResults();
 			}
 			else 
 			{
@@ -374,6 +376,21 @@ namespace Ratcycle
 				_hud.GameOver();
 			}
 		}
+
+
+        public void WaitForResults()
+        {
+            var timer = (float)_game.GameTime.ElapsedGameTime.TotalSeconds;
+
+            _remainingResultsTime -= timer;
+
+            if (_remainingResultsTime <= 0)
+            {
+                NextView();
+                _remainingResultsTime = _resultsTime;
+            }
+        }
+
 
 		public void Pause()
 		{
@@ -396,7 +413,7 @@ namespace Ratcycle
 		public void NextView()
 		{
 			NewPlayerFeedback ("Stage Cleared", Color.Green, _rat.Position, 30f, 100f);
-//			_viewController.SetView (new MenuFinishStage(_game, _viewController, true, _bins));
+			_viewController.SetView (new MenuFinishStage(_game, _viewController, true, _bins, _stageCategories));
 		}
     }
 }

@@ -73,7 +73,7 @@ namespace Ratcycle
 
                 if(i == 0)
                 {
-                    x = r.Next(-300, (0 - _sourceRectangle.Width));
+					x = r.Next(-300, (int)(0 - _sourceRectangleDimensions.X));
                     y = r.Next(240, (_game.GraphicsDevice.Viewport.Height + 300));
                 }
                 else if (i == 1)

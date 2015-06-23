@@ -26,11 +26,11 @@ namespace Ratcycle
 			}
         }
 
-		public virtual int LowestY
+		public virtual float LowestY
 		{
 			get
 			{
-				return (int)_position.Y;
+				return _position.Y;
 			}
 		}
 

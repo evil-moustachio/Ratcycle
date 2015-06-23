@@ -9,16 +9,16 @@ namespace Ratcycle
 {
     public class AtlasObject : GameObject
     {
-        protected Rectangle _sourceRectangle;
+		protected Vector2 _sourceRectanglePosition, _sourceRectangleDimensions;
         protected Texture2D _texture; //TODO: Change back to private later.
 		private Rectangle _hitBox;
         private bool _animates;
-        private int _frameHeight, _frameWidth, _columns;
+		private float _frameHeight, _frameWidth, _columns;
         private long _nextFrameTick;
         private float _ticksPerFrame;
         private float _scale = 1.0f;
         private float _rotation = 0f;
-        private int _currentX, _currentY = 0;
+		private float _currentX, _currentY = 0;
         private Vector2 _origin = Vector2.Zero;
 		private bool _lockedInMotion = false;
 
@@ -35,11 +35,11 @@ namespace Ratcycle
 		/// Returns the Y position of the bottom of the texture.
 		/// </summary>
 		/// <value>The lowest y.</value>
-		public override int LowestY 
+		public override float LowestY 
 		{
 			get 
 			{
-				return (int)_position.Y + _sourceRectangle.Height;
+				return _position.Y + _sourceRectangleDimensions.Y;
 			}
 		}
 
@@ -67,7 +67,8 @@ namespace Ratcycle
 			_ticksPerFrame = Model.Time.OneSecondOfTicks / 18;
             _nextFrameTick = DateTime.Now.Ticks + (int)_ticksPerFrame;
 
-            _sourceRectangle = new Rectangle(_currentX, _currentY, _frameWidth, _frameHeight);
+			_sourceRectanglePosition = new Vector2(_currentX, _currentY);
+			_sourceRectangleDimensions = new Vector2 (_frameWidth, _frameHeight);
         }
 
         public AtlasObject(Texture2D texture, Game1 game, View view, Color color, int rows, int columns, int totalFrames, bool animates)
@@ -83,7 +84,8 @@ namespace Ratcycle
 			_ticksPerFrame = Model.Time.OneSecondOfTicks / 18;
             _nextFrameTick = DateTime.Now.Ticks + (int)_ticksPerFrame;
 
-            _sourceRectangle = new Rectangle(_currentX, _currentY, _frameWidth, _frameHeight);
+			_sourceRectanglePosition = new Vector2(_currentX, _currentY);
+			_sourceRectangleDimensions = new Vector2 (_frameWidth, _frameHeight);
         }
 
 		/// <summary>
@@ -95,7 +97,7 @@ namespace Ratcycle
 			if (!_lockedInMotion) 
 			{
 				_currentY = y;
-				_sourceRectangle.Y = y * _frameHeight;
+				_sourceRectanglePosition.Y = y * _frameHeight;
 			}
         }
 
@@ -104,24 +106,24 @@ namespace Ratcycle
 		/// </summary>
 		/// <param name="x">The x coordinate.</param>
 		/// <param name="y">The y coordinate.</param>
-        public void ChangeFrame(int x, int y)
+		public void ChangeFrame(float x, float y)
         {
-				_currentX = x;
-				_sourceRectangle.X = x * _frameWidth;
+			_currentX = x;
+			_sourceRectanglePosition.X = x * _frameWidth;
 
 			if (!_lockedInMotion) 
 			{
 				_currentY = y;
-				_sourceRectangle.Y = y * _frameHeight;
+				_sourceRectanglePosition.Y = y * _frameHeight;
 			}
         }
 
-		public void StartSingleMotion(int y)
+		public void StartSingleMotion(float y)
 		{
 			_currentX = 0;
-			_sourceRectangle.X = 0;
+			_sourceRectanglePosition.X = 0;
 			_currentY = y;
-			_sourceRectangle.Y = y * _frameHeight;
+			_sourceRectanglePosition.Y = y * _frameHeight;
 
 			_lockedInMotion = true;
 		}
@@ -156,7 +158,8 @@ namespace Ratcycle
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, _position, _sourceRectangle, _color, _rotation, _origin, _scale, SpriteEffects.None, 0f);
+			spriteBatch.Draw(_texture, _position, new Rectangle((int)_sourceRectanglePosition.X, (int)_sourceRectanglePosition.Y, 
+				(int)_sourceRectangleDimensions.X, (int)_sourceRectangleDimensions.Y), _color, _rotation, _origin, _scale, SpriteEffects.None, 0f);
         }
 
 		private void updateHitbox()
@@ -164,8 +167,8 @@ namespace Ratcycle
 			_hitBox = new Rectangle(
 				(int)_position.X,
 				(int)_position.Y,
-				_sourceRectangle.Width,
-				_sourceRectangle.Height);
+				(int)_sourceRectangleDimensions.X,
+				(int)_sourceRectangleDimensions.Y);
 		}
     }
 }

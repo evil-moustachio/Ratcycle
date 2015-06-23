@@ -40,15 +40,15 @@ namespace Ratcycle
                         (int)_position.X - 30,
                         (int)_position.Y + 30,
                         30,
-                        _sourceRectangle.Height - 30);
+						(int)_sourceRectangleDimensions.Y - 30);
                 }
                 else
                 {
                     return new Rectangle(
-                        (int)_position.X + _sourceRectangle.Width,
+						(int)(_position.X + _sourceRectangleDimensions.X),
                         (int)_position.Y + 30,
                         30,
-                        _sourceRectangle.Height - 30);
+						(int)_sourceRectangleDimensions.Y - 30);
                 }
             }
         }
@@ -60,8 +60,8 @@ namespace Ratcycle
                 return new Rectangle(
                     (int)_position.X,
                     (int)_position.Y,
-                    _sourceRectangle.Width,
-                    _sourceRectangle.Height
+					(int)_sourceRectangleDimensions.X,
+					(int)_sourceRectangleDimensions.Y
                 );
             }
         }
@@ -75,16 +75,16 @@ namespace Ratcycle
 					return new Rectangle (
 						(int)_position.X,
 						(int)_position.Y + 50,
-						_sourceRectangle.Width - 25,
-						_sourceRectangle.Height - 50);
+						(int)(_sourceRectangleDimensions.X - 25),
+						(int)(_sourceRectangleDimensions.Y - 50));
 				} 
                 else 
                 {
 					return new Rectangle (
 						(int)_position.X + 25,
 						(int)_position.Y + 50,
-						_sourceRectangle.Width - 25,
-						_sourceRectangle.Height - 50);
+						(int)(_sourceRectangleDimensions.X - 25),
+						(int)(_sourceRectangleDimensions.Y - 50));
 				}
 			}
 		}

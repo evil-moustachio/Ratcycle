@@ -13,8 +13,6 @@ namespace Ratcycle
         private Keys _down = Keys.S;
         private Keys _left = Keys.A;
         private Keys _right = Keys.D;
-        private const float _regenTime = 3;
-        private float _remainingRegenTime = _regenTime;
 		private long _gameOverTick;
 
 		public bool IsAlive { get { return _alive; } }
@@ -217,28 +215,6 @@ namespace Ratcycle
 			}
         }
         
-        private void RegenerateHealth()
-        {
-            var timer = (float)_game.GameTime.ElapsedGameTime.TotalSeconds;
-            float health = _health;
-            float regen = 0.8f * (Model.Stage.CurrentPlaying);
-
-            _remainingRegenTime -= timer;
-
-            if (_remainingRegenTime <= 0 && _health < (100 * (0.75f * (float) Model.Stage.Reached)))
-            {
-                health += regen;
-
-                if (health > (100 * (0.75 * (float) Model.Stage.Reached)))
-                {
-                    health = (100 * (0.75f * (float)Model.Stage.Reached));
-                }
-
-                _health = health;
-                //((Stage)_parentView).NewPlayerFeedback("+" + Math.Round(regen), Color.Green, new Vector2(HitBox.X, HitBox.Y), 125f, 30f);
-                _remainingRegenTime = _regenTime;
-            }
-        }
 
         public override void KillEntity()
         {
@@ -262,7 +238,6 @@ namespace Ratcycle
             base.Update();
 			if (_alive) 
 			{
-                RegenerateHealth();
 				Move();
 				PickUp();
 				Attack();
@@ -281,9 +256,6 @@ namespace Ratcycle
 					((Stage)_parentView).GameOver();
 				}
 			}
-
-
-				
         }
     }
 }

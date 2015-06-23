@@ -10,7 +10,7 @@ namespace Ratcycle
 		{
 			_gameObjects.Add (new AtlasObject(ContentHandler.GetTexture("BackgroundStartmenu"), new Vector2(0,0), _game, 
 				this, Color.White, 1, 1, 1, false));
-			_gameObjects.Add (new Button (ContentHandler.GetTexture("ButtonStart"), new Vector2(275, 325), 
+			_gameObjects.Add (new Button (ContentHandler.GetTexture("Button_start_gray"), new Vector2(275, 325), 
 				_game, this, nextView));
             _game.ChangeMusic("MainTheme");
 		}

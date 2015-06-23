@@ -32,6 +32,8 @@ namespace Ratcycle
 			textures.Add ("Background-04", null);
 			textures.Add ("Background-05", null);
 
+			textures.Add ("infoScreen", null);
+
 			//BUTTONS
 			textures.Add ("Button_start_gray", null);
 			textures.Add ("Button_hervatten", null);

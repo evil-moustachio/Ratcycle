@@ -95,7 +95,7 @@ namespace Ratcycle
 		public static class Stage
 		{
 			public static int CurrentPlaying = 1;
-			public static int Current;
+			public static int Current = 1;
 			public static int Reached = 1;
 		}
 

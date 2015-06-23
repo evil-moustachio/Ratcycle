@@ -36,6 +36,7 @@ namespace Ratcycle
 		{
 			public static long level = 1;
 			public static float exp = 0;
+			public static float levelExp = 100;
 		}
 
 		public static class Layout

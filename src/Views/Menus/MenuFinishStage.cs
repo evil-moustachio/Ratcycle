@@ -14,12 +14,22 @@ namespace Ratcycle
 		private Random r = new Random();
 		private int _binCounter = 1;
 		private long _nextTriviaMoment, _buttonTimeOut = 0;
+		private bool _leveled = false;
 
 		public MenuFinishStage (Game1 game, ViewController viewController, Boolean mouseVisible, Bin[] bins, 
 			Model.GameRules.Category[] categories) : base (game, viewController, mouseVisible)
 		{
 			_bins = bins;
 			_categories = categories;
+
+			Model.Rat.exp += Model.GameRules.points;
+			Model.GameRules.points = 0;
+			if (Model.Rat.exp >= Model.Rat.levelExp) {
+				Model.Rat.exp = Model.Rat.exp - Model.Rat.levelExp;
+				Model.Rat.level++;
+				Model.Rat.levelExp += Model.Rat.levelExp / 2;
+				_leveled = true;
+			}
 
 			if (Model.Stage.CurrentPlaying == Model.Stage.Reached)
 				Model.Stage.Reached++;
@@ -111,6 +121,11 @@ namespace Ratcycle
 				getRandomTrivia(377, "Aero Matics Display-18"), Color.White);
 			frameObjects.Add (_trivia);
 
+			if (_leveled) {
+				frameObjects.Add(new Text(new Vector2(30, 300), _game, this, "Aero Matics Display-24", "Je bent nu level " + Model.Rat.level + "!",
+					Color.White));
+			}
+
 			frameObjects.Add (new Button (ContentHandler.GetTexture ("Button_volgende"), 
 				new Vector2 (center.X - ContentHandler.GetTexture("Button_volgende").Width / 2, 400), _game, this, buttonPress));
 
@@ -154,7 +169,7 @@ namespace Ratcycle
 					_buttonTimeOut = Model.Time.CurrentGameTick + Model.Time.OneSecondOfTicks * 1;
 				}
 			} else {
-				_viewController.SetView (new MenuStart (_game, _viewController, true));
+				_viewController.SetView (new MenuChooseStage (_game, _viewController, true));
 			}
 		}
 

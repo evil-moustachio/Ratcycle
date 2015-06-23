@@ -346,11 +346,14 @@ namespace Ratcycle
 			if (KeyHandler.checkNewKeyPressed (Keys.Escape)) 
 				Pause();
 			_hud.Update();
+
+			if (KeyHandler.checkNewKeyPressed (Keys.K))
+				NextView ();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(ContentHandler.GetTexture("Background-01"), new Vector2());
+			spriteBatch.Draw(ContentHandler.GetTexture("Background-0" + Model.Stage.Current), new Vector2());
 
 			// Draw garbage first
 			for (int i = _orderedList.Count - 1; i >= 0; i--) 

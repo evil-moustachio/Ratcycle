@@ -9,10 +9,15 @@ namespace Ratcycle
     public class Rat : Entity
     {
         private Garbage _inventory;
-        private Keys _up = Keys.W;
-        private Keys _down = Keys.S;
-        private Keys _left = Keys.A;
-        private Keys _right = Keys.D;
+//		private Keys _up = Keys.Up;
+//        private Keys _down = Keys.Down;
+//        private Keys _left = Keys.Left;
+//        private Keys _right = Keys.Right;
+		private Keys _up = Keys.W;
+		private Keys _down = Keys.S;
+		private Keys _left = Keys.A;
+		private Keys _right = Keys.D;
+
 		private long _gameOverTick;
 
 		public bool IsAlive { get { return _alive; } }
@@ -191,7 +196,7 @@ namespace Ratcycle
 
         private void PickUp()
         {
-            if (KeyHandler.checkNewKeyPressed(Keys.F))
+			if (KeyHandler.checkNewKeyPressed(Keys.RightShift) || KeyHandler.checkNewKeyPressed(Keys.F))
             {
                 _inventory = ((Stage)_parentView).GarbageHandler(_inventory);
             }

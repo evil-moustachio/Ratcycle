@@ -232,7 +232,7 @@ namespace Ratcycle
 
             for (int i = _gameObjects.Count - 1; i >= 0; i--)
             {
-				if (_gameObjects[i] is Garbage && _rat.AttackBox.Intersects(((Garbage)_gameObjects[i]).HitBox) && _rat.Inventory == null)
+				if (_gameObjects[i] is Garbage && _rat.BodyBox.Intersects(((Garbage)_gameObjects[i]).HitBox) && _rat.Inventory == null)
                 {
                     _game.soundEffect = new SoundHandler("PickupMonster", Model.Settings.SoundEffectVolume);
                     _game.soundEffect.Play();
@@ -241,7 +241,7 @@ namespace Ratcycle
 					garbage.PickUp();
                     return garbage;
                 }
-                else if (_gameObjects[i] is Bin && _rat.BodyBox.Intersects(((Bin)_gameObjects[i]).HitBox) && _rat.Inventory != null)
+				else if (_gameObjects[i] is Bin && (_rat.BodyBox.Intersects(((Bin)_gameObjects[i]).HitBox) || _rat.AttackBox.Intersects(((Bin)_gameObjects[i]).HitBox)) && _rat.Inventory != null)
                 {
                     _hud.Inventory.RemoveGarbage();
                     ((Bin)_gameObjects[i]).AddGarbage(_rat.Inventory);

@@ -159,7 +159,7 @@ namespace Ratcycle
                 "Wist je dat je door het recyclen van 1 plastic flesje, je een lamp 6 uur lang kan laten branden?",
                 "Wist je dat als je bioplastic gebruikt, dat dit 20% minder schadelijk is voor het milieu dan gewoon plastic?",
 
-                "Wist je dat je een boete van €140,- kan krijgen voor het gooien van afval op straat?",
+                "Wist je dat je een boete van 140 euro kan krijgen voor het gooien van afval op straat?",
                 "Wist je dat er in Nederland per jaar ongeveer 9 miljard peuken op de grond worden gegooid?",
                 "Wist je dat er tussen de 50 miljoen en 300 miljoen kilo afval op straat wordt gegooid per jaar?",
                 "Wist je dat het ongeveer 250 miljoen euro per jaar kost om het zwerfafval in Nederland op te ruimen?",

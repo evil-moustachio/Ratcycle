@@ -109,15 +109,13 @@ body {
   background: #ededed url("../img/trash-cans.png") no-repeat bottom;
 }
 
-.welcome {
-  background: url("../img/background.png") no-repeat;
-  height: 600px;
+.welcome img {
+  max-width: 100%;
 }
 
 .about,
 .download,
-.team,
-footer {
+.team {
   padding: 1em;
 }
 

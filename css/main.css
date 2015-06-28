@@ -101,6 +101,11 @@ body {
   font-family: "Verdana";
 }
 
+.share-buttons {
+  margin: 5px 10px;
+  text-align: right;
+}
+
 .container {
   margin: 8em auto 0;
   padding-bottom: 9em;

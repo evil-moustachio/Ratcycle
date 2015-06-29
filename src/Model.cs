@@ -129,15 +129,15 @@ namespace Ratcycle
 		{
 			public static float MusicVolume = 0.3f;
 			public static float SoundEffectVolume = 1f;
-		}
 
-		/// <summary>
-		/// Keys.
-		/// </summary>
-		public static class KeySettings
-		{
-			public enum KeyTypes { Left, Right, Up, Down, PickUp, Attack, Null }
-			public static Keys Left = Keys.A, Right = Keys.D, Up = Keys.W, Down = Keys.S, PickUp = Keys.F, Attack = Keys.Space;
+			/// <summary>
+			/// Key settings.
+			/// </summary>
+			public static class Key
+			{
+				public enum KeyTypes { Left, Right, Up, Down, PickUp, Attack, Null }
+				public static Keys Left = Keys.A, Right = Keys.D, Up = Keys.W, Down = Keys.S, PickUp = Keys.F, Attack = Keys.Space;
+			}
 		}
 	}
 }

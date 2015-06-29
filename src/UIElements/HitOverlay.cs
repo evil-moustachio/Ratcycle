@@ -20,12 +20,12 @@ namespace Ratcycle
 			_alpha = newAlpha < _alpha ? newAlpha : _alpha;
 			timer++;
 			if (_alpha < 0.05f)
-				((StageHUD)_parentView).removeItemFromGameObjects (this);
+				((StageHUD)_view).removeItemFromGameObjects (this);
 		}
 
 		public override void Draw(SpriteBatch spriteBatch)
 		{
-			spriteBatch.Draw (_texture, _position, _color * _alpha);
+			spriteBatch.Draw (_texture, _position, Color * _alpha);
 		}
 	}
 }

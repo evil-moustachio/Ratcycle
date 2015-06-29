@@ -13,7 +13,8 @@ namespace Ratcycle
         protected Texture2D _texture; //TODO: Change back to private later.
 		private Rectangle _hitBox;
         private bool _animates;
-		private float _frameHeight, _frameWidth, _columns;
+		private float _frameHeight, _frameWidth;
+		private int _columns, _rows;
         private long _nextFrameTick;
         private float _ticksPerFrame;
         private float _scale = 1.0f;
@@ -57,10 +58,11 @@ namespace Ratcycle
 		/// <param name="animates">If set to <c>true</c> animates.</param>
         public AtlasObject(Texture2D texture, Vector2 position, Game1 game, View view, Color color, int rows, int columns, int totalFrames, bool animates) : base (position, game, view, color)
         {
-            _texture = texture;
-			_frameHeight = _texture.Height / rows;
-			_frameWidth = _texture.Width / columns;
-            _columns = columns;
+			_texture = texture;
+			_columns = columns;
+			_rows = rows;
+			_frameWidth = _texture.Width / _columns;
+			_frameHeight = _texture.Height / _rows;
 
             _animates = animates;
 
@@ -159,7 +161,7 @@ namespace Ratcycle
         public override void Draw(SpriteBatch spriteBatch)
         {
 			spriteBatch.Draw(_texture, _position, new Rectangle((int)_sourceRectanglePosition.X, (int)_sourceRectanglePosition.Y, 
-				(int)_sourceRectangleDimensions.X, (int)_sourceRectangleDimensions.Y), _color, _rotation, _origin, _scale, SpriteEffects.None, 0f);
+				(int)_sourceRectangleDimensions.X, (int)_sourceRectangleDimensions.Y), Color, _rotation, _origin, _scale, SpriteEffects.None, 0f);
         }
 
 		private void updateHitbox()
@@ -169,6 +171,11 @@ namespace Ratcycle
 				(int)_position.Y,
 				(int)_sourceRectangleDimensions.X,
 				(int)_sourceRectangleDimensions.Y);
+		}
+
+		public Vector2 getSize()
+		{
+			return UtilHandler.getSize (_texture, (int)_columns, (int)_rows);
 		}
     }
 }

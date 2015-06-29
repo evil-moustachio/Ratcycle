@@ -55,7 +55,7 @@ namespace Ratcycle
             _type = type;
 
 			_nextAttack = Model.Time.CurrentGameTick;
-			_healthBar = new Healthbar (ContentHandler.GetTexture("HealthBarEntity"), _position, new Vector2(0,-25), _game, _parentView, _health);
+			_healthBar = new Healthbar (ContentHandler.GetTexture("HealthBarEntity"), _position, new Vector2(0,-25), _game, _view, _health);
 		}
 
         private void Spawn()
@@ -88,7 +88,7 @@ namespace Ratcycle
                 }
 
                 futureHitBox = new Rectangle(x, y, HitBox.Height + 100 , HitBox.Width + 100);
-                spawned = ((Stage)_parentView).NotColliding(this, futureHitBox, _minCoords, _maxCoords);
+                spawned = ((Stage)_view).NotColliding(this, futureHitBox, _minCoords, _maxCoords);
                 position.X = x;
                 position.Y = y;
             }
@@ -126,11 +126,11 @@ namespace Ratcycle
         {
 			// Creates the next Hitbox with an updated position.
             Vector2 oldPosition = _position;
-			Vector2 nextPosition = MoveToTarget(((Stage)_parentView).RatBase);
+			Vector2 nextPosition = MoveToTarget(((Stage)_view).RatBase);
 			Rectangle nextHitBox = new Rectangle ((int)nextPosition.X, (int)nextPosition.Y, HitBox.Width, HitBox.Height);
 
 			// Check if next position will cause a collision
-			if (((Stage)_parentView).NotColliding (this, nextHitBox, _minCoords, _maxCoords)) 
+			if (((Stage)_view).NotColliding (this, nextHitBox, _minCoords, _maxCoords)) 
 			{
 				_position = nextPosition;
 			}
@@ -142,11 +142,11 @@ namespace Ratcycle
 				Rectangle nextYHitbox = new Rectangle((int)_position.X, (int)nextPosition.Y, HitBox.Width, HitBox.Height);
 
 				// Updates the position if the move is allowed.
-				if (((Stage)_parentView).NotColliding(this, nextXHitbox, _minCoords, _maxCoords))
+				if (((Stage)_view).NotColliding(this, nextXHitbox, _minCoords, _maxCoords))
 				{
 					_position.X = nextPosition.X;
 				}
-				if (((Stage)_parentView).NotColliding(this, nextYHitbox, _minCoords, _maxCoords))
+				if (((Stage)_view).NotColliding(this, nextYHitbox, _minCoords, _maxCoords))
 				{
 					_position.Y = nextPosition.Y;
 				}
@@ -174,7 +174,7 @@ namespace Ratcycle
         {
 			if (Model.Time.CurrentGameTick >= _nextAttack)
             {
-                if (((Stage)_parentView).AttackHandler(this, _damage, AttackBox))
+                if (((Stage)_view).AttackHandler(this, _damage, AttackBox))
                 {
 					_nextAttack = Model.Time.CurrentGameTick + _atkspd;
 					_game.soundEffect = new SoundHandler("MonsterHitsRat", Model.Settings.SoundEffectVolume);
@@ -202,7 +202,7 @@ namespace Ratcycle
         {
             _game.soundEffect = new SoundHandler("MonsterDie", Model.Settings.SoundEffectVolume);
             _game.soundEffect.Play();
-            ((Stage)_parentView).MonsterToGarbage(this, _texture, _flip);
+            ((Stage)_view).MonsterToGarbage(this, _texture, _flip);
         }
 
 		public override void Update()

@@ -49,12 +49,12 @@ namespace Ratcycle
         public void Fade()
         {
             var updatesLeft = _duration - _counter;
-            Vector4 color = _color.ToVector4();
+            Vector4 color = Color.ToVector4();
             color.X -= (color.X / updatesLeft);
             color.Y -= (color.Y / updatesLeft);
             color.Z -= (color.Z / updatesLeft);
             color.W -= (color.W / updatesLeft);
-            _color = new Color(color);
+            Color = new Color(color);
         }
         
         public override void Update()
@@ -74,7 +74,7 @@ namespace Ratcycle
             else
             {
                 // Target reached, Kill this instance.
-				((Stage)_parentView).removePlayerFeedback(this);
+				((Stage)_view).removePlayerFeedback(this);
             }
         }
     }

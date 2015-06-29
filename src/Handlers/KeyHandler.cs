@@ -46,6 +46,11 @@ namespace Ratcycle
 			return (prevKeyboardState.IsKeyUp (key) && keyboardState.IsKeyDown(key));
 		}
 
+		public static Keys[] getCurrentKeyPressed()
+		{
+			return keyboardState.GetPressedKeys ();
+		}
+
 	}
 }
 

@@ -51,5 +51,25 @@ namespace Ratcycle
 			setString (text);
 			_position = pos;
 		}
+
+		public Vector2 getSize()
+		{
+			return UtilHandler.getSize (_text, _font);
+		}
+
+		public Vector2 getCenter()
+		{
+			return UtilHandler.getCenter (_text, _font);
+		}
+
+		public Vector2 getCenteredPosition()
+		{
+			return UtilHandler.getCenteredPosition (_text, _font, _position);
+		}
+
+		public Vector2 getCenteredPosition(Vector2 p)
+		{
+			return UtilHandler.getCenteredPosition (_text, _font, p);
+		}
     }
 }

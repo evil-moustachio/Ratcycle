@@ -49,6 +49,8 @@ namespace Ratcycle
 			textures.Add ("Button_ChooseLevel-03", null);
 			textures.Add ("Button_ChooseLevel-04", null);
 			textures.Add ("Button_ChooseLevel-05", null);
+			textures.Add ("Button_Square", null);
+			textures.Add ("Button_Wide", null);
 
 			//HUD
 			textures.Add ("Button_Escape", null);
@@ -76,9 +78,6 @@ namespace Ratcycle
 			textures.Add ("monster_StrongPlastic", null); //PLACEHOLDER
 			textures.Add ("monster_NormalOther", null); //PLACEHOLDER
 			textures.Add ("monster_StrongOther", null); //PLACEHOLDER
-
-			//PLACEHOLDERS
-			textures.Add("PCSquareButton", null);
 
 			//FONTS
 			fonts.Add ("Aero Matics Display-14", null);

@@ -10,6 +10,12 @@ namespace Ratcycle
 	{
         // Counter used to show difference in update cycles in Console.WriteLine ()'s.
 		public static int counter = 0;
+
+		public static void Init()
+		{
+			Layout.Init ();
+		}
+
         /// <summary>
         /// Updates the Model.
         /// </summary>
@@ -69,6 +75,13 @@ namespace Ratcycle
 				public static string Large = "Aero Matics Display-28";
 				public static string ExtraLarge = "Aero Matics Display-36";
 				public static string ExtraExtraLarge = "Aero Matics Display-48";
+			}
+
+			public static Color OrangeColor { get; private set; }
+
+			public static void Init()
+			{
+				OrangeColor = new Color (251, 176, 59);
 			}
 
 		}

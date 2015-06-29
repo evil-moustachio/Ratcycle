@@ -87,29 +87,40 @@ namespace Ratcycle
 
 		private void setKey (Model.Settings.Key.KeyTypes keyType, Keys key)
 		{
-			switch (keyType) {
-			case Model.Settings.Key.KeyTypes.Left:
-				Model.Settings.Key.Left = key;
-				break;
-			case Model.Settings.Key.KeyTypes.Right:
-				Model.Settings.Key.Right = key;
-				break;
-			case Model.Settings.Key.KeyTypes.Up:
-				Model.Settings.Key.Up = key;
-				break;
-			case Model.Settings.Key.KeyTypes.Down:
-				Model.Settings.Key.Down = key;
-				break;
-			case Model.Settings.Key.KeyTypes.PickUp:
-				Model.Settings.Key.PickUp = key;
-				break;
-			case Model.Settings.Key.KeyTypes.Attack:
-				Model.Settings.Key.Attack = key;
-				break;
-			default:
-				Console.WriteLine ("Error: Unknown keytype added");
-				break;
+			if (!checkKeyIsSet (key)) {
+				switch (keyType) {
+				case Model.Settings.Key.KeyTypes.Left:
+					Model.Settings.Key.Left = key;
+					break;
+				case Model.Settings.Key.KeyTypes.Right:
+					Model.Settings.Key.Right = key;
+					break;
+				case Model.Settings.Key.KeyTypes.Up:
+					Model.Settings.Key.Up = key;
+					break;
+				case Model.Settings.Key.KeyTypes.Down:
+					Model.Settings.Key.Down = key;
+					break;
+				case Model.Settings.Key.KeyTypes.PickUp:
+					Model.Settings.Key.PickUp = key;
+					break;
+				case Model.Settings.Key.KeyTypes.Attack:
+					Model.Settings.Key.Attack = key;
+					break;
+				default:
+					Console.WriteLine ("Error: Unknown keytype added");
+					break;
+				}
+
+				_currentKeyType = Model.Settings.Key.KeyTypes.Null;
 			}
+		}
+
+		private bool checkKeyIsSet(Keys key)
+		{
+			if (key == Model.Settings.Key.Left || key == Model.Settings.Key.Right || key == Model.Settings.Key.Up || key == Model.Settings.Key.PickUp || key == Model.Settings.Key.Down || key == Model.Settings.Key.Attack)
+				return true;
+			return false;
 		}
 
 		public override void Update ()
@@ -117,7 +128,6 @@ namespace Ratcycle
 			base.Update ();
 			if (_currentKeyType != Model.Settings.Key.KeyTypes.Null && KeyHandler.getCurrentKeyPressed ().Length > 0) {
 				setKey (_currentKeyType, KeyHandler.getCurrentKeyPressed () [0]);
-				_currentKeyType = Model.Settings.Key.KeyTypes.Null;
 			}
 
 //			if (KeyHandler.IsKeyDown (Keys.Up))
@@ -148,6 +158,13 @@ namespace Ratcycle
 				Color.White);
 			spriteBatch.DrawString (ContentHandler.GetFont ("Aero Matics Display-36"), Model.Settings.Key.Down.ToString (), 
 				UtilHandler.getCenteredPosition(ContentHandler.GetTexture("Button_Square"), _down.Position, 1, 3) - UtilHandler.getCenter(Model.Settings.Key.Down.ToString(), f), 
+				Color.White);
+
+			spriteBatch.DrawString (ContentHandler.GetFont ("Aero Matics Display-36"), Model.Settings.Key.PickUp.ToString (), 
+				UtilHandler.getCenteredPosition(ContentHandler.GetTexture("Button_Square"), _pickUp.Position, 1, 3) - UtilHandler.getCenter(Model.Settings.Key.PickUp.ToString(), f), 
+				Color.White);
+			spriteBatch.DrawString (ContentHandler.GetFont ("Aero Matics Display-36"), Model.Settings.Key.Attack.ToString (), 
+				UtilHandler.getCenteredPosition(ContentHandler.GetTexture("Button_Wide"), _attack.Position, 1, 3) - UtilHandler.getCenter(Model.Settings.Key.Attack.ToString(), f), 
 				Color.White);
 		}
 

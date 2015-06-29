@@ -50,6 +50,22 @@ namespace Ratcycle
 			return f.MeasureString (s);
 		}
 
+		public static Vector2 getSize(List<GameObject> g)
+		{
+			float maxX = 0f, maxY = 0f;
+			Type t = typeof(GameObject);
+			foreach (GameObject gameObject in g) {
+				if (IsSubclassOfRawGeneric(t, gameObject.GetType())) {
+					if (((AtlasObject)gameObject).getSize ().X > maxX)
+						maxX = ((AtlasObject)gameObject).getSize ().X;
+					if (((AtlasObject)gameObject).getSize ().Y > maxY)
+						maxY = ((AtlasObject)gameObject).getSize ().Y;
+				}
+			}
+
+			return new Vector2 (maxX, maxY);
+		}
+
 		public static Vector2 getCenter(Texture2D t, int columns, int rows)
 		{
 			return getSize(t, columns, rows) / 2;
@@ -78,6 +94,23 @@ namespace Ratcycle
 		public static Vector2 getCenteredPosition(StringBuilder s, SpriteFont f, Vector2 p)
 		{
 			return p + getCenter(s, f);
+		}
+
+		/// <summary>
+		/// Check if class is type of base class.
+		/// </summary>
+		/// <returns><c>true</c> if subclass is child of raw generic; otherwise, <c>false</c>.</returns>
+		/// <param name="generic">Generic.</param>
+		/// <param name="toCheck">To check.</param>
+		static bool IsSubclassOfRawGeneric(Type generic, Type toCheck) {
+			while (toCheck != null && toCheck != typeof(object)) {
+				var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+				if (generic == cur) {
+					return true;
+				}
+				toCheck = toCheck.BaseType;
+			}
+			return false;
 		}
     }
 }

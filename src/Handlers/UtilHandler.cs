@@ -78,7 +78,12 @@ namespace Ratcycle
 
 		public static Vector2 getCenter(StringBuilder s, SpriteFont f)
 		{
-			return getSize(s, f);
+			return getSize(s, f) / 2;
+		}
+
+		public static Vector2 getCenter(List<GameObject> g)
+		{
+			return getSize (g) / 2;
 		}
 
 		public static Vector2 getCenteredPosition(Texture2D t, Vector2 p, int columns, int rows)

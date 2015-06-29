@@ -9,14 +9,6 @@ namespace Ratcycle
     public class Rat : Entity
     {
         private Garbage _inventory;
-//		private Keys _up = Keys.Up;
-//        private Keys _down = Keys.Down;
-//        private Keys _left = Keys.Left;
-//        private Keys _right = Keys.Right;
-		private Keys _up = Keys.W;
-		private Keys _down = Keys.S;
-		private Keys _left = Keys.A;
-		private Keys _right = Keys.D;
 
 		private long _gameOverTick;
 
@@ -118,8 +110,8 @@ namespace Ratcycle
         {
             Stage view = (Stage)_parentView;
 
-
-			if (KeyHandler.IsKeyDown(_up) && view.NotColliding(this, MakeFutureRectangle(Directions.Up), _minCoords, _maxCoords)) 
+			//up
+			if (KeyHandler.IsKeyDown(Model.Settings.Key.Up) && view.NotColliding(this, MakeFutureRectangle(Directions.Up), _minCoords, _maxCoords)) 
             {
 				_position.Y -= _speed.Y;
 
@@ -128,7 +120,8 @@ namespace Ratcycle
                 else
                     ChangeFrame(2);
 			}
-			if (KeyHandler.IsKeyDown(_down) && view.NotColliding(this, MakeFutureRectangle(Directions.Down), _minCoords, _maxCoords)) 
+			//down
+			if (KeyHandler.IsKeyDown(Model.Settings.Key.Down) && view.NotColliding(this, MakeFutureRectangle(Directions.Down), _minCoords, _maxCoords)) 
             {
 				_position.Y += _speed.Y;
 
@@ -137,7 +130,8 @@ namespace Ratcycle
                 else
                     ChangeFrame(2);
 			}
-			if (KeyHandler.IsKeyDown(_left)) 
+			//left
+			if (KeyHandler.IsKeyDown(Model.Settings.Key.Left)) 
             {
 				if (!_flip) 
                 {
@@ -152,7 +146,8 @@ namespace Ratcycle
                     _position.X -= _speed.X;
                 }
 			}
-			if (KeyHandler.IsKeyDown(_right))
+			//right
+			if (KeyHandler.IsKeyDown(Model.Settings.Key.Right))
             {
 					if (_flip) 
                     {
@@ -167,7 +162,7 @@ namespace Ratcycle
                         _position.X += _speed.X;
                     }
 			}
-			if (!KeyHandler.IsKeyDown (_right) && !KeyHandler.IsKeyDown (_left) && !KeyHandler.IsKeyDown(_up) && !KeyHandler.IsKeyDown(_down)) 
+			if (!KeyHandler.IsKeyDown (Model.Settings.Key.Right) && !KeyHandler.IsKeyDown (Model.Settings.Key.Left) && !KeyHandler.IsKeyDown(Model.Settings.Key.Up) && !KeyHandler.IsKeyDown(Model.Settings.Key.Down)) 
 			{
 				if (_flip)
 					ChangeFrame (5);
@@ -178,7 +173,7 @@ namespace Ratcycle
         
         private void Attack()
         {
-            if (KeyHandler.checkNewKeyPressed(Keys.Space))
+			if (KeyHandler.checkNewKeyPressed(Model.Settings.Key.Attack))
             {
                 //SoundEffect
                 _game.soundEffect = new SoundHandler("Woosj", Model.Settings.SoundEffectVolume);
@@ -196,7 +191,7 @@ namespace Ratcycle
 
         private void PickUp()
         {
-			if (KeyHandler.checkNewKeyPressed(Keys.RightShift) || KeyHandler.checkNewKeyPressed(Keys.F))
+			if (KeyHandler.checkNewKeyPressed(Model.Settings.Key.PickUp))
             {
                 _inventory = ((Stage)_parentView).GarbageHandler(_inventory);
             }

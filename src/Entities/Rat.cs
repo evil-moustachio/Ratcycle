@@ -235,6 +235,12 @@ namespace Ratcycle
 			} 
         }
 
+		public override void Hit (float damage)
+		{
+			base.Hit (damage);
+
+		}
+
         /// <summary>
         /// Updates the rat.
         /// </summary>

@@ -56,6 +56,7 @@ namespace Ratcycle
 			textures.Add ("HUDHealthbarRat", null);
 			textures.Add ("HUDRat", null);
             textures.Add ("inventory", null);
+			textures.Add ("HitOverlay", null);
 
 			//ENTITIES
 			textures.Add ("Entity_rat", null);

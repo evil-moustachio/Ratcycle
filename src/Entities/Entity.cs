@@ -83,7 +83,7 @@ namespace Ratcycle
 		/// Applies damage to Entity.
 		/// </summary>
 		/// <param name="damage">Damage.</param>
-		public virtual void Damage(float damage)
+		public virtual void Hit(float damage)
 		{
 			_health -= damage;
 		}

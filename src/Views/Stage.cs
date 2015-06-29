@@ -218,8 +218,11 @@ namespace Ratcycle
             {
                 if (_gameObjects[i] is Entity && attacker != _gameObjects[i] && AttackBox.Intersects(((Entity)_gameObjects[i]).HitBox) && !(attacker is Monster && _gameObjects[i] is Monster))
                 {
-					((Entity)_gameObjects[i]).Damage(attackerDamage);
+					((Entity)_gameObjects[i]).Hit(attackerDamage);
                     attacked = true;
+
+					if(_gameObjects[i] is Rat && attacker is Monster)
+						_hud.ShowHit ();
                 }
             }
 

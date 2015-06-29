@@ -74,7 +74,23 @@ namespace Ratcycle
 				_gameObjects [i].Draw (spriteBatch);
 			}
 		}
+			
+		/// <summary>
+		/// Give visual feedback when hit.
+		/// </summary>
+		public void ShowHit()
+		{
+			_gameObjects.Add (new HitOverlay (_game, this));
+		}
 
+		public Boolean removeItemFromGameObjects(GameObject gameObject)
+		{
+			if (_gameObjects.Contains (gameObject)) {
+				_gameObjects.Remove (gameObject);
+				return true;
+			}
+			return false;
+		}
 
 		/// <summary>
 		/// Pause the game.

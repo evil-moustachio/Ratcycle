@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -140,7 +141,7 @@ namespace Ratcycle
 		/// </summary>
 		public static class Settings
 		{
-			public static float MusicVolume = 0.0f;
+			public static float MusicVolume = 0.3f;
 			public static float SoundEffectVolume = 1f;
 
 			/// <summary>

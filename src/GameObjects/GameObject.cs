@@ -11,8 +11,8 @@ namespace Ratcycle
 	{
 		protected Vector2 _position;
         protected Game1 _game;
-		protected View _parentView;
-		protected Color _color;
+		protected View _view;
+		public Color Color;
 
         public Vector2 Position
         {
@@ -44,15 +44,15 @@ namespace Ratcycle
 		{
 			_position = position;
             _game = game;
-            _parentView = view;
-			_color = color;
+            _view = view;
+			Color = color;
 		}
 
         public GameObject(Game1 game, View view, Color color)
         {
             _game = game;
-            _parentView = view;
-            _color = color;
+            _view = view;
+            Color = color;
         }
 
         public virtual void Update() { }

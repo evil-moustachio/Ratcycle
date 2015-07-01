@@ -108,7 +108,7 @@ namespace Ratcycle
         /// </summary>
         private void Move()
         {
-            Stage view = (Stage)_parentView;
+            Stage view = (Stage)_view;
 
 			//up
 			if (KeyHandler.IsKeyDown(Model.Settings.Key.Up) && view.NotColliding(this, MakeFutureRectangle(Directions.Up), _minCoords, _maxCoords)) 
@@ -185,7 +185,7 @@ namespace Ratcycle
 				else
 					StartSingleMotion(0);
 				
-                ((Stage)_parentView).AttackHandler(this, _damage, AttackBox);
+                ((Stage)_view).AttackHandler(this, _damage, AttackBox);
             }
         }
 
@@ -193,7 +193,7 @@ namespace Ratcycle
         {
 			if (KeyHandler.checkNewKeyPressed(Model.Settings.Key.PickUp))
             {
-                _inventory = ((Stage)_parentView).GarbageHandler(_inventory);
+                _inventory = ((Stage)_view).GarbageHandler(_inventory);
             }
         }
 
@@ -224,7 +224,7 @@ namespace Ratcycle
                 _game.soundEffect = new SoundHandler("DeathSpiral", Model.Settings.SoundEffectVolume);
                 _game.soundEffect.Play();
 
-				((Stage)_parentView).NewPlayerFeedback("Fatality", Color.Red, new Vector2(_position.X - 30, _position.Y), 30f, 100f);
+				((Stage)_view).NewPlayerFeedback("Fatality", Color.Red, new Vector2(_position.X - 30, _position.Y), 30f, 100f);
 				_alive = false;
 				_gameOverTick = Model.Time.CurrentGameTick + (Model.Time.OneSecondOfTicks * 2);
 			} 
@@ -259,7 +259,7 @@ namespace Ratcycle
 				// Show GameOver Screen at right time
 				if (Model.Time.CurrentGameTick >= _gameOverTick)
 				{
-					((Stage)_parentView).GameOver();
+					((Stage)_view).GameOver();
 				}
 			}
         }

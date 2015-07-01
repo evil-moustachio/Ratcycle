@@ -22,6 +22,7 @@ namespace Ratcycle
             _game = game;
             Player = new Player();
             _viewController = new ViewController(_game);
+			Model.Init ();
         }
 
         /// <summary>

@@ -50,6 +50,34 @@ namespace Ratcycle
 			return f.MeasureString (s);
 		}
 
+		public static Vector2 getSize(List<GameObject> g)
+		{
+			float maxX = 0f, maxY = 0f;
+			foreach (GameObject gameObject in g) {
+				if (gameObject is Text) {
+					float x = ((Text)gameObject).getSize ().X + gameObject.Position.X, y = ((Text)gameObject).getSize ().Y + gameObject.Position.Y;
+					if (x > maxX)
+						maxX = x;
+					if (y > maxY)
+						maxY = y;
+				} else if (gameObject is AtlasObject) {
+					float x = ((AtlasObject)gameObject).getSize ().X + gameObject.Position.X, y = ((AtlasObject)gameObject).getSize ().Y + gameObject.Position.Y;
+					if (x > maxX)
+						maxX = x;
+					if (y > maxY)
+						maxY = y;
+				} else if (gameObject is Frame) {
+					float x = ((Frame)gameObject).getSize ().X + gameObject.Position.X, y = ((Frame)gameObject).getSize ().Y + gameObject.Position.Y;
+					if (x > maxX)
+						maxX = x;
+					if (y > maxY)
+						maxY = y;
+				}
+			}
+
+			return new Vector2 (maxX, maxY);
+		}
+
 		public static Vector2 getCenter(Texture2D t, int columns, int rows)
 		{
 			return getSize(t, columns, rows) / 2;
@@ -62,7 +90,12 @@ namespace Ratcycle
 
 		public static Vector2 getCenter(StringBuilder s, SpriteFont f)
 		{
-			return getSize(s, f);
+			return getSize(s, f) / 2;
+		}
+
+		public static Vector2 getCenter(List<GameObject> g)
+		{
+			return getSize (g) / 2;
 		}
 
 		public static Vector2 getCenteredPosition(Texture2D t, Vector2 p, int columns, int rows)

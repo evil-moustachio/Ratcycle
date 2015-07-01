@@ -14,10 +14,6 @@ namespace Ratcycle
 		public MenuInfo (Game1 game, ViewController viewController, bool mouseVisible) 
 			: base (game, viewController, mouseVisible)
 		{
-			List<GameObject> g = new List<GameObject> ();
-			g.Add (new Text (new Vector2 (10), _game, this, "Aero Matics Display-18", "Current level:", Color.White));
-			g.Add (new Text (new Vector2 (30), _game, this, "Aero Matics Display-36", Model.Rat.level.ToString (), Color.White));
-			_gameObjects.Add(new PopupBox(_game, this, g, true));
 			_gameObjects.Add (new AtlasObject (ContentHandler.GetTexture ("Background-0" + Model.Stage.Current), 
 				new Vector2 (0, 0), _game, this, Color.White, 1, 1, 1, false));
 			_gameObjects.Add (new AtlasObject (ContentHandler.GetTexture ("BackgroundGray"), new Vector2 (0, 0), _game, this, 

@@ -8,6 +8,7 @@ namespace Ratcycle
 	public class Frame : GameObject
 	{
 		private List<GameObject> _gameObjects = new List<GameObject>();
+		private List<Vector2> _gameObjectPositions = new List<Vector2> ();
 		protected Vector2 _size;
 
 		public Vector2 Size { get { return _size; } }
@@ -16,8 +17,18 @@ namespace Ratcycle
 		{
 			_size = UtilHandler.getSize (gameObjects);
 			for (int i = gameObjects.Count - 1; i >= 0; i--) {
-				gameObjects [i].Position += _position;
+				_gameObjectPositions.Add (gameObjects [i].Position);
 				_gameObjects.Add (gameObjects [i]);
+			}
+
+			setChildPositions ();
+		}
+
+		protected void setChildPositions ()
+		{
+
+			for (int i = _gameObjects.Count - 1; i >= 0; i--) {
+				_gameObjects [i].Position = _gameObjectPositions [i] + _position;
 			}
 		}
 
@@ -36,11 +47,24 @@ namespace Ratcycle
 			_gameObjects.Remove(g);
 		}
 
-		protected void setCenter()
+		public Vector2 getSize()
 		{
-			Vector2 centerScreen = new Vector2 (_game.GraphicsDevice.Viewport.Width / 2, _game.GraphicsDevice.Viewport.Height / 2),
-			centerThis = UtilHandler.getCenter (_gameObjects);
-			_position = centerScreen - centerThis;
+			return UtilHandler.getSize (_gameObjects);
+		}
+
+		public Vector2 getCenter()
+		{
+			return UtilHandler.getCenter (_gameObjects);
+		}
+
+		protected void setCenter(bool BasedOnSize)
+		{
+			Vector2 centerScreen = new Vector2 (_game.GraphicsDevice.Viewport.Width / 2, _game.GraphicsDevice.Viewport.Height / 2);
+			if (BasedOnSize) {
+				_position = centerScreen - new Vector2 (_size.X / 2, _size.Y / 2);
+			} else {
+				_position = centerScreen - getCenter ();
+			}
 		}
 
 		public override void Update ()

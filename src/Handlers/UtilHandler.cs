@@ -53,13 +53,25 @@ namespace Ratcycle
 		public static Vector2 getSize(List<GameObject> g)
 		{
 			float maxX = 0f, maxY = 0f;
-			Type t = typeof(GameObject);
 			foreach (GameObject gameObject in g) {
-				if (IsSubclassOfRawGeneric(t, gameObject.GetType())) {
-					if (((AtlasObject)gameObject).getSize ().X > maxX)
-						maxX = ((AtlasObject)gameObject).getSize ().X;
-					if (((AtlasObject)gameObject).getSize ().Y > maxY)
-						maxY = ((AtlasObject)gameObject).getSize ().Y;
+				if (gameObject is Text) {
+					float x = ((Text)gameObject).getSize ().X + gameObject.Position.X, y = ((Text)gameObject).getSize ().Y + gameObject.Position.Y;
+					if (x > maxX)
+						maxX = x;
+					if (y > maxY)
+						maxY = y;
+				} else if (gameObject is AtlasObject) {
+					float x = ((AtlasObject)gameObject).getSize ().X + gameObject.Position.X, y = ((AtlasObject)gameObject).getSize ().Y + gameObject.Position.Y;
+					if (x > maxX)
+						maxX = x;
+					if (y > maxY)
+						maxY = y;
+				} else if (gameObject is Frame) {
+					float x = ((Frame)gameObject).getSize ().X + gameObject.Position.X, y = ((Frame)gameObject).getSize ().Y + gameObject.Position.Y;
+					if (x > maxX)
+						maxX = x;
+					if (y > maxY)
+						maxY = y;
 				}
 			}
 
@@ -99,23 +111,6 @@ namespace Ratcycle
 		public static Vector2 getCenteredPosition(StringBuilder s, SpriteFont f, Vector2 p)
 		{
 			return p + getCenter(s, f);
-		}
-
-		/// <summary>
-		/// Check if class is type of base class.
-		/// </summary>
-		/// <returns><c>true</c> if subclass is child of raw generic; otherwise, <c>false</c>.</returns>
-		/// <param name="generic">Generic.</param>
-		/// <param name="toCheck">To check.</param>
-		static bool IsSubclassOfRawGeneric(Type generic, Type toCheck) {
-			while (toCheck != null && toCheck != typeof(object)) {
-				var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
-				if (generic == cur) {
-					return true;
-				}
-				toCheck = toCheck.BaseType;
-			}
-			return false;
 		}
     }
 }

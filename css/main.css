@@ -211,7 +211,6 @@ p {
 }
 
 .platforms {
-  cursor: not-allowed;
   border-radius: 2px;
   background-color: #ededed;
   max-width: 448px;
@@ -222,14 +221,12 @@ p {
 }
 
 .platforms li {
-  cursor: not-allowed;
   padding: 10px;
   margin: 1em 3em;
 }
 
 .platforms li:hover {
-  cursor: not-allowed;
-  /*background-color: #fefefe;*/
+  background-color: #fefefe;
 }
 
 .platform-logo,

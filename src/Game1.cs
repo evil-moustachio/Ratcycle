@@ -19,6 +19,7 @@ namespace Ratcycle
         private GameTime _gameTime;
         public SoundHandler Music;
         public SoundHandler soundEffect;
+        public SaveGameHandler saveGame;
 
         public World World
         {
@@ -49,6 +50,8 @@ namespace Ratcycle
 		protected override void Initialize()
 		{
 			base.Initialize();
+            saveGame = new SaveGameHandler();
+            saveGame.LoadGame();
 			_world = new World(this);
 		}
 

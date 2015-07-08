@@ -112,7 +112,7 @@ namespace Ratcycle
 					Console.WriteLine ("Error: Unknown keytype added");
 					break;
 				}
-
+                _game.saveGame.SaveGame();
 				_currentKeyType = Model.Settings.Key.KeyTypes.Null;
 			}
 		}

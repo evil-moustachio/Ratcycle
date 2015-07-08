@@ -35,6 +35,7 @@ namespace Ratcycle
 				Model.Stage.Reached++;
 			
 			Model.Stage.CurrentPlaying++;
+            _game.saveGame.SaveGame();
 
 			createView ();
 		}

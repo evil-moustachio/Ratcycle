@@ -143,6 +143,7 @@ namespace Ratcycle
 		{
 			public static float MusicVolume = 0.3f;
 			public static float SoundEffectVolume = 1f;
+            public static string Version = "0.1.0";
 
 			/// <summary>
 			/// Key settings.

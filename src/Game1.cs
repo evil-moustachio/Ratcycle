@@ -20,6 +20,7 @@ namespace Ratcycle
         public SoundHandler Music;
         public SoundHandler soundEffect;
         public SaveGameHandler saveGame;
+        public UpdateHandler updateChecker;
 
         public World World
         {
@@ -63,6 +64,8 @@ namespace Ratcycle
 
             Music = new SoundHandler("MainTheme", Model.Settings.MusicVolume, true);
             Music.Play();
+            updateChecker = new UpdateHandler();
+            updateChecker.CheckUpdate();
 		}
 			
 		protected override void Update(GameTime gameTime)

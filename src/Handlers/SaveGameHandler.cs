@@ -55,6 +55,7 @@ namespace Ratcycle
             Model.Settings.Key.PickUp = pickUp;
             Model.Settings.Key.Attack = attack;
             Model.Stage.Reached = reachedStage;
+            Model.Stage.CurrentPlaying = reachedStage;
             Model.Rat.level = level;
             Model.Rat.exp = exp;
         }
